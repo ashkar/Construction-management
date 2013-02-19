@@ -127,7 +127,7 @@ public class Login extends javax.swing.JFrame {
             Connection co;
             Statement st;
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            co = DriverManager.getConnection("jdbc:odbc:mobile","", "");
+            co = DriverManager.getConnection("jdbc:odbc:indlands","", "");
             st = co.createStatement();
             res = st.executeQuery("select * from login");
             Boolean rec = res.next();
