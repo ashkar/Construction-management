@@ -10,6 +10,7 @@
  */
 package pos;
 
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.*;
 
@@ -54,6 +55,11 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Monotype Corsiva", 1, 60)); // NOI18N
@@ -153,6 +159,7 @@ public class Login extends javax.swing.JFrame {
             }
             st.close();
             co.close();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "The error is:" + e);
         }
@@ -160,10 +167,16 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        System.exit(0); 
+        
+         
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+
+    }//GEN-LAST:event_formKeyPressed
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
