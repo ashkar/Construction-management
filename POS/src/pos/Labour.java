@@ -4,18 +4,24 @@
  */
 package pos;
 
+import java.sql.*;
+import javax.swing.*;
+
 /**
  *
  * @author lenovo
  */
 public class Labour extends javax.swing.JFrame {
 
+    String Name,Work,Mobile;
+    int Cid;
     /**
-     * Creates new form Labour
-     */
+      Creates new form Labour
+     **/
     public Labour() {
         initComponents();
         setTitle("Labour");
+        setSize(660,770);
         setVisible(true);
         
     }
@@ -29,7 +35,6 @@ public class Labour extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
@@ -37,91 +42,300 @@ public class Labour extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        jButton2.setText("edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField4FocusLost(evt);
             }
         });
 
         jButton1.setText("save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField2FocusLost(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jLabel2.setText("Name");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36));
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Labour Details");
 
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jLabel4.setText("Mobile");
 
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         jLabel3.setText("Work");
+
+        jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Plumbing", "Electrical", "Laterate", "Plastering", "Painting", "Centering", "Carpentary", "Flooring" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(51, 51, 51))
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addGap(32, 32, 32)
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField5))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(75, 75, 75)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel2))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                        .addComponent(jLabel6))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                        .addComponent(jLabel7))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(347, 347, 347))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+
+    String str = jTextField4.getText();
+       jLabel5.setText("");
+            
+         if( str.isEmpty())
+       {
+           jTextField4.setText("");
+           jLabel5.setText("Enter a Name");
+                     
+       }
+         else{
+         try {
+             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                  Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select * from Labour");
+                  Boolean rec = res.next();
+                  
+                 do
+                 {
+                     if(rec==true)
+                     {
+                       String S1 = res.getString(2);                       
+                       if(S1.equalsIgnoreCase(str))                           
+                       {
+                           jLabel5.setText("That Name already Exists");
+                           jTextField4.setText("");
+                       }   
+                     }
+                 }while(res.next());
+         }
+         
+         catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"INVALID datatype");
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+                System.out.println(e.getMessage());
+            }   
+         }
+         
+    // TODO add your handling code here:
+}//GEN-LAST:event_jTextField4FocusLost
+
+private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+
+            jLabel7.setText("");
+             
+            String jtf1=jTextField2.getText();
+            if(!"".equals(jtf1))
+            {
+            int fg=0;
+            for(int i=0;i<jtf1.length();i++)
+            {
+                char c=jtf1.charAt(i);
+                if(Character.isLetter(c))
+                {
+                    fg=0;
+                    break;
+                }
+                else
+                {
+                    fg=1;
+                    
+                }
+            }
+            if(fg==0)
+            {
+                //JOptionPane.showMessageDialog(null,"Enter NUMBERS"); 
+                jTextField2.setText("");
+                jLabel7.setText("Enter only Numbers");
+               // jTextField3.requestFocus();
+            }
+            }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_jTextField2FocusLost
+
+private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_jComboBox1ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    if(jTextField4.getText().equals("")&&jComboBox1.getSelectedItem().equals("Select"))
+    {
+        JOptionPane.showMessageDialog(null,"Enter Name and Select Work");
+    }
+    else if(jTextField4.getText().equals(""))
+    {
+        JOptionPane.showMessageDialog(null,"Enter Name");
+    }
+    else if(jComboBox1.getSelectedItem().equals(("Select")))
+    {
+        JOptionPane.showMessageDialog(null,"Select a Work");
+    }
+    else
+    {
+       Name=jTextField4.getText();
+       Work=(String)jComboBox1.getSelectedItem();
+       Mobile=jTextField2.getText();
+       java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+       
+       try
+       {
+           Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+           Connection con=DriverManager.getConnection("jdbc:odbc:indlands","","");
+           Statement st = con.createStatement();
+           ResultSet res=st.executeQuery("SELECT * FROM Labour");
+           Boolean rec=res.next();
+           System.out.println("Connected Successfully");
+           
+           do
+           {
+               if(rec==true)
+               {
+                   Cid=res.getInt(1);
+               }
+           }
+           while(res.next());
+           
+           Cid+=1;
+           
+           PreparedStatement prp=con.prepareStatement("INSERT INTO Labour VALUES(?,?,?,?,?)");
+           
+           prp.setInt(1,Cid);
+           prp.setString(2,Name);
+           prp.setString(3,Mobile);
+           prp.setString(4,Work);
+           prp.setDate(5,sqlDate);
+           
+           prp.executeUpdate();
+           
+           JOptionPane.showMessageDialog(null,"Labour added Succesfully");
+           
+           jTextField4.setText("");
+           jComboBox1.setSelectedItem("Select");
+           jTextField2.setText("");
+           
+           con.commit();
+           con.close();
+       }
+       catch(SQLException e)
+       {
+           JOptionPane.showMessageDialog(null,"INVALID DATATYPE");
+       }
+       catch(Exception e)
+       {
+           JOptionPane.showMessageDialog(null,"The error is : "+e);
+           System.out.println(e.getMessage());
+       }
+    }
+    // TODO add your handling code here:
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+
+    jLabel6.setText("");
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_jComboBox1MouseClicked
+
+private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+
+    if(jComboBox1.getSelectedItem().equals(("Select")))
+    {
+        jLabel6.setText("Select a Work");
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_jTextField2FocusGained
 
     /**
      * @param args the command line arguments
@@ -166,13 +380,15 @@ public class Labour extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

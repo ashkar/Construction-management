@@ -5,6 +5,18 @@
 package pos;
 
 import java.awt.print.PrinterJob;
+import java.sql.*;
+import java.util.HashMap; 
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -12,12 +24,28 @@ import java.awt.print.PrinterJob;
  */
 public class Reports extends javax.swing.JFrame {
 
+    Connection con=null;
+    ResultSet rs=null;
+    PreparedStatement ps =null;
+    
+    
     /**
      * Creates new form Reports
      */
     public Reports() {
         initComponents();
-        
+       try{
+        con = DriverManager.getConnection("jdbc:odbc:indlands","","");}
+       catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"SQL error in initcomponent connection");
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"Error at initcomponents is:"+e);
+                System.out.println(e.getMessage());
+            }
         setTitle("Reports");
         setVisible(true);
     }
@@ -282,6 +310,23 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+ try{
+     //String report="G:\\hyderproject\\reports\\shah.jrxml";
+     JasperDesign jd=JRXmlLoader.load("G:\\hyderproject\\reports\\test3.jrxml");
+     String sql="Select * from Customer order by CUSTNAME";
+     JRDesignQuery newQuery =new JRDesignQuery();
+     newQuery.setText(sql);
+     jd.setQuery(newQuery);
+     JasperReport jr =JasperCompileManager.compileReport(jd);
+     JasperPrint jp  = (JasperPrint)JasperFillManager.fillReport(jr,null,con);
+     JasperViewer.viewReport(jp);   
+ }
+ 
+ catch(Exception e)
+ {
+     JOptionPane.showMessageDialog(null,e);
+ }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
