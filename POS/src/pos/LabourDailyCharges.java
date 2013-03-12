@@ -1,3 +1,5 @@
+package pos;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -8,10 +10,8 @@
  *
  * Created on Feb 28, 2013, 3:25:44 PM
  */
-package pos;
 
 import java.awt.*;
-import java.sql.*;
 import javax.swing.*;
 
 /**
@@ -20,8 +20,9 @@ import javax.swing.*;
  */
 public class LabourDailyCharges extends javax.swing.JFrame {
 
-    int total, wage, wage1, wage2, wage3, wage4;
-    
+    double total, wage, wage1, wage2, wage3, wage4, extra;
+    double mno,fno,mwage,fwage,extra1;
+
     /** Creates new form LabourDailyCharges */
     public LabourDailyCharges() {
         initComponents();
@@ -29,7 +30,7 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         setSize(660,770);
         setVisible(true);
         getContentPane().setBackground(new Color(202,225,255)); 
-        
+               
         nameCombo1.setVisible(false);
         wageTextField1.setVisible(false);
         nameCombo2.setVisible(false);
@@ -39,32 +40,12 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         nameCombo4.setVisible(false);
         wageTextField4.setVisible(false);
         
-        try
-        {            
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            Statement  st = con.createStatement();
-            ResultSet res = st.executeQuery("select PRONAME from Project");
-            while(res.next())
-            {
-               project_nameCombo.addItem(res.getString("PRONAME")); 
-            }
-            ResultSet res1 = st.executeQuery("select LABNAME from Labour");
-            while(res1.next())
-            {
-                nameCombo.addItem(res1.getString("LABNAME"));
-    }
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null,"INVALID datatype");
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,"The error is1:"+e);
-            System.out.println(e.getMessage());
-        }
-        
+        Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
+        Functions.FillCombo(nameCombo, "LABNAME", "Labour");
+        Functions.FillCombo(nameCombo1, "LABNAME", "Labour");
+        Functions.FillCombo(nameCombo2, "LABNAME", "Labour");
+        Functions.FillCombo(nameCombo3, "LABNAME", "Labour");
+        Functions.FillCombo(nameCombo4, "LABNAME", "Labour");
     }
 
     /** This method is called from within the constructor to
@@ -131,7 +112,6 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         totalLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
 
         labour_daily_chargesLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labour_daily_chargesLabel.setForeground(new java.awt.Color(0, 102, 102));
@@ -220,41 +200,72 @@ public class LabourDailyCharges extends javax.swing.JFrame {
                 nameComboItemStateChanged(evt);
             }
         });
-        nameCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameComboActionPerformed(evt);
+
+        wageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                wageTextFieldKeyReleased(evt);
             }
         });
 
         nameCombo1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        nameCombo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "name" }));
+        nameCombo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         nameCombo1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 nameCombo1ItemStateChanged(evt);
             }
         });
 
+        wageTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                wageTextField1KeyReleased(evt);
+            }
+        });
+
         nameCombo2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        nameCombo2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "name" }));
+        nameCombo2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         nameCombo2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 nameCombo2ItemStateChanged(evt);
             }
         });
 
+        wageTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                wageTextField2KeyReleased(evt);
+            }
+        });
+
         nameCombo3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        nameCombo3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "name" }));
+        nameCombo3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         nameCombo3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 nameCombo3ItemStateChanged(evt);
             }
         });
 
+        wageTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                wageTextField3KeyReleased(evt);
+            }
+        });
+
         nameCombo4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        nameCombo4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "name" }));
+        nameCombo4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+
+        wageTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                wageTextField4KeyReleased(evt);
+            }
+        });
 
         extra_expenseLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         extra_expenseLabel.setText("Extra Expense");
+
+        extra_expenseTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                extra_expenseTextFieldKeyReleased(evt);
+            }
+        });
 
         detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         detailsLabel.setText("Details");
@@ -284,15 +295,39 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         mnoLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         mnoLabel.setText("No :");
 
+        mnoTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mnoTextFieldKeyReleased(evt);
+            }
+        });
+
         mwageLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         mwageLabel.setText("Wage");
+
+        mwageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mwageTextFieldKeyReleased(evt);
+            }
+        });
 
         femaleLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         femaleLabel.setForeground(new java.awt.Color(0, 102, 102));
         femaleLabel.setText("Female");
 
+        fwageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fwageTextFieldKeyReleased(evt);
+            }
+        });
+
         fwageLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         fwageLabel.setText("Wage");
+
+        fnoTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fnoTextFieldKeyReleased(evt);
+            }
+        });
 
         fnoLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         fnoLabel.setText("No :");
@@ -302,6 +337,12 @@ public class LabourDailyCharges extends javax.swing.JFrame {
 
         extra_expenseLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         extra_expenseLabel1.setText("Extra Expense");
+
+        extra_expenseTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                extra_expenseTextField1KeyReleased(evt);
+            }
+        });
 
         detailsTextArea1.setColumns(15);
         detailsTextArea1.setRows(5);
@@ -385,14 +426,15 @@ public class LabourDailyCharges extends javax.swing.JFrame {
                                 .addComponent(wageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(25, 25, 25))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameCombo4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(extra_expenseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(39, 39, 39)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(extra_expenseTextField)
+                                        .addComponent(extra_expenseLabel)
+                                        .addGap(51, 51, 51))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(nameCombo4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(16, 16, 16)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(extra_expenseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                                     .addComponent(wageTextField4))
                                 .addGap(7, 7, 7))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -670,6 +712,83 @@ private void yearComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:even
     // TODO add your handling code here:
 }//GEN-LAST:event_yearComboFocusLost
 
+private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
+
+    if(nameCombo.getSelectedItem().equals("Select"))
+    {
+        nameCombo1.setVisible(false);
+        wageTextField1.setVisible(false);
+        nameCombo2.setVisible(false);
+        wageTextField2.setVisible(false);
+        nameCombo3.setVisible(false);
+        wageTextField3.setVisible(false);
+        nameCombo4.setVisible(false);
+        wageTextField4.setVisible(false);
+    }
+    else
+    {
+        nameCombo1.setVisible(true);
+        wageTextField1.setVisible(true);
+    }
+    
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_nameComboItemStateChanged
+
+private void nameCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo1ItemStateChanged
+
+    if(nameCombo1.getSelectedItem().equals("Select"))
+    {
+        nameCombo2.setVisible(false);
+        wageTextField2.setVisible(false);
+        nameCombo3.setVisible(false);
+        wageTextField3.setVisible(false);
+        nameCombo4.setVisible(false);
+        wageTextField4.setVisible(false);
+    }
+    else
+    {
+        nameCombo2.setVisible(true);
+        wageTextField2.setVisible(true);
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_nameCombo1ItemStateChanged
+
+private void nameCombo2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo2ItemStateChanged
+
+    if(nameCombo2.getSelectedItem().equals("Select"))
+    {
+        nameCombo3.setVisible(false);
+        wageTextField3.setVisible(false);
+        nameCombo4.setVisible(false);
+        wageTextField4.setVisible(false);
+    }
+    else
+    {
+        nameCombo3.setVisible(true);
+        wageTextField3.setVisible(true);
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_nameCombo2ItemStateChanged
+
+private void nameCombo3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo3ItemStateChanged
+
+    if(nameCombo3.getSelectedItem().equals("Select"))
+    {
+        nameCombo4.setVisible(false);
+        wageTextField4.setVisible(false);
+    }
+    else
+    {
+        nameCombo4.setVisible(true);
+        wageTextField4.setVisible(true);
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_nameCombo3ItemStateChanged
+
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 
     if((project_nameCombo.getSelectedItem().equals("Select")
@@ -694,86 +813,614 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     // TODO add your handling code here:
 }//GEN-LAST:event_addButtonActionPerformed
 
-private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
+private void wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextFieldKeyReleased
 
-    if(nameCombo.getSelectedItem().equals("Select"))
+    if(Functions.NumericValidate(wageTextField))
     {
-//        nameCombo1.setVisible(false);
-//        wageTextField1.setVisible(false);
-//        nameCombo2.setVisible(false);
-//        wageTextField2.setVisible(false);
-//        nameCombo3.setVisible(false);
-//        wageTextField3.setVisible(false);
-//        nameCombo4.setVisible(false);
-//        wageTextField4.setVisible(false);
-    }
-    else
-    {
-        nameCombo1.setVisible(true);
-        wageTextField1.setVisible(true);
-    }
-    
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_nameComboItemStateChanged
-
-private void nameCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo1ItemStateChanged
-
-    if(nameCombo1.getSelectedItem().equals("Select"))
-    {
-//        nameCombo2.setVisible(false);
-//        wageTextField2.setVisible(false);
-//        nameCombo3.setVisible(false);
-//        wageTextField3.setVisible(false);
-//        nameCombo4.setVisible(false);
-//        wageTextField4.setVisible(false);
-    }
-    else
-    {
-        nameCombo2.setVisible(true);
-        wageTextField2.setVisible(true);
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_nameCombo1ItemStateChanged
-
-private void nameCombo2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo2ItemStateChanged
-
-    if(nameCombo2.getSelectedItem().equals("Select"))
-    {
-//        nameCombo3.setVisible(false);
-//        wageTextField3.setVisible(false);
-//        nameCombo4.setVisible(false);
-//        wageTextField4.setVisible(false);
-    }
-    else
-    {
-        nameCombo3.setVisible(true);
-        wageTextField3.setVisible(true);
+        if(wageTextField.getText().equals(""))
+        {
+            wage=0;
+        }
+        if(wageTextField1.getText().equals(""))
+        {
+            wage1=0;
+        }
+        if(wageTextField2.getText().equals(""))
+        {
+            wage2=0;
+        }
+        if(wageTextField3.getText().equals(""))
+        {
+            wage3=0;
+        }
+        if(wageTextField4.getText().equals(""))
+        {
+            wage4=0;
+        }
+        if(!wageTextField.getText().equals(""))
+        {
+            wage = Double.parseDouble(wageTextField.getText());
+        }
+        if(!wageTextField1.getText().equals(""))
+        {
+            wage1 = Double.parseDouble(wageTextField1.getText());
+        }
+        if(!wageTextField2.getText().equals(""))
+        {
+            wage2 = Double.parseDouble(wageTextField2.getText());
+        }
+        if(!wageTextField3.getText().equals(""))
+        {
+            wage3 = Double.parseDouble(wageTextField3.getText());
+        }
+        if(!wageTextField4.getText().equals(""))
+        {
+            wage4 = Double.parseDouble(wageTextField4.getText());
+        }
+        if(extra_expenseTextField.getText().equals(""))
+        {
+            extra=0;
+        }
+        if(!extra_expenseTextField.getText().equals(""))
+        {
+            extra = Double.parseDouble(extra_expenseTextField.getText());
+        }
+        total = wage+wage1+wage2+wage3+wage4+extra;
+        label_total.setText(Double.toString(total));
     }
     
     // TODO add your handling code here:
-}//GEN-LAST:event_nameCombo2ItemStateChanged
+}//GEN-LAST:event_wageTextFieldKeyReleased
 
-private void nameCombo3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo3ItemStateChanged
-
-    if(nameCombo3.getSelectedItem().equals("Select"))
+private void wageTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextField1KeyReleased
+    
+    if(Functions.NumericValidate(wageTextField1))
     {
-//        nameCombo4.setVisible(false);
-//        wageTextField4.setVisible(false);
-    }
-    else
-    {
-        nameCombo4.setVisible(true);
-        wageTextField4.setVisible(true);
+        if(wageTextField.getText().equals(""))
+        {
+            wage=0;
+        }
+        if(wageTextField1.getText().equals(""))
+        {
+            wage1=0;
+        }
+        if(wageTextField2.getText().equals(""))
+        {
+            wage2=0;
+        }
+        if(wageTextField3.getText().equals(""))
+        {
+            wage3=0;
+        }
+        if(wageTextField4.getText().equals(""))
+        {
+            wage4=0;
+        }
+        if(!wageTextField.getText().equals(""))
+        {
+            wage = Double.parseDouble(wageTextField.getText());
+        }
+        if(!wageTextField1.getText().equals(""))
+        {
+            wage1 = Double.parseDouble(wageTextField1.getText());
+        }
+        if(!wageTextField2.getText().equals(""))
+        {
+            wage2 = Double.parseDouble(wageTextField2.getText());
+        }
+        if(!wageTextField3.getText().equals(""))
+        {
+            wage3 = Double.parseDouble(wageTextField3.getText());
+        }
+        if(!wageTextField4.getText().equals(""))
+        {
+            wage4 = Double.parseDouble(wageTextField4.getText());
+        }
+        if(extra_expenseTextField.getText().equals(""))
+        {
+            extra=0;
+        }
+        if(!extra_expenseTextField.getText().equals(""))
+        {
+            extra = Double.parseDouble(extra_expenseTextField.getText());
+        }
+        total = wage+wage1+wage2+wage3+wage4+extra;
+        label_total.setText(Double.toString(total));
     }
     
     // TODO add your handling code here:
-}//GEN-LAST:event_nameCombo3ItemStateChanged
+}//GEN-LAST:event_wageTextField1KeyReleased
 
-    private void nameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameComboActionPerformed
+private void wageTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextField2KeyReleased
+
+    if(Functions.NumericValidate(wageTextField2))
+    {
+        if(wageTextField.getText().equals(""))
+        {
+            wage=0;
+        }
+        if(wageTextField1.getText().equals(""))
+        {
+            wage1=0;
+        }
+        if(wageTextField2.getText().equals(""))
+        {
+            wage2=0;
+        }
+        if(wageTextField3.getText().equals(""))
+        {
+            wage3=0;
+        }
+        if(wageTextField4.getText().equals(""))
+        {
+            wage4=0;
+        }
+        if(!wageTextField.getText().equals(""))
+        {
+            wage = Double.parseDouble(wageTextField.getText());
+        }
+        if(!wageTextField1.getText().equals(""))
+        {
+            wage1 = Double.parseDouble(wageTextField1.getText());
+        }
+        if(!wageTextField2.getText().equals(""))
+        {
+            wage2 = Double.parseDouble(wageTextField2.getText());
+        }
+        if(!wageTextField3.getText().equals(""))
+        {
+            wage3 = Double.parseDouble(wageTextField3.getText());
+        }
+        if(!wageTextField4.getText().equals(""))
+        {
+            wage4 = Double.parseDouble(wageTextField4.getText());
+        }
+        if(extra_expenseTextField.getText().equals(""))
+        {
+            extra=0;
+        }
+        if(!extra_expenseTextField.getText().equals(""))
+        {
+            extra = Double.parseDouble(extra_expenseTextField.getText());
+        }
+        total = wage+wage1+wage2+wage3+wage4+extra;
+        label_total.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_wageTextField2KeyReleased
+
+private void wageTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextField3KeyReleased
+
+    if(Functions.NumericValidate(wageTextField3))
+    {
+        if(wageTextField.getText().equals(""))
+        {
+            wage=0;
+        }
+        if(wageTextField1.getText().equals(""))
+        {
+            wage1=0;
+        }
+        if(wageTextField2.getText().equals(""))
+        {
+            wage2=0;
+        }
+        if(wageTextField3.getText().equals(""))
+        {
+            wage3=0;
+        }
+        if(wageTextField4.getText().equals(""))
+        {
+            wage4=0;
+        }
+        if(!wageTextField.getText().equals(""))
+        {
+            wage = Double.parseDouble(wageTextField.getText());
+        }
+        if(!wageTextField1.getText().equals(""))
+        {
+            wage1 = Double.parseDouble(wageTextField1.getText());
+        }
+        if(!wageTextField2.getText().equals(""))
+        {
+            wage2 = Double.parseDouble(wageTextField2.getText());
+        }
+        if(!wageTextField3.getText().equals(""))
+        {
+            wage3 = Double.parseDouble(wageTextField3.getText());
+        }
+        if(!wageTextField4.getText().equals(""))
+        {
+            wage4 = Double.parseDouble(wageTextField4.getText());
+        }
+        if(extra_expenseTextField.getText().equals(""))
+        {
+            extra=0;
+        }
+        if(!extra_expenseTextField.getText().equals(""))
+        {
+            extra = Double.parseDouble(extra_expenseTextField.getText());
+        }
+        total = wage+wage1+wage2+wage3+wage4+extra;
+        label_total.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_wageTextField3KeyReleased
+
+private void wageTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextField4KeyReleased
+
+    if(Functions.NumericValidate(wageTextField4))
+    {
+        if(wageTextField.getText().equals(""))
+        {
+            wage=0;
+        }
+        if(wageTextField1.getText().equals(""))
+        {
+            wage1=0;
+        }
+        if(wageTextField2.getText().equals(""))
+        {
+            wage2=0;
+        }
+        if(wageTextField3.getText().equals(""))
+        {
+            wage3=0;
+        }
+        if(wageTextField4.getText().equals(""))
+        {
+            wage4=0;
+        }
+        if(!wageTextField.getText().equals(""))
+        {
+            wage = Double.parseDouble(wageTextField.getText());
+        }
+        if(!wageTextField1.getText().equals(""))
+        {
+            wage1 = Double.parseDouble(wageTextField1.getText());
+        }
+        if(!wageTextField2.getText().equals(""))
+        {
+            wage2 = Double.parseDouble(wageTextField2.getText());
+        }
+        if(!wageTextField3.getText().equals(""))
+        {
+            wage3 = Double.parseDouble(wageTextField3.getText());
+        }
+        if(!wageTextField4.getText().equals(""))
+        {
+            wage4 = Double.parseDouble(wageTextField4.getText());
+        }
+        if(extra_expenseTextField.getText().equals(""))
+        {
+            extra=0;
+        }
+        if(!extra_expenseTextField.getText().equals(""))
+        {
+            extra = Double.parseDouble(extra_expenseTextField.getText());
+        }
+        total = wage+wage1+wage2+wage3+wage4+extra;
+        label_total.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_wageTextField4KeyReleased
+
+private void extra_expenseTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extra_expenseTextFieldKeyReleased
+
+    if(Functions.NumericValidate(extra_expenseTextField))
+    {
+        if(wageTextField.getText().equals(""))
+        {
+            wage=0;
+        }
+        if(wageTextField1.getText().equals(""))
+        {
+            wage1=0;
+        }
+        if(wageTextField2.getText().equals(""))
+        {
+            wage2=0;
+        }
+        if(wageTextField3.getText().equals(""))
+        {
+            wage3=0;
+        }
+        if(wageTextField4.getText().equals(""))
+        {
+            wage4=0;
+        }
+        if(!wageTextField.getText().equals(""))
+        {
+            wage = Double.parseDouble(wageTextField.getText());
+        }
+        if(!wageTextField1.getText().equals(""))
+        {
+            wage1 = Double.parseDouble(wageTextField1.getText());
+        }
+        if(!wageTextField2.getText().equals(""))
+        {
+            wage2 = Double.parseDouble(wageTextField2.getText());
+        }
+        if(!wageTextField3.getText().equals(""))
+        {
+            wage3 = Double.parseDouble(wageTextField3.getText());
+        }
+        if(!wageTextField4.getText().equals(""))
+        {
+            wage4 = Double.parseDouble(wageTextField4.getText());
+        }
+        if(extra_expenseTextField.getText().equals(""))
+        {
+            extra=0;
+        }
+        if(!extra_expenseTextField.getText().equals(""))
+        {
+            extra = Double.parseDouble(extra_expenseTextField.getText());
+        }
+        total = wage+wage1+wage2+wage3+wage4+extra;
+        label_total.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_extra_expenseTextFieldKeyReleased
+
+private void mnoTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mnoTextFieldKeyReleased
+
+    if(Functions.NumericValidate(mnoTextField))
+    {
+        if(mnoTextField.getText().equals(""))
+        {
+            mno=0;
+        }
+        if(mwageTextField.getText().equals(""))
+        {
+            mwage=0;
+        }
+        if(fnoTextField.getText().equals(""))
+        {
+            fno=0;
+        }
+        if(fwageTextField.getText().equals(""))
+        {
+            fwage=0;
+        }
+        if(extra_expenseTextField1.getText().equals(""))
+        {
+            extra1=0;
+        }
+        if(!mnoTextField.getText().equals(""))
+        {
+            mno = Double.parseDouble(mnoTextField.getText());
+        }
+        if(!mwageTextField.getText().equals(""))
+        {
+            mwage = Double.parseDouble(mwageTextField.getText());
+        }
+        if(!fnoTextField.getText().equals(""))
+        {
+            fno = Double.parseDouble(fnoTextField.getText());
+        }
+        if(!fwageTextField.getText().equals(""))
+        {
+            fwage = Double.parseDouble(fwageTextField.getText());
+        }
+        if(!extra_expenseTextField1.getText().equals(""))
+        {
+            extra1 = Double.parseDouble(extra_expenseTextField1.getText());
+        }
+        total = (mno*mwage)+(fno*fwage)+extra1;
+        label_total1.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_mnoTextFieldKeyReleased
+
+private void mwageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mwageTextFieldKeyReleased
+
+    if(Functions.NumericValidate(mwageTextField))
+    {
+        if(mnoTextField.getText().equals(""))
+        {
+            mno=0;
+        }
+        if(mwageTextField.getText().equals(""))
+        {
+            mwage=0;
+        }
+        if(fnoTextField.getText().equals(""))
+        {
+            fno=0;
+        }
+        if(fwageTextField.getText().equals(""))
+        {
+            fwage=0;
+        }
+        if(extra_expenseTextField1.getText().equals(""))
+        {
+            extra1=0;
+        }
+        if(!mnoTextField.getText().equals(""))
+        {
+            mno = Double.parseDouble(mnoTextField.getText());
+        }
+        if(!mwageTextField.getText().equals(""))
+        {
+            mwage = Double.parseDouble(mwageTextField.getText());
+        }
+        if(!fnoTextField.getText().equals(""))
+        {
+            fno = Double.parseDouble(fnoTextField.getText());
+        }
+        if(!fwageTextField.getText().equals(""))
+        {
+            fwage = Double.parseDouble(fwageTextField.getText());
+        }
+        if(!extra_expenseTextField1.getText().equals(""))
+        {
+            extra1 = Double.parseDouble(extra_expenseTextField1.getText());
+        }
+        total = (mno*mwage)+(fno*fwage)+extra1;
+        label_total1.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_mwageTextFieldKeyReleased
+
+private void fnoTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnoTextFieldKeyReleased
+
+    if(Functions.NumericValidate(fnoTextField))
+    {
+        if(mnoTextField.getText().equals(""))
+        {
+            mno=0;
+        }
+        if(mwageTextField.getText().equals(""))
+        {
+            mwage=0;
+        }
+        if(fnoTextField.getText().equals(""))
+        {
+            fno=0;
+        }
+        if(fwageTextField.getText().equals(""))
+        {
+            fwage=0;
+        }
+        if(extra_expenseTextField1.getText().equals(""))
+        {
+            extra1=0;
+        }
+        if(!mnoTextField.getText().equals(""))
+        {
+            mno = Double.parseDouble(mnoTextField.getText());
+        }
+        if(!mwageTextField.getText().equals(""))
+        {
+            mwage = Double.parseDouble(mwageTextField.getText());
+        }
+        if(!fnoTextField.getText().equals(""))
+        {
+            fno = Double.parseDouble(fnoTextField.getText());
+        }
+        if(!fwageTextField.getText().equals(""))
+        {
+            fwage = Double.parseDouble(fwageTextField.getText());
+        }
+        if(!extra_expenseTextField1.getText().equals(""))
+        {
+            extra1 = Double.parseDouble(extra_expenseTextField1.getText());
+        }
+        total = (mno*mwage)+(fno*fwage)+extra1;
+        label_total1.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_fnoTextFieldKeyReleased
+
+private void fwageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fwageTextFieldKeyReleased
+
+    if(Functions.NumericValidate(fwageTextField))
+    {
+        if(mnoTextField.getText().equals(""))
+        {
+            mno=0;
+        }
+        if(mwageTextField.getText().equals(""))
+        {
+            mwage=0;
+        }
+        if(fnoTextField.getText().equals(""))
+        {
+            fno=0;
+        }
+        if(fwageTextField.getText().equals(""))
+        {
+            fwage=0;
+        }
+        if(extra_expenseTextField1.getText().equals(""))
+        {
+            extra1=0;
+        }
+        if(!mnoTextField.getText().equals(""))
+        {
+            mno = Double.parseDouble(mnoTextField.getText());
+        }
+        if(!mwageTextField.getText().equals(""))
+        {
+            mwage = Double.parseDouble(mwageTextField.getText());
+        }
+        if(!fnoTextField.getText().equals(""))
+        {
+            fno = Double.parseDouble(fnoTextField.getText());
+        }
+        if(!fwageTextField.getText().equals(""))
+        {
+            fwage = Double.parseDouble(fwageTextField.getText());
+        }
+        if(!extra_expenseTextField1.getText().equals(""))
+        {
+            extra1 = Double.parseDouble(extra_expenseTextField1.getText());
+        }
+        total = (mno*mwage)+(fno*fwage)+extra1;
+        label_total1.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_fwageTextFieldKeyReleased
+
+private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extra_expenseTextField1KeyReleased
+
+    if(Functions.NumericValidate(extra_expenseTextField1))
+    {
+        if(mnoTextField.getText().equals(""))
+        {
+            mno=0;
+        }
+        if(mwageTextField.getText().equals(""))
+        {
+            mwage=0;
+        }
+        if(fnoTextField.getText().equals(""))
+        {
+            fno=0;
+        }
+        if(fwageTextField.getText().equals(""))
+        {
+            fwage=0;
+        }
+        if(extra_expenseTextField1.getText().equals(""))
+        {
+            extra1=0;
+        }
+        if(!mnoTextField.getText().equals(""))
+        {
+            mno = Double.parseDouble(mnoTextField.getText());
+        }
+        if(!mwageTextField.getText().equals(""))
+        {
+            mwage = Double.parseDouble(mwageTextField.getText());
+        }
+        if(!fnoTextField.getText().equals(""))
+        {
+            fno = Double.parseDouble(fnoTextField.getText());
+        }
+        if(!fwageTextField.getText().equals(""))
+        {
+            fwage = Double.parseDouble(fwageTextField.getText());
+        }
+        if(!extra_expenseTextField1.getText().equals(""))
+        {
+            extra1 = Double.parseDouble(extra_expenseTextField1.getText());
+        }
+        total = (mno*mwage)+(fno*fwage)+extra1;
+        label_total1.setText(Double.toString(total));
+    }
+    
+    // TODO add your handling code here:
+}//GEN-LAST:event_extra_expenseTextField1KeyReleased
 
     /**
      * @param args the command line arguments

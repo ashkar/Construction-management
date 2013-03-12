@@ -4,6 +4,8 @@
  */
 package pos;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
@@ -19,6 +21,29 @@ public class combotest extends javax.swing.JFrame {
      */
     public combotest() {
         initComponents();
+         try{
+                    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                    Connection con = DriverManager.getConnection("jdbc:odbc:randomNames","","");
+                    Statement  st = con.createStatement();
+                    ResultSet res = st.executeQuery("select firstName from randomNames");     
+                    while(res.next())
+                        {     
+                        shah.addItem(res.getString("firstName"));
+                        }
+                            
+                            
+                
+                }
+                 catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,""+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+                System.out.println(e.getMessage());
+            }
         
         AutoCompleteDecorator.decorate(shah);
     }
@@ -36,7 +61,7 @@ public class combotest extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        shah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "aaa", "aab", "aac", "aba", "abb", "abc", "aca", "acb", "acc", "baa", "bab", "bac", "bba", "bbb", "bbc", "bca", "bcb", "bcc", "caa", "cab", "cac", "cba", "cbb", "cbc", "cca", "ccb", "ccc" }));
+        shah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "~~Select~~" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

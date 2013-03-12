@@ -24,7 +24,7 @@ public class Wood extends javax.swing.JFrame {
     public Wood() {
         initComponents();
         setTitle("Add Wood");
-        setSize(660,770);
+        setSize(500,600);
         setVisible(true);
     }
 
@@ -39,9 +39,6 @@ public class Wood extends javax.swing.JFrame {
 
         add_woodLable = new javax.swing.JLabel();
         bill_dateLabel = new javax.swing.JLabel();
-        dayCombo = new javax.swing.JComboBox();
-        monthCombo = new javax.swing.JComboBox();
-        yearCombo = new javax.swing.JComboBox();
         wood_typeLabel = new javax.swing.JLabel();
         wood_typeTextField = new javax.swing.JTextField();
         costLabel = new javax.swing.JLabel();
@@ -51,38 +48,34 @@ public class Wood extends javax.swing.JFrame {
         vendorLabel = new javax.swing.JLabel();
         vendorTextField = new javax.swing.JTextField();
         quantityLabel = new javax.swing.JLabel();
-        quantityTextField = new javax.swing.JTextField();
-        label_bill_date = new javax.swing.JLabel();
-        label_wood_type = new javax.swing.JLabel();
-        label_cost = new javax.swing.JLabel();
-        label_rate = new javax.swing.JLabel();
-        label_vendor = new javax.swing.JLabel();
-        label_quantity = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        bill_dateLabel1 = new javax.swing.JLabel();
+        bill_dateLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        rateLabel1 = new javax.swing.JLabel();
+        rateLabel2 = new javax.swing.JLabel();
+        saveButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         add_woodLable.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         add_woodLable.setForeground(new java.awt.Color(0, 102, 102));
-        add_woodLable.setText("Add Wood");
+        add_woodLable.setText("Wood Inventory");
 
         bill_dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         bill_dateLabel.setText("Bill Date");
-
-        dayCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
-
-        yearCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050" }));
 
         wood_typeLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         wood_typeLabel.setText("Wood Type");
 
         costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        costLabel.setText("Cost");
+        costLabel.setText("Extra Expense");
 
         rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        rateLabel.setText("Rate");
+        rateLabel.setText("Details");
 
         vendorLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         vendorLabel.setText("Vendor");
@@ -90,120 +83,108 @@ public class Wood extends javax.swing.JFrame {
         quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         quantityLabel.setText("Quantity");
 
-        label_bill_date.setText("Select the Bill Date");
-
-        label_wood_type.setText("Enter a Wood Type");
-
-        label_cost.setText("Enter Proper Cost");
-
-        label_rate.setText("Enter Proper Rate");
-
-        label_vendor.setText("Enter a Vendor");
-
-        label_quantity.setText("Enter a Quantity");
-
         saveButton.setText("Save");
+
+        bill_dateLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        bill_dateLabel1.setText("Inventory No.");
+
+        bill_dateLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        bill_dateLabel2.setText("No. goes Here");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        rateLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        rateLabel1.setText("Total Cost");
+
+        rateLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        rateLabel2.setText("Total Goes here..");
+
+        saveButton1.setText("Cancel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(bill_dateLabel)
-                                    .addGap(39, 39, 39)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(add_woodLable)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(wood_typeLabel)
-                                        .addComponent(costLabel))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(vendorTextField)
-                                        .addComponent(rateTextField)
-                                        .addComponent(costTextField)
-                                        .addComponent(wood_typeTextField)
-                                        .addComponent(quantityTextField))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rateLabel)
-                                .addGap(275, 275, 275)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(vendorLabel)
-                            .addGap(277, 277, 277)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(quantityLabel)
-                        .addGap(288, 288, 288)))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label_quantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_vendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_rate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_cost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_wood_type, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_bill_date, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                .addGap(118, 118, 118))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(292, 292, 292))
+                        .addGap(114, 114, 114)
+                        .addComponent(add_woodLable))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bill_dateLabel)
+                            .addComponent(wood_typeLabel)
+                            .addComponent(vendorLabel)
+                            .addComponent(quantityLabel)
+                            .addComponent(costLabel)
+                            .addComponent(rateLabel)
+                            .addComponent(rateLabel1)
+                            .addComponent(bill_dateLabel1))
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bill_dateLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(wood_typeTextField)
+                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(costTextField)
+                                .addComponent(rateTextField)
+                                .addComponent(vendorTextField)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rateLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(add_woodLable)
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dayCombo)
-                            .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(yearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_bill_date)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(bill_dateLabel)))
-                .addGap(39, 39, 39)
+                .addContainerGap()
+                .addComponent(add_woodLable)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wood_typeLabel)
-                    .addComponent(wood_typeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_wood_type))
-                .addGap(35, 35, 35)
+                    .addComponent(bill_dateLabel1)
+                    .addComponent(bill_dateLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bill_dateLabel)
+                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(wood_typeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(vendorLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(wood_typeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(quantityLabel)
+                    .addComponent(rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(costLabel)
-                    .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_cost))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                        .addComponent(label_rate))
-                    .addComponent(rateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(39, 39, 39)
+                    .addComponent(vendorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vendorLabel)
-                    .addComponent(vendorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_vendor))
-                .addGap(41, 41, 41)
+                    .addComponent(rateLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rateLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quantityLabel)
-                    .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_quantity))
-                .addGap(67, 67, 67)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -247,25 +228,23 @@ public class Wood extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add_woodLable;
     private javax.swing.JLabel bill_dateLabel;
+    private javax.swing.JLabel bill_dateLabel1;
+    private javax.swing.JLabel bill_dateLabel2;
     private javax.swing.JLabel costLabel;
     private javax.swing.JTextField costTextField;
-    private javax.swing.JComboBox dayCombo;
-    private javax.swing.JLabel label_bill_date;
-    private javax.swing.JLabel label_cost;
-    private javax.swing.JLabel label_quantity;
-    private javax.swing.JLabel label_rate;
-    private javax.swing.JLabel label_vendor;
-    private javax.swing.JLabel label_wood_type;
-    private javax.swing.JComboBox monthCombo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JLabel quantityLabel;
-    private javax.swing.JTextField quantityTextField;
     private javax.swing.JLabel rateLabel;
+    private javax.swing.JLabel rateLabel1;
+    private javax.swing.JLabel rateLabel2;
     private javax.swing.JTextField rateTextField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton saveButton1;
     private javax.swing.JLabel vendorLabel;
     private javax.swing.JTextField vendorTextField;
     private javax.swing.JLabel wood_typeLabel;
     private javax.swing.JTextField wood_typeTextField;
-    private javax.swing.JComboBox yearCombo;
     // End of variables declaration//GEN-END:variables
 }

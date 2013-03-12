@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package pos;
+import java.sql.*;
 import javax.swing.*; 
 
 /**
@@ -32,23 +33,20 @@ public class Functions {
     }
 
     
-    
-   
 
 public  static  void    NumericValidation( JTextField textfieldname ){                                    
 
-    try{
     String jtf = textfieldname.getText();
-    int flag=0;
+    int flag = 0;
     for(int i=0;i<jtf.length();i++)
     {
-        flag=1;
+        flag =0;
         if (isNumeric(jtf.charAt(i)) || (jtf.charAt(i)=='.'))
         {
             flag++;
         }
     }
-    if(flag!=1)
+    if(flag!=0)
     {
   
     }
@@ -57,12 +55,60 @@ public  static  void    NumericValidation( JTextField textfieldname ){
         jtf = jtf.substring(0, jtf.length()-1);
         textfieldname.setText(jtf);
     }    
-} 
-    catch (Exception e)
-            {
-          JOptionPane.showMessageDialog(null, "the numeric value err is:" +e); 
-            }
 }
 
+public static void FillCombo(JComboBox combo_box, String column_name, String table_name)
+{
+    try
+        {            
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            Statement  st = con.createStatement();
+            ResultSet res = st.executeQuery("select "+column_name+" from "+table_name+"");
+            while(res.next())
+            {
+               combo_box.addItem(res.getString(column_name));
+            }
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null,"INVALID datatype");
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"The error is1:"+e);
+            System.out.println(e.getMessage());
+        }
+}
+
+public static boolean NumericValidate( JTextField textfieldname){                                    
+
+    if(!textfieldname.getText().equals(""))
+    {
+        String jtf = textfieldname.getText();
+        int flag = 0;
+        for(int i=0;i<jtf.length();i++)
+        {
+            flag =0;
+            if (isNumeric(jtf.charAt(i)) || (jtf.charAt(i)=='.'))
+            {
+                flag++;
+            }
+        }
+        if(flag!=0)
+        {
+            return true;
+        }
+        else
+        {
+            jtf = jtf.substring(0, jtf.length()-1);
+            textfieldname.setText(jtf);
+            return false;
+        }
+    }
+    else
+        textfieldname.setText("");
+        return true;
+}
 
 }

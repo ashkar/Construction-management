@@ -3,7 +3,6 @@
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -105,17 +104,19 @@
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nameCombo4" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="extra_expenseLabel" max="32767" attributes="0"/>
-                                      <EmptySpace min="39" pref="39" max="39" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="extra_expenseLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="nameCombo4" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="extra_expenseTextField" alignment="0" max="32767" attributes="2"/>
-                                  <Component id="wageTextField4" alignment="0" max="32767" attributes="2"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="extra_expenseTextField" pref="102" max="32767" attributes="2"/>
+                                  <Component id="wageTextField4" max="32767" attributes="2"/>
                               </Group>
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           </Group>
@@ -630,10 +631,12 @@
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="nameComboItemStateChanged"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameComboActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="wageTextField">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wageTextFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="nameCombo1">
       <Properties>
@@ -641,9 +644,8 @@
           <Font name="Comic Sans MS" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="1">
             <StringItem index="0" value="Select"/>
-            <StringItem index="1" value="name"/>
           </StringArray>
         </Property>
       </Properties>
@@ -652,6 +654,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="wageTextField1">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wageTextField1KeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="nameCombo2">
       <Properties>
@@ -659,9 +664,8 @@
           <Font name="Comic Sans MS" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="1">
             <StringItem index="0" value="Select"/>
-            <StringItem index="1" value="name"/>
           </StringArray>
         </Property>
       </Properties>
@@ -670,6 +674,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="wageTextField2">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wageTextField2KeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="nameCombo3">
       <Properties>
@@ -677,9 +684,8 @@
           <Font name="Comic Sans MS" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="1">
             <StringItem index="0" value="Select"/>
-            <StringItem index="1" value="name"/>
           </StringArray>
         </Property>
       </Properties>
@@ -688,6 +694,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="wageTextField3">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wageTextField3KeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="nameCombo4">
       <Properties>
@@ -695,14 +704,16 @@
           <Font name="Comic Sans MS" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="1">
             <StringItem index="0" value="Select"/>
-            <StringItem index="1" value="name"/>
           </StringArray>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="wageTextField4">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wageTextField4KeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="extra_expenseLabel">
       <Properties>
@@ -713,6 +724,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="extra_expenseTextField">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="extra_expenseTextFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="detailsLabel">
       <Properties>
@@ -784,6 +798,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="mnoTextField">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mnoTextFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="mwageLabel">
       <Properties>
@@ -794,6 +811,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="mwageTextField">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mwageTextFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="femaleLabel">
       <Properties>
@@ -807,6 +827,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fwageTextField">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fwageTextFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="fwageLabel">
       <Properties>
@@ -817,6 +840,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fnoTextField">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fnoTextFieldKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="fnoLabel">
       <Properties>
@@ -843,6 +869,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="extra_expenseTextField1">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="extra_expenseTextField1KeyReleased"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>

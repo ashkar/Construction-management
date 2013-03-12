@@ -4,12 +4,16 @@
  */
 package pos;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lenovo
  */
 public class Plan extends javax.swing.JFrame {
-
+ int Charge , Expense,Total;
+ String Details,Cname;
     /**
      * Creates new form Plan
      */
@@ -90,6 +94,11 @@ public class Plan extends javax.swing.JFrame {
         jLabel2.setText("Client Name");
 
         jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
@@ -191,6 +200,70 @@ public class Plan extends javax.swing.JFrame {
         
                 
     }//GEN-LAST:event_jTextField6FocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if(jTextField4.getText().equals("") && jTextField5.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Enter a Name andPlan charge ");     
+        }
+         else if(jTextField4.getText().equals("") && (!jTextField5.getText().equals("")))
+        {
+            JOptionPane.showMessageDialog(null,"Enter a Name ");     
+        }
+         else if(!jTextField4.getText().equals("") && jTextField5.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"EnterPlan charge ");     
+        }
+         
+         else
+         {  
+             Cname= jTextField4.getText();
+             Details = jTextArea1.getText();
+             Charge=Integer.parseInt(jTextField5.getText());
+             Expense =Integer.parseInt( jTextField6.getText());
+             Total=Charge+Expense;
+             
+              
+             try {
+             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                  PreparedStatement prp=con.prepareStatement("insert into Plan values(?,?,?,?,?,?)");    
+                                               
+                        prp.setString(1,Cname);
+                        prp.setString(2,Details);
+                        prp.setInt(3,Charge);
+                        prp.setInt(4,Expense);
+                        prp.setInt(5,Total);
+                        prp.setDate(6,sqlDate);
+                                            
+                        prp.executeUpdate(); 
+                         JOptionPane.showMessageDialog(null,"Plan details added succesfully");
+                         
+                         jTextField4.setText("");
+                         jTextField5.setText("");
+                         jTextField6.setText("");
+                         jTextArea1.setText("");
+                         con.commit();
+                         con.close();
+             }                               
+             
+             catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,""+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+                System.out.println(e.getMessage());
+            }
+             
+             
+                 
+          }  
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
