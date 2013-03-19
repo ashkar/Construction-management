@@ -321,11 +321,13 @@
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="mesons_noTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="mesons_wageTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="mesonsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="mesons_cashLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="mesons_noTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="mesons_wageTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="mesonsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">

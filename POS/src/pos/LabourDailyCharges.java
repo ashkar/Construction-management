@@ -1,5 +1,3 @@
-package pos;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -10,6 +8,7 @@ package pos;
  *
  * Created on Feb 28, 2013, 3:25:44 PM
  */
+package pos;
 
 import java.awt.*;
 import javax.swing.*;
@@ -20,16 +19,21 @@ import javax.swing.*;
  */
 public class LabourDailyCharges extends javax.swing.JFrame {
 
-    double total, wage, wage1, wage2, wage3, wage4, extra;
+    double total, wage, wage1, wage2, wage3, extra;
     double mno,fno,mwage,fwage,extra1;
 
     /** Creates new form LabourDailyCharges */
     public LabourDailyCharges() {
         initComponents();
         setTitle("Labour Daily Charges");
-        setSize(660,770);
+        setSize(700,700);
         setVisible(true);
-        getContentPane().setBackground(new Color(202,225,255)); 
+        getContentPane().setBackground(new Color(202,225,255));
+        
+        type_of_woodLabel.setVisible(false);
+        type_of_woodTextField.setVisible(false);
+        quantity_usedLabel.setVisible(false);
+        quantity_usedTextField.setVisible(false);
                
         nameCombo1.setVisible(false);
         wageTextField1.setVisible(false);
@@ -37,15 +41,12 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         wageTextField2.setVisible(false);
         nameCombo3.setVisible(false);
         wageTextField3.setVisible(false);
-        nameCombo4.setVisible(false);
-        wageTextField4.setVisible(false);
         
         Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
         Functions.FillCombo(nameCombo, "LABNAME", "Labour");
         Functions.FillCombo(nameCombo1, "LABNAME", "Labour");
         Functions.FillCombo(nameCombo2, "LABNAME", "Labour");
         Functions.FillCombo(nameCombo3, "LABNAME", "Labour");
-        Functions.FillCombo(nameCombo4, "LABNAME", "Labour");
     }
 
     /** This method is called from within the constructor to
@@ -63,12 +64,6 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         workLabel = new javax.swing.JLabel();
         project_nameCombo = new javax.swing.JComboBox();
         workCombo = new javax.swing.JComboBox();
-        dayCombo = new javax.swing.JComboBox();
-        monthCombo = new javax.swing.JComboBox();
-        yearCombo = new javax.swing.JComboBox();
-        label_project_name = new javax.swing.JLabel();
-        label_work = new javax.swing.JLabel();
-        label_date = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         single_labour_chargesLabel = new javax.swing.JLabel();
@@ -83,8 +78,6 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         wageTextField2 = new javax.swing.JTextField();
         nameCombo3 = new javax.swing.JComboBox();
         wageTextField3 = new javax.swing.JTextField();
-        nameCombo4 = new javax.swing.JComboBox();
-        wageTextField4 = new javax.swing.JTextField();
         extra_expenseLabel = new javax.swing.JLabel();
         extra_expenseTextField = new javax.swing.JTextField();
         detailsLabel = new javax.swing.JLabel();
@@ -110,8 +103,14 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         detailsTextArea1 = new javax.swing.JTextArea();
         label_total1 = new javax.swing.JLabel();
         totalLabel1 = new javax.swing.JLabel();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        type_of_woodLabel = new javax.swing.JLabel();
+        quantity_usedLabel = new javax.swing.JLabel();
+        type_of_woodTextField = new javax.swing.JTextField();
+        quantity_usedTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         labour_daily_chargesLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labour_daily_chargesLabel.setForeground(new java.awt.Color(0, 102, 102));
@@ -139,41 +138,17 @@ public class LabourDailyCharges extends javax.swing.JFrame {
 
         workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Plumbing", "Electrical", "Laterate", "Plastering", "Painting", "Centering", "Carpentary", "Flooring" }));
+        workCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                workComboItemStateChanged(evt);
+            }
+        });
         workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 workComboFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 workComboFocusLost(evt);
-            }
-        });
-
-        dayCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        dayCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        dayCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayComboActionPerformed(evt);
-            }
-        });
-
-        monthCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        monthCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monthComboActionPerformed(evt);
-            }
-        });
-
-        yearCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        yearCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050" }));
-        yearCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearComboActionPerformed(evt);
-            }
-        });
-        yearCombo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                yearComboFocusLost(evt);
             }
         });
 
@@ -246,15 +221,6 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         wageTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 wageTextField3KeyReleased(evt);
-            }
-        });
-
-        nameCombo4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        nameCombo4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
-
-        wageTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                wageTextField4KeyReleased(evt);
             }
         });
 
@@ -355,362 +321,279 @@ public class LabourDailyCharges extends javax.swing.JFrame {
         totalLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         totalLabel1.setText("Total");
 
+        type_of_woodLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        type_of_woodLabel.setText("Type Of Wood");
+
+        quantity_usedLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        quantity_usedLabel.setText("Quantity Used");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(labour_daily_chargesLabel)
-                .addGap(150, 150, 150))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(183, 183, 183)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(project_nameLabel)
                     .addComponent(workLabel)
-                    .addComponent(dateLabel))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(workCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(project_nameCombo, 0, 186, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(yearCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(dateLabel)
+                    .addComponent(type_of_woodLabel)
+                    .addComponent(quantity_usedLabel))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(label_project_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_date)
-                            .addComponent(label_work))))
-                .addContainerGap())
+                    .addComponent(quantity_usedTextField)
+                    .addComponent(type_of_woodTextField)
+                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(workCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(163, 163, 163))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(single_labour_chargesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(totalLabel)
+                                .addGap(123, 123, 123)
+                                .addComponent(label_total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(single_labour_chargesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(wageTextField)
                                 .addGap(7, 7, 7))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(nameCombo1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(wageTextField1)
                                 .addGap(7, 7, 7))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(nameCombo2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(wageTextField2)
                                 .addGap(7, 7, 7))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameCombo3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(wageTextField3)
-                                .addGap(7, 7, 7))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(113, 113, 113)
                                 .addComponent(wageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(25, 25, 25))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(detailsLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(extra_expenseLabel)
-                                        .addGap(51, 51, 51))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(extra_expenseTextField))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nameCombo4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(16, 16, 16)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(extra_expenseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                                    .addComponent(wageTextField4))
-                                .addGap(7, 7, 7))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(detailsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(35, 35, 35))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(totalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(50, 50, 50)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(26, 26, 26)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(nameCombo3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(wageTextField3)))
+                                .addGap(7, 7, 7)))
+                        .addGap(17, 17, 17)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
+                                .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
                                         .addComponent(group_labour_chargesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(3, 3, 3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(134, 134, 134)
-                                        .addComponent(maleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(98, 98, 98))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(125, 125, 125)
-                                        .addComponent(femaleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(88, 88, 88))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(fnoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(fnoTextField)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(fwageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(fwageTextField))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(mnoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(mnoTextField)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(mwageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(mwageTextField)))
-                                .addGap(21, 21, 21))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(24, 24, 24))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(extra_expenseLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(extra_expenseTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(detailsLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(24, 24, 24))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(totalLabel1)
-                                                .addGap(39, 39, 39)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label_total1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                .addGap(14, 14, 14)))))
+                                                .addGap(39, 39, 39)
+                                                .addComponent(label_total1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(14, 14, 14)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(mnoLabel)
+                                                            .addComponent(fnoLabel))
+                                                        .addGap(28, 28, 28)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                            .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(mnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(mwageLabel))
+                                                            .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(fnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(45, 45, 45)
+                                                                .addComponent(fwageLabel)))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(fwageTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(mwageTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(detailsLabel1)
+                                                        .addGap(56, 56, 56)
+                                                        .addComponent(jScrollPane2))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(extra_expenseLabel1)
+                                                        .addGap(63, 63, 63)
+                                                        .addComponent(extra_expenseTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(14, 14, 14))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(maleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(femaleLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(labour_daily_chargesLabel)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(287, 287, 287))
+                .addGap(282, 282, 282))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(labour_daily_chargesLabel)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(project_nameLabel)
+                    .addComponent(project_nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(workLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(type_of_woodLabel)
+                    .addComponent(type_of_woodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(quantity_usedLabel)
+                    .addComponent(quantity_usedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(extra_expenseTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(extra_expenseLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(detailsLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_total1)
-                            .addComponent(totalLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labour_daily_chargesLabel)
-                        .addGap(27, 27, 27)
+                            .addComponent(group_labour_chargesLabel)
+                            .addComponent(single_labour_chargesLabel))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(project_nameLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(workLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(dateLabel)
-                                .addGap(4, 4, 4))
-                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(project_nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label_project_name))
+                                    .addComponent(wageLabel)
+                                    .addComponent(nameLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(wageTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(wageTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(nameCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(wageTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label_work))
+                                    .addComponent(extra_expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(extra_expenseLabel))
                                 .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(detailsLabel)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(dayCombo)
-                                    .addComponent(monthCombo)
-                                    .addComponent(yearCombo)
-                                    .addComponent(label_date))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label_total)
+                                    .addComponent(totalLabel)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(group_labour_chargesLabel)
-                                    .addComponent(single_labour_chargesLabel))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(wageLabel)
-                                            .addComponent(nameLabel))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(wageTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(wageTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(nameCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(wageTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(nameCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(wageTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(extra_expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(extra_expenseLabel))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(detailsLabel)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(label_total)
-                                            .addComponent(totalLabel)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
+                                        .addGap(18, 18, 18)
                                         .addComponent(maleLabel)
-                                        .addGap(10, 10, 10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(mwageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(mwageLabel)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(51, 51, 51)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(mnoLabel)
-                                            .addComponent(mnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(mwageLabel)
-                                            .addComponent(mwageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(32, 32, 32)
-                                        .addComponent(femaleLabel)
-                                        .addGap(17, 17, 17)
+                                            .addComponent(mnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(femaleLabel)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(fnoLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(fnoLabel)
                                             .addComponent(fnoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(fwageLabel)
-                                            .addComponent(fwageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addGap(18, 18, 18)
+                                            .addComponent(fwageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(extra_expenseLabel1)
+                                    .addComponent(extra_expenseTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(detailsLabel1)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label_total1)
+                                    .addComponent(totalLabel1)))))
+                    .addComponent(jSeparator2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 private void project_nameComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_project_nameComboFocusGained
-
-    label_project_name.setText("");
-    
     // TODO add your handling code here:
 }//GEN-LAST:event_project_nameComboFocusGained
 
 private void project_nameComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_project_nameComboFocusLost
-
-    if(project_nameCombo.getSelectedItem().equals("Select"))
-    {
-        label_project_name.setText("Select a Project Name");
-    }
-    
     // TODO add your handling code here:
 }//GEN-LAST:event_project_nameComboFocusLost
 
 private void workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusGained
-
-    label_work.setText("");
-    
     // TODO add your handling code here:
 }//GEN-LAST:event_workComboFocusGained
 
 private void workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusLost
-
-    if(workCombo.getSelectedItem().equals("Select"))
-    {
-        label_work.setText("Select a Work");
-    }
-    
     // TODO add your handling code here:
 }//GEN-LAST:event_workComboFocusLost
-
-private void yearComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboActionPerformed
-
-    if(!dayCombo.getSelectedItem().equals("--")
-            && !monthCombo.getSelectedItem().equals("--")
-            && !yearCombo.getSelectedItem().equals("----"))
-    {
-        label_date.setText("");
-    }
-    else if(dayCombo.getSelectedItem().equals("--")
-            || monthCombo.getSelectedItem().equals("--")
-            || yearCombo.getSelectedItem().equals("----"))
-    {
-        label_date.setText("Invalid Date");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_yearComboActionPerformed
-
-private void monthComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboActionPerformed
-
-    if(!dayCombo.getSelectedItem().equals("--")
-            && !monthCombo.getSelectedItem().equals("--")
-            && !yearCombo.getSelectedItem().equals("----"))
-    {
-        label_date.setText("");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_monthComboActionPerformed
-
-private void dayComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayComboActionPerformed
-
-    if(!dayCombo.getSelectedItem().equals("--")
-            && !monthCombo.getSelectedItem().equals("--")
-            && !yearCombo.getSelectedItem().equals("----"))
-    {
-        label_date.setText("");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_dayComboActionPerformed
-
-private void yearComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_yearComboFocusLost
-
-    if(dayCombo.getSelectedItem().equals("--")
-            || monthCombo.getSelectedItem().equals("--")
-            || yearCombo.getSelectedItem().equals("----"))
-    {
-        label_date.setText("Invalid Date");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_yearComboFocusLost
 
 private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameComboItemStateChanged
 
@@ -722,8 +605,6 @@ private void nameComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRS
         wageTextField2.setVisible(false);
         nameCombo3.setVisible(false);
         wageTextField3.setVisible(false);
-        nameCombo4.setVisible(false);
-        wageTextField4.setVisible(false);
     }
     else
     {
@@ -743,8 +624,6 @@ private void nameCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
         wageTextField2.setVisible(false);
         nameCombo3.setVisible(false);
         wageTextField3.setVisible(false);
-        nameCombo4.setVisible(false);
-        wageTextField4.setVisible(false);
     }
     else
     {
@@ -761,8 +640,6 @@ private void nameCombo2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
     {
         nameCombo3.setVisible(false);
         wageTextField3.setVisible(false);
-        nameCombo4.setVisible(false);
-        wageTextField4.setVisible(false);
     }
     else
     {
@@ -774,28 +651,13 @@ private void nameCombo2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
 }//GEN-LAST:event_nameCombo2ItemStateChanged
 
 private void nameCombo3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nameCombo3ItemStateChanged
-
-    if(nameCombo3.getSelectedItem().equals("Select"))
-    {
-        nameCombo4.setVisible(false);
-        wageTextField4.setVisible(false);
-    }
-    else
-    {
-        nameCombo4.setVisible(true);
-        wageTextField4.setVisible(true);
-    }
-    
     // TODO add your handling code here:
 }//GEN-LAST:event_nameCombo3ItemStateChanged
 
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 
     if((project_nameCombo.getSelectedItem().equals("Select")
-            || workCombo.getSelectedItem().equals("Select")
-            || (dayCombo.getSelectedItem().equals("--")
-            || monthCombo.getSelectedItem().equals("--")
-            || yearCombo.getSelectedItem().equals("----")))
+            || workCombo.getSelectedItem().equals("Select"))
             || ((nameCombo.getSelectedItem().equals("Select")
             || wageTextField.getText().equals(""))
             && ((mnoTextField.getText().equals("")
@@ -833,10 +695,6 @@ private void wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:
         {
             wage3=0;
         }
-        if(wageTextField4.getText().equals(""))
-        {
-            wage4=0;
-        }
         if(!wageTextField.getText().equals(""))
         {
             wage = Double.parseDouble(wageTextField.getText());
@@ -853,10 +711,6 @@ private void wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:
         {
             wage3 = Double.parseDouble(wageTextField3.getText());
         }
-        if(!wageTextField4.getText().equals(""))
-        {
-            wage4 = Double.parseDouble(wageTextField4.getText());
-        }
         if(extra_expenseTextField.getText().equals(""))
         {
             extra=0;
@@ -865,7 +719,7 @@ private void wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:
         {
             extra = Double.parseDouble(extra_expenseTextField.getText());
         }
-        total = wage+wage1+wage2+wage3+wage4+extra;
+        total = wage+wage1+wage2+wage3+extra;
         label_total.setText(Double.toString(total));
     }
     
@@ -892,10 +746,6 @@ private void wageTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             wage3=0;
         }
-        if(wageTextField4.getText().equals(""))
-        {
-            wage4=0;
-        }
         if(!wageTextField.getText().equals(""))
         {
             wage = Double.parseDouble(wageTextField.getText());
@@ -912,10 +762,6 @@ private void wageTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             wage3 = Double.parseDouble(wageTextField3.getText());
         }
-        if(!wageTextField4.getText().equals(""))
-        {
-            wage4 = Double.parseDouble(wageTextField4.getText());
-        }
         if(extra_expenseTextField.getText().equals(""))
         {
             extra=0;
@@ -924,7 +770,7 @@ private void wageTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             extra = Double.parseDouble(extra_expenseTextField.getText());
         }
-        total = wage+wage1+wage2+wage3+wage4+extra;
+        total = wage+wage1+wage2+wage3+extra;
         label_total.setText(Double.toString(total));
     }
     
@@ -951,10 +797,6 @@ private void wageTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             wage3=0;
         }
-        if(wageTextField4.getText().equals(""))
-        {
-            wage4=0;
-        }
         if(!wageTextField.getText().equals(""))
         {
             wage = Double.parseDouble(wageTextField.getText());
@@ -971,10 +813,6 @@ private void wageTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             wage3 = Double.parseDouble(wageTextField3.getText());
         }
-        if(!wageTextField4.getText().equals(""))
-        {
-            wage4 = Double.parseDouble(wageTextField4.getText());
-        }
         if(extra_expenseTextField.getText().equals(""))
         {
             extra=0;
@@ -983,7 +821,7 @@ private void wageTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             extra = Double.parseDouble(extra_expenseTextField.getText());
         }
-        total = wage+wage1+wage2+wage3+wage4+extra;
+        total = wage+wage1+wage2+wage3+extra;
         label_total.setText(Double.toString(total));
     }
     
@@ -1010,10 +848,6 @@ private void wageTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             wage3=0;
         }
-        if(wageTextField4.getText().equals(""))
-        {
-            wage4=0;
-        }
         if(!wageTextField.getText().equals(""))
         {
             wage = Double.parseDouble(wageTextField.getText());
@@ -1030,10 +864,6 @@ private void wageTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             wage3 = Double.parseDouble(wageTextField3.getText());
         }
-        if(!wageTextField4.getText().equals(""))
-        {
-            wage4 = Double.parseDouble(wageTextField4.getText());
-        }
         if(extra_expenseTextField.getText().equals(""))
         {
             extra=0;
@@ -1042,71 +872,12 @@ private void wageTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST
         {
             extra = Double.parseDouble(extra_expenseTextField.getText());
         }
-        total = wage+wage1+wage2+wage3+wage4+extra;
+        total = wage+wage1+wage2+wage3+extra;
         label_total.setText(Double.toString(total));
     }
     
     // TODO add your handling code here:
 }//GEN-LAST:event_wageTextField3KeyReleased
-
-private void wageTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextField4KeyReleased
-
-    if(Functions.NumericValidate(wageTextField4))
-    {
-        if(wageTextField.getText().equals(""))
-        {
-            wage=0;
-        }
-        if(wageTextField1.getText().equals(""))
-        {
-            wage1=0;
-        }
-        if(wageTextField2.getText().equals(""))
-        {
-            wage2=0;
-        }
-        if(wageTextField3.getText().equals(""))
-        {
-            wage3=0;
-        }
-        if(wageTextField4.getText().equals(""))
-        {
-            wage4=0;
-        }
-        if(!wageTextField.getText().equals(""))
-        {
-            wage = Double.parseDouble(wageTextField.getText());
-        }
-        if(!wageTextField1.getText().equals(""))
-        {
-            wage1 = Double.parseDouble(wageTextField1.getText());
-        }
-        if(!wageTextField2.getText().equals(""))
-        {
-            wage2 = Double.parseDouble(wageTextField2.getText());
-        }
-        if(!wageTextField3.getText().equals(""))
-        {
-            wage3 = Double.parseDouble(wageTextField3.getText());
-        }
-        if(!wageTextField4.getText().equals(""))
-        {
-            wage4 = Double.parseDouble(wageTextField4.getText());
-        }
-        if(extra_expenseTextField.getText().equals(""))
-        {
-            extra=0;
-        }
-        if(!extra_expenseTextField.getText().equals(""))
-        {
-            extra = Double.parseDouble(extra_expenseTextField.getText());
-        }
-        total = wage+wage1+wage2+wage3+wage4+extra;
-        label_total.setText(Double.toString(total));
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_wageTextField4KeyReleased
 
 private void extra_expenseTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extra_expenseTextFieldKeyReleased
 
@@ -1128,10 +899,6 @@ private void extra_expenseTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//G
         {
             wage3=0;
         }
-        if(wageTextField4.getText().equals(""))
-        {
-            wage4=0;
-        }
         if(!wageTextField.getText().equals(""))
         {
             wage = Double.parseDouble(wageTextField.getText());
@@ -1148,10 +915,6 @@ private void extra_expenseTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//G
         {
             wage3 = Double.parseDouble(wageTextField3.getText());
         }
-        if(!wageTextField4.getText().equals(""))
-        {
-            wage4 = Double.parseDouble(wageTextField4.getText());
-        }
         if(extra_expenseTextField.getText().equals(""))
         {
             extra=0;
@@ -1160,7 +923,7 @@ private void extra_expenseTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//G
         {
             extra = Double.parseDouble(extra_expenseTextField.getText());
         }
-        total = wage+wage1+wage2+wage3+wage4+extra;
+        total = wage+wage1+wage2+wage3+extra;
         label_total.setText(Double.toString(total));
     }
     
@@ -1422,6 +1185,26 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
     // TODO add your handling code here:
 }//GEN-LAST:event_extra_expenseTextField1KeyReleased
 
+    private void workComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_workComboItemStateChanged
+
+        if(workCombo.getSelectedItem().equals("Carpentary"))
+        {
+            type_of_woodLabel.setVisible(true);
+            type_of_woodTextField.setVisible(true);
+            quantity_usedLabel.setVisible(true);
+            quantity_usedTextField.setVisible(true);
+        }
+        else
+        {
+            type_of_woodLabel.setVisible(false);
+            type_of_woodTextField.setVisible(false);
+            quantity_usedLabel.setVisible(false);
+            quantity_usedTextField.setVisible(false);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1460,7 +1243,6 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JLabel dateLabel;
-    private javax.swing.JComboBox dayCombo;
     private javax.swing.JLabel detailsLabel;
     private javax.swing.JLabel detailsLabel1;
     private javax.swing.JTextArea detailsTextArea;
@@ -1479,37 +1261,35 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel label_date;
-    private javax.swing.JLabel label_project_name;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JLabel label_total;
     private javax.swing.JLabel label_total1;
-    private javax.swing.JLabel label_work;
     private javax.swing.JLabel labour_daily_chargesLabel;
     private javax.swing.JLabel maleLabel;
     private javax.swing.JLabel mnoLabel;
     private javax.swing.JTextField mnoTextField;
-    private javax.swing.JComboBox monthCombo;
     private javax.swing.JLabel mwageLabel;
     private javax.swing.JTextField mwageTextField;
     private javax.swing.JComboBox nameCombo;
     private javax.swing.JComboBox nameCombo1;
     private javax.swing.JComboBox nameCombo2;
     private javax.swing.JComboBox nameCombo3;
-    private javax.swing.JComboBox nameCombo4;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JComboBox project_nameCombo;
     private javax.swing.JLabel project_nameLabel;
+    private javax.swing.JLabel quantity_usedLabel;
+    private javax.swing.JTextField quantity_usedTextField;
     private javax.swing.JLabel single_labour_chargesLabel;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalLabel1;
+    private javax.swing.JLabel type_of_woodLabel;
+    private javax.swing.JTextField type_of_woodTextField;
     private javax.swing.JLabel wageLabel;
     private javax.swing.JTextField wageTextField;
     private javax.swing.JTextField wageTextField1;
     private javax.swing.JTextField wageTextField2;
     private javax.swing.JTextField wageTextField3;
-    private javax.swing.JTextField wageTextField4;
     private javax.swing.JComboBox workCombo;
     private javax.swing.JLabel workLabel;
-    private javax.swing.JComboBox yearCombo;
     // End of variables declaration//GEN-END:variables
 }
