@@ -25,33 +25,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
-                      <Component id="add_woodLable" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="bill_dateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="bill_dateLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="wood_typeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="vendorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="costLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="rateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="rateLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="bill_dateLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jXDatePicker1" pref="177" max="32767" attributes="0"/>
                           <Component id="bill_dateLabel2" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="wood_typeTextField" max="32767" attributes="1"/>
-                              <Component id="jXDatePicker1" max="32767" attributes="0"/>
-                              <Component id="costTextField" max="32767" attributes="1"/>
-                              <Component id="rateTextField" max="32767" attributes="0"/>
-                              <Component id="vendorTextField" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="wood_typeTextField" alignment="0" max="32767" attributes="1"/>
+                          <Component id="costTextField" alignment="0" max="32767" attributes="1"/>
+                          <Component id="costTextField1" alignment="0" max="32767" attributes="1"/>
+                          <Component id="vendorTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rateTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Component id="rateLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -61,57 +57,67 @@
                       <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                       <Component id="saveButton1" min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                      <Component id="add_woodLable" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="add_woodLable" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bill_dateLabel1" alignment="3" min="-2" max="-2" attributes="1"/>
                   <Component id="bill_dateLabel2" alignment="3" min="-2" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="bill_dateLabel" min="-2" max="-2" attributes="1"/>
-                  <Component id="jXDatePicker1" min="-2" pref="26" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="wood_typeLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="vendorLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="wood_typeTextField" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="costTextField" min="-2" pref="28" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="rateTextField" alignment="0" min="-2" pref="28" max="-2" attributes="1"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="costLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bill_dateLabel" alignment="3" min="-2" max="-2" attributes="1"/>
+                  <Component id="jXDatePicker1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="wood_typeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="wood_typeTextField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="vendorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="costTextField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="costTextField1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="quantityLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="rateTextField" alignment="3" min="-2" pref="28" max="-2" attributes="1"/>
+                  <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="vendorTextField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="costLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="rateLabel" min="-2" pref="28" max="-2" attributes="1"/>
-                  <Component id="jScrollPane1" min="-2" pref="104" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="rateLabel" min="-2" pref="28" max="-2" attributes="1"/>
+                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="rateLabel2" alignment="3" min="-2" pref="28" max="-2" attributes="1"/>
+                  <Component id="rateLabel2" alignment="0" min="-2" pref="28" max="-2" attributes="1"/>
                   <Component id="rateLabel1" alignment="3" min="-2" pref="28" max="-2" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -119,7 +125,7 @@
                   <Component id="saveButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="saveButton1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -215,21 +221,6 @@
         <Property name="text" type="java.lang.String" value="No. goes Here"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="rateLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -251,5 +242,31 @@
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="quantityLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Comic Sans MS" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cost"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="costTextField1">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="10"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
