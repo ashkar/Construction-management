@@ -215,7 +215,7 @@ int Cid ;
              
               
              try {
-             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                 Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                   Statement  st = con.createStatement();
                   ResultSet res = st.executeQuery("select * from Customer");

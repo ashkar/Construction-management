@@ -42,13 +42,13 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jXDatePicker1" pref="177" max="32767" attributes="0"/>
                           <Component id="bill_dateLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="wood_typeTextField" alignment="0" max="32767" attributes="1"/>
-                          <Component id="costTextField" alignment="0" max="32767" attributes="1"/>
                           <Component id="costTextField1" alignment="0" max="32767" attributes="1"/>
                           <Component id="vendorTextField" alignment="0" max="32767" attributes="0"/>
                           <Component id="rateTextField" alignment="0" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Component id="rateLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -80,15 +80,20 @@
                   <Component id="bill_dateLabel" alignment="3" min="-2" max="-2" attributes="1"/>
                   <Component id="jXDatePicker1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="wood_typeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="wood_typeTextField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="wood_typeLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jComboBox1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="vendorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="costTextField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jComboBox2" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -116,16 +121,16 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="rateLabel2" alignment="0" min="-2" pref="28" max="-2" attributes="1"/>
-                  <Component id="rateLabel1" alignment="3" min="-2" pref="28" max="-2" attributes="1"/>
+                  <Component id="rateLabel1" min="-2" pref="28" max="-2" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="saveButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="saveButton1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -158,8 +163,6 @@
         <Property name="text" type="java.lang.String" value="Wood Type"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="wood_typeTextField">
-    </Component>
     <Component class="javax.swing.JLabel" name="costLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -167,8 +170,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Extra Expense"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="costTextField">
     </Component>
     <Component class="javax.swing.JLabel" name="rateLabel">
       <Properties>
@@ -202,6 +203,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker1">
     </Component>
@@ -268,5 +272,29 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox2">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

@@ -4,7 +4,7 @@
 */
 
 /*
-* abcd.java
+* Career.java
 *
 * Created on Mar 9, 2013, 12:45:54 PM
 */
@@ -18,13 +18,13 @@ import javax.swing.JOptionPane;
 *
 * @author Home
 */
-public class abcd extends javax.swing.JFrame {
+public class Career extends javax.swing.JFrame {
     
     String pname,vdate,work,to,from,vno,lname,goods;
     int vcharge,lcharge,total,inv=0;
 
-    /** Creates new form abcd */
-    public abcd() {
+    /** Creates new form Career */
+    public Career() {
         initComponents();
         setTitle("abcd Details");
         //setSize(660,770);
@@ -211,7 +211,6 @@ public class abcd extends javax.swing.JFrame {
                                     .addComponent(vehicle_chargeTextField6, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(25, 25, 25))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,13 +353,13 @@ public class abcd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(abcd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Career.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(abcd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Career.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(abcd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Career.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(abcd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Career.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -368,7 +367,7 @@ public class abcd extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new abcd().setVisible(true);
+                new Career().setVisible(true);
             }
         });
     }

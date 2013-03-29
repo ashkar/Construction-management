@@ -64,7 +64,7 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             Statement  st = con.createStatement();
-            ResultSet res = st.executeQuery("select "+column_name+" from "+table_name+"");
+            ResultSet res = st.executeQuery("select "+column_name+" from "+table_name+" where "+column_name+" is not null order by "+column_name+" asc ");
             while(res.next())
             {
                combo_box.addItem(res.getString(column_name));
@@ -72,11 +72,11 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
         }
         catch(SQLException e)
         {
-            JOptionPane.showMessageDialog(null,"INVALID datatype");
+            JOptionPane.showMessageDialog(null,"Sql error in functions");
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"The error is1:"+e);
+            JOptionPane.showMessageDialog(null,"other error in functions:"+e);
             System.out.println(e.getMessage());
         }
 }
