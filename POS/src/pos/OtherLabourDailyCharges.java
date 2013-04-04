@@ -10,6 +10,8 @@
  */
 package pos;
 import java.awt.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.*;
 
 /**
@@ -17,6 +19,9 @@ import javax.swing.*;
  * @author Home
  */
 public class OtherLabourDailyCharges extends javax.swing.JFrame {
+    
+    Double ap, mno, mwage, hno, hwage, rpu, tnou, total, total1, total2;
+    int wid =0;
 
     /** Creates new form OtherLabourDailyCharges */
     public OtherLabourDailyCharges() {
@@ -25,13 +30,40 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         setTitle("Other Labour Daily Charges");
         setSize(660,770);
         setVisible(true);
-        getContentPane().setBackground(new Color(202,225,255)); 
+        getContentPane().setBackground(new Color(129,134,138)); 
         
         wage_wisePanel.setVisible(false);
         unit_wisePanel.setVisible(false);
         fixed_amountPanel.setVisible(false);
         
         Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
+        Functions.FillCombo(head_of_contractCombo, "Head_of_contract", "Names");
+         try{   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select Work_Id from LabourdailyOther order by Work_Id asc");
+                  Boolean rec = res.next();
+                  System.out.println("connected successfully");
+                  
+                  do
+                  {
+                     if(rec==true) {
+                     wid =res.getInt(1);
+                      }
+                  }while (res.next());
+                  
+                  wid+=1 ; 
+             }
+               catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"58"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"63"+e);
+                System.out.println(e.getMessage());
+            }
     }
 
     /** This method is called from within the constructor to
@@ -45,11 +77,14 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         labour_daily_chargesLabel = new javax.swing.JLabel();
+        daily_wage_updateLabel = new javax.swing.JLabel();
         head_of_contractLabel = new javax.swing.JLabel();
         project_nameLabel = new javax.swing.JLabel();
+        date_of_paymentLabel = new javax.swing.JLabel();
         amount_paidLabel = new javax.swing.JLabel();
-        head_of_contractTextField = new javax.swing.JTextField();
         project_nameCombo = new javax.swing.JComboBox();
+        date_of_payment = new org.jdesktop.swingx.JXDatePicker();
+        amount_paidTextField = new javax.swing.JTextField();
         select_workCombo = new javax.swing.JComboBox();
         select_workLabel = new javax.swing.JLabel();
         unit_wiseButton = new javax.swing.JRadioButton();
@@ -67,25 +102,28 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         mesons_cashLabel = new javax.swing.JLabel();
         helpers_cashLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        fixed_amountPanel = new javax.swing.JPanel();
-        fixed_amountLabel = new javax.swing.JLabel();
-        fixed_amountTextField = new javax.swing.JTextField();
         unit_wisePanel = new javax.swing.JPanel();
         rate_per_unitLabel = new javax.swing.JLabel();
         total_unitLabel = new javax.swing.JLabel();
         rate_per_unitTextField = new javax.swing.JTextField();
         total_unitTextField = new javax.swing.JTextField();
         total_cashLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        fixed_amountPanel = new javax.swing.JPanel();
+        fixed_amountLabel = new javax.swing.JLabel();
+        fixed_amountTextField = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        head_of_contractCombo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         labour_daily_chargesLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labour_daily_chargesLabel.setForeground(new java.awt.Color(0, 102, 102));
-        labour_daily_chargesLabel.setText("Contract -Total Cost Update");
+        labour_daily_chargesLabel.setText("Other Labour Daily Charges");
+
+        daily_wage_updateLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        daily_wage_updateLabel.setForeground(new java.awt.Color(0, 102, 102));
+        daily_wage_updateLabel.setText("Daily Wage Update");
 
         head_of_contractLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         head_of_contractLabel.setText("Head of Contract");
@@ -93,14 +131,39 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         project_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         project_nameLabel.setText("Project Name");
 
+        date_of_paymentLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        date_of_paymentLabel.setText("Date of Payment");
+
         amount_paidLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         amount_paidLabel.setText("Amount Paid");
 
         project_nameCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         project_nameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        project_nameCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                project_nameComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                project_nameComboFocusLost(evt);
+            }
+        });
+
+        amount_paidTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amount_paidTextFieldKeyReleased(evt);
+            }
+        });
 
         select_workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        select_workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Plumbing", "Electrical", "Laterate", "Plastering", "Painting", "Centering", "Carpentary", "Flooring" }));
+        select_workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Carpentary", "Centering", "Electrical", "Flooring", "Laterate", "Painting", "Plastering", "Plumbing" }));
+        select_workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                select_workComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                select_workComboFocusLost(evt);
+            }
+        });
 
         select_workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         select_workLabel.setText("Select Work");
@@ -132,7 +195,7 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
             }
         });
 
-        wage_wisePanel.setBackground(new java.awt.Color(202, 225, 255));
+        wage_wisePanel.setBackground(new java.awt.Color(129, 134, 138));
 
         mesonsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         mesonsLabel.setText("Mesons");
@@ -140,27 +203,56 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         helpersLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         helpersLabel.setText("Helpers");
 
+        helpers_noTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                helpers_noTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                helpers_noTextFieldFocusLost(evt);
+            }
+        });
         helpers_noTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 helpers_noTextFieldKeyReleased(evt);
             }
         });
 
+        mesons_noTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mesons_noTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mesons_noTextFieldFocusLost(evt);
+            }
+        });
         mesons_noTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 mesons_noTextFieldKeyReleased(evt);
             }
         });
 
+        mesons_wageTextField.setEnabled(false);
+        mesons_wageTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mesons_wageTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mesons_wageTextFieldFocusLost(evt);
+            }
+        });
         mesons_wageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 mesons_wageTextFieldKeyReleased(evt);
             }
         });
 
-        helpers_wageTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                helpers_wageTextFieldActionPerformed(evt);
+        helpers_wageTextField.setEnabled(false);
+        helpers_wageTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                helpers_wageTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                helpers_wageTextFieldFocusLost(evt);
             }
         });
         helpers_wageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -195,23 +287,23 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(mesons_noTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(helpers_noTextField))
-                        .addGap(18, 18, 18)
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(helpers_wageTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(mesons_wageTextField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(mesons_cashLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                            .addComponent(helpers_cashLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel3))
+                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
+                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(helpers_noTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mesons_noTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(helpers_wageTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mesons_wageTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mesons_cashLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(helpers_cashLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         wage_wisePanelLayout.setVerticalGroup(
             wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,32 +313,112 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mesons_cashLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mesons_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mesons_wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mesonsLabel)))
-                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(helpers_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(helpers_wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(helpersLabel)))
-                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(helpers_cashLabel)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mesons_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesons_wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesons_cashLabel)
+                    .addComponent(mesonsLabel))
+                .addGap(6, 6, 6)
+                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(helpers_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(helpers_wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(helpers_cashLabel)
+                    .addComponent(helpersLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel1.setText("Amount actually paid");
+        unit_wisePanel.setBackground(new java.awt.Color(129, 134, 138));
 
-        fixed_amountPanel.setBackground(new java.awt.Color(202, 225, 255));
+        rate_per_unitLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        rate_per_unitLabel.setText("Rate per Unit");
+
+        total_unitLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        total_unitLabel.setText("Total no:of Unit");
+
+        rate_per_unitTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rate_per_unitTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                rate_per_unitTextFieldFocusLost(evt);
+            }
+        });
+        rate_per_unitTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rate_per_unitTextFieldKeyReleased(evt);
+            }
+        });
+
+        total_unitTextField.setEnabled(false);
+        total_unitTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                total_unitTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                total_unitTextFieldFocusLost(evt);
+            }
+        });
+        total_unitTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                total_unitTextFieldKeyReleased(evt);
+            }
+        });
+
+        total_cashLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        total_cashLabel.setForeground(new java.awt.Color(255, 0, 0));
+        total_cashLabel.setText("Cash");
+
+        javax.swing.GroupLayout unit_wisePanelLayout = new javax.swing.GroupLayout(unit_wisePanel);
+        unit_wisePanel.setLayout(unit_wisePanelLayout);
+        unit_wisePanelLayout.setHorizontalGroup(
+            unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(unit_wisePanelLayout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rate_per_unitLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(total_unitLabel))
+                .addGap(37, 37, 37)
+                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(total_cashLabel)
+                    .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(total_unitTextField)
+                        .addComponent(rate_per_unitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        unit_wisePanelLayout.setVerticalGroup(
+            unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, unit_wisePanelLayout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rate_per_unitLabel)
+                    .addComponent(rate_per_unitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(total_unitLabel)
+                    .addComponent(total_unitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(total_cashLabel)
+                .addContainerGap())
+        );
+
+        fixed_amountPanel.setBackground(new java.awt.Color(129, 134, 138));
 
         fixed_amountLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         fixed_amountLabel.setText("Fixed Amount");
+
+        fixed_amountTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fixed_amountTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fixed_amountTextFieldFocusLost(evt);
+            }
+        });
+        fixed_amountTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fixed_amountTextFieldKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout fixed_amountPanelLayout = new javax.swing.GroupLayout(fixed_amountPanel);
         fixed_amountPanel.setLayout(fixed_amountPanelLayout);
@@ -269,71 +441,23 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        unit_wisePanel.setBackground(new java.awt.Color(202, 225, 255));
-
-        rate_per_unitLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        rate_per_unitLabel.setText("Rate per Square Feet");
-
-        total_unitLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        total_unitLabel.setText("Total no:of Square Feet");
-
-        rate_per_unitTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                rate_per_unitTextFieldKeyReleased(evt);
-            }
-        });
-
-        total_unitTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                total_unitTextFieldKeyReleased(evt);
-            }
-        });
-
-        total_cashLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        total_cashLabel.setForeground(new java.awt.Color(255, 0, 0));
-        total_cashLabel.setText("Cash");
-
-        javax.swing.GroupLayout unit_wisePanelLayout = new javax.swing.GroupLayout(unit_wisePanel);
-        unit_wisePanel.setLayout(unit_wisePanelLayout);
-        unit_wisePanelLayout.setHorizontalGroup(
-            unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(unit_wisePanelLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rate_per_unitLabel)
-                    .addComponent(total_unitLabel))
-                .addGap(37, 37, 37)
-                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(total_cashLabel)
-                    .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(total_unitTextField)
-                        .addComponent(rate_per_unitTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)))
-                .addContainerGap(477, Short.MAX_VALUE))
-        );
-        unit_wisePanelLayout.setVerticalGroup(
-            unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(unit_wisePanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rate_per_unitLabel)
-                    .addComponent(rate_per_unitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(total_unitLabel)
-                    .addComponent(total_unitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(total_cashLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jButton1.setText("Cancel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update");
+        head_of_contractCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        head_of_contractCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        head_of_contractCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                head_of_contractComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                head_of_contractComboFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,177 +468,128 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                 .addComponent(jSeparator1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(194, 194, 194)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(wage_wisePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fixed_amountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(unit_wisePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(select_workLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
+                        .addComponent(select_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(unit_wiseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(177, 177, 177))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(fixed_amountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(143, 143, 143))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(wage_wiseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(163, 163, 163)))))
+                .addGap(119, 119, 119))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fixed_amountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(unit_wisePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(wage_wisePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(79, 79, 79))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(project_nameLabel)
                             .addComponent(head_of_contractLabel)
-                            .addComponent(amount_paidLabel)
-                            .addComponent(select_workLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(project_nameLabel)
+                            .addComponent(date_of_paymentLabel)
+                            .addComponent(amount_paidLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(head_of_contractTextField)
-                            .addComponent(project_nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(select_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(amount_paidTextField)
+                            .addComponent(project_nameCombo, 0, 134, Short.MAX_VALUE)
+                            .addComponent(head_of_contractCombo, 0, 134, Short.MAX_VALUE)
+                            .addComponent(date_of_payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(labour_daily_chargesLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(unit_wiseButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fixed_amountButton, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(wage_wiseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(485, Short.MAX_VALUE))
+                        .addComponent(labour_daily_chargesLabel)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(240, 240, 240))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(216, 216, 216)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(731, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(daily_wage_updateLabel)
+                        .addGap(237, 237, 237))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(287, 287, 287))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(labour_daily_chargesLabel)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(project_nameLabel))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(project_nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addComponent(daily_wage_updateLabel)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(project_nameLabel)
+                    .addComponent(project_nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(head_of_contractLabel)
-                    .addComponent(head_of_contractTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(head_of_contractCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(date_of_paymentLabel)
+                    .addComponent(date_of_payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(amount_paidLabel)
+                    .addComponent(amount_paidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(select_workLabel)
                     .addComponent(select_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(amount_paidLabel))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addComponent(wage_wiseButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(unit_wiseButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fixed_amountButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wage_wisePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(unit_wisePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fixed_amountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(734, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(21, 21, 21)))
+                .addGap(18, 18, 18)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void mesons_noTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mesons_noTextFieldKeyReleased
-
-    if(!mesons_noTextField.getText().equals(""))
-    {
-        Functions.NumericValidate(mesons_noTextField);
-    }
-    else
-    {
-        mesons_noTextField.setText("");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_mesons_noTextFieldKeyReleased
-
-private void mesons_wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mesons_wageTextFieldKeyReleased
-
-    if(!mesons_wageTextField.getText().equals(""))
-    {
-        if(Functions.NumericValidate(mesons_wageTextField))
-        {
-            double no = Double.parseDouble(mesons_noTextField.getText());
-            double wage = Double.parseDouble(mesons_wageTextField.getText());
-            double total = no*wage;
-            mesons_cashLabel.setText(Double.toString(total));
-        }
-    }
-    else
-    {
-        mesons_cashLabel.setText("0");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_mesons_wageTextFieldKeyReleased
-
-private void helpers_noTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpers_noTextFieldKeyReleased
-
-    if(!helpers_noTextField.getText().equals(""))
-    {
-        Functions.NumericValidate(helpers_noTextField);
-    }
-    else
-    {
-        helpers_noTextField.setText("");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_helpers_noTextFieldKeyReleased
-
-private void helpers_wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpers_wageTextFieldKeyReleased
-
-    if(!helpers_wageTextField.getText().equals(""))
-    {
-        if(Functions.NumericValidate(helpers_wageTextField))
-        {
-            double no = Double.parseDouble(helpers_noTextField.getText());
-            double wage = Double.parseDouble(helpers_wageTextField.getText());
-            double total = no*wage;
-            helpers_cashLabel.setText(Double.toString(total));
-        }
-    }
-    else
-    {
-        helpers_cashLabel.setText("0");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_helpers_wageTextFieldKeyReleased
-
-private void wage_wiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wage_wiseButtonActionPerformed
-
-    wage_wisePanel.setVisible(true);
-    unit_wisePanel.setVisible(false);
-    fixed_amountPanel.setVisible(false);
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_wage_wiseButtonActionPerformed
-
 private void unit_wiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unit_wiseButtonActionPerformed
 
+    wage_wiseButton.setForeground(Color.black);
+    unit_wiseButton.setForeground(Color.black);
+    fixed_amountButton.setForeground(Color.black);
+    
+    mesons_noTextField.setBackground(Color.white);
+    mesons_noTextField.setText("");
+    mesons_wageTextField.setText("");
+    mesons_wageTextField.setEnabled(false);
+    helpers_noTextField.setBackground(Color.white);
+    helpers_noTextField.setText("");
+    helpers_wageTextField.setText("");
+    helpers_wageTextField.setEnabled(false);
+    
+    fixed_amountTextField.setText("");
+    fixed_amountTextField.setBackground(Color.white);
+    
     unit_wisePanel.setVisible(true);
     wage_wisePanel.setVisible(false);
     fixed_amountPanel.setVisible(false);
@@ -522,50 +597,26 @@ private void unit_wiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//G
     // TODO add your handling code here:
 }//GEN-LAST:event_unit_wiseButtonActionPerformed
 
-private void rate_per_unitTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rate_per_unitTextFieldKeyReleased
-
-    if(!rate_per_unitTextField.getText().equals(""))
-    {
-        if(Functions.NumericValidate(rate_per_unitTextField))
-        {
-            double rate = Double.parseDouble(rate_per_unitTextField.getText());
-            double units = Double.parseDouble(total_unitTextField.getText());
-            double total = rate * units;
-            
-            total_cashLabel.setText(Double.toString(total));
-        }
-    }
-    else
-    {
-        rate_per_unitTextField.setText("");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_rate_per_unitTextFieldKeyReleased
-
-private void total_unitTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_total_unitTextFieldKeyReleased
-
-    if(!total_unitTextField.getText().equals(""))
-    {
-        if(Functions.NumericValidate(total_unitTextField))
-        {
-            double rate = Double.parseDouble(rate_per_unitTextField.getText());
-            double units = Double.parseDouble(total_unitTextField.getText());
-            double total = rate * units;
-            
-            total_cashLabel.setText(Double.toString(total));
-        }
-    }
-    else
-    {
-        total_cashLabel.setText("");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_total_unitTextFieldKeyReleased
-
 private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fixed_amountButtonActionPerformed
 
+    wage_wiseButton.setForeground(Color.black);
+    unit_wiseButton.setForeground(Color.black);
+    fixed_amountButton.setForeground(Color.black);
+    
+    mesons_noTextField.setBackground(Color.white);
+    mesons_noTextField.setText("");
+    mesons_wageTextField.setText("");
+    mesons_wageTextField.setEnabled(false);
+    helpers_noTextField.setBackground(Color.white);
+    helpers_noTextField.setText("");
+    helpers_wageTextField.setText("");
+    helpers_wageTextField.setEnabled(false);
+    
+    rate_per_unitTextField.setBackground(Color.white);
+    total_unitTextField.setEnabled(false);
+    rate_per_unitTextField.setText("");
+    total_unitTextField.setText("");
+    
     fixed_amountPanel.setVisible(true);
     unit_wisePanel.setVisible(false);
     wage_wisePanel.setVisible(false);
@@ -573,14 +624,582 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
     // TODO add your handling code here:
 }//GEN-LAST:event_fixed_amountButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void project_nameComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_project_nameComboFocusLost
 
-    private void helpers_wageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpers_wageTextFieldActionPerformed
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
         // TODO add your handling code here:
-    }//GEN-LAST:event_helpers_wageTextFieldActionPerformed
+    }//GEN-LAST:event_project_nameComboFocusLost
 
+    private void project_nameComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_project_nameComboFocusGained
+
+        project_nameLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_project_nameComboFocusGained
+
+    private void amount_paidTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amount_paidTextFieldKeyReleased
+
+        if(Functions.NumericValidate(amount_paidTextField))
+        {
+            amount_paidLabel.setForeground(Color.black);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amount_paidTextFieldKeyReleased
+
+    private void mesons_noTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mesons_noTextFieldKeyReleased
+
+        if(Functions.NumericValidate(mesons_noTextField))
+        {
+            mesons_wageTextField.setBackground(Color.white);
+            
+            if(mesons_noTextField.getText().equals(""))
+            {
+                mno=0.0;
+                mesons_wageTextField.setEnabled(false);
+            }
+            if(mesons_wageTextField.getText().equals(""))
+            {
+                mwage=0.0;
+            }
+            if(!mesons_noTextField.getText().equals(""))
+            {
+                mno = Double.parseDouble(mesons_noTextField.getText());
+                mesons_wageTextField.setEnabled(true);
+            }
+            if(!mesons_wageTextField.getText().equals(""))
+            {
+                mwage = Double.parseDouble(mesons_wageTextField.getText());
+            }
+            total = mno * mwage;
+            mesons_cashLabel.setText(Double.toString(total));
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesons_noTextFieldKeyReleased
+
+    private void mesons_wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mesons_wageTextFieldKeyReleased
+
+        if(Functions.NumericValidate(mesons_wageTextField))
+        {
+            if(helpers_noTextField.getText().equals("") && helpers_wageTextField.getText().equals(""))
+            {
+                helpers_noTextField.setBackground(Color.white);
+            }
+            
+            if(mesons_noTextField.getText().equals(""))
+            {
+                mno=0.0;
+            }
+            if(mesons_wageTextField.getText().equals(""))
+            {
+                mwage=0.0;
+            }
+            if(!mesons_noTextField.getText().equals(""))
+            {
+                mno = Double.parseDouble(mesons_noTextField.getText());
+            }
+            if(!mesons_wageTextField.getText().equals(""))
+            {
+                mwage = Double.parseDouble(mesons_wageTextField.getText());
+            }
+            total = mno * mwage;
+            mesons_cashLabel.setText(Double.toString(total));
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesons_wageTextFieldKeyReleased
+
+    private void helpers_noTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpers_noTextFieldKeyReleased
+
+        if(Functions.NumericValidate(helpers_noTextField))
+        {
+            helpers_wageTextField.setBackground(Color.white);
+            
+            if(helpers_noTextField.getText().equals(""))
+            {
+                hno=0.0;
+                helpers_wageTextField.setEnabled(false);
+            }
+            if(helpers_wageTextField.getText().equals(""))
+            {
+                hwage=0.0;
+            }
+            if(!helpers_noTextField.getText().equals(""))
+            {
+                hno = Double.parseDouble(helpers_noTextField.getText());
+                helpers_wageTextField.setEnabled(true);
+            }
+            if(!helpers_wageTextField.getText().equals(""))
+            {
+                hwage = Double.parseDouble(helpers_wageTextField.getText());
+            }
+            total1 = hno * hwage;
+            helpers_cashLabel.setText(Double.toString(total1));
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpers_noTextFieldKeyReleased
+
+    private void helpers_wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_helpers_wageTextFieldKeyReleased
+
+        if(Functions.NumericValidate(helpers_noTextField))
+        {
+            if(mesons_noTextField.getText().equals("") && mesons_wageTextField.getText().equals(""))
+            {
+                mesons_noTextField.setBackground(Color.white);
+            }
+            
+            if(helpers_noTextField.getText().equals(""))
+            {
+                hno=0.0;
+            }
+            if(helpers_wageTextField.getText().equals(""))
+            {
+                hwage=0.0;
+            }
+            if(!helpers_noTextField.getText().equals(""))
+            {
+                hno = Double.parseDouble(helpers_noTextField.getText());
+            }
+            if(!helpers_wageTextField.getText().equals(""))
+            {
+                hwage = Double.parseDouble(helpers_wageTextField.getText());
+            }
+            total1 = hno * hwage;
+            helpers_cashLabel.setText(Double.toString(total1));
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpers_wageTextFieldKeyReleased
+
+    private void rate_per_unitTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rate_per_unitTextFieldKeyReleased
+
+        if(Functions.NumericValidate(rate_per_unitTextField))
+        {
+            total_unitTextField.setBackground(Color.white);
+            
+            if(rate_per_unitTextField.getText().equals(""))
+            {
+                rpu=0.0;
+                total_unitTextField.setEnabled(false);
+            }
+            if(total_unitTextField.getText().equals(""))
+            {
+                tnou=0.0;
+            }
+            if(!rate_per_unitTextField.getText().equals(""))
+            {
+                rpu = Double.parseDouble(rate_per_unitTextField.getText());
+                total_unitTextField.setEnabled(true);
+            }
+            if(!total_unitTextField.getText().equals(""))
+            {
+                tnou = Double.parseDouble(total_unitTextField.getText());
+            }
+            total2 = rpu * tnou;
+            total_cashLabel.setText(Double.toString(total2));
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rate_per_unitTextFieldKeyReleased
+
+    private void total_unitTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_total_unitTextFieldKeyReleased
+
+        if(Functions.NumericValidate(rate_per_unitTextField))
+        {
+            if(rate_per_unitTextField.getText().equals(""))
+            {
+                rpu=0.0;
+            }
+            if(total_unitTextField.getText().equals(""))
+            {
+                tnou=0.0;
+            }
+            if(!rate_per_unitTextField.getText().equals(""))
+            {
+                rpu = Double.parseDouble(rate_per_unitTextField.getText());
+            }
+            if(!total_unitTextField.getText().equals(""))
+            {
+                tnou = Double.parseDouble(total_unitTextField.getText());
+            }
+            total2 = rpu * tnou;
+            total_cashLabel.setText(Double.toString(total2));
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_total_unitTextFieldKeyReleased
+
+    private void fixed_amountTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fixed_amountTextFieldKeyReleased
+
+        Functions.NumericValidation(fixed_amountTextField);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fixed_amountTextFieldKeyReleased
+
+    private void select_workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_select_workComboFocusGained
+
+        select_workLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_select_workComboFocusGained
+
+    private void select_workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_select_workComboFocusLost
+
+        if(select_workCombo.getSelectedItem().equals("Select"))
+        {
+            select_workLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_select_workComboFocusLost
+
+    private void mesons_noTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mesons_noTextFieldFocusGained
+
+        mesons_noTextField.setBackground(Color.white);
+        if(!helpers_noTextField.getText().equals("") && helpers_wageTextField.getText().equals(""))
+        {
+            helpers_wageTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesons_noTextFieldFocusGained
+
+    private void mesons_noTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mesons_noTextFieldFocusLost
+
+        if(mesons_noTextField.getText().equals("") && !mesons_wageTextField.getText().equals(""))
+        {
+            mesons_noTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesons_noTextFieldFocusLost
+
+    private void mesons_wageTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mesons_wageTextFieldFocusGained
+
+        mesons_wageTextField.setBackground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesons_wageTextFieldFocusGained
+
+    private void mesons_wageTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mesons_wageTextFieldFocusLost
+
+        if(!mesons_noTextField.getText().equals("") && mesons_wageTextField.getText().equals(""))
+        {
+            mesons_wageTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesons_wageTextFieldFocusLost
+
+    private void helpers_noTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_helpers_noTextFieldFocusGained
+
+        helpers_noTextField.setBackground(Color.white);
+        if(!mesons_noTextField.getText().equals("") && mesons_wageTextField.getText().equals(""))
+        {
+            mesons_wageTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpers_noTextFieldFocusGained
+
+    private void helpers_noTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_helpers_noTextFieldFocusLost
+
+        if(helpers_noTextField.getText().equals("") && !helpers_wageTextField.getText().equals(""))
+        {
+            helpers_noTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpers_noTextFieldFocusLost
+
+    private void helpers_wageTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_helpers_wageTextFieldFocusGained
+
+        helpers_wageTextField.setBackground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpers_wageTextFieldFocusGained
+
+    private void helpers_wageTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_helpers_wageTextFieldFocusLost
+
+        if(!helpers_noTextField.getText().equals("") && helpers_wageTextField.getText().equals(""))
+        {
+            helpers_wageTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpers_wageTextFieldFocusLost
+
+    private void rate_per_unitTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rate_per_unitTextFieldFocusGained
+
+        rate_per_unitTextField.setBackground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rate_per_unitTextFieldFocusGained
+
+    private void rate_per_unitTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rate_per_unitTextFieldFocusLost
+
+        if(rate_per_unitTextField.getText().equals("") && !total_unitTextField.getText().equals(""))
+        {
+            rate_per_unitTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rate_per_unitTextFieldFocusLost
+
+    private void total_unitTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_total_unitTextFieldFocusGained
+
+        total_unitTextField.setBackground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_total_unitTextFieldFocusGained
+
+    private void total_unitTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_total_unitTextFieldFocusLost
+
+        if(!rate_per_unitTextField.getText().equals("") && total_unitTextField.getText().equals(""))
+        {
+            total_unitTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_total_unitTextFieldFocusLost
+
+    private void fixed_amountTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fixed_amountTextFieldFocusGained
+
+        fixed_amountTextField.setBackground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fixed_amountTextFieldFocusGained
+
+    private void fixed_amountTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fixed_amountTextFieldFocusLost
+
+        if(fixed_amountTextField.getText().equals(""))
+        {
+            fixed_amountTextField.setBackground(Color.pink);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fixed_amountTextFieldFocusLost
+
+    private void wage_wiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wage_wiseButtonActionPerformed
+
+        wage_wiseButton.setForeground(Color.black);
+        unit_wiseButton.setForeground(Color.black);
+        fixed_amountButton.setForeground(Color.black);
+        
+        rate_per_unitTextField.setBackground(Color.white);
+        total_unitTextField.setEnabled(false);
+        rate_per_unitTextField.setText("");
+        total_unitTextField.setText("");
+        
+        fixed_amountTextField.setBackground(Color.white);
+        fixed_amountTextField.setText("");
+        
+        wage_wisePanel.setVisible(true);
+        unit_wisePanel.setVisible(false);
+        fixed_amountPanel.setVisible(false);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wage_wiseButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+
+        String  pname = (String) project_nameCombo.getSelectedItem();
+        String hoc    = (String)head_of_contractCombo.getSelectedItem();
+        String work   = (String)select_workCombo.getSelectedItem();
+        int flag = 0;
+        String butvalue = "";
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(head_of_contractCombo.getSelectedItem().equals("Select"))
+        {
+            head_of_contractLabel.setForeground(Color.red);
+            flag++;
+        }
+        
+        // DATE VALIDATION GO HERE ------------------ //
+        
+        if(select_workCombo.getSelectedItem().equals("Select"))
+        {
+            select_workLabel.setForeground(Color.red);
+            flag++;
+        }
+        
+        // Three Radio Button Validation 
+        
+        if(!wage_wiseButton.isSelected() && !unit_wiseButton.isSelected() && !fixed_amountButton.isSelected())
+        {
+            flag++;
+            wage_wiseButton.setForeground(Color.red);
+            unit_wiseButton.setForeground(Color.red);
+            fixed_amountButton.setForeground(Color.red);
+        }
+        
+        Enumeration<AbstractButton> allRadioButton=buttonGroup1.getElements(); 
+        while(allRadioButton.hasMoreElements())
+        {
+            JRadioButton temp =(JRadioButton)allRadioButton.nextElement();
+            if (temp.isSelected())
+            {
+                if(temp.getText().equals("Wage Wise"))
+                {    butvalue = temp.getText(); 
+                    if((mesons_noTextField.getText().equals("") && mesons_wageTextField.getText().equals(""))
+                            && (helpers_noTextField.getText().equals("") && helpers_wageTextField.getText().equals("")))
+                    {
+                        mesons_noTextField.setBackground(Color.pink);
+                        helpers_noTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                    if(mesons_noTextField.getText().equals("") && !mesons_wageTextField.getText().equals(""))
+                    {
+                        mesons_noTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                    if(!mesons_noTextField.getText().equals("") && mesons_wageTextField.getText().equals(""))
+                    {
+                        mesons_wageTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                    if(helpers_noTextField.getText().equals("") && !helpers_wageTextField.getText().equals(""))
+                    {
+                        helpers_noTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                    if(!helpers_noTextField.getText().equals("") && helpers_wageTextField.getText().equals(""))
+                    {
+                        helpers_wageTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                }
+                else if(temp.getText().equals("Unit Wise"))
+                {  butvalue = temp.getText(); 
+                    if(rate_per_unitTextField.getText().equals("") && total_unitTextField.getText().equals(""))
+                    {
+                        rate_per_unitTextField.setBackground(Color.pink);
+                        total_unitTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                    if(rate_per_unitTextField.getText().equals("") && !total_unitTextField.getText().equals(""))
+                    {
+                        rate_per_unitTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                    if(!rate_per_unitTextField.getText().equals("") && total_unitTextField.getText().equals(""))
+                    {
+                        total_unitTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                }
+                else if(temp.getText().equals("Fixed Amount"))
+                {    butvalue = temp.getText(); 
+                    if(fixed_amountTextField.getText().equals(""))
+                    {
+                        fixed_amountTextField.setBackground(Color.pink);
+                        flag++;
+                    }
+                }
+            }
+        }
+        
+        // Radio Button Validations End
+        
+        // Code for DataBase Starts Here
+        
+        if(flag==0)
+        {
+            int units=0 ,unitrate=0, meson=0,mesonwage=0,helper=0,helperwage=0,tot=0;
+            //String abc = temp.getText();
+            //JOptionPane.showMessageDialog(null,"Done :)" +butvalue);
+            if ("Unit Wise".equals(butvalue))
+            {
+                unitrate  = Integer.parseInt( rate_per_unitTextField.getText());
+                units= Integer.parseInt(total_unitTextField.getText());
+                tot = unitrate*units ;
+                //JOptionPane.showMessageDialog(null,"Yeah thats right11!!");
+                
+                
+            }
+             if ("Wage Wise".equals(butvalue))
+            {
+                meson     = Integer.parseInt(mesons_noTextField.getText());
+                mesonwage = Integer.parseInt(mesons_wageTextField.getText());
+                helper    = Integer.parseInt(helpers_noTextField.getText());
+                helperwage= Integer.parseInt(helpers_wageTextField.getText());
+                tot =   (meson*mesonwage)+(helper*helperwage);
+                //JOptionPane.showMessageDialog(null,"Yeah thats right22!!");
+            }
+              if ("Fixed Amount".equals(butvalue))
+            {
+                
+                  tot = Integer.parseInt(fixed_amountTextField.getText());
+                //JOptionPane.showMessageDialog(null,"Yeah thats right33!!");
+            }
+             
+              if((wage_wiseButton.isSelected())||(unit_wiseButton.isSelected())||(fixed_amountButton.isSelected()))
+              {
+                  try {
+                        Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                        Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                        PreparedStatement prp=con.prepareStatement("insert into LabourdailyOther  values(?,?,?,?,?,?,?,?,?,?,?,?)");  
+                        prp.setInt(1,wid);
+                        prp.setString(2,hoc);
+                        prp.setString(3,work);  
+                        prp.setString(4,butvalue);
+                        prp.setInt(5,meson);
+                        prp.setInt(6, helper);
+                        prp.setInt(7,mesonwage);
+                        prp.setInt(8, helperwage);
+                        prp.setInt(9,units);
+                        prp.setInt(10,unitrate);
+                        prp.setInt(11, tot);
+                        prp.setDate(12, sqlDate);
+                        prp.executeUpdate(); 
+                        JOptionPane.showMessageDialog(null,"Details added succesfully");
+                         con.commit();
+                         con.close();
+                         wid+=1;
+                         
+                         project_nameCombo.setSelectedItem("Select");
+                         select_workCombo.setSelectedItem("Select");
+                         head_of_contractCombo.setSelectedItem("Select");
+                         rate_per_unitTextField.setText("");
+                         total_unitTextField.setText("");
+                         mesons_noTextField.setText("");
+                         mesons_wageTextField.setText("");
+                         helpers_noTextField.setText("");
+                         helpers_wageTextField.setText("");
+                         fixed_amountTextField.setText("");
+                         
+                  
+                  }                               
+             catch(SQLException e)
+             {JOptionPane.showMessageDialog(null,"1062"+e); }
+            catch(Exception e)
+            { JOptionPane.showMessageDialog(null,"1064"+e);
+                System.out.println(e.getMessage());
+            }
+        } 
+      }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void head_of_contractComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_head_of_contractComboFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_head_of_contractComboFocusGained
+
+    private void head_of_contractComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_head_of_contractComboFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_head_of_contractComboFocusLost
+    
     /**
      * @param args the command line arguments
      */
@@ -617,21 +1236,23 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JLabel amount_paidLabel;
+    private javax.swing.JTextField amount_paidTextField;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel daily_wage_updateLabel;
+    private org.jdesktop.swingx.JXDatePicker date_of_payment;
+    private javax.swing.JLabel date_of_paymentLabel;
     private javax.swing.JRadioButton fixed_amountButton;
     private javax.swing.JLabel fixed_amountLabel;
     private javax.swing.JPanel fixed_amountPanel;
     private javax.swing.JTextField fixed_amountTextField;
+    private javax.swing.JComboBox head_of_contractCombo;
     private javax.swing.JLabel head_of_contractLabel;
-    private javax.swing.JTextField head_of_contractTextField;
     private javax.swing.JLabel helpersLabel;
     private javax.swing.JLabel helpers_cashLabel;
     private javax.swing.JTextField helpers_noTextField;
     private javax.swing.JTextField helpers_wageTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;

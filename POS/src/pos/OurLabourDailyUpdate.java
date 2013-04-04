@@ -22,7 +22,7 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
 
    double total, wage, wage1, wage2, wage3, extra;
    double   mno,fno,mwage,fwage,extra1;
-   int fee=0,fee1=0,fee2=0,fee3=0,cid=0,wid=0 ;
+   int cid=0,wid=0 ;
     
     //String labour1, labour2, labour3, labour4;
 
@@ -447,6 +447,11 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         batchLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         batchLabel.setText("Batch");
@@ -467,14 +472,6 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
 
         batchCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         batchCombo.setEnabled(false);
-        batchCombo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                batchComboFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                batchComboFocusLost(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -886,6 +883,7 @@ private void nameCombo2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIR
 }//GEN-LAST:event_nameCombo2ItemStateChanged
 
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+
     String pname   =(String)project_nameCombo.getSelectedItem();
     String work    =(String)workCombo.getSelectedItem();
     String labour  =(String) nameCombo.getSelectedItem();
@@ -893,11 +891,80 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     String labour2 =(String) nameCombo2.getSelectedItem();
     String labour3 =(String) nameCombo3.getSelectedItem();
     
-    
-     //fee1   = Integer.parseInt(wageTextField1.getText());
-     //fee2   = Integer.parseInt(wageTextField2.getText());
-    // fee3   = Integer.parseInt(wageTextField3.getText());
-   int flag = 0;
+    int flag = 0,ext_exp,newwoodrem=0,grp_ext_exp,grp_man_no,grp_wom_no,wquan,grp_man_wage,grp_wom_wage,wcost = 0,wcosttemp,woodrem = 0;
+    int fee=0,fee1=0,fee2=0,fee3=0;
+    String wtype,wbatch;
+    if(extra_expenseTextField.getText().equals(""))
+    {
+        ext_exp=0;
+    }
+    else 
+    {
+        ext_exp = Integer.parseInt(extra_expenseTextField.getText());
+    }
+    if(extra_expenseTextField1.getText().equals(""))
+    {
+       grp_ext_exp=0;
+    }
+    else 
+    {
+       grp_ext_exp = Integer.parseInt(extra_expenseTextField1.getText());
+    }
+      
+    if(quantity_usedTextField.getText().equals(""))
+    {
+       wquan=0;
+    }
+    else 
+    {
+       wquan = Integer.parseInt(quantity_usedTextField.getText());
+    }
+     if(mnoTextField.getText().equals(""))
+    {
+       grp_man_no=0;
+    }
+    else 
+    {
+       grp_man_no = Integer.parseInt(mnoTextField.getText());
+    }
+     if(fnoTextField.getText().equals(""))
+    {
+       grp_wom_no=0;
+    }
+    else 
+    {
+       grp_wom_no = Integer.parseInt(fnoTextField.getText());
+    }
+     if(type_of_woodCombo.getSelectedItem().equals("Select"))
+    {
+       wtype ="";
+       wbatch="";
+    }
+    else 
+    {
+       wtype = (String)type_of_woodCombo.getSelectedItem();
+       wbatch= (String)batchCombo.getSelectedItem();
+    }
+      if(mwageTextField.getText().equals(""))
+    {
+       
+       grp_man_wage = 0;
+    }
+    else 
+    {
+       grp_man_wage = Integer.parseInt(mwageTextField.getText());
+    }
+      if(fwageTextField.getText().equals(""))
+    {
+       
+       grp_wom_wage = 0;
+    }
+    else 
+    {
+       grp_wom_wage = Integer.parseInt(fwageTextField.getText());
+    }
+     
+     
     if(project_nameCombo.getSelectedItem().equals("Select"))
     {   project_nameLabel.setForeground(Color.red);
         flag++;
@@ -906,7 +973,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     {   workLabel.setForeground(Color.red);
         flag++;
     }
-     if(workCombo.getSelectedItem().equals("Carpentary") && type_of_woodCombo.getSelectedItem().equals(""))
+     if(workCombo.getSelectedItem().equals("Carpentary") && type_of_woodCombo.getSelectedItem().equals("Select"))
     {   type_of_woodLabel.setForeground(Color.red);
         flag++;
     }
@@ -952,71 +1019,87 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         fnoLabel.setForeground(Color.red);
         flag++;
     }
+    
+    if((workCombo.getSelectedItem().equals("Carpentary"))&& (!type_of_woodCombo.getSelectedItem().equals("Select")))
+    {
+        try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                  Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select * from Wood where WOODTYPE='"+wtype+"'and INVNO ="+wbatch+" ");
+                  Boolean rec = res.next();
+                  if (rec==true){
+                   wcosttemp = res.getInt("COST");
+                   woodrem   = res.getInt("WOOD_REM");
+                   wcost = wcosttemp*wquan;
+                   newwoodrem= woodrem-wquan; 
+                  }
+                  else
+                  {
+                      JOptionPane.showMessageDialog(null, "Sorry would not available,add Wood Inventory");
+                      flag++;
+                  }
+             }       
+        
+        catch(SQLException e)
+             {JOptionPane.showMessageDialog(null,"1035"+e); }
+            catch(Exception e)
+            { JOptionPane.showMessageDialog(null,"990"+e);
+                   }
+    }
+    else
+    {
+        wcost = 0 ;
+    }
+    if((workCombo.getSelectedItem().equals("Carpentary"))&&(batchCombo.getItemCount()==0))
+    {
+        JOptionPane.showMessageDialog(null,"No Batch,Add Wood Inventory or Select another Wood");
+        flag++;
+    }
+    
+    if ((workCombo.getSelectedItem().equals("Carpentary"))&&(wquan>woodrem))
+    {
+        JOptionPane.showMessageDialog(null,"Notenough wood available,add wood inventory first ");
+        flag++;
+               
+    }
+    
    if (flag==0){
         if  (!labour.equals("Select"))
            {   fee    = Integer.parseInt(wageTextField.getText()); 
                
-                  try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Labourdailysub");
-                  Boolean rec = res.next();
-                  System.out.println("connected successfully");
-                  
-                  do
-                  {
-                     if(rec==true) {
-                      cid =res.getInt(7);
-                      }
-                  }while (res.next());
-                  
-                  cid+=1 ; 
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub values(?,?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");    
                         prp.setString(1,pname);
                         prp.setString(2,work);
                         prp.setDate(3,sqlDate);  
                         prp.setString(4,labour);
                         prp.setInt(5,fee);
                         prp.setInt(6, wid);
-                        prp.setInt(7,cid);
                         prp.executeUpdate(); 
-                        //JOptionPane.showMessageDialog(null,"Project added succesfully");
                          con.commit();
                          con.close();}                               
              catch(SQLException e)
-             {JOptionPane.showMessageDialog(null,"988"+e); }
+             {JOptionPane.showMessageDialog(null,"1091"+e); }
             catch(Exception e)
-            { JOptionPane.showMessageDialog(null,"990"+e);
-                System.out.println(e.getMessage());}
-            }      
+            { JOptionPane.showMessageDialog(null,"1094"+e);
+                System.out.println(e.getMessage());
+            }
+           }      
         if  (!labour1.equals("Select"))
            {   fee1    = Integer.parseInt(wageTextField1.getText()); 
                
                   try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Labourdailysub");
-                  Boolean rec = res.next();
-                  System.out.println("connected successfully");
-                  
-                  do
-                  {
-                     if(rec==true) {
-                      cid =res.getInt(7);
-                      }
-                  }while (res.next());
-                  
-                  cid+=1 ; 
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub values(?,?,?,?,?,?,?)");    
+                   PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");    
                         prp.setString(1,pname);
                         prp.setString(2,work);
                         prp.setDate(3,sqlDate);  
                         prp.setString(4,labour1);
                         prp.setInt(5,fee1);
                         prp.setInt(6, wid);
-                        prp.setInt(7,cid);
                         prp.executeUpdate(); 
                         //JOptionPane.showMessageDialog(null,"Project added succesfully");
                          con.commit();
@@ -1025,35 +1108,22 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
              {JOptionPane.showMessageDialog(null,"1025"+e); }
             catch(Exception e)
             { JOptionPane.showMessageDialog(null,"1027"+e);
-                System.out.println(e.getMessage());}
-            } 
+                System.out.println(e.getMessage());
+            }
+           } 
           if  (!labour2.equals("Select"))
            {   fee2    = Integer.parseInt(wageTextField2.getText()); 
                
                   try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Labourdailysub");
-                  Boolean rec = res.next();
-                  System.out.println("connected successfully");
-                  
-                  do
-                  {
-                     if(rec==true) {
-                      cid =res.getInt(7);
-                      }
-                  }while (res.next());
-                  
-                  cid+=1 ; 
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub values(?,?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");  
                         prp.setString(1,pname);
                         prp.setString(2,work);
                         prp.setDate(3,sqlDate);  
                         prp.setString(4,labour2);
                         prp.setInt(5,fee2);
                         prp.setInt(6, wid);
-                        prp.setInt(7,cid);
                         prp.executeUpdate(); 
                         //JOptionPane.showMessageDialog(null,"Project added succesfully");
                          con.commit();
@@ -1064,33 +1134,19 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             { JOptionPane.showMessageDialog(null,"1064"+e);
                 System.out.println(e.getMessage());}
             } 
-            if  (!labour3.equals("Select"))
-           {   fee3    = Integer.parseInt(wageTextField3.getText()); 
+      if  (!labour3.equals("Select"))
+                {  fee3    = Integer.parseInt(wageTextField3.getText()); 
                
-                  try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Labourdailysub");
-                  Boolean rec = res.next();
-                  System.out.println("connected successfully");
-                  
-                  do
-                  {
-                     if(rec==true) {
-                      cid =res.getInt(7);
-                      }
-                  }while (res.next());
-                  
-                  cid+=1 ; 
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub values(?,?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");     
                         prp.setString(1,pname);
                         prp.setString(2,work);
                         prp.setDate(3,sqlDate);  
                         prp.setString(4,labour3);
                         prp.setInt(5,fee3);
                         prp.setInt(6, wid);
-                        prp.setInt(7,cid);
                         prp.executeUpdate(); 
                         //JOptionPane.showMessageDialog(null,"Project added succesfully");
                          con.commit();
@@ -1099,39 +1155,37 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
              {JOptionPane.showMessageDialog(null,"1099"+e); }
             catch(Exception e)
             { JOptionPane.showMessageDialog(null,"1101"+e);
-                System.out.println(e.getMessage());}
-            } 
-            if  ((!labour1.equals("Select"))||(!mnoTextField.getText().equals(""))||(!fnoTextField.getText().equals("")))
-           {        //  fee3    = Integer.parseInt(wageTextField3.getText()); 
-               int ext_exp    = Integer.parseInt(extra_expenseTextField.getText());
-               int lab_wage =  fee+fee1+fee2+fee3 ;
-               String ext_exp_det = detailsTextArea.getText();
-               int grp_man_no = Integer.parseInt(mnoTextField.getText());
-               int grp_wom_no = Integer.parseInt(fnoTextField.getText());
-               int grp_man_wage = Integer.parseInt(mwageTextField.getText());
-               int grp_wom_wage = Integer.parseInt(fwageTextField.getText());
-               int grp_ext_exp = Integer.parseInt(extra_expenseTextField1.getText());
-               String grp_ext_det = detailsTextArea1.getText();
-               String wtype =(String) type_of_woodCombo.getSelectedItem();
-               int wquan    =Integer.parseInt(quantity_usedTextField.getText());
-               int tot = lab_wage+ (grp_man_no*grp_man_wage)+(grp_wom_no*grp_wom_wage)+ext_exp+grp_ext_exp;
-               String  wbatch = (String)batchCombo.getSelectedItem(); 
-               
-               
-                       
+                System.out.println(e.getMessage());
+            }
+           } 
+       if (workCombo.getSelectedItem().equals("Carpentary"))
+            {
+                int wb = Integer.parseInt(wbatch);
+                try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                   PreparedStatement prp1 = con.prepareStatement("update Wood set WOOD_REM= ? where WOODTYPE= '"+wtype+"' and INVNO ="+wb+"");
+                   prp1.setInt(1,newwoodrem);
+                   prp1.executeUpdate();
+                         con.commit();
+                         con.close();}                               
+             catch(SQLException e)
+             {JOptionPane.showMessageDialog(null,"1227"+e); }
+            catch(Exception e)
+            { JOptionPane.showMessageDialog(null,"1229"+e);
+              }
+            }
+            
+            
+            if  ((!labour.equals("Select"))||(!mnoTextField.getText().equals(""))||(!fnoTextField.getText().equals("")))
+           {   int lab_wage,tot;
+                lab_wage =  fee+fee1+fee2+fee3 ;
+                String ext_exp_det = detailsTextArea.getText();
+                String grp_ext_det = detailsTextArea1.getText();
+                tot = lab_wage+ (grp_man_no*grp_man_wage)+(grp_wom_no*grp_wom_wage)+ext_exp+grp_ext_exp;
                   try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                 // ResultSet res = st.executeQuery("select WORKID from Labourdailymain");
-               ResultSet res = st.executeQuery("select COST from Wood where WOODTYPE='"+wtype+"'and INVNO ="+wbatch+" ");
-                  Boolean rec = res.next();
-                  int wcosttemp = res.getInt(6);
-                  int woodrem   = res.getInt(10);
-                  int newwoodrem=woodrem-wquan ;
-                  
-                  int wcost = wcosttemp*wquan ; 
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Labourdailymain values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Labourdailymain values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");    
                         prp.setString(1,pname);
                         prp.setString(2,work);
                         prp.setDate(3,sqlDate);  
@@ -1143,30 +1197,53 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         prp.setInt(9,grp_wom_no);        
                         prp.setInt(10,grp_wom_wage); 
                         prp.setInt(11,grp_ext_exp);
-                        prp.setInt(17, wcost);
                         prp.setString(12, grp_ext_det);
-                        prp.setString(13,wtype);
-                        prp.setInt(14, wquan);
-                        prp.setInt(15,tot);
+                        prp.setInt(13,tot);
+                        prp.setInt(14,wid);
+                        prp.setString(15, wtype);
+                        prp.setInt(16,wquan);
+                        prp.setInt(17,wcost);
+                        prp.setString(18, wbatch);
                         prp.executeUpdate(); 
                         con.commit();
-              // ResultSet res1= st.executeQuery("update Wood set WOOD_REM="+newwoodrem+" where WOODTYPE= '"+wtype+"' and INVNO ="+wbatch+"");
-             //  PreparedStatement prp1 = con.prepareStatement("update Wood set WOOD_REM=? where WOODTYPE= '"+wtype+"' and INVNO ="+wbatch+"");
-               //         prp1.setInt(1,newwoodrem);
-                 //       prp1.executeUpdate();
-                        //JOptionPane.showMessageDialog(null,"Project added succesfully");
-                         con.commit();
-                         con.close();}                               
+                        con.close();
+                        
+                         wid+=1 ; 
+            project_nameCombo.setSelectedItem("Select");
+            workCombo.setSelectedItem("Select");
+            type_of_woodCombo.setSelectedItem("Select");
+            nameCombo.setSelectedItem("Select");
+            nameCombo1.setSelectedItem("Select");
+            nameCombo2.setSelectedItem("Select");
+            nameCombo3.setSelectedItem("Select");
+            wageTextField.setText("");
+            wageTextField1.setText("");
+            wageTextField2.setText("");
+            wageTextField3.setText("");
+            quantity_usedTextField.setText("");            
+            mnoTextField.setText("");
+            fnoTextField.setText("");
+            mwageTextField.setText("");
+            fwageTextField.setText("");
+            extra_expenseTextField.setText("");
+            extra_expenseTextField1.setText("");
+            detailsTextArea.setText("");
+            detailsTextArea1.setText("");    
+            
+                  
+                
+                  }                               
              catch(SQLException e)
              {JOptionPane.showMessageDialog(null,"1153"+e); }
             catch(Exception e)
             { JOptionPane.showMessageDialog(null,"1156"+e);
-                System.out.println(e.getMessage());}
-            } 
+                System.out.println(e.getMessage()); }
+    } 
             
-            
-   }
-   
+           
+  }
+           
+              
 }//GEN-LAST:event_addButtonActionPerformed
 
 private void wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wageTextFieldKeyReleased
@@ -1978,19 +2055,6 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
         // TODO add your handling code here:
     }//GEN-LAST:event_type_of_woodComboFocusLost
 
-    private void batchComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_batchComboFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_batchComboFocusLost
-
-    private void batchComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_batchComboFocusGained
-String wtype = (String)type_of_woodCombo.getSelectedItem();
-        
-        
-        
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_batchComboFocusGained
-
     private void type_of_woodComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_type_of_woodComboItemStateChanged
         String wtype = (String)type_of_woodCombo.getSelectedItem();
         batchCombo.removeAllItems();
@@ -2007,7 +2071,7 @@ String wtype = (String)type_of_woodCombo.getSelectedItem();
         }
         catch(SQLException e)
         {
-            JOptionPane.showMessageDialog(null,"2003");
+            JOptionPane.showMessageDialog(null,"2003"+e);
         }
         catch(Exception e)
         {
@@ -2018,6 +2082,10 @@ String wtype = (String)type_of_woodCombo.getSelectedItem();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_type_of_woodComboItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

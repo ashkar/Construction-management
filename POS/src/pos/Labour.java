@@ -4,10 +4,13 @@
  */
 package pos;
 
-import java.sql.*;
-import javax.swing.*;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author lenovo
+ */
 public class Labour extends javax.swing.JFrame {
 
     String Name,Work,Mobile;
@@ -18,8 +21,12 @@ public class Labour extends javax.swing.JFrame {
     public Labour() {
         initComponents();
         setTitle("Labour");
-        setSize(300,300);
+        setSize(660,350);
+        setLocation(238,0);
         setVisible(true);
+        getContentPane().setBackground(new Color(129,134,138));
+        
+        Functions.FillCombo(workCombo, "WORK", "Names");
         
     }
 
@@ -32,68 +39,84 @@ public class Labour extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
+        mobileTextField = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        labour_detailsLabel = new javax.swing.JLabel();
+        mobileLabel = new javax.swing.JLabel();
+        workLabel = new javax.swing.JLabel();
+        workCombo = new javax.swing.JComboBox();
+        addButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField4FocusLost(evt);
-            }
-        });
-
-        jButton1.setText("save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+        nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField2FocusGained(evt);
+                nameTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField2FocusLost(evt);
+                nameTextFieldFocusLost(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel2.setText("Name");
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("New Labour");
-
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel4.setText("Mobile");
-
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel3.setText("Work");
-
-        jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Plumbing", "Electrical", "Laterate", "Plastering", "Painting", "Centering", "Carpentary", "Flooring" }));
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
+        mobileTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobileTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mobileTextFieldFocusLost(evt);
             }
         });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        mobileTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mobileTextFieldKeyReleased(evt);
+            }
+        });
+
+        nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        nameLabel.setText("Name");
+
+        labour_detailsLabel.setBackground(new java.awt.Color(255, 255, 255));
+        labour_detailsLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        labour_detailsLabel.setForeground(new java.awt.Color(0, 102, 102));
+        labour_detailsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labour_detailsLabel.setText("Labour Details");
+
+        mobileLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        mobileLabel.setText("Mobile");
+
+        workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        workLabel.setText("Work");
+
+        workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        workCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                workComboItemStateChanged(evt);
+            }
+        });
+        workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                workComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                workComboFocusLost(evt);
+            }
+        });
+
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -102,244 +125,175 @@ public class Labour extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(labour_detailsLabel)
+                .addContainerGap(198, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                            .addComponent(nameLabel)
+                            .addComponent(workLabel)
+                            .addComponent(mobileLabel))
+                        .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(213, 213, 213)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 140, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(mobileTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(workCombo, 0, 241, Short.MAX_VALUE)
+                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))))
+                .addGap(158, 158, 158))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(labour_detailsLabel)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(nameLabel))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel5)
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel6)
-                        .addGap(96, 96, 96)
-                        .addComponent(jLabel7)
-                        .addGap(454, 454, 454))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(14, 14, 14)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(609, 609, 609))))
+                    .addComponent(workCombo, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(workLabel))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(mobileTextField)
+                    .addComponent(mobileLabel))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+    private void nameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldFocusGained
 
-    String str = jTextField4.getText();
-       jLabel5.setText("");
-            
-         if( str.isEmpty())
-       {
-           jTextField4.setText("");
-           jLabel5.setText("Enter a Name");
-                     
-       }
-         else{
-         try {
-             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Labour");
-                  Boolean rec = res.next();
-                  
-                 do
-                 {
-                     if(rec==true)
-                     {
-                       String S1 = res.getString(2);                       
-                       if(S1.equalsIgnoreCase(str))                           
-                       {
-                           jLabel5.setText("That Name already Exists");
-                           jTextField4.setText("");
-                       }   
-                     }
-                 }while(res.next());
-         }
-         
-         catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(null,"INVALID datatype");
-                
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"The error is1:"+e);
-                System.out.println(e.getMessage());
-            }   
-         }
-         
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField4FocusLost
+        nameLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextFieldFocusGained
 
-private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+    private void nameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldFocusLost
 
-            jLabel7.setText("");
-             
-            String jtf1=jTextField2.getText();
-            if(!"".equals(jtf1))
-            {
-            int fg=0;
-            for(int i=0;i<jtf1.length();i++)
-            {
-                char c=jtf1.charAt(i);
-                if(Character.isLetter(c))
-                {
-                    fg=0;
-                    break;
-                }
-                else
-                {
-                    fg=1;
-                    
-                }
-            }
-            if(fg==0)
-            {
-                //JOptionPane.showMessageDialog(null,"Enter NUMBERS"); 
-                jTextField2.setText("");
-                jLabel7.setText("Enter only Numbers");
-               // jTextField3.requestFocus();
-            }
-            }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField2FocusLost
+        if(nameTextField.getText().equals(""))
+        {
+            nameLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextFieldFocusLost
 
-private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-    // TODO add your handling code here:
-}//GEN-LAST:event_jComboBox1ActionPerformed
+    private void workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusGained
+        
+        workLabel.setForeground(Color.black);
+        
+        if(nameTextField.getText().equals(""))
+        {
+            nameLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboFocusGained
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusLost
 
-    if(jTextField4.getText().equals("")&&jComboBox1.getSelectedItem().equals("Select"))
-    {
-        JOptionPane.showMessageDialog(null,"Enter Name and Select Work");
-    }
-    else if(jTextField4.getText().equals(""))
-    {
-        JOptionPane.showMessageDialog(null,"Enter Name");
-    }
-    else if(jComboBox1.getSelectedItem().equals(("Select")))
-    {
-        JOptionPane.showMessageDialog(null,"Select a Work");
-    }
-    else
-    {
-       Name=jTextField4.getText();
-       Work=(String)jComboBox1.getSelectedItem();
-       Mobile=jTextField2.getText();
-       java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-       
-       try
-       {
-           Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-           Connection con=DriverManager.getConnection("jdbc:odbc:indlands","","");
-           Statement st = con.createStatement();
-           ResultSet res=st.executeQuery("SELECT * FROM Labour");
-           Boolean rec=res.next();
-           System.out.println("Connected Successfully");
-           
-           do
-           {
-               if(rec==true)
-               {
-                   Cid=res.getInt(1);
-               }
-           }
-           while(res.next());
-           
-           Cid+=1;
-           
-           PreparedStatement prp=con.prepareStatement("INSERT INTO Labour VALUES(?,?,?,?,?)");
-           
-           prp.setInt(1,Cid);
-           prp.setString(2,Name);
-           prp.setString(3,Mobile);
-           prp.setString(4,Work);
-           prp.setDate(5,sqlDate);
-           
-           prp.executeUpdate();
-           
-           JOptionPane.showMessageDialog(null,"Labour added Succesfully");
-           
-           jTextField4.setText("");
-           jComboBox1.setSelectedItem("Select");
-           jTextField2.setText("");
-           
-           con.commit();
-           con.close();
-       }
-       catch(SQLException e)
-       {
-           JOptionPane.showMessageDialog(null,"INVALID DATATYPE");
-       }
-       catch(Exception e)
-       {
-           JOptionPane.showMessageDialog(null,"The error is : "+e);
-           System.out.println(e.getMessage());
-       }
-    }
-    // TODO add your handling code here:
-}//GEN-LAST:event_jButton1ActionPerformed
+        if(workCombo.getSelectedItem().equals("Select"))
+        {
+            workLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboFocusLost
 
-private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+    private void workComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_workComboItemStateChanged
 
-    jLabel6.setText("");
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jComboBox1MouseClicked
+        if(workCombo.getSelectedItem().equals("Select"))
+        {
+            workLabel.setForeground(Color.red);
+        }
+        else workLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboItemStateChanged
 
-private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+    private void mobileTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTextFieldFocusGained
+        
+        mobileLabel.setForeground(Color.black);
+        
+        if(nameTextField.getText().equals(""))
+        {
+            nameLabel.setForeground(Color.red);
+        }
+        if(workCombo.getSelectedItem().equals("Select"))
+        {
+            workLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobileTextFieldFocusGained
 
-    if(jComboBox1.getSelectedItem().equals(("Select")))
-    {
-        jLabel6.setText("Select a Work");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField2FocusGained
+    private void mobileTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTextFieldFocusLost
+
+        if(mobileTextField.getText().equals(""))
+        {
+            mobileLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobileTextFieldFocusLost
+
+    private void mobileTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileTextFieldKeyReleased
+
+        Functions.NumericValidation(mobileTextField);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobileTextFieldKeyReleased
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+
+        int flag = 0;
+        
+        if(nameTextField.getText().equals(""))
+        {
+            nameLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(workCombo.getSelectedItem().equals("Select"))
+        {
+            workLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(mobileTextField.getText().equals(""))
+        {
+            mobileLabel.setForeground(Color.red);
+            flag++;
+        }
+        
+        if(flag==0)
+        {
+            // DATA BASE CODE GOES HERE 
+            JOptionPane.showMessageDialog(null,"Done :)");
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,16 +337,14 @@ private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel labour_detailsLabel;
+    private javax.swing.JLabel mobileLabel;
+    private javax.swing.JTextField mobileTextField;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JComboBox workCombo;
+    private javax.swing.JLabel workLabel;
     // End of variables declaration//GEN-END:variables
 }

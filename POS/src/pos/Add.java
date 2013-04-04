@@ -4,30 +4,32 @@
  */
 package pos;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 /**
  *
  * @author lenovo
  */
 public class Add extends javax.swing.JFrame {
 String brand,pname, material ,vendor,billid,work ; 
-int invno=0,quantity,cost,rate ,totalcost,totalrate ;
+int invno=0; 
+double quantity,cost,rate ,totalcost,totalrate ;
     /**
      * Creates new form Add
      */
     public Add() {
         initComponents();
-        Functions.FillCombo(jComboBox1, "PRONAME", "Project");
-        Functions.FillCombo(jComboBox2, "VENNAME", "Vendor");
-        Functions.FillCombo(jComboBox3, "WORK", "Names");
+        Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
+        Functions.FillCombo(vendorCombo, "VENNAME", "Vendor");
+        Functions.FillCombo(workCombo, "WORK", "Names");
              
-            
-      
         setTitle("Add");
         setVisible(true);
-        jTextField5.setEditable(false);
+        setSize(660,770);
+        setLocation(238,0);
+        getContentPane().setBackground(new Color(129,134,138));
+        noTextField.setEditable(false);
         
         
         try {
@@ -46,7 +48,7 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
                   
                 invno+=1 ;
         //String   abc=   (String)invno; 
-                jTextField5.setText(Integer.toString(invno));
+                noTextField.setText(Integer.toString(invno));
         }
         catch(Exception e)
             {
@@ -55,7 +57,7 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
             } 
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,265 +69,362 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
 
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel14 = new javax.swing.JLabel();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
+        cancelButton = new javax.swing.JButton();
+        costLabel = new javax.swing.JLabel();
+        rateTextField = new javax.swing.JTextField();
+        noTextField = new javax.swing.JTextField();
+        rateLabel = new javax.swing.JLabel();
+        vendorLabel = new javax.swing.JLabel();
+        materialLabel = new javax.swing.JLabel();
+        addButton = new javax.swing.JButton();
+        bill_noLabel = new javax.swing.JLabel();
+        quantityTextField = new javax.swing.JTextField();
+        noLabel = new javax.swing.JLabel();
+        costTextField = new javax.swing.JTextField();
+        project_nameLabel = new javax.swing.JLabel();
+        quantityLabel = new javax.swing.JLabel();
+        materialTextField = new javax.swing.JTextField();
+        bill_noTextField = new javax.swing.JTextField();
+        workLabel = new javax.swing.JLabel();
+        add_vendorButton = new javax.swing.JButton();
+        add_projectButton = new javax.swing.JButton();
+        project_nameCombo = new javax.swing.JComboBox();
+        bill_dateLabel = new javax.swing.JLabel();
+        date = new org.jdesktop.swingx.JXDatePicker();
+        brandLabel = new javax.swing.JLabel();
+        brandTextField = new javax.swing.JTextField();
+        vendorCombo = new javax.swing.JComboBox();
+        workCombo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36));
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Material Inventory");
 
-        jButton1.setText("Cancel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(129, 134, 138));
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Cost");
+        costLabel.setBackground(new java.awt.Color(255, 255, 255));
+        costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        costLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        costLabel.setText("Cost");
 
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+        rateTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rateTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                rateTextFieldFocusLost(evt);
+            }
+        });
+        rateTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField7KeyReleased(evt);
+                rateTextFieldKeyReleased(evt);
             }
         });
 
-        jTextField5.setEditable(false);
-        jTextField5.setEnabled(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        noTextField.setEditable(false);
+        noTextField.setEnabled(false);
+        noTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                noTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Rate");
+        rateLabel.setBackground(new java.awt.Color(255, 255, 255));
+        rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        rateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rateLabel.setText("Rate");
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Vendor");
+        vendorLabel.setBackground(new java.awt.Color(255, 255, 255));
+        vendorLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        vendorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vendorLabel.setText("Vendor");
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Material");
+        materialLabel.setBackground(new java.awt.Color(255, 255, 255));
+        materialLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        materialLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        materialLabel.setText("Material");
 
-        jButton5.setText("Save");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Bill No.");
+        bill_noLabel.setBackground(new java.awt.Color(255, 255, 255));
+        bill_noLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        bill_noLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bill_noLabel.setText("Bill No.");
 
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+        quantityTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                quantityTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                quantityTextFieldFocusLost(evt);
+            }
+        });
+        quantityTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField6KeyReleased(evt);
+                quantityTextFieldKeyReleased(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Inventory No.");
+        noLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        noLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        noLabel.setText("Inventory No.");
 
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+        costTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                costTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                costTextFieldFocusLost(evt);
+            }
+        });
+        costTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField9KeyReleased(evt);
+                costTextFieldKeyReleased(evt);
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Project Name");
+        project_nameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        project_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        project_nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        project_nameLabel.setText("Project Name");
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Quantity");
+        quantityLabel.setBackground(new java.awt.Color(255, 255, 255));
+        quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        quantityLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quantityLabel.setText("Quantity");
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Work");
+        materialTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                materialTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                materialTextFieldFocusLost(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bill_noTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bill_noTextFieldFocusGained(evt);
+            }
+        });
+
+        workLabel.setBackground(new java.awt.Color(255, 255, 255));
+        workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        workLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        workLabel.setText("Work");
+
+        add_vendorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        add_vendorButton.setBorder(null);
+        add_vendorButton.setBorderPainted(false);
+        add_vendorButton.setContentAreaFilled(false);
+        add_vendorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        add_vendorButton.setFocusPainted(false);
+        add_vendorButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                add_vendorButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                add_vendorButtonMouseExited(evt);
+            }
+        });
+        add_vendorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                add_vendorButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        add_projectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        add_projectButton.setBorder(null);
+        add_projectButton.setBorderPainted(false);
+        add_projectButton.setContentAreaFilled(false);
+        add_projectButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        add_projectButton.setFocusPainted(false);
+        add_projectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                add_projectButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                add_projectButtonMouseExited(evt);
+            }
+        });
+        add_projectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                add_projectButtonActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        project_nameCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        project_nameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        project_nameCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                project_nameComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                project_nameComboFocusLost(evt);
+            }
+        });
 
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Bill Date");
+        bill_dateLabel.setBackground(new java.awt.Color(255, 255, 255));
+        bill_dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        bill_dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bill_dateLabel.setText("Bill Date");
 
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Brand");
+        brandLabel.setBackground(new java.awt.Color(255, 255, 255));
+        brandLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        brandLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brandLabel.setText("Brand");
 
-        jComboBox2.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        brandTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                brandTextFieldFocusGained(evt);
+            }
+        });
 
-        jComboBox3.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        vendorCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        vendorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        vendorCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                vendorComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                vendorComboFocusLost(evt);
+            }
+        });
+
+        workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                workComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                workComboFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(157, 157, 157)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
+                    .addComponent(bill_dateLabel)
+                    .addComponent(workLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel5))
+                            .addComponent(quantityLabel)
+                            .addComponent(materialLabel)
+                            .addComponent(costLabel)
+                            .addComponent(bill_noLabel)
+                            .addComponent(project_nameLabel)
+                            .addComponent(rateLabel)
+                            .addComponent(brandLabel)
+                            .addComponent(vendorLabel)
+                            .addComponent(noLabel))
                         .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(workCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bill_noTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rateTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(brandTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(quantityTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(materialTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(noTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(vendorCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(costTextField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(add_projectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11))
-                .addContainerGap(353, Short.MAX_VALUE))
+                                .addComponent(add_vendorButton, 0, 0, Short.MAX_VALUE)))
+                        .addGap(1, 1, 1)))
+                .addGap(137, 137, 137))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noLabel)
+                            .addComponent(noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(project_nameLabel)
+                            .addComponent(project_nameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(add_projectButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(materialLabel)
+                    .addComponent(materialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantityLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(brandLabel)
+                    .addComponent(brandTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(vendorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10))
+                        .addComponent(costLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(add_vendorButton)
+                            .addComponent(vendorCombo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(rateLabel)
+                    .addComponent(rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bill_noLabel)
+                    .addComponent(bill_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bill_dateLabel)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(workLabel)
+                    .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -333,89 +432,117 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jLabel3)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel3)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(32, 32, 32)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            cost     =Integer.parseInt(jTextField9.getText());
-            rate     =Integer.parseInt(jTextField7.getText());
-           
-        if(jTextField1.getText().equals("")||jTextField2.getText().equals("")||
-           jComboBox1.getSelectedItem().equals("Select") ||jComboBox2.getSelectedItem().equals("Select")|| 
-           jTextField6.getText().equals("")||jTextField7.getText().equals("")|| 
-           jComboBox3.getSelectedItem().equals("Select")||jTextField9.getText().equals(""))
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+    
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+
+        int flag = 0;
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
         {
-        JOptionPane.showMessageDialog(null,"Enter all appropriate fields");
-         if(jComboBox1.getSelectedItem().equals("Select"))
-            { jLabel2.setForeground(new java.awt.Color(255,0,0));}
-        if(jTextField2.getText().equals(""))
-            {jLabel8.setForeground(new java.awt.Color(255,0,0));}
-        if(jTextField6.getText().equals(""))
-            {jLabel9.setForeground(new java.awt.Color(255,0,0));}
-        if(jTextField9.getText().equals(""))
-            {jLabel10.setForeground(new java.awt.Color(255,0,0));}
-        if(jTextField7.getText().equals(""))
-            {jLabel12.setForeground(new java.awt.Color(255,0,0));}            
-        if(jTextField1.getText().equals(""))
-        {jLabel7.setForeground(new java.awt.Color(255,0,0));}
-        if(jComboBox3.getSelectedItem().equals(""))
-        {jLabel11.setForeground(new java.awt.Color(255,0,0));}
-        if(jComboBox2.getSelectedItem().equals(""))
-        {jLabel5.setForeground(new java.awt.Color(255,0,0));}
-        
-                   
+            project_nameLabel.setForeground(Color.red);
+            flag++;
         }
-        else if(rate<cost){
-           
-            JOptionPane.showMessageDialog(null,"Selling price cnt be less than cost!!!!");
-            jTextField9.setText("");
-            jTextField7.setText("");
-        
-           
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(vendorCombo.getSelectedItem().equals("Select"))
+        {
+            vendorLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(costTextField.getText().equals(""))
+        {
+            costLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(rateTextField.getText().equals(""))
+        {
+            rateLabel.setForeground(Color.red);
+            flag++;
+        }
+        // DATE VALIDATION SHOULD BE HERE
+        if(workCombo.getSelectedItem().equals("Select"))
+        {
+            workLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(!costTextField.getText().equals("") && !rateTextField.getText().equals(""))
+        {
+            rate = Double.parseDouble(rateTextField.getText());
+            cost = Double.parseDouble(costTextField.getText());
             
+            if(rate < cost)
+            {
+                flag++;
+                rateTextField.setText("");
+                rateLabel.setForeground(Color.red);
+                JOptionPane.showMessageDialog(null,"Rate Cannot Be Less Than Cost");
+            }
         }
         
         
-        else
+        
+        if(flag==0)
         {  
              //Date   billdate    = (Date) jXDatePicker1.getDate();  
         //    SimpleDateFormat formatter = new SimpleDateFormat("dd-mon-yyyy");
       //  String d =   formatter.format(billdate);
              
-             pname    =(String)jComboBox1.getSelectedItem();
-             material =jTextField2.getText();
-             quantity =Integer.parseInt(jTextField6.getText());
-             cost     =Integer.parseInt(jTextField9.getText());
-             rate     =Integer.parseInt(jTextField7.getText());
-             billid   =jTextField1.getText();
-             brand    = jTextField3.getText();
+             pname    =(String)project_nameCombo.getSelectedItem();
+             material = materialTextField.getText();
+             quantity =Double.parseDouble(quantityTextField.getText());
+             cost     =Double.parseDouble(costTextField.getText());
+             rate     =Double.parseDouble(rateTextField.getText());
+             
+             if(brandTextField.getText().equals(""))
+             {
+                 brand = "";
+             } else brand = brandTextField.getText();
+             
+             if(bill_noTextField.getText().equals(""))
+             {
+                 billid = "";
+             } else billid = bill_noTextField.getText();
      
-             work     =(String)jComboBox3.getSelectedItem();
-             vendor   =(String)jComboBox2.getSelectedItem();
-             totalcost  = cost*quantity ;
-           totalrate  = rate*quantity ;   
+             work     =(String)workCombo.getSelectedItem();
+             vendor   =(String)vendorCombo.getSelectedItem();
+             totalcost  = cost * quantity ;
+             totalrate  = rate * quantity ;   
              try {
                   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
@@ -429,12 +556,12 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
                         prp.setInt(1,invno);
                         prp.setString(2,pname);
                         prp.setString(3,material);  
-                        prp.setInt(4,quantity);
+                        prp.setDouble(4,quantity);
                         prp.setString(5,vendor);
-                        prp.setInt (6, cost);
-                        prp.setInt (7, rate);
-                        prp.setInt (8, totalcost);
-                        prp.setInt (9, totalrate);
+                        prp.setDouble(6, cost);
+                        prp.setDouble(7, rate);
+                        prp.setDouble(8, totalcost);
+                        prp.setDouble(9, totalrate);
                         prp.setDate(10,sqlDate);
                         prp.setString(11,billid);
                         prp.setString(12,work);
@@ -443,16 +570,16 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
                         prp.executeUpdate(); 
                         JOptionPane.showMessageDialog(null,"Project added succesfully");
                          
-                         jComboBox1.setSelectedItem("Select");
-                         jTextField2.setText("");
-                         jTextField6.setText("");
-                         jTextField9.setText(""); 
-                         jTextField7.setText("");
-                         jTextField1.setText("");
-                         jComboBox3.setSelectedItem("Select");
-                         jComboBox2.setSelectedItem("Select");
+                         project_nameCombo.setSelectedItem("Select");
+                         materialTextField.setText("");
+                         quantityTextField.setText("");
+                         costTextField.setText(""); 
+                         rateTextField.setText("");
+                         bill_noTextField.setText("");
+                         workCombo.setSelectedItem("Select");
+                         vendorCombo.setSelectedItem("Select");
                          invno+=1 ;
-                         jTextField5.setText(Integer.toString(invno));
+                         noTextField.setText(Integer.toString(invno));
                              
                        
                          con.commit();
@@ -480,31 +607,341 @@ int invno=0,quantity,cost,rate ,totalcost,totalrate ;
         
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void add_projectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_projectButtonActionPerformed
     Project project =new Project();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_add_projectButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void add_vendorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_vendorButtonActionPerformed
     Vendor vendor=new Vendor();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_add_vendorButtonActionPerformed
 
-private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+private void noTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noTextFieldActionPerformed
  // TODO add your handling code here:
-}//GEN-LAST:event_jTextField5ActionPerformed
+}//GEN-LAST:event_noTextFieldActionPerformed
 
-    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
-        Functions.NumericValidate(jTextField6);        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6KeyReleased
+    private void quantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextFieldKeyReleased
+        Functions.NumericValidate(quantityTextField);        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityTextFieldKeyReleased
 
-    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
-        Functions.NumericValidate(jTextField9);// TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9KeyReleased
+    private void costTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costTextFieldKeyReleased
+        Functions.NumericValidate(costTextField);// TODO add your handling code here:
+    }//GEN-LAST:event_costTextFieldKeyReleased
 
-    private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
-Functions.NumericValidate(jTextField7);        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7KeyReleased
+    private void rateTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rateTextFieldKeyReleased
+Functions.NumericValidate(rateTextField);        // TODO add your handling code here:
+    }//GEN-LAST:event_rateTextFieldKeyReleased
+
+    private void add_projectButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_projectButtonMouseEntered
+
+        add_projectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add1.png")));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_projectButtonMouseEntered
+
+    private void add_projectButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_projectButtonMouseExited
+
+        add_projectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png")));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_projectButtonMouseExited
+
+    private void add_vendorButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_vendorButtonMouseEntered
+
+        add_vendorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add1.png")));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_vendorButtonMouseEntered
+
+    private void add_vendorButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_vendorButtonMouseExited
+
+        add_vendorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png")));
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_vendorButtonMouseExited
+
+    private void project_nameComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_project_nameComboFocusGained
+
+        project_nameLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_project_nameComboFocusGained
+
+    private void project_nameComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_project_nameComboFocusLost
+
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_project_nameComboFocusLost
+
+    private void materialTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_materialTextFieldFocusGained
+
+        materialLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materialTextFieldFocusGained
+
+    private void materialTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_materialTextFieldFocusLost
+
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materialTextFieldFocusLost
+
+    private void quantityTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantityTextFieldFocusGained
+
+        quantityLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityTextFieldFocusGained
+
+    private void quantityTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantityTextFieldFocusLost
+
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityTextFieldFocusLost
+
+    private void brandTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_brandTextFieldFocusGained
+
+        brandLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandTextFieldFocusGained
+
+    private void vendorComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_vendorComboFocusGained
+
+        vendorLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vendorComboFocusGained
+
+    private void vendorComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_vendorComboFocusLost
+
+        if(vendorCombo.getSelectedItem().equals("Select"))
+        {
+            vendorLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vendorComboFocusLost
+
+    private void costTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_costTextFieldFocusGained
+
+        costLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        if(vendorCombo.getSelectedItem().equals("Select"))
+        {
+            vendorLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_costTextFieldFocusGained
+
+    private void costTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_costTextFieldFocusLost
+
+        if(costTextField.getText().equals(""))
+        {
+            costLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_costTextFieldFocusLost
+
+    private void rateTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rateTextFieldFocusGained
+
+        rateLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        if(vendorCombo.getSelectedItem().equals("Select"))
+        {
+            vendorLabel.setForeground(Color.red);
+        }
+        
+        if(costTextField.getText().equals(""))
+        {
+            costLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rateTextFieldFocusGained
+
+    private void rateTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rateTextFieldFocusLost
+
+        if(rateTextField.getText().equals(""))
+        {
+            rateLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rateTextFieldFocusLost
+
+    private void bill_noTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bill_noTextFieldFocusGained
+
+        bill_noLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        if(vendorCombo.getSelectedItem().equals("Select"))
+        {
+            vendorLabel.setForeground(Color.red);
+        }
+        
+        if(costTextField.getText().equals(""))
+        {
+            costLabel.setForeground(Color.red);
+        }
+        
+        if(rateTextField.getText().equals(""))
+        {
+            rateLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bill_noTextFieldFocusGained
+    
+    private void workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusGained
+
+        workLabel.setForeground(Color.black);
+        
+        if(project_nameCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        if(materialTextField.getText().equals(""))
+        {
+            materialLabel.setForeground(Color.red);
+        }
+        
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        
+        if(vendorCombo.getSelectedItem().equals("Select"))
+        {
+            vendorLabel.setForeground(Color.red);
+        }
+        
+        if(costTextField.getText().equals(""))
+        {
+            costLabel.setForeground(Color.red);
+        }
+        
+        if(rateTextField.getText().equals(""))
+        {
+            rateLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboFocusGained
+
+    private void workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusLost
+
+        if(workCombo.getSelectedItem().equals("Select"))
+        {
+            workLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboFocusLost
 
     /**
      * @param args the command line arguments
@@ -548,33 +985,33 @@ Functions.NumericValidate(jTextField7);        // TODO add your handling code he
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton add_projectButton;
+    private javax.swing.JButton add_vendorButton;
+    private javax.swing.JLabel bill_dateLabel;
+    private javax.swing.JLabel bill_noLabel;
+    private javax.swing.JTextField bill_noTextField;
+    private javax.swing.JLabel brandLabel;
+    private javax.swing.JTextField brandTextField;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel costLabel;
+    private javax.swing.JTextField costTextField;
+    private org.jdesktop.swingx.JXDatePicker date;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField9;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private javax.swing.JLabel materialLabel;
+    private javax.swing.JTextField materialTextField;
+    private javax.swing.JLabel noLabel;
+    private javax.swing.JTextField noTextField;
+    private javax.swing.JComboBox project_nameCombo;
+    private javax.swing.JLabel project_nameLabel;
+    private javax.swing.JLabel quantityLabel;
+    private javax.swing.JTextField quantityTextField;
+    private javax.swing.JLabel rateLabel;
+    private javax.swing.JTextField rateTextField;
+    private javax.swing.JComboBox vendorCombo;
+    private javax.swing.JLabel vendorLabel;
+    private javax.swing.JComboBox workCombo;
+    private javax.swing.JLabel workLabel;
     // End of variables declaration//GEN-END:variables
 }
