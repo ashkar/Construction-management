@@ -5,8 +5,12 @@
 package pos;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  *
  * @author lenovo
@@ -14,22 +18,26 @@ import java.sql.*;
 public class Add extends javax.swing.JFrame {
 String brand,pname, material ,vendor,billid,work ; 
 int invno=0; 
+//int i = 0;
 double quantity,cost,rate ,totalcost,totalrate ;
     /**
      * Creates new form Add
      */
     public Add() {
+
         initComponents();
         Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
         Functions.FillCombo(vendorCombo, "VENNAME", "Vendor");
         Functions.FillCombo(workCombo, "WORK", "Names");
-             
+        AutoCompleteDecorator.decorate(project_nameCombo);
+        AutoCompleteDecorator.decorate(vendorCombo);
+        AutoCompleteDecorator.decorate(workCombo);
         setTitle("Add");
         setVisible(true);
         setSize(660,770);
         setLocation(238,0);
         getContentPane().setBackground(new Color(129,134,138));
-        noTextField.setEditable(false);
+     //   noTextField.setEditable(false);
         
         
         try {
@@ -48,7 +56,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
                   
                 invno+=1 ;
         //String   abc=   (String)invno; 
-                noTextField.setText(Integer.toString(invno));
+                noLabel1.setText(Integer.toString(invno));
         }
         catch(Exception e)
             {
@@ -72,7 +80,6 @@ double quantity,cost,rate ,totalcost,totalrate ;
         cancelButton = new javax.swing.JButton();
         costLabel = new javax.swing.JLabel();
         rateTextField = new javax.swing.JTextField();
-        noTextField = new javax.swing.JTextField();
         rateLabel = new javax.swing.JLabel();
         vendorLabel = new javax.swing.JLabel();
         materialLabel = new javax.swing.JLabel();
@@ -95,11 +102,13 @@ double quantity,cost,rate ,totalcost,totalrate ;
         brandTextField = new javax.swing.JTextField();
         vendorCombo = new javax.swing.JComboBox();
         workCombo = new javax.swing.JComboBox();
+        noLabel1 = new javax.swing.JLabel();
+        addwork = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Material Inventory");
@@ -114,7 +123,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
         });
 
         costLabel.setBackground(new java.awt.Color(255, 255, 255));
-        costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         costLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         costLabel.setText("Cost");
 
@@ -132,26 +141,18 @@ double quantity,cost,rate ,totalcost,totalrate ;
             }
         });
 
-        noTextField.setEditable(false);
-        noTextField.setEnabled(false);
-        noTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noTextFieldActionPerformed(evt);
-            }
-        });
-
         rateLabel.setBackground(new java.awt.Color(255, 255, 255));
-        rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         rateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rateLabel.setText("Rate");
 
         vendorLabel.setBackground(new java.awt.Color(255, 255, 255));
-        vendorLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        vendorLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         vendorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vendorLabel.setText("Vendor");
 
         materialLabel.setBackground(new java.awt.Color(255, 255, 255));
-        materialLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        materialLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         materialLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         materialLabel.setText("Material");
 
@@ -163,7 +164,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
         });
 
         bill_noLabel.setBackground(new java.awt.Color(255, 255, 255));
-        bill_noLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        bill_noLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         bill_noLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bill_noLabel.setText("Bill No.");
 
@@ -181,10 +182,11 @@ double quantity,cost,rate ,totalcost,totalrate ;
             }
         });
 
-        noLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        noLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         noLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         noLabel.setText("Inventory No.");
 
+        costTextField.setNextFocusableComponent(rateTextField);
         costTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 costTextFieldFocusGained(evt);
@@ -200,12 +202,12 @@ double quantity,cost,rate ,totalcost,totalrate ;
         });
 
         project_nameLabel.setBackground(new java.awt.Color(255, 255, 255));
-        project_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        project_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         project_nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         project_nameLabel.setText("Project Name");
 
         quantityLabel.setBackground(new java.awt.Color(255, 255, 255));
-        quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         quantityLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         quantityLabel.setText("Quantity");
 
@@ -225,7 +227,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
         });
 
         workLabel.setBackground(new java.awt.Color(255, 255, 255));
-        workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         workLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         workLabel.setText("Work");
 
@@ -269,8 +271,9 @@ double quantity,cost,rate ,totalcost,totalrate ;
             }
         });
 
-        project_nameCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        project_nameCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         project_nameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        project_nameCombo.setNextFocusableComponent(materialTextField);
         project_nameCombo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 project_nameComboFocusGained(evt);
@@ -281,12 +284,12 @@ double quantity,cost,rate ,totalcost,totalrate ;
         });
 
         bill_dateLabel.setBackground(new java.awt.Color(255, 255, 255));
-        bill_dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        bill_dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         bill_dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bill_dateLabel.setText("Bill Date");
 
         brandLabel.setBackground(new java.awt.Color(255, 255, 255));
-        brandLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        brandLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         brandLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         brandLabel.setText("Brand");
 
@@ -296,8 +299,9 @@ double quantity,cost,rate ,totalcost,totalrate ;
             }
         });
 
-        vendorCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        vendorCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         vendorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        vendorCombo.setNextFocusableComponent(costTextField);
         vendorCombo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 vendorComboFocusGained(evt);
@@ -307,7 +311,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
             }
         });
 
-        workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -318,6 +322,28 @@ double quantity,cost,rate ,totalcost,totalrate ;
             }
         });
 
+        noLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+
+        addwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        addwork.setBorder(null);
+        addwork.setBorderPainted(false);
+        addwork.setContentAreaFilled(false);
+        addwork.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addwork.setFocusPainted(false);
+        addwork.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addworkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addworkMouseExited(evt);
+            }
+        });
+        addwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addworkActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -325,8 +351,6 @@ double quantity,cost,rate ,totalcost,totalrate ;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bill_dateLabel)
-                    .addComponent(workLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(quantityLabel)
@@ -341,31 +365,38 @@ double quantity,cost,rate ,totalcost,totalrate ;
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(workCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                             .addComponent(bill_noTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rateTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(brandTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(quantityTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(materialTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(noTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                             .addComponent(vendorCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(costTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(costTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(bill_dateLabel)
+                    .addComponent(workLabel))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addComponent(add_projectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                .addComponent(add_projectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(add_vendorButton, 0, 0, Short.MAX_VALUE)))
-                        .addGap(1, 1, 1)))
-                .addGap(137, 137, 137))
+                        .addGap(1, 1, 1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(addwork, 0, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(206, 206, 206)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(234, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,9 +404,9 @@ double quantity,cost,rate ,totalcost,totalrate ;
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(noLabel)
-                            .addComponent(noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(noLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(project_nameLabel)
@@ -405,25 +436,28 @@ double quantity,cost,rate ,totalcost,totalrate ;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rateLabel)
-                    .addComponent(rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bill_noLabel)
-                    .addComponent(bill_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bill_dateLabel)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(workLabel)
-                    .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rateLabel)
+                            .addComponent(rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bill_noLabel)
+                            .addComponent(bill_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bill_dateLabel)
+                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(workLabel)
+                            .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(addwork))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -446,14 +480,14 @@ double quantity,cost,rate ,totalcost,totalrate ;
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 
         dispose();
@@ -469,6 +503,11 @@ double quantity,cost,rate ,totalcost,totalrate ;
         {
             project_nameLabel.setForeground(Color.red);
             flag++;
+        }
+        if (date.getEditor().getText().equals("") )
+        {
+        bill_dateLabel.setForeground(Color.red); 
+        
         }
         if(materialTextField.getText().equals(""))
         {
@@ -549,7 +588,8 @@ double quantity,cost,rate ,totalcost,totalrate ;
                   //Statement  st = con.createStatement();
                   
                   
-                  
+                  SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+               String newdate=    formater.format(date.getDate()); 
                 java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                   PreparedStatement prp=con.prepareStatement("insert into Inventory values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");    
                                                
@@ -565,7 +605,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
                         prp.setDate(10,sqlDate);
                         prp.setString(11,billid);
                         prp.setString(12,work);
-                        prp.setDate(13, sqlDate);
+                        prp.setString(13, newdate);
                         prp.setString(14, brand);                                                                   
                         prp.executeUpdate(); 
                         JOptionPane.showMessageDialog(null,"Project added succesfully");
@@ -578,9 +618,11 @@ double quantity,cost,rate ,totalcost,totalrate ;
                          bill_noTextField.setText("");
                          workCombo.setSelectedItem("Select");
                          vendorCombo.setSelectedItem("Select");
+                         brandTextField.setText("");
+                         date.getEditor().setText("");
                          invno+=1 ;
-                         noTextField.setText(Integer.toString(invno));
-                             
+                        //noTextField.setText(Integer.toString(invno));
+                        noLabel1.setText(Integer.toString(invno));    
                        
                          con.commit();
                          con.close();
@@ -616,10 +658,6 @@ double quantity,cost,rate ,totalcost,totalrate ;
     private void add_vendorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_vendorButtonActionPerformed
     Vendor vendor=new Vendor();        // TODO add your handling code here:
     }//GEN-LAST:event_add_vendorButtonActionPerformed
-
-private void noTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noTextFieldActionPerformed
- // TODO add your handling code here:
-}//GEN-LAST:event_noTextFieldActionPerformed
 
     private void quantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextFieldKeyReleased
         Functions.NumericValidate(quantityTextField);        // TODO add your handling code here:
@@ -943,6 +981,47 @@ Functions.NumericValidate(rateTextField);        // TODO add your handling code 
         // TODO add your handling code here:
     }//GEN-LAST:event_workComboFocusLost
 
+    private void addworkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addworkMouseEntered
+ addwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add1.png")));        // TODO add your handling code here:
+    }//GEN-LAST:event_addworkMouseEntered
+
+    private void addworkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addworkMouseExited
+  addwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png")));        // TODO add your handling code here:
+    }//GEN-LAST:event_addworkMouseExited
+
+    private void addworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addworkActionPerformed
+
+        String worknew =  JOptionPane.showInputDialog(null, "Enter New Work");
+        while (worknew.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter new work");
+            worknew = JOptionPane.showInputDialog(null, "Enter New Work");
+        }
+        try{
+            
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                 PreparedStatement prp=con.prepareStatement("insert into Names(WORK) values(?)");
+                 prp.setString(1, worknew);
+                 prp.executeUpdate(); 
+                 workCombo.setSelectedItem(worknew);
+                  con.commit();
+                  con.close();
+        }
+         
+             catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"Err is"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+             }     
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addworkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -988,6 +1067,7 @@ Functions.NumericValidate(rateTextField);        // TODO add your handling code 
     private javax.swing.JButton addButton;
     private javax.swing.JButton add_projectButton;
     private javax.swing.JButton add_vendorButton;
+    private javax.swing.JButton addwork;
     private javax.swing.JLabel bill_dateLabel;
     private javax.swing.JLabel bill_noLabel;
     private javax.swing.JTextField bill_noTextField;
@@ -1002,7 +1082,7 @@ Functions.NumericValidate(rateTextField);        // TODO add your handling code 
     private javax.swing.JLabel materialLabel;
     private javax.swing.JTextField materialTextField;
     private javax.swing.JLabel noLabel;
-    private javax.swing.JTextField noTextField;
+    private javax.swing.JLabel noLabel1;
     private javax.swing.JComboBox project_nameCombo;
     private javax.swing.JLabel project_nameLabel;
     private javax.swing.JLabel quantityLabel;

@@ -4,19 +4,11 @@
  */
 package pos;
 
-import java.awt.print.PrinterJob;
-import java.sql.*;
-import java.util.HashMap; 
+import java.awt.Color;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JRDesignQuery;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -24,30 +16,20 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class Reports extends javax.swing.JFrame {
 
-    Connection con=null;
-    ResultSet rs=null;
-    PreparedStatement ps =null;
-    
-    
     /**
      * Creates new form Reports
      */
     public Reports() {
         initComponents();
-       try{
-        con = DriverManager.getConnection("jdbc:odbc:indlands","","");}
-       catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(null,"SQL error in initcomponent connection");
-                
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"Error at initcomponents is:"+e);
-                System.out.println(e.getMessage());
-            }
+        setLocation(238,0);
+//        setLocationRelativeTo(null);
+        setSize(660,350);
         setTitle("Reports");
+        getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
+        
+        Functions.FillCombo(projectCombo,"PRONAME","Project");
+        
     }
 
     /**
@@ -59,280 +41,532 @@ public class Reports extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        reportsLabel = new javax.swing.JLabel();
+        project_nameLabel = new javax.swing.JLabel();
+        projectCombo = new javax.swing.JComboBox();
+        reportPanel = new javax.swing.JPanel();
+        report_typeLabel = new javax.swing.JLabel();
+        prButton = new javax.swing.JButton();
+        mrButton = new javax.swing.JButton();
+        vrButton = new javax.swing.JButton();
+        irButton = new javax.swing.JButton();
+        crButton = new javax.swing.JButton();
+        wrButton = new javax.swing.JButton();
+        lrButton = new javax.swing.JButton();
+        fromDate = new org.jdesktop.swingx.JXDatePicker();
+        fromLabel = new javax.swing.JLabel();
+        toLabel = new javax.swing.JLabel();
+        toDate = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Monotype Corsiva", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 255, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Project name");
+        reportsLabel.setFont(new java.awt.Font("Times New Roman", 1, 36));
+        reportsLabel.setForeground(new java.awt.Color(0, 102, 102));
+        reportsLabel.setText("Reports");
 
-        jLabel2.setFont(new java.awt.Font("Monotype Corsiva", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText(" Reports");
+        project_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        project_nameLabel.setText("Project Name");
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setText("Close");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        projectCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        projectCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        projectCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                projectComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                projectComboFocusLost(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton10.setText("Customer");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        reportPanel.setBackground(new java.awt.Color(129, 134, 138));
+        reportPanel.setEnabled(false);
+
+        report_typeLabel.setFont(new java.awt.Font("Times New Roman", 1, 24));
+        report_typeLabel.setForeground(new java.awt.Color(0, 102, 102));
+        report_typeLabel.setText("Report Type");
+
+        prButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        prButton.setText("Project");
+        prButton.setBorder(null);
+        prButton.setBorderPainted(false);
+        prButton.setContentAreaFilled(false);
+        prButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        prButton.setFocusPainted(false);
+        prButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                prButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                prButtonMouseExited(evt);
+            }
+        });
+        prButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                prButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setText("Item");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        mrButton.setText("Material");
+        mrButton.setBorder(null);
+        mrButton.setBorderPainted(false);
+        mrButton.setContentAreaFilled(false);
+        mrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mrButton.setFocusPainted(false);
+        mrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mrButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mrButtonMouseExited(evt);
+            }
+        });
+        mrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mrButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton7.setText("Project");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        vrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        vrButton.setText("Vendor");
+        vrButton.setBorder(null);
+        vrButton.setBorderPainted(false);
+        vrButton.setContentAreaFilled(false);
+        vrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        vrButton.setFocusPainted(false);
+        vrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                vrButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                vrButtonMouseExited(evt);
+            }
+        });
+        vrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                vrButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton8.setText("Labour");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        irButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        irButton.setText("Item");
+        irButton.setBorder(null);
+        irButton.setBorderPainted(false);
+        irButton.setContentAreaFilled(false);
+        irButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        irButton.setFocusPainted(false);
+        irButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                irButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                irButtonMouseExited(evt);
+            }
+        });
+        irButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                irButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton5.setText("Work");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        crButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        crButton.setText("Customer");
+        crButton.setBorder(null);
+        crButton.setBorderPainted(false);
+        crButton.setContentAreaFilled(false);
+        crButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        crButton.setFocusPainted(false);
+        crButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                crButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                crButtonMouseExited(evt);
+            }
+        });
+        crButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                crButtonActionPerformed(evt);
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton9.setText("Vendor");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        wrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        wrButton.setText("Work");
+        wrButton.setBorder(null);
+        wrButton.setBorderPainted(false);
+        wrButton.setContentAreaFilled(false);
+        wrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        wrButton.setFocusPainted(false);
+        wrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                wrButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                wrButtonMouseExited(evt);
+            }
+        });
+        wrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                wrButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton6.setText("Material");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        lrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton.setText("Labour");
+        lrButton.setBorder(null);
+        lrButton.setBorderPainted(false);
+        lrButton.setContentAreaFilled(false);
+        lrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton.setFocusPainted(false);
+        lrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButtonMouseExited(evt);
+            }
+        });
+        lrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                lrButtonActionPerformed(evt);
             }
         });
 
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton11.setText("Specific Work");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
+        reportPanel.setLayout(reportPanelLayout);
+        reportPanelLayout.setHorizontalGroup(
+            reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportPanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(report_typeLabel))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(prButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(vrButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(wrButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(crButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(mrButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(irButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(lrButton)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        reportPanelLayout.setVerticalGroup(
+            reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(report_typeLabel)
+                .addGap(18, 18, 18)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vrButton)
+                    .addComponent(wrButton)
+                    .addComponent(crButton)
+                    .addComponent(mrButton)
+                    .addComponent(prButton)
+                    .addComponent(irButton)
+                    .addComponent(lrButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel3.setText("ordered by");
+        fromDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fromDateFocusGained(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cost", "Markup" }));
+        fromLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        fromLabel.setText("From");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Purchase", "customer", "Labour", "Work", "Material ", "Item", " ", " " }));
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("for project no");
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel5.setText("Total");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "project 1", "project 2", "project 3", "project 4" }));
+        toLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        toLabel.setText("To");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(167, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(100, 100, 100)
+                        .addComponent(reportsLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 150, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                        .addGap(5, 5, 5)
+                        .addComponent(project_nameLabel)
+                        .addGap(37, 37, 37)
+                        .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fromLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(toLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(reportsLabel)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(project_nameLabel))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fromLabel)
+                    .addComponent(toLabel)
+                    .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(96, 96, 96)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87))
+                .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void prButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseEntered
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
- try{
-     //String report="G:\\hyderproject\\reports\\shah.jrxml";
-     JasperDesign jd=JRXmlLoader.load("G:\\hyderproject\\reports\\test3.jrxml");
-     String sql="Select * from Customer order by CUSTNAME";
-     JRDesignQuery newQuery =new JRDesignQuery();
-     newQuery.setText(sql);
-     jd.setQuery(newQuery);
-     JasperReport jr =JasperCompileManager.compileReport(jd);
-     JasperPrint jp  = (JasperPrint)JasperFillManager.fillReport(jr,null,con);
-     JasperViewer.viewReport(jp);   
- }
- 
- catch(Exception e)
- {
-     JOptionPane.showMessageDialog(null,e);
- }
+        prButton.setForeground(Color.white);
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_prButtonMouseEntered
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void prButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseExited
+
+        prButton.setForeground(Color.black);
+        
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_prButtonMouseExited
+
+    private void mrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mrButtonMouseEntered
+
+        mrButton.setForeground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mrButtonMouseEntered
+
+    private void mrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mrButtonMouseExited
+
+        mrButton.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mrButtonMouseExited
+
+    private void vrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vrButtonMouseEntered
+
+        vrButton.setForeground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vrButtonMouseEntered
+
+    private void vrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vrButtonMouseExited
+        
+        vrButton.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vrButtonMouseExited
+
+    private void irButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButtonMouseEntered
+        
+        irButton.setForeground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButtonMouseEntered
+
+    private void irButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButtonMouseExited
+        
+        irButton.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButtonMouseExited
+
+    private void crButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crButtonMouseEntered
+        
+        crButton.setForeground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crButtonMouseEntered
+
+    private void crButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crButtonMouseExited
+        
+        crButton.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crButtonMouseExited
+
+    private void wrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrButtonMouseEntered
+        
+        wrButton.setForeground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wrButtonMouseEntered
+
+    private void wrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrButtonMouseExited
+        
+        wrButton.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wrButtonMouseExited
+
+    private void lrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButtonMouseEntered
+        
+        lrButton.setForeground(Color.white);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButtonMouseEntered
+
+    private void lrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButtonMouseExited
+        
+        lrButton.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButtonMouseExited
+
+    private void prButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prButtonActionPerformed
+
+    private void projectComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_projectComboFocusGained
+
+        project_nameLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectComboFocusGained
+
+    private void fromDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fromDateFocusGained
+
+        fromLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fromDateFocusGained
+
+    private void projectComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_projectComboFocusLost
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectComboFocusLost
+
+    private void vrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vrButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vrButtonActionPerformed
+
+    private void wrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wrButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wrButtonActionPerformed
+
+    private void crButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crButtonActionPerformed
+
+    private void mrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mrButtonActionPerformed
+
+    private void irButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButtonActionPerformed
+
+    private void lrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButtonActionPerformed
+
+        if(projectCombo.getSelectedItem().equals("Select"))
+        {
+            project_nameLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
+            // DATABASE CODE HERE
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,24 +610,22 @@ public class Reports extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox4;
-    public javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton crButton;
+    private org.jdesktop.swingx.JXDatePicker fromDate;
+    private javax.swing.JLabel fromLabel;
+    private javax.swing.JButton irButton;
+    private javax.swing.JButton lrButton;
+    private javax.swing.JButton mrButton;
+    private javax.swing.JButton prButton;
+    private javax.swing.JComboBox projectCombo;
+    private javax.swing.JLabel project_nameLabel;
+    private javax.swing.JPanel reportPanel;
+    private javax.swing.JLabel report_typeLabel;
+    private javax.swing.JLabel reportsLabel;
+    private org.jdesktop.swingx.JXDatePicker toDate;
+    private javax.swing.JLabel toLabel;
+    private javax.swing.JButton vrButton;
+    private javax.swing.JButton wrButton;
     // End of variables declaration//GEN-END:variables
 }

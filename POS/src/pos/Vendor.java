@@ -4,6 +4,7 @@
  */
 package pos;
 
+import java.awt.Color;
 import java.sql.*;
 import javax.swing.*;
 
@@ -22,8 +23,10 @@ public class Vendor extends javax.swing.JFrame {
         initComponents();
         
         setTitle("Vendor");
-        setSize(660,770);
+        setSize(660,450);
+        setLocation(238,0);
         setVisible(true);
+        getContentPane().setBackground(new Color(129,134,138));
         
     }
 
@@ -36,323 +39,217 @@ public class Vendor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        detailsLabel = new javax.swing.JLabel();
+        landlineTextField = new javax.swing.JTextField();
+        landlineLabel = new javax.swing.JLabel();
+        mobileLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        saveButton = new javax.swing.JButton();
+        firmLabel = new javax.swing.JLabel();
+        vendor_detailLabel = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        mobileTextField = new javax.swing.JTextField();
+        firmTextField = new javax.swing.JTextField();
+        cancelButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        detailsTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        detailsLabel.setText("Details");
 
-        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        jLabel6.setText("Details");
-
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        landlineTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                landlineTextFieldFocusGained(evt);
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
+        });
+        landlineTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                landlineTextFieldKeyReleased(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        jLabel5.setText("Landline");
+        landlineLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        landlineLabel.setText("Landline");
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        jLabel4.setText("Mobile");
+        mobileLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        mobileLabel.setText("Mobile");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        jLabel3.setText("Email");
+        emailLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        emailLabel.setText("Email");
 
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        jLabel2.setText("Firm");
+        firmLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        firmLabel.setText("Firm");
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36));
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Vendor Details");
+        vendor_detailLabel.setBackground(new java.awt.Color(255, 255, 255));
+        vendor_detailLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        vendor_detailLabel.setForeground(new java.awt.Color(0, 102, 102));
+        vendor_detailLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vendor_detailLabel.setText("Vendor Details");
 
-        jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+        emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailTextFieldFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField3FocusLost(evt);
+                emailTextFieldFocusLost(evt);
             }
         });
 
-        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField2FocusLost(evt);
+        mobileTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobileTextFieldFocusGained(evt);
+            }
+        });
+        mobileTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mobileTextFieldKeyReleased(evt);
             }
         });
 
-        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+        firmTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                firmTextFieldFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField4FocusLost(evt);
+                firmTextFieldFocusLost(evt);
             }
         });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        detailsTextArea.setColumns(20);
+        detailsTextArea.setRows(5);
+        detailsTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                detailsTextAreaFocusGained(evt);
+            }
+        });
+        jScrollPane1.setViewportView(detailsTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(218, 218, 218)
+                .addComponent(vendor_detailLabel)
+                .addGap(241, 241, 241))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
+                            .addComponent(emailLabel)
+                            .addComponent(firmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                            .addComponent(firmTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(mobileLabel)
+                            .addGap(31, 31, 31)
+                            .addComponent(mobileTextField))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(landlineLabel)
+                                .addComponent(detailsLabel))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(landlineTextField)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)))))
+                .addGap(225, 225, 225))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(249, Short.MAX_VALUE)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(247, 247, 247))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel7))
-                    .addComponent(jLabel2))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel8))
-                    .addComponent(jLabel3))
+                .addContainerGap()
+                .addComponent(vendor_detailLabel)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(firmLabel)
+                    .addComponent(firmTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailLabel)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mobileLabel)
+                    .addComponent(mobileTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(landlineLabel)
+                    .addComponent(landlineTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel9))
-                    .addComponent(jLabel4))
+                    .addComponent(detailsLabel)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel10))
-                    .addComponent(jLabel5))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel6)))
-                .addGap(33, 33, 33)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(286, 286, 286))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
-
-    String str = jTextField4.getText();
-       jLabel7.setText("");
-            
-         if( str.isEmpty())
-       {
-           jTextField4.setText("");
-           jLabel7.setText("Enter a Firm");
-                     
-       }
-         else{
-         try {
-             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Vendor");
-                  Boolean rec = res.next();
-                  
-                 do
-                 {
-                     if(rec==true)
-                     {
-                       String S1 = res.getString(2);                       
-                       if(S1.equalsIgnoreCase(str))                           
-                       {
-                           jLabel7.setText("That Firm already Exists");
-                           jTextField4.setText("");
-                       }   
-                     }
-                 }while(res.next());
-         }
-         
-         catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(null,"INVALID datatype");
-                
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"The error is1:"+e);
-                System.out.println(e.getMessage());
-            }   
-         }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField4FocusLost
-
-private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
-
-    jLabel8.setText("");
-        String str = jTextField3.getText();
-        if(!"".equals(str))
-        {
-        boolean retvalue1 = str.contains("@");
-        boolean retvalue2 = str.contains(".");
-        
-        if((retvalue1==false)||(retvalue2==false))
-        {
-            jTextField3.setText("");
-            jLabel8.setText("Enter proper email id");
-            //jTextField3.requestFocus(); 
-        }
-        }
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField3FocusLost
-
-private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
-
-            jLabel9.setText("");
-             
-            String jtf1=jTextField2.getText();
-            if(!"".equals(jtf1))
-            {
-            int fg=0;
-            for(int i=0;i<jtf1.length();i++)
-            {
-                char c=jtf1.charAt(i);
-                if(Character.isLetter(c))
-                {
-                    fg=0;
-                    break;
-                }
-                else
-                {
-                    fg=1;
-                    
-                }
-            }
-            if(fg==0)
-            {
-                //JOptionPane.showMessageDialog(null,"Enter NUMBERS"); 
-                jTextField2.setText("");
-                jLabel9.setText("Enter only Numbers");
-               // jTextField3.requestFocus();
-            }
-            }
-            else jLabel9.setText("Enter Mobile Number");
-
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField2FocusLost
-
-private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-
-                jLabel10.setText("");
-           String jtf1=jTextField1.getText();
-           if(!"".equals(jtf1))
-           {
-            int fg=0;
-            for(int i=0;i<jtf1.length();i++)
-            {
-                char c=jtf1.charAt(i);
-                if(Character.isLetter(c))
-                {
-                    fg=0;
-                    break;
-                }
-                else
-                {
-                    fg=1;
-                    
-                }
-            }
-            if(fg==0)
-            {
-                //JOptionPane.showMessageDialog(null,"Enter NUMBERS"); 
-                jTextField1.setText("");
-                jLabel10.setText("Enter only numbers");
-               // jTextField4.requestFocus();
-            }
-           }
-
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField1FocusLost
-
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 // TODO add your handling code here:
 
-    if(jTextField4.getText().equals("") && jTextField2.getText().equals(""))
-    {
-        JOptionPane.showMessageDialog(null,"Enter Firm Name and Mobile Number");
-    }
-    else if(jTextField4.getText().equals(""))
-    {
-        JOptionPane.showMessageDialog(null,"Enter Firm Name");
-    }
-    else if(jTextField2.getText().equals(""))
-    {
-        JOptionPane.showMessageDialog(null,"Enter Mobile Number");
-    }
-         
-         else
+    int flag = 0;
+        
+        if(firmTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+            flag++;
+        }
+        
+        if(firmTextField.getText().equals("") && mobileTextField.getText().equals("")&& landlineTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+            mobileLabel.setForeground(Color.red);
+            landlineLabel.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null," Enter Firm, Mobile or Landline Number");
+            flag++;
+        }
+        else if(mobileTextField.getText().equals("")&& landlineTextField.getText().equals(""))
+        {
+            mobileLabel.setForeground(Color.red);
+            landlineLabel.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null," Enter Mobile or Landline Number");
+            flag++;
+        }
+        
+        if(flag==0)
          {  
-             Firm = jTextField4.getText();
-             Email = jTextField3.getText();
-             Mobile=jTextField2.getText();
-             Landline =jTextField1.getText();
-             Details=jTextArea1.getText();
+             Firm = firmTextField.getText();
+             Email = emailTextField.getText();
+             Mobile=mobileTextField.getText();
+             Landline =landlineTextField.getText();
+             Details=detailsTextArea.getText();
              
               
              try {
@@ -384,11 +281,11 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         prp.executeUpdate(); 
                          JOptionPane.showMessageDialog(null,"Firm added succesfully");
                          
-                         jTextField1.setText("");
-                         jTextField2.setText("");
-                         jTextField3.setText("");
-                         jTextField4.setText("");
-                         jTextArea1.setText("");
+                         landlineTextField.setText("");
+                         mobileTextField.setText("");
+                         emailTextField.setText("");
+                         firmTextField.setText("");
+                         detailsTextArea.setText("");
                          con.commit();
                          con.close();
              }                               
@@ -406,17 +303,112 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
          }
 
     
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_saveButtonActionPerformed
 
-private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 
-    if(jTextField2.getText().equals(""))
-    {
-        jLabel9.setText("Enter Mobile Number");
-    }
-    
-    // TODO add your handling code here:
-}//GEN-LAST:event_jTextField1FocusGained
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void firmTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firmTextFieldFocusGained
+
+        firmLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firmTextFieldFocusGained
+
+    private void firmTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firmTextFieldFocusLost
+
+        if(firmTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firmTextFieldFocusLost
+
+    private void emailTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFieldFocusGained
+
+        emailLabel.setForeground(Color.black);
+        
+        if(firmTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextFieldFocusGained
+
+    private void emailTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFieldFocusLost
+
+        if(!emailTextField.getText().equals(""))
+        {
+            if(!Functions.isEmail(emailTextField))
+            {
+                emailLabel.setForeground(Color.red);
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextFieldFocusLost
+
+    private void mobileTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTextFieldFocusGained
+
+        mobileLabel.setForeground(Color.black);
+        
+        if(firmTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobileTextFieldFocusGained
+
+    private void mobileTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileTextFieldKeyReleased
+
+        if(Functions.NumericValidate(mobileTextField))
+        {
+            landlineLabel.setForeground(Color.black);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mobileTextFieldKeyReleased
+
+    private void landlineTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_landlineTextFieldFocusGained
+
+        landlineLabel.setForeground(Color.black);
+        
+        if(firmTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_landlineTextFieldFocusGained
+
+    private void landlineTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_landlineTextFieldKeyReleased
+
+        if(Functions.NumericValidate(landlineTextField))
+        {
+            mobileLabel.setForeground(Color.black);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_landlineTextFieldKeyReleased
+
+    private void detailsTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_detailsTextAreaFocusGained
+        
+        detailsLabel.setForeground(Color.black);
+        
+        if(firmTextField.getText().equals(""))
+        {
+            firmLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_detailsTextAreaFocusGained
 
     /**
      * @param args the command line arguments
@@ -460,22 +452,19 @@ private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel detailsLabel;
+    private javax.swing.JTextArea detailsTextArea;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel firmLabel;
+    private javax.swing.JTextField firmTextField;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel landlineLabel;
+    private javax.swing.JTextField landlineTextField;
+    private javax.swing.JLabel mobileLabel;
+    private javax.swing.JTextField mobileTextField;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel vendor_detailLabel;
     // End of variables declaration//GEN-END:variables
 }

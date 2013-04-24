@@ -18,6 +18,36 @@ public class Functions {
     }
 
     
+    public static boolean isEmail(JTextField textfieldname)
+    {
+        int i = 0;
+        String str = textfieldname.getText();
+        
+        if(!str.equals(""))
+        {
+        //boolean retvalue1 = str.contains("@");
+        boolean retvalue2 = str.contains(".");
+        
+        for(int j=0;j<str.length();j++)
+        {
+            if(str.charAt(j)=='@')
+            {
+                i++;
+            }
+            if(str.charAt(str.length()-1)=='.')
+            {
+                return false;
+            }
+        }
+        
+        if((i==1)&&(retvalue2==true))
+        {
+            return true;
+        }
+        }
+        return false;
+    }
+    
     public static boolean isNumeric(char st)  
     {  
         String str = Character.toString(st);
@@ -32,17 +62,32 @@ public class Functions {
       return true;  
     }
 
-    
-
 public  static  void    NumericValidation( JTextField textfieldname ){                                    
-
+if(!textfieldname.getText().equals(""))
+{
     String jtf = textfieldname.getText();
     int flag = 0;
+    int dot = 0;
     for(int i=0;i<jtf.length();i++)
     {
         flag =0;
-        if (isNumeric(jtf.charAt(i)) || (jtf.charAt(i)=='.'))
+//        if (isNumeric(jtf.charAt(i)) || (jtf.charAt(i)=='.'))
+//        {
+//            flag++;
+//        }
+        if (isNumeric(jtf.charAt(i)))
         {
+            flag++;
+        }
+        else if(jtf.charAt(i)=='.' && dot==0)
+        {
+            flag++;
+            dot++;
+        }
+        else if(jtf.charAt(i)=='.' && dot!=0)
+        {
+            jtf = jtf.substring(0, jtf.length()-1);
+            textfieldname.setText(jtf);
             flag++;
         }
     }
@@ -54,7 +99,12 @@ public  static  void    NumericValidation( JTextField textfieldname ){
     {
         jtf = jtf.substring(0, jtf.length()-1);
         textfieldname.setText(jtf);
-    }    
+    }
+}
+else
+{
+    textfieldname.setText("");
+}       
 }
 
 public static void FillCombo(JComboBox combo_box, String column_name, String table_name)
@@ -64,7 +114,7 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             Statement  st = con.createStatement();
-            ResultSet res = st.executeQuery("select "+column_name+" from "+table_name+" where "+column_name+" is not null order by "+column_name+" asc ");
+            ResultSet res = st.executeQuery("select distinct "+column_name+" from "+table_name+" where "+column_name+" is not null order by "+column_name+"");
             while(res.next())
             {
                combo_box.addItem(res.getString(column_name));
@@ -72,11 +122,11 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
         }
         catch(SQLException e)
         {
-            JOptionPane.showMessageDialog(null,"Sql error in functions");
+            JOptionPane.showMessageDialog(null,"INVALID datatype");
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"other error in functions:"+e);
+            JOptionPane.showMessageDialog(null,"The error is1:"+e);
             System.out.println(e.getMessage());
         }
 }
@@ -87,13 +137,29 @@ public static boolean NumericValidate( JTextField textfieldname){
     {
         String jtf = textfieldname.getText();
         int flag = 0;
+        int dot = 0;
         for(int i=0;i<jtf.length();i++)
         {
             flag =0;
-            if (isNumeric(jtf.charAt(i)) || (jtf.charAt(i)=='.'))
-            {
-                flag++;
-            }
+//            if (isNumeric(jtf.charAt(i)) || (jtf.charAt(i)=='.'))
+//            {
+//                flag++;
+//            }
+            if (isNumeric(jtf.charAt(i)))
+        {
+            flag++;
+        }
+        else if(jtf.charAt(i)=='.' && dot==0)
+        {
+            flag++;
+            dot++;
+        }
+        else if(jtf.charAt(i)=='.' && dot!=0)
+        {
+            jtf = jtf.substring(0, jtf.length()-1);
+            textfieldname.setText(jtf);
+            flag++;
+        }
         }
         if(flag!=0)
         {

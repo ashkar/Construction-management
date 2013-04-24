@@ -12,6 +12,7 @@ package pos;
 
 import java.awt.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 /**
@@ -125,7 +126,7 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
         detailsTextArea1 = new javax.swing.JTextArea();
         label_total1 = new javax.swing.JLabel();
         totalLabel1 = new javax.swing.JLabel();
-        datePicker = new org.jdesktop.swingx.JXDatePicker();
+        date = new org.jdesktop.swingx.JXDatePicker();
         type_of_woodLabel = new javax.swing.JLabel();
         quantity_usedLabel = new javax.swing.JLabel();
         quantity_usedTextField = new javax.swing.JTextField();
@@ -583,7 +584,7 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
                     .addComponent(project_nameLabel))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(datePicker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                     .addComponent(workCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(project_nameCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37)
@@ -627,7 +628,7 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
                         .addGap(9, 9, 9)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateLabel)
-                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(quantity_usedLabel)
                     .addComponent(quantity_usedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -891,7 +892,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     String labour2 =(String) nameCombo2.getSelectedItem();
     String labour3 =(String) nameCombo3.getSelectedItem();
     
-    int flag = 0,ext_exp,newwoodrem=0,grp_ext_exp,grp_man_no,grp_wom_no,wquan,grp_man_wage,grp_wom_wage,wcost = 0,wcosttemp,woodrem = 0;
+    int flag = 0,ext_exp,newwoodrem=0,grp_ext_exp,grp_man_no,grp_wom_no,wquan,grp_man_wage,grp_wom_wage,wcost = 0,woodrem = 0;
     int fee=0,fee1=0,fee2=0,fee3=0;
     String wtype,wbatch;
     if(extra_expenseTextField.getText().equals(""))
@@ -969,6 +970,11 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     {   project_nameLabel.setForeground(Color.red);
         flag++;
     }
+    if (date.getEditor().getText().equals("") )
+        {
+        dateLabel.setForeground(Color.red); 
+        
+        }
       if(workCombo.getSelectedItem().equals("Select"))
     {   workLabel.setForeground(Color.red);
         flag++;
@@ -1028,9 +1034,11 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                   ResultSet res = st.executeQuery("select * from Wood where WOODTYPE='"+wtype+"'and INVNO ="+wbatch+" ");
                   Boolean rec = res.next();
                   if (rec==true){
-                   wcosttemp = res.getInt("COST");
+                 Double  totaltemp = res.getDouble("TOTAL");
+                 Double   quantemp = res.getDouble("QUANTITY");
                    woodrem   = res.getInt("WOOD_REM");
-                   wcost = wcosttemp*wquan;
+                  Double    wcosttemp = totaltemp/quantemp;
+                   wcost = (int) (wcosttemp*wquan);
                    newwoodrem= woodrem-wquan; 
                   }
                   else
@@ -1064,16 +1072,19 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
     
    if (flag==0){
+       
+       SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+               String newdate=    formater.format(date.getDate()); 
         if  (!labour.equals("Select"))
            {   fee    = Integer.parseInt(wageTextField.getText()); 
                
             try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                  //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                   PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");    
                         prp.setString(1,pname);
                         prp.setString(2,work);
-                        prp.setDate(3,sqlDate);  
+                        prp.setString(3,newdate);  
                         prp.setString(4,labour);
                         prp.setInt(5,fee);
                         prp.setInt(6, wid);
@@ -1092,11 +1103,11 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                
                   try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                  //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                    PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");    
                         prp.setString(1,pname);
                         prp.setString(2,work);
-                        prp.setDate(3,sqlDate);  
+                        prp.setString(3,newdate);   
                         prp.setString(4,labour1);
                         prp.setInt(5,fee1);
                         prp.setInt(6, wid);
@@ -1116,11 +1127,11 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                
                   try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                  //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                   PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");  
                         prp.setString(1,pname);
                         prp.setString(2,work);
-                        prp.setDate(3,sqlDate);  
+                        prp.setString(3,newdate);  
                         prp.setString(4,labour2);
                         prp.setInt(5,fee2);
                         prp.setInt(6, wid);
@@ -1139,11 +1150,11 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                
             try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                  //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                   PreparedStatement prp=con.prepareStatement("insert into Labourdailysub(PNAME,WORK,LDATE,LNAME,WAGE,WORKID) values(?,?,?,?,?,?)");     
                         prp.setString(1,pname);
                         prp.setString(2,work);
-                        prp.setDate(3,sqlDate);  
+                        prp.setString(3,newdate);   
                         prp.setString(4,labour3);
                         prp.setInt(5,fee3);
                         prp.setInt(6, wid);
@@ -1181,14 +1192,14 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 lab_wage =  fee+fee1+fee2+fee3 ;
                 String ext_exp_det = detailsTextArea.getText();
                 String grp_ext_det = detailsTextArea1.getText();
-                tot = lab_wage+ (grp_man_no*grp_man_wage)+(grp_wom_no*grp_wom_wage)+ext_exp+grp_ext_exp;
+                tot = lab_wage+ (grp_man_no*grp_man_wage)+(grp_wom_no*grp_wom_wage)+ext_exp+grp_ext_exp+wcost;
                   try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                   PreparedStatement prp=con.prepareStatement("insert into Labourdailymain values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");    
                         prp.setString(1,pname);
                         prp.setString(2,work);
-                        prp.setDate(3,sqlDate);  
+                        prp.setString(3,newdate);   
                         prp.setInt(4,lab_wage);
                         prp.setInt(5,ext_exp);
                         prp.setString(6,ext_exp_det);
@@ -1229,6 +1240,9 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             extra_expenseTextField1.setText("");
             detailsTextArea.setText("");
             detailsTextArea1.setText("");    
+            date.getEditor().setText("");
+            label_total.setText("");
+            label_total1.setText("");
             
                   
                 
@@ -1319,6 +1333,7 @@ private void wageTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:
             extra = Double  .parseDouble  (extra_expenseTextField.getText());
         }
         total = wage+wage1+wage2+wage3+extra;
+        
         label_total.setText(Double  .toString(total));
     }
     
@@ -2126,8 +2141,8 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
     private javax.swing.JButton addButton;
     private javax.swing.JComboBox batchCombo;
     private javax.swing.JLabel batchLabel;
+    private org.jdesktop.swingx.JXDatePicker date;
     private javax.swing.JLabel dateLabel;
-    private org.jdesktop.swingx.JXDatePicker datePicker;
     private javax.swing.JLabel detailsLabel;
     private javax.swing.JLabel detailsLabel1;
     private javax.swing.JTextArea detailsTextArea;

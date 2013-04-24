@@ -77,15 +77,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="head_of_contractLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="project_nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="date_of_paymentLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="dateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="amount_paidLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="amount_paidTextField" max="32767" attributes="1"/>
                           <Component id="project_nameCombo" alignment="0" pref="134" max="32767" attributes="1"/>
                           <Component id="head_of_contractCombo" pref="134" max="32767" attributes="1"/>
-                          <Component id="date_of_payment" max="32767" attributes="1"/>
+                          <Component id="date" max="32767" attributes="1"/>
+                          <Component id="amountpaidLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -128,13 +128,13 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="date_of_paymentLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="date_of_payment" min="-2" max="-2" attributes="0"/>
+                  <Component id="dateLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="date" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="amount_paidLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="amount_paidTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="amountpaidLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -201,12 +201,12 @@
         <Property name="text" type="java.lang.String" value="Project Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="date_of_paymentLabel">
+    <Component class="javax.swing.JLabel" name="dateLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Date of Payment"/>
+        <Property name="text" type="java.lang.String" value="Date "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="amount_paidLabel">
@@ -233,12 +233,7 @@
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="project_nameComboFocusLost"/>
       </Events>
     </Component>
-    <Component class="org.jdesktop.swingx.JXDatePicker" name="date_of_payment">
-    </Component>
-    <Component class="javax.swing.JTextField" name="amount_paidTextField">
-      <Events>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amount_paidTextFieldKeyReleased"/>
-      </Events>
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="date">
     </Component>
     <Component class="javax.swing.JComboBox" name="select_workCombo">
       <Properties>
@@ -644,9 +639,18 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="head_of_contractComboItemStateChanged"/>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="head_of_contractComboFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="head_of_contractComboFocusLost"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="amountpaidLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Comic Sans MS" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="No payment"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

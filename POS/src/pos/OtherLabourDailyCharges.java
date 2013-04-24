@@ -11,6 +11,7 @@
 package pos;
 import java.awt.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 
@@ -37,7 +38,7 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         fixed_amountPanel.setVisible(false);
         
         Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
-        Functions.FillCombo(head_of_contractCombo, "Head_of_contract", "Names");
+        Functions.FillCombo(head_of_contractCombo, "contractor", "contractor");
          try{   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                 Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                 Statement  st = con.createStatement();
@@ -80,11 +81,10 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         daily_wage_updateLabel = new javax.swing.JLabel();
         head_of_contractLabel = new javax.swing.JLabel();
         project_nameLabel = new javax.swing.JLabel();
-        date_of_paymentLabel = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
         amount_paidLabel = new javax.swing.JLabel();
         project_nameCombo = new javax.swing.JComboBox();
-        date_of_payment = new org.jdesktop.swingx.JXDatePicker();
-        amount_paidTextField = new javax.swing.JTextField();
+        date = new org.jdesktop.swingx.JXDatePicker();
         select_workCombo = new javax.swing.JComboBox();
         select_workLabel = new javax.swing.JLabel();
         unit_wiseButton = new javax.swing.JRadioButton();
@@ -113,6 +113,7 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         fixed_amountTextField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         head_of_contractCombo = new javax.swing.JComboBox();
+        amountpaidLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -131,8 +132,8 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         project_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         project_nameLabel.setText("Project Name");
 
-        date_of_paymentLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        date_of_paymentLabel.setText("Date of Payment");
+        dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        dateLabel.setText("Date ");
 
         amount_paidLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         amount_paidLabel.setText("Amount Paid");
@@ -145,12 +146,6 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 project_nameComboFocusLost(evt);
-            }
-        });
-
-        amount_paidTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                amount_paidTextFieldKeyReleased(evt);
             }
         });
 
@@ -450,6 +445,11 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
 
         head_of_contractCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         head_of_contractCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        head_of_contractCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                head_of_contractComboItemStateChanged(evt);
+            }
+        });
         head_of_contractCombo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 head_of_contractComboFocusGained(evt);
@@ -458,6 +458,9 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                 head_of_contractComboFocusLost(evt);
             }
         });
+
+        amountpaidLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        amountpaidLabel.setText("No payment");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -502,14 +505,14 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(head_of_contractLabel)
                             .addComponent(project_nameLabel)
-                            .addComponent(date_of_paymentLabel)
+                            .addComponent(dateLabel)
                             .addComponent(amount_paidLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(amount_paidTextField)
                             .addComponent(project_nameCombo, 0, 134, Short.MAX_VALUE)
                             .addComponent(head_of_contractCombo, 0, 134, Short.MAX_VALUE)
-                            .addComponent(date_of_payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(amountpaidLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(labour_daily_chargesLabel)))
@@ -540,12 +543,12 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                     .addComponent(head_of_contractCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(date_of_paymentLabel)
-                    .addComponent(date_of_payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateLabel)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amount_paidLabel)
-                    .addComponent(amount_paidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amountpaidLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -640,16 +643,6 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_project_nameComboFocusGained
-
-    private void amount_paidTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amount_paidTextFieldKeyReleased
-
-        if(Functions.NumericValidate(amount_paidTextField))
-        {
-            amount_paidLabel.setForeground(Color.black);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amount_paidTextFieldKeyReleased
 
     private void mesons_noTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mesons_noTextFieldKeyReleased
 
@@ -1020,6 +1013,14 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
             project_nameLabel.setForeground(Color.red);
             flag++;
         }
+        
+
+
+        if (date.getEditor().getText().equals("") )
+        {
+        dateLabel.setForeground(Color.red); 
+        
+        }
         if(head_of_contractCombo.getSelectedItem().equals("Select"))
         {
             head_of_contractLabel.setForeground(Color.red);
@@ -1149,7 +1150,10 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
                   try {
                         Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                         Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                        
+                        SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                       String newdate=    formater.format(date.getDate()); 
+                        //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                         PreparedStatement prp=con.prepareStatement("insert into LabourdailyOther  values(?,?,?,?,?,?,?,?,?,?,?,?)");  
                         prp.setInt(1,wid);
                         prp.setString(2,hoc);
@@ -1162,7 +1166,7 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
                         prp.setInt(9,units);
                         prp.setInt(10,unitrate);
                         prp.setInt(11, tot);
-                        prp.setDate(12, sqlDate);
+                        prp.setString(12, newdate);
                         prp.executeUpdate(); 
                         JOptionPane.showMessageDialog(null,"Details added succesfully");
                          con.commit();
@@ -1199,6 +1203,34 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
     private void head_of_contractComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_head_of_contractComboFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_head_of_contractComboFocusLost
+
+    private void head_of_contractComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_head_of_contractComboItemStateChanged
+        int amount = 0;
+        String pname = (String) project_nameCombo.getSelectedItem();
+        String contractor = (String) head_of_contractCombo.getSelectedItem();
+        try {
+                  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                  Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select SUM(amount) from Payment where category='contractor' and pname= '"+pname+"' and cname='"+contractor+"'  ");
+                   Boolean rec = res.next();
+                  if (rec==true){
+                       amount = res.getInt(1);
+                  }
+                  else{
+                  amount = 0 ;
+                  }
+                  
+                  }
+         catch(SQLException e)
+             {JOptionPane.showMessageDialog(null,"1035"+e); }
+            catch(Exception e)
+            { JOptionPane.showMessageDialog(null,"990"+e);
+                   }
+       String amount1 = Integer.toString(amount);
+        amountpaidLabel.setText(amount1);
+        
+    }//GEN-LAST:event_head_of_contractComboItemStateChanged
     
     /**
      * @param args the command line arguments
@@ -1238,11 +1270,11 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JLabel amount_paidLabel;
-    private javax.swing.JTextField amount_paidTextField;
+    private javax.swing.JLabel amountpaidLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel daily_wage_updateLabel;
-    private org.jdesktop.swingx.JXDatePicker date_of_payment;
-    private javax.swing.JLabel date_of_paymentLabel;
+    private org.jdesktop.swingx.JXDatePicker date;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JRadioButton fixed_amountButton;
     private javax.swing.JLabel fixed_amountLabel;
     private javax.swing.JPanel fixed_amountPanel;

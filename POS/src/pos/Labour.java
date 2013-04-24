@@ -5,6 +5,7 @@
 package pos;
 
 import java.awt.Color;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -269,6 +270,8 @@ public class Labour extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 
         int flag = 0;
+        String mobile,labour,work;
+        
         
         if(nameTextField.getText().equals(""))
         {
@@ -288,11 +291,39 @@ public class Labour extends javax.swing.JFrame {
         
         if(flag==0)
         {
-            // DATA BASE CODE GOES HERE 
-            JOptionPane.showMessageDialog(null,"Done :)");
-        }
+            labour = nameTextField.getText();
+            mobile = mobileTextField.getText();
+            work = (String) workCombo.getSelectedItem();
         
-        // TODO add your handling code here:
+           try {
+                  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                  Statement  st = con.createStatement();
+                  java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                  PreparedStatement prp=con.prepareStatement("insert into Labour (LABNAME,MOBILE,WORKNAME,JOINDATE) values(?,?,?,?)");    
+                                               
+                        prp.setString(1,labour);
+                        prp.setString(2,mobile);
+                        prp.setString(3,work);
+                        prp.setDate(4,sqlDate);
+                        prp.executeUpdate(); 
+                         JOptionPane.showMessageDialog(null,"Labour Added");
+                         con.commit();
+                         con.close();
+                         dispose();
+        }
+            catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"Err is"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The Err is :"+e);
+                System.out.println(e.getMessage());
+            }
+        
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**
