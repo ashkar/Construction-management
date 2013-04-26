@@ -114,6 +114,7 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         head_of_contractCombo = new javax.swing.JComboBox();
         amountpaidLabel = new javax.swing.JLabel();
+        addButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -462,6 +463,13 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         amountpaidLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         amountpaidLabel.setText("No payment");
 
+        addButton1.setText("Cancel");
+        addButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -498,6 +506,10 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                     .addComponent(unit_wisePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(wage_wisePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(79, 79, 79))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(daily_wage_updateLabel)
+                .addGap(237, 237, 237))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -515,17 +527,13 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                             .addComponent(amountpaidLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(labour_daily_chargesLabel)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(daily_wage_updateLabel)
-                        .addGap(237, 237, 237))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labour_daily_chargesLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
                         .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(287, 287, 287))))
+                        .addGap(29, 29, 29)
+                        .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,7 +576,9 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fixed_amountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52))
         );
 
@@ -1154,7 +1164,7 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
                         SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
                        String newdate=    formater.format(date.getDate()); 
                         //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                        PreparedStatement prp=con.prepareStatement("insert into LabourdailyOther  values(?,?,?,?,?,?,?,?,?,?,?,?)");  
+                        PreparedStatement prp=con.prepareStatement("insert into LabourdailyOther  values(?,?,?,?,?,?,?,?,?,?,?,?,?)");  
                         prp.setInt(1,wid);
                         prp.setString(2,hoc);
                         prp.setString(3,work);  
@@ -1167,8 +1177,9 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
                         prp.setInt(10,unitrate);
                         prp.setInt(11, tot);
                         prp.setString(12, newdate);
+                        prp.setString(13, pname);
                         prp.executeUpdate(); 
-                        JOptionPane.showMessageDialog(null,"Details added succesfully");
+                       // JOptionPane.showMessageDialog(null,"Details added succesfully");
                          con.commit();
                          con.close();
                          wid+=1;
@@ -1190,8 +1201,8 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
              {JOptionPane.showMessageDialog(null,"1062"+e); }
             catch(Exception e)
             { JOptionPane.showMessageDialog(null,"1064"+e);
-                System.out.println(e.getMessage());
             }
+                     Functions.DisposeFunc(this);
         } 
       }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -1231,6 +1242,10 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
         amountpaidLabel.setText(amount1);
         
     }//GEN-LAST:event_head_of_contractComboItemStateChanged
+
+    private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_addButton1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1269,6 +1284,7 @@ private void fixed_amountButtonActionPerformed(java.awt.event.ActionEvent evt) {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addButton1;
     private javax.swing.JLabel amount_paidLabel;
     private javax.swing.JLabel amountpaidLabel;
     private javax.swing.ButtonGroup buttonGroup1;

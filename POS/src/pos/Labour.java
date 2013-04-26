@@ -307,7 +307,7 @@ public class Labour extends javax.swing.JFrame {
                         prp.setString(3,work);
                         prp.setDate(4,sqlDate);
                         prp.executeUpdate(); 
-                         JOptionPane.showMessageDialog(null,"Labour Added");
+                        // JOptionPane.showMessageDialog(null,"Labour Added");
                          con.commit();
                          con.close();
                          dispose();
@@ -322,6 +322,7 @@ public class Labour extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"The Err is :"+e);
                 System.out.println(e.getMessage());
             }
+              Functions.DisposeFunc(this);
         
         }
     }//GEN-LAST:event_addButtonActionPerformed

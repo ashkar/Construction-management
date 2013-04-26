@@ -61,6 +61,8 @@ public class Paymentnew extends javax.swing.JFrame {
         categoryCombo = new javax.swing.JComboBox();
         checkLabel = new javax.swing.JLabel();
         checkTextField = new javax.swing.JTextField();
+        labour_daily_chargesLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -118,7 +120,7 @@ public class Paymentnew extends javax.swing.JFrame {
         nameLabel.setText("Name");
 
         categoryCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        categoryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Labour", "contractor", "Vendor", "Partner" }));
+        categoryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Contractor", "Customer", "Labour", "Partner", "Vendor", " " }));
         categoryCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 categoryComboItemStateChanged(evt);
@@ -137,6 +139,17 @@ public class Paymentnew extends javax.swing.JFrame {
             }
         });
 
+        labour_daily_chargesLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        labour_daily_chargesLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        labour_daily_chargesLabel1.setText("Payment");
+
+        jButton2.setText("Print");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,7 +157,9 @@ public class Paymentnew extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(574, 574, 574)
+                        .addGap(207, 207, 207)
+                        .addComponent(labour_daily_chargesLabel1)
+                        .addGap(28, 28, 28)
                         .addComponent(labour_daily_chargesLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(163, 163, 163)
@@ -166,18 +181,23 @@ public class Paymentnew extends javax.swing.JFrame {
                                     .addComponent(nameCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(categoryCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
+                                .addGap(96, 96, 96)
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(labour_daily_chargesLabel)
-                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(labour_daily_chargesLabel))
+                    .addComponent(labour_daily_chargesLabel1))
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,6 +226,7 @@ public class Paymentnew extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
@@ -352,10 +373,16 @@ public class Paymentnew extends javax.swing.JFrame {
         project_nameCombo.setEnabled(false);
    
          }
-   else  if(categoryCombo.getSelectedItem().equals("contractor"))
+   else  if(categoryCombo.getSelectedItem().equals("Contractor"))
    {     project_nameCombo.setEnabled(true);
          nameCombo.removeAllItems();
          Functions.FillCombo(nameCombo, "contractor","contractor");
+   
+         }
+    else  if(categoryCombo.getSelectedItem().equals("Customer"))
+   {     project_nameCombo.setEnabled(true);
+         nameCombo.removeAllItems();
+         Functions.FillCombo(nameCombo, "CUSTNAME","Customer");
    
          }
   
@@ -385,6 +412,10 @@ public class Paymentnew extends javax.swing.JFrame {
         Functions.NumericValidation(amountTextField);
         // TODO add your handling code here:
     }//GEN-LAST:event_amountTextFieldKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -429,7 +460,9 @@ public class Paymentnew extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker date;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel labour_daily_chargesLabel;
+    private javax.swing.JLabel labour_daily_chargesLabel1;
     private javax.swing.JComboBox nameCombo;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JComboBox project_nameCombo;

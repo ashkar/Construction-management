@@ -358,7 +358,7 @@ public class ReportBasic extends javax.swing.JFrame {
             jd.setQuery(newQuery);
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp);
+            JasperViewer.viewReport(jp,false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

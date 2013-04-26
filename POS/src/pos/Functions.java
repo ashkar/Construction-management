@@ -131,6 +131,18 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
         }
 }
 
+public static void DisposeFunc(JFrame abc)
+{
+             int dialog = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to add more data?", "Success",dialog);
+            if(dialogResult==JOptionPane.NO_OPTION)
+            {
+                abc.dispose();
+            }
+    
+}
+
+
 public static boolean NumericValidate( JTextField textfieldname){                                    
 
     if(!textfieldname.getText().equals(""))

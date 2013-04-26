@@ -62,7 +62,7 @@ public class Reports extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        reportsLabel.setFont(new java.awt.Font("Times New Roman", 1, 36));
+        reportsLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         reportsLabel.setForeground(new java.awt.Color(0, 102, 102));
         reportsLabel.setText("Reports");
 
@@ -83,7 +83,7 @@ public class Reports extends javax.swing.JFrame {
         reportPanel.setBackground(new java.awt.Color(129, 134, 138));
         reportPanel.setEnabled(false);
 
-        report_typeLabel.setFont(new java.awt.Font("Times New Roman", 1, 24));
+        report_typeLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         report_typeLabel.setForeground(new java.awt.Color(0, 102, 102));
         report_typeLabel.setText("Report Type");
 
@@ -108,7 +108,7 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        mrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        mrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         mrButton.setText("Material");
         mrButton.setBorder(null);
         mrButton.setBorderPainted(false);
@@ -129,7 +129,7 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        vrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        vrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         vrButton.setText("Vendor");
         vrButton.setBorder(null);
         vrButton.setBorderPainted(false);
@@ -150,7 +150,7 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        irButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        irButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         irButton.setText("Item");
         irButton.setBorder(null);
         irButton.setBorderPainted(false);
@@ -171,7 +171,7 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        crButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        crButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         crButton.setText("Customer");
         crButton.setBorder(null);
         crButton.setBorderPainted(false);
@@ -192,7 +192,7 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        wrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        wrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         wrButton.setText("Work");
         wrButton.setBorder(null);
         wrButton.setBorderPainted(false);
@@ -295,39 +295,43 @@ public class Reports extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(reportsLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(project_nameLabel)
-                        .addGap(37, 37, 37)
-                        .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(fromLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(toLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(143, 143, 143))
+                        .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(100, 100, 100)
+                                        .addComponent(reportsLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(project_nameLabel)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(fromLabel)
+                                .addGap(31, 31, 31)
+                                .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(toLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(143, 143, 143))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(reportsLabel)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(project_nameLabel))
-                .addGap(36, 36, 36)
+                    .addComponent(project_nameLabel)
+                    .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fromLabel)

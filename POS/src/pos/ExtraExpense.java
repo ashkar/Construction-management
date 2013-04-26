@@ -1,13 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * ExtraExpense.java
- *
- * Created on Mar 13, 2013, 3:59:56 PM
- */
 package pos;
 
 import java.awt.*;

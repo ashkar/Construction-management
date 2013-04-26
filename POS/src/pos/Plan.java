@@ -231,12 +231,13 @@ public class Plan extends javax.swing.JFrame {
              Expense =Integer.parseInt( expenseTextField.getText());
              Total=Charge+Expense;
              
+             
               
              try {
              Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                 Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                 java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Plan values(?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Plan(CNAME,WORK,COST,EXTRA,TOTAL,PDATE) values(?,?,?,?,?,?)");    
                                                
                         prp.setString(1,Cname);
                         prp.setString(2,Details);
@@ -246,7 +247,7 @@ public class Plan extends javax.swing.JFrame {
                         prp.setDate(6,sqlDate);
                                             
                         prp.executeUpdate(); 
-                         JOptionPane.showMessageDialog(null,"Plan details added succesfully");
+                        
                          
                          nameTextField.setText("");
                          chargeTextField.setText("");
@@ -268,8 +269,9 @@ public class Plan extends javax.swing.JFrame {
                 System.out.println(e.getMessage());
             }
              
+          
+             Functions.DisposeFunc(this);
              
-                 
           }  
        
     }//GEN-LAST:event_saveButtonActionPerformed

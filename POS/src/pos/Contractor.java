@@ -304,7 +304,7 @@ public class Contractor extends javax.swing.JFrame {
                         prp.setString(3,work);
                         prp.setDate(4,sqlDate);
                         prp.executeUpdate(); 
-                         JOptionPane.showMessageDialog(null,"Contractor Added");
+                         //JOptionPane.showMessageDialog(null,"Contractor Added");
                          con.commit();
                          con.close();
                          dispose();
@@ -319,6 +319,7 @@ public class Contractor extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"The Err is :"+e);
                 System.out.println(e.getMessage());
             }
+              Functions.DisposeFunc(this);
         }
         
         // TODO add your handling code here:

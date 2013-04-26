@@ -460,7 +460,7 @@ public class Carrier extends javax.swing.JFrame {
                         prp.setInt(11,vcharge);
                         prp.setInt(12,total);
                         prp.executeUpdate(); 
-                        JOptionPane.showMessageDialog(null,"Project added succesfully");
+                        //JOptionPane.showMessageDialog(null,"Project added succesfully");
                        
                          vehicle_chargeTextField.setText("");
                          labour_nameTextField.setText("");
@@ -481,6 +481,7 @@ public class Carrier extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"The error is1:"+e);
                 System.out.println(e.getMessage());
             }
+               Functions.DisposeFunc(this);
         }
         
         // TODO add your handling code here:

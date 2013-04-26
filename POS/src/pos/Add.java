@@ -608,7 +608,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
                         prp.setString(13, newdate);
                         prp.setString(14, brand);                                                                   
                         prp.executeUpdate(); 
-                        JOptionPane.showMessageDialog(null,"Project added succesfully");
+                        //JOptionPane.showMessageDialog(null,"Project added succesfully");
                          
                          project_nameCombo.setSelectedItem("Select");
                          materialTextField.setText("");
@@ -643,9 +643,7 @@ double quantity,cost,rate ,totalcost,totalrate ;
              
                  
              
-             
-              // TODO add your hand
-        
+              Functions.DisposeFunc(this);
         
         }
         // TODO add your handling code here:
