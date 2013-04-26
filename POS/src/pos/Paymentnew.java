@@ -14,6 +14,14 @@ import java.awt.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -157,9 +165,9 @@ public class Paymentnew extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(labour_daily_chargesLabel1)
-                        .addGap(28, 28, 28)
+                        .addGap(237, 237, 237)
+                        .addComponent(labour_daily_chargesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labour_daily_chargesLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(163, 163, 163)
@@ -194,10 +202,12 @@ public class Paymentnew extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(59, 59, 59)
                         .addComponent(labour_daily_chargesLabel))
-                    .addComponent(labour_daily_chargesLabel1))
-                .addGap(45, 45, 45)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(labour_daily_chargesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,7 +238,7 @@ public class Paymentnew extends javax.swing.JFrame {
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         pack();
@@ -296,7 +306,7 @@ public class Paymentnew extends javax.swing.JFrame {
             check    = checkTextField.getText(); 
             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
             String newdate =    formater.format(date.getDate()); 
-          
+            int pt=0;
             
             try {
                   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -311,7 +321,7 @@ public class Paymentnew extends javax.swing.JFrame {
                         prp.setInt(5,amount);
                         prp.setString (6, check);
                         prp.executeUpdate(); 
-                        JOptionPane.showMessageDialog(null,"payment added succesfully");
+                       // JOptionPane.showMessageDialog(null,"payment added succesfully");
                        
                          project_nameCombo.setSelectedItem("Select");
                          nameCombo.setSelectedItem("Select");
@@ -334,6 +344,41 @@ public class Paymentnew extends javax.swing.JFrame {
                
             }
           
+             try{   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select id from Payment ");
+                  Boolean rec = res.next();
+                  System.out.println("connected successfully");
+                  
+                  do
+                  {
+                     if(rec==true) {
+                   pt =res.getInt(1);
+                      }
+                  }while (res.next());
+                  
+                //JOptionPane.showMessageDialog(null, ""+pt);
+                  JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\receipt.jrxml");
+            String sql = "Select * from Payment where id="+pt+" ";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+             }
+               catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"trial err"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"trial err"+e);
+            }
+             
+             
         }
         
         // TODO add your handling code here:

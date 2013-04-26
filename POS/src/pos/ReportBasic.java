@@ -263,7 +263,22 @@ public class ReportBasic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        
+        try
+        {
+          JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\receipt.jrxml");
+            String sql = "Select * from Payment where id=17 ";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+              }
+         catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
