@@ -5,10 +5,21 @@
 package pos;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -23,7 +34,7 @@ public class Reports extends javax.swing.JFrame {
         initComponents();
         setLocation(238,0);
 //        setLocationRelativeTo(null);
-        setSize(660,350);
+        setSize(760,560);
         setTitle("Reports");
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
@@ -53,6 +64,15 @@ public class Reports extends javax.swing.JFrame {
         irButton = new javax.swing.JButton();
         crButton = new javax.swing.JButton();
         wrButton = new javax.swing.JButton();
+        lrButton1 = new javax.swing.JButton();
+        lrButton2 = new javax.swing.JButton();
+        irButton1 = new javax.swing.JButton();
+        irButton2 = new javax.swing.JButton();
+        irButton3 = new javax.swing.JButton();
+        irButton4 = new javax.swing.JButton();
+        lrButton3 = new javax.swing.JButton();
+        lrButton4 = new javax.swing.JButton();
+        lrButton5 = new javax.swing.JButton();
         lrButton = new javax.swing.JButton();
         fromDate = new org.jdesktop.swingx.JXDatePicker();
         fromLabel = new javax.swing.JLabel();
@@ -70,7 +90,7 @@ public class Reports extends javax.swing.JFrame {
         project_nameLabel.setText("Project Name");
 
         projectCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        projectCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        projectCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
         projectCombo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 projectComboFocusGained(evt);
@@ -88,7 +108,7 @@ public class Reports extends javax.swing.JFrame {
         report_typeLabel.setText("Report Type");
 
         prButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        prButton.setText("Project");
+        prButton.setText("Project Cost");
         prButton.setBorder(null);
         prButton.setBorderPainted(false);
         prButton.setContentAreaFilled(false);
@@ -109,7 +129,7 @@ public class Reports extends javax.swing.JFrame {
         });
 
         mrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        mrButton.setText("Material");
+        mrButton.setText("Payment");
         mrButton.setBorder(null);
         mrButton.setBorderPainted(false);
         mrButton.setContentAreaFilled(false);
@@ -130,7 +150,7 @@ public class Reports extends javax.swing.JFrame {
         });
 
         vrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        vrButton.setText("Vendor");
+        vrButton.setText("Project Quote");
         vrButton.setBorder(null);
         vrButton.setBorderPainted(false);
         vrButton.setContentAreaFilled(false);
@@ -151,7 +171,7 @@ public class Reports extends javax.swing.JFrame {
         });
 
         irButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        irButton.setText("Item");
+        irButton.setText("Wood-Stock");
         irButton.setBorder(null);
         irButton.setBorderPainted(false);
         irButton.setContentAreaFilled(false);
@@ -172,7 +192,7 @@ public class Reports extends javax.swing.JFrame {
         });
 
         crButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        crButton.setText("Customer");
+        crButton.setText("Carrier ");
         crButton.setBorder(null);
         crButton.setBorderPainted(false);
         crButton.setContentAreaFilled(false);
@@ -193,7 +213,7 @@ public class Reports extends javax.swing.JFrame {
         });
 
         wrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        wrButton.setText("Work");
+        wrButton.setText("Receipt");
         wrButton.setBorder(null);
         wrButton.setBorderPainted(false);
         wrButton.setContentAreaFilled(false);
@@ -213,8 +233,197 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
+        lrButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton1.setText("Customer-name list");
+        lrButton1.setBorder(null);
+        lrButton1.setBorderPainted(false);
+        lrButton1.setContentAreaFilled(false);
+        lrButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton1.setFocusPainted(false);
+        lrButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton1MouseExited(evt);
+            }
+        });
+        lrButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton1ActionPerformed(evt);
+            }
+        });
+
+        lrButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton2.setText("Contractor-name list");
+        lrButton2.setBorder(null);
+        lrButton2.setBorderPainted(false);
+        lrButton2.setContentAreaFilled(false);
+        lrButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton2.setFocusPainted(false);
+        lrButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton2MouseExited(evt);
+            }
+        });
+        lrButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton2ActionPerformed(evt);
+            }
+        });
+
+        irButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        irButton1.setText("Vendor");
+        irButton1.setBorder(null);
+        irButton1.setBorderPainted(false);
+        irButton1.setContentAreaFilled(false);
+        irButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        irButton1.setFocusPainted(false);
+        irButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                irButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                irButton1MouseExited(evt);
+            }
+        });
+        irButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irButton1ActionPerformed(evt);
+            }
+        });
+
+        irButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        irButton2.setText("Wood-Usage");
+        irButton2.setBorder(null);
+        irButton2.setBorderPainted(false);
+        irButton2.setContentAreaFilled(false);
+        irButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        irButton2.setFocusPainted(false);
+        irButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                irButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                irButton2MouseExited(evt);
+            }
+        });
+        irButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irButton2ActionPerformed(evt);
+            }
+        });
+
+        irButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        irButton3.setText("Furniture");
+        irButton3.setBorder(null);
+        irButton3.setBorderPainted(false);
+        irButton3.setContentAreaFilled(false);
+        irButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        irButton3.setFocusPainted(false);
+        irButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                irButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                irButton3MouseExited(evt);
+            }
+        });
+        irButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irButton3ActionPerformed(evt);
+            }
+        });
+
+        irButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        irButton4.setText("Inventory");
+        irButton4.setBorder(null);
+        irButton4.setBorderPainted(false);
+        irButton4.setContentAreaFilled(false);
+        irButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        irButton4.setFocusPainted(false);
+        irButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                irButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                irButton4MouseExited(evt);
+            }
+        });
+        irButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irButton4ActionPerformed(evt);
+            }
+        });
+
+        lrButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton3.setText("Our Labour-Work");
+        lrButton3.setBorder(null);
+        lrButton3.setBorderPainted(false);
+        lrButton3.setContentAreaFilled(false);
+        lrButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton3.setFocusPainted(false);
+        lrButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton3MouseExited(evt);
+            }
+        });
+        lrButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton3ActionPerformed(evt);
+            }
+        });
+
+        lrButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton4.setText("Contractor-Work");
+        lrButton4.setBorder(null);
+        lrButton4.setBorderPainted(false);
+        lrButton4.setContentAreaFilled(false);
+        lrButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton4.setFocusPainted(false);
+        lrButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton4MouseExited(evt);
+            }
+        });
+        lrButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton4ActionPerformed(evt);
+            }
+        });
+
+        lrButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton5.setText("Labour-Work");
+        lrButton5.setBorder(null);
+        lrButton5.setBorderPainted(false);
+        lrButton5.setContentAreaFilled(false);
+        lrButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton5.setFocusPainted(false);
+        lrButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton5MouseExited(evt);
+            }
+        });
+        lrButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton5ActionPerformed(evt);
+            }
+        });
+
         lrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        lrButton.setText("Labour");
+        lrButton.setText("Vendor-name list");
         lrButton.setBorder(null);
         lrButton.setBorderPainted(false);
         lrButton.setContentAreaFilled(false);
@@ -239,26 +448,40 @@ public class Reports extends javax.swing.JFrame {
         reportPanelLayout.setHorizontalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportPanelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(129, 129, 129)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addComponent(report_typeLabel))
                     .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addComponent(prButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(vrButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(wrButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(crButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(mrButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(irButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(lrButton)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(prButton)
+                                    .addComponent(vrButton)
+                                    .addComponent(crButton))
+                                .addGap(67, 67, 67)
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(irButton)
+                                    .addComponent(irButton1)
+                                    .addComponent(irButton4)))
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wrButton)
+                                    .addComponent(mrButton))
+                                .addGap(117, 117, 117)
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(irButton3)
+                                    .addComponent(irButton2))))
+                        .addGap(51, 51, 51)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lrButton)
+                            .addComponent(lrButton2)
+                            .addComponent(lrButton1)
+                            .addComponent(lrButton3)
+                            .addComponent(lrButton4)
+                            .addComponent(lrButton5))))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         reportPanelLayout.setVerticalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,14 +490,32 @@ public class Reports extends javax.swing.JFrame {
                 .addComponent(report_typeLabel)
                 .addGap(18, 18, 18)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vrButton)
-                    .addComponent(wrButton)
-                    .addComponent(crButton)
-                    .addComponent(mrButton)
                     .addComponent(prButton)
+                    .addComponent(irButton4)
+                    .addComponent(lrButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vrButton)
+                    .addComponent(irButton1)
+                    .addComponent(lrButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crButton)
                     .addComponent(irButton)
-                    .addComponent(lrButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lrButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wrButton)
+                    .addComponent(irButton2)
+                    .addComponent(lrButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(irButton3)
+                    .addComponent(mrButton)
+                    .addComponent(lrButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lrButton)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         fromDate.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -293,53 +534,51 @@ public class Reports extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(100, 100, 100)
-                                        .addComponent(reportsLabel))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(project_nameLabel)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(148, 148, 148)
                                 .addComponent(fromLabel)
                                 .addGap(31, 31, 31)
                                 .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(toLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(143, 143, 143))))
+                                .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(project_nameLabel)
+                                .addGap(41, 41, 41)
+                                .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(reportsLabel)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(reportsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(project_nameLabel)
                     .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fromLabel)
                     .addComponent(toLabel)
                     .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -444,18 +683,80 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButtonMouseExited
 
     private void prButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prButtonActionPerformed
-
-        if(projectCombo.getSelectedItem().equals("Select"))
+        int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
         {
-            project_nameLabel.setForeground(Color.red);
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectcost.jrxml");
+            String sql = "select INVDATE,  'Inventory' as Category ,MATERIAL,INVTOTALCOST from Inventory  where  INVDATE between #"+fromdate+"# and #"+todate+"#  UNION all select  TRAN_DATE,'Transport' as Category , TRAN_GOODS,TOTAL  from Transport where  TRAN_DATE between #"+fromdate+"# and #"+todate+"# UNION all select  LDATE, 'Our labours ' as Category ,WORK,TOTAL from Labourdailymain where LDATE between #"+fromdate+"# and #"+todate+"# UNION all select  wdate , 'Contarct work' as Category,work ,total from LabourdailyOther where  wdate between #"+fromdate+"# and #"+todate+"# order by Category ;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
         }
         
         else
         {
-            // DATABASE CODE HERE
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectcost.jrxml");
+            String sql = "select INVDATE,  'Inventory' as Category ,MATERIAL,INVTOTALCOST from Inventory  where PRONAME ='"+pname+"' and INVDATE between #"+fromdate+"# and #"+todate+"#  UNION all select  TRAN_DATE,'Transport' as Category , TRAN_GOODS,TOTAL  from Transport where  TRAN_PRO ='"+pname+"' and TRAN_DATE between #"+fromdate+"# and #"+todate+"# UNION all select  LDATE, 'Our labours ' as Category ,WORK,TOTAL from Labourdailymain where  PNAME ='"+pname+"' and LDATE between #"+fromdate+"# and #"+todate+"# UNION all select  wdate , 'Contarct work' as Category,work ,total from LabourdailyOther where pname ='"+pname+"' and wdate between #"+fromdate+"# and #"+todate+"# order by Category ;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        // TODO add your handling code here:
+      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
+        }
+            
+        }
+            
+       
     }//GEN-LAST:event_prButtonActionPerformed
 
     private void projectComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_projectComboFocusGained
@@ -572,6 +873,114 @@ public class Reports extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lrButtonActionPerformed
 
+    private void lrButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton1MouseEntered
+
+    private void lrButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton1MouseExited
+
+    private void lrButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton1ActionPerformed
+
+    private void lrButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton2MouseEntered
+
+    private void lrButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton2MouseExited
+
+    private void lrButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton2ActionPerformed
+
+    private void irButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton1MouseEntered
+
+    private void irButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton1MouseExited
+
+    private void irButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton1ActionPerformed
+
+    private void irButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton2MouseEntered
+
+    private void irButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton2MouseExited
+
+    private void irButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton2ActionPerformed
+
+    private void irButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton3MouseEntered
+
+    private void irButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton3MouseExited
+
+    private void irButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton3ActionPerformed
+
+    private void irButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton4MouseEntered
+
+    private void irButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton4MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton4MouseExited
+
+    private void irButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irButton4ActionPerformed
+
+    private void lrButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton3MouseEntered
+
+    private void lrButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton3MouseExited
+
+    private void lrButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton3ActionPerformed
+
+    private void lrButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton4MouseEntered
+
+    private void lrButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton4MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton4MouseExited
+
+    private void lrButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton4ActionPerformed
+
+    private void lrButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton5MouseEntered
+
+    private void lrButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton5MouseExited
+
+    private void lrButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -619,7 +1028,16 @@ public class Reports extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker fromDate;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JButton irButton;
+    private javax.swing.JButton irButton1;
+    private javax.swing.JButton irButton2;
+    private javax.swing.JButton irButton3;
+    private javax.swing.JButton irButton4;
     private javax.swing.JButton lrButton;
+    private javax.swing.JButton lrButton1;
+    private javax.swing.JButton lrButton2;
+    private javax.swing.JButton lrButton3;
+    private javax.swing.JButton lrButton4;
+    private javax.swing.JButton lrButton5;
     private javax.swing.JButton mrButton;
     private javax.swing.JButton prButton;
     private javax.swing.JComboBox projectCombo;
