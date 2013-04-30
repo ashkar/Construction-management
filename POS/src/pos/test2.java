@@ -1,19 +1,16 @@
 
 package pos;
+import java.awt.List;
 import java.sql.*;
-import java.lang.System.*;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.jdesktop.swingx.JXDatePicker;
 
 
 public class test2 extends javax.swing.JFrame {
     int cid;
+    
 
    
     public test2() {
@@ -33,10 +30,12 @@ public class test2 extends javax.swing.JFrame {
         t2 = new javax.swing.JTextField();
         t3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        datebutton.setText("date ");
+        datebutton.setText("date insert trial");
         datebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 datebuttonActionPerformed(evt);
@@ -69,56 +68,79 @@ public class test2 extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("joption n combo test");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("quick test");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(datepicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(datebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(t2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                                .addComponent(t1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(t3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2))
-                            .addComponent(jButton2))))
-                .addContainerGap(185, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(datepicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel1)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel2))
+                                        .addComponent(jButton2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                                .addComponent(jButton4)
+                                .addGap(70, 70, 70))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(t3)))
+                .addContainerGap(72, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(datepicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(datebutton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addGap(81, 81, 81)
+                .addContainerGap()
+                .addComponent(datepicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datebutton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
+                .addGap(26, 26, 26)
+                .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(t3))
-                .addContainerGap(74, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
+                .addComponent(t3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -133,20 +155,11 @@ public class test2 extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Date idedo..grr..");
         
         }
-        else{            // Date ccc= (Date) datepicker.getDate();
-                          //   jLabel1.setText(abc);
-                // Date bcd = (Date) datepicker.getDate(); 
-               // DateFormat shortDf = DateFormat.getDateInstance(DateFormat.SHORT);
-                //Date date =(Date) shortDf.parse(abc);
+        else{            
                SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
                String bbb=    formater.format(datepicker.getDate());
                  jLabel2.setText(bbb);
-               //Date date= (Date) formater.parse(abc); 
-                //JOptionPane.showMessageDialog(null,""+date);
-               //Date date = (Date) datepicker.getDate(); 
-               //Date date=  (Date) new SimpleDateFormat("MM/dd/yyyy",Locale.ENGLISH).parse(abc);
-                // java.sql.Date sqlDate = new java.sql.Date(datepicker.getDate());
-               
+                             
                 try {     Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                           Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                           PreparedStatement prp=con.prepareStatement("insert into test values(?,?)");
@@ -171,12 +184,13 @@ public class test2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int abc= 0;  
-        
+       String aa = "02/05/13";
+       String bb = "04/30/2013";
           try      
             { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                 Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                   Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select COUNT(INVDATE) from Inventory where INVDATE between #02/25/13# and #04/10/2013# ");
+                  ResultSet res = st.executeQuery("select COUNT(INVDATE) from Inventory where INVDATE between #"+aa+"# and #"+bb+"# ");
                    Boolean rec = res.next();
                   System.out.println("connected successfully");
                   
@@ -187,9 +201,9 @@ public class test2 extends javax.swing.JFrame {
                       }
                   }while (res.next());
                   
-            String aaa = Integer.toString(abc)     ; 
+        //    String aaa = Integer.toString(abc)     ; 
                   
-                    JOptionPane.showMessageDialog(null,""+aaa);
+                    JOptionPane.showMessageDialog(null,""+abc);
         
         
         
@@ -223,6 +237,56 @@ public class test2 extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String Select = "Sports",input="";
+        int num=0, i=0;
+        try
+        {            
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            Statement  st = con.createStatement();
+            ResultSet res = st.executeQuery("select PRONAME from Project");
+            while(res.next())
+            {
+                num++;
+             }
+            
+            String[] sport = new String[num];
+            
+            ResultSet res1 = st.executeQuery("select PRONAME from Project");
+            while(res1.next())
+            {
+                
+                if(i<num)
+                {
+                    sport[i] = res1.getString("PRONAME");
+                }
+                i++;
+            }
+             input = (String) JOptionPane.showInputDialog(test2.this, "Please select your favorite sport",Select, JOptionPane.INFORMATION_MESSAGE,null,sport,null);
+         }
+        catch(SQLException e1)
+        {
+            JOptionPane.showMessageDialog(null,"INVALID datatype");
+        }
+        catch(Exception e2)
+        {
+            JOptionPane.showMessageDialog(null,"The error is1:"+e2);
+            System.out.println(e2.getMessage());
+        }
+
+
+     JOptionPane.showMessageDialog(null,"You have selected: "+input);
+    
+    
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+  String   abc=   Functions.comboption(this,"Sports","PRONAME","Project", "abc");
+        JOptionPane.showMessageDialog(null,"You have selected: "+abc);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,6 +334,8 @@ public class test2 extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker datepicker;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField t1;

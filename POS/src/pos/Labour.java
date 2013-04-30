@@ -323,6 +323,7 @@ public class Labour extends javax.swing.JFrame {
                 System.out.println(e.getMessage());
             }
               Functions.DisposeFunc(this);
+              
         
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -379,4 +380,4 @@ public class Labour extends javax.swing.JFrame {
     private javax.swing.JComboBox workCombo;
     private javax.swing.JLabel workLabel;
     // End of variables declaration//GEN-END:variables
-}
+    }

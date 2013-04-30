@@ -156,14 +156,6 @@ public class Reports extends javax.swing.JFrame {
         vrButton.setContentAreaFilled(false);
         vrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         vrButton.setFocusPainted(false);
-        vrButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                vrButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                vrButtonMouseExited(evt);
-            }
-        });
         vrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vrButtonActionPerformed(evt);
@@ -198,14 +190,6 @@ public class Reports extends javax.swing.JFrame {
         crButton.setContentAreaFilled(false);
         crButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         crButton.setFocusPainted(false);
-        crButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                crButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                crButtonMouseExited(evt);
-            }
-        });
         crButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crButtonActionPerformed(evt);
@@ -345,14 +329,6 @@ public class Reports extends javax.swing.JFrame {
         irButton4.setContentAreaFilled(false);
         irButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         irButton4.setFocusPainted(false);
-        irButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                irButton4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                irButton4MouseExited(evt);
-            }
-        });
         irButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 irButton4ActionPerformed(evt);
@@ -584,20 +560,6 @@ public class Reports extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void prButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseEntered
-
-        prButton.setForeground(Color.white);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prButtonMouseEntered
-
-    private void prButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseExited
-
-        prButton.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prButtonMouseExited
-
     private void mrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mrButtonMouseEntered
 
         mrButton.setForeground(Color.white);
@@ -612,20 +574,6 @@ public class Reports extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mrButtonMouseExited
 
-    private void vrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vrButtonMouseEntered
-
-        vrButton.setForeground(Color.white);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vrButtonMouseEntered
-
-    private void vrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vrButtonMouseExited
-        
-        vrButton.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vrButtonMouseExited
-
     private void irButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButtonMouseEntered
         
         irButton.setForeground(Color.white);
@@ -639,20 +587,6 @@ public class Reports extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_irButtonMouseExited
-
-    private void crButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crButtonMouseEntered
-        
-        crButton.setForeground(Color.white);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_crButtonMouseEntered
-
-    private void crButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crButtonMouseExited
-        
-        crButton.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_crButtonMouseExited
 
     private void wrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrButtonMouseEntered
         
@@ -708,7 +642,7 @@ public class Reports extends javax.swing.JFrame {
         }
         else
         {
-             SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
                               fromdate = formater.format(fromDate.getDate());
                                 todate = formater.format(toDate.getDate());
         }     
@@ -741,7 +675,7 @@ public class Reports extends javax.swing.JFrame {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectcost.jrxml");
-            String sql = "select INVDATE,  'Inventory' as Category ,MATERIAL,INVTOTALCOST from Inventory  where PRONAME ='"+pname+"' and INVDATE between #"+fromdate+"# and #"+todate+"#  UNION all select  TRAN_DATE,'Transport' as Category , TRAN_GOODS,TOTAL  from Transport where  TRAN_PRO ='"+pname+"' and TRAN_DATE between #"+fromdate+"# and #"+todate+"# UNION all select  LDATE, 'Our labours ' as Category ,WORK,TOTAL from Labourdailymain where  PNAME ='"+pname+"' and LDATE between #"+fromdate+"# and #"+todate+"# UNION all select  wdate , 'Contarct work' as Category,work ,total from LabourdailyOther where pname ='"+pname+"' and wdate between #"+fromdate+"# and #"+todate+"# order by Category ;";
+            String sql = "select INVDATE ,  'Inventory' as Category ,MATERIAL,INVTOTALCOST from Inventory  where PRONAME ='"+pname+"' and INVDATE between #"+fromdate+"# and #"+todate+"#  UNION all select  TRAN_DATE,'Transport' as Category , TRAN_GOODS,TOTAL  from Transport where  TRAN_PRO ='"+pname+"' and TRAN_DATE between #"+fromdate+"# and #"+todate+"# UNION all select  LDATE, 'Our labours ' as Category ,WORK,TOTAL from Labourdailymain where  PNAME ='"+pname+"' and LDATE between #"+fromdate+"# and #"+todate+"# UNION all select  wdate , 'Contarct work' as Category,work ,total from LabourdailyOther where pname ='"+pname+"' and wdate between #"+fromdate+"# and #"+todate+"# order by Category ;";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -784,18 +718,77 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_projectComboFocusLost
 
     private void vrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vrButtonActionPerformed
-
-        if(projectCombo.getSelectedItem().equals("Select"))
+        int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
         {
-            project_nameLabel.setForeground(Color.red);
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectprice.jrxml");
+            String sql = "Select wdate,category,work,total from workquote  where  wdate between #"+fromdate+"# and #"+todate+"# union all select INVDATE,MATERIAL,'Inventory' ,INVTOTALPRICE from Inventory  where INVDATE between #"+fromdate+"# and #"+todate+"#; ";     
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
         }
         
         else
         {
-            // DATABASE CODE HERE
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectprice.jrxml");
+            String sql = "Select wdate,category,work,total from workquote where pname ='"+pname+"' and wdate between #"+fromdate+"# and #"+todate+"# union all select INVDATE,MATERIAL,'Inventory' as work ,INVTOTALPRICE from Inventory  where PRONAME ='"+pname+"' and INVDATE between #"+fromdate+"# and #"+todate+"#;";
+           JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        // TODO add your handling code here:
+      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
+        }
+        }
     }//GEN-LAST:event_vrButtonActionPerformed
 
     private void wrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wrButtonActionPerformed
@@ -815,62 +808,205 @@ public class Reports extends javax.swing.JFrame {
 
     private void crButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crButtonActionPerformed
 
-        if(projectCombo.getSelectedItem().equals("Select"))
+       
+        
+        int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
         {
-            project_nameLabel.setForeground(Color.red);
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\transport.jrxml");
+            String sql = "select * from Transport where   TRAN_DATE between #"+fromdate+"# and #"+todate+"# ;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
         }
         
         else
         {
-            // DATABASE CODE HERE
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\transport.jrxml");
+            String sql = "select * from Transport where  TRAN_PRO ='"+pname+"' and  TRAN_DATE between #"+fromdate+"# and #"+todate+"#;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        // TODO add your handling code here:
+      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
+        }
+            
+        }
+            
     }//GEN-LAST:event_crButtonActionPerformed
 
     private void mrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrButtonActionPerformed
-
-        if(projectCombo.getSelectedItem().equals("Select"))
-        {
-            project_nameLabel.setForeground(Color.red);
-        }
         
+         int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
         else
         {
-            // DATABASE CODE HERE
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+         try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\payment.jrxml");
+            String sql = "select * from payment where  pdate between #"+fromdate+"# and #"+todate+"#; ";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
         
-        // TODO add your handling code here:
+        }   
+        
     }//GEN-LAST:event_mrButtonActionPerformed
 
     private void irButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButtonActionPerformed
 
-        if(projectCombo.getSelectedItem().equals("Select"))
-        {
-            project_nameLabel.setForeground(Color.red);
-        }
+         int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
         
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
         else
         {
-            // DATABASE CODE HERE
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+         try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\woodinventory.jrxml");
+            String sql = "select * from Wood where  BILLDATE between #"+fromdate+"# and #"+todate+"#; ";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
         
-        // TODO add your handling code here:
+        }   
     }//GEN-LAST:event_irButtonActionPerformed
 
     private void lrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButtonActionPerformed
-
-        if(projectCombo.getSelectedItem().equals("Select"))
-        {
-            project_nameLabel.setForeground(Color.red);
+        try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\vendor-list.jrxml");
+            String sql = "select * from vendor;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        else
-        {
-            // DATABASE CODE HERE
-        }
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_lrButtonActionPerformed
 
     private void lrButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseEntered
@@ -882,19 +1018,45 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton1MouseExited
 
     private void lrButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton1ActionPerformed
-        // TODO add your handling code here:
+         try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\customer-list.jrxml");
+            String sql = "select * from Customer;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }   
     }//GEN-LAST:event_lrButton1ActionPerformed
 
     private void lrButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton2MouseEntered
-        // TODO add your handling code here:
+        lrButton2.setForeground(Color.white);        // TODO add your handling code here:
     }//GEN-LAST:event_lrButton2MouseEntered
 
     private void lrButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton2MouseExited
-        // TODO add your handling code here:
+        lrButton2.setForeground(Color.black);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton2MouseExited
 
     private void lrButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton2ActionPerformed
-        // TODO add your handling code here:
+     try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\contractor-list.jrxml");
+            String sql = "select * from contractor;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_lrButton2ActionPerformed
 
     private void irButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton1MouseEntered
@@ -906,6 +1068,56 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton1MouseExited
 
     private void irButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton1ActionPerformed
+         int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\vendor.jrxml");
+            String sql = "select VENDOR,WOODTYPE,BILLDATE,TOTAL from Wood where BILLDATE between #"+fromdate+"# and #"+todate+"# union all select VENNAME,MATERIAL,BILLDATE,INVTOTALCOST from Inventory where BILLDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } }
+            
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_irButton1ActionPerformed
 
@@ -918,7 +1130,79 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton2MouseExited
 
     private void irButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton2ActionPerformed
-        // TODO add your handling code here:
+         int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Woodusage.jrxml");
+            String sql = "Select PNAME, WOODTYPE,WOOD_QUAN,WOOD_BATCH,WOOD_COST from Labourdailymain where WORK='Carpentary' and WOODTYPE is  NOT NULL and  LDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        }
+        
+        else
+        {
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Woodusage.jrxml");
+            String sql = "Select PNAME, WOODTYPE,WOOD_QUAN,WOOD_BATCH,WOOD_COST from Labourdailymain where WORK='Carpentary' and WOODTYPE is  NOT NULL and PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
+        }
+            
+        }
+            
     }//GEN-LAST:event_irButton2ActionPerformed
 
     private void irButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton3MouseEntered
@@ -930,19 +1214,156 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton3MouseExited
 
     private void irButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton3ActionPerformed
-        // TODO add your handling code here:
+ int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\furniture.jrxml");
+            String sql = "select pname,wdate,fname,fno,frate,total from workquote where category ='Furniture'  and  wdate between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        }
+        
+        else
+        {
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\furniture.jrxml");
+            String sql = "select pname,wdate,fname,fno,frate,total from workquote where category ='Furniture' and  pname ='"+pname+"' and  wdate between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
+        }
+            
+        }
+            
+        
     }//GEN-LAST:event_irButton3ActionPerformed
 
-    private void irButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_irButton4MouseEntered
-
-    private void irButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton4MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_irButton4MouseExited
-
     private void irButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton4ActionPerformed
-        // TODO add your handling code here:
+ int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\inventory.jrxml");
+            String sql = "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where   INVDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        }
+        
+        else
+        {
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\inventory.jrxml");
+            String sql = "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where  PRONAME ='"+pname+"' and  INVDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
+        }
+            
+        }
+                    // TODO add your handling code here:
     }//GEN-LAST:event_irButton4ActionPerformed
 
     private void lrButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton3MouseEntered
@@ -954,7 +1375,78 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton3MouseExited
 
     private void lrButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton3ActionPerformed
-        // TODO add your handling code here:
+        int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\ourlabour.jrxml");
+            String sql = "select * from Labourdailymain  where    LDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        }
+        
+        else
+        {
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\ourlabour.jrxml");
+            String sql = "select * from Labourdailymain  where  PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+            }
+            
+        }
+            
     }//GEN-LAST:event_lrButton3ActionPerformed
 
     private void lrButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton4MouseEntered
@@ -966,7 +1458,80 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton4MouseExited
 
     private void lrButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton4ActionPerformed
-        // TODO add your handling code here:
+
+        
+         int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\contract-work.jrxml");
+            String sql = "select * from LabourdailyOther where   wdate between #"+fromdate+"# and #"+todate+"#;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        }
+        
+        else
+        {
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\contract-work.jrxml");
+            String sql = "select * from LabourdailyOther where  pname ='"+pname+"' and  wdate between #"+fromdate+"# and #"+todate+"#;";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+      }
+            
+        }
+            
     }//GEN-LAST:event_lrButton4ActionPerformed
 
     private void lrButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton5MouseEntered
@@ -978,8 +1543,90 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton5MouseExited
 
     private void lrButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton5ActionPerformed
+ int flag=0;
+        String fromdate,todate;
+        String pname = (String) projectCombo.getSelectedItem();
+        
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
+        else
+        {
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+        
+        
+        if(flag==0)
+        {
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Labour.jrxml");
+            String sql = "select * from Labourdailysub  where    LDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        }
+        
+        else
+        {
+            try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Labour.jrxml");
+            String sql = "select * from Labourdailysub  where  PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        }
+            
+        }
+            
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_lrButton5ActionPerformed
+
+    private void prButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseEntered
+        prButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_prButtonMouseEntered
+
+    private void prButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseExited
+         prButton.setForeground(Color.black);   // TODO add your handling code here:
+    }//GEN-LAST:event_prButtonMouseExited
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
 package pos;
 import java.sql.*;
 import javax.swing.*; 
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -189,4 +190,48 @@ public static boolean NumericValidate( JTextField textfieldname){
         return true;
 }
 
+public static  String comboption(JFrame sname,String titlevalue,String columnname,String tablename,String input)
+{
+    
+     String Select = titlevalue;
+     input="";
+        int num=0, i=0;
+        try
+        {            
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            Statement  st = con.createStatement();
+            ResultSet res = st.executeQuery("select "+columnname+" from "+tablename+"");
+            while(res.next())
+            {
+                num++;
+             }
+            
+            String[] sport = new String[num];
+            
+            ResultSet res1 = st.executeQuery("select "+columnname+" from "+tablename+"");
+            while(res1.next())
+            {
+                
+                if(i<num)
+                {
+                    sport[i] = res1.getString(""+columnname+"");
+                }
+                i++;
+            }
+            
+             input = (String) JOptionPane.showInputDialog(sname, "Please select your favorite sport",Select, JOptionPane.INFORMATION_MESSAGE,null,sport,null);
+         }
+        catch(SQLException e1)
+        {
+            JOptionPane.showMessageDialog(null,"INVALID datatype");
+        }
+        catch(Exception e2)
+        {
+            JOptionPane.showMessageDialog(null,"The error is1:"+e2);
+            System.out.println(e2.getMessage());
+        }
+
+    return input;
+}
 }
