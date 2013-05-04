@@ -57,7 +57,7 @@
                               <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                               <Component id="addButton" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="printButton" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="72" max="-2" attributes="0"/>
                           </Group>
@@ -113,7 +113,7 @@
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="printButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="136" max="32767" attributes="0"/>
@@ -147,7 +147,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="Select"/>
+            <StringItem index="0" value="All"/>
           </StringArray>
         </Property>
       </Properties>
@@ -267,12 +267,12 @@
         <Property name="text" type="java.lang.String" value="Payment"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="printButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Print"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -7,23 +7,25 @@ package pos;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  *
  * @author lenovo
  */
 public class office extends javax.swing.JFrame {
-String  saldet ,vendor,billid,work,eedet ; 
-int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transport,rent,ee ;
-    /**
-     * Creates new form Add
-     */
+
+    
+     int amount=0,extra=0,total=0;
+     
     public office() {
         initComponents();
         setTitle("Office");
         setLocation(238,0);
-        setSize(660,770);
+        setSize(660,570);
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
+        Functions.FillCombo(expenseCombo,"office","Names");
+        AutoCompleteDecorator.decorate(expenseCombo);
        }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,48 +38,32 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
 
         office_expenseLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        foodTextField = new javax.swing.JTextField();
         cancelButton = new javax.swing.JButton();
-        transportLabel = new javax.swing.JLabel();
-        internetTextField = new javax.swing.JTextField();
-        rentTextField = new javax.swing.JTextField();
-        rentLabel = new javax.swing.JLabel();
-        salaryTextField = new javax.swing.JTextField();
-        internetLabel = new javax.swing.JLabel();
-        salary_detailsLabel = new javax.swing.JLabel();
+        detailsLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
-        taxesLabel = new javax.swing.JLabel();
-        electricTextField = new javax.swing.JTextField();
-        transportTextField = new javax.swing.JTextField();
-        salaryLabel = new javax.swing.JLabel();
-        electricLabel = new javax.swing.JLabel();
-        taxesTextField = new javax.swing.JTextField();
-        foodLabel = new javax.swing.JLabel();
+        expenseLabel = new javax.swing.JLabel();
         extra_expenseLabel = new javax.swing.JLabel();
         extra_expenseTextField = new javax.swing.JTextField();
         totalLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         expense_detailsTextArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        salary_detailsTextArea = new javax.swing.JTextArea();
+        detailsTextArea = new javax.swing.JTextArea();
         expense_detailsLabel = new javax.swing.JLabel();
         cashLabel = new javax.swing.JLabel();
+        expenseCombo = new javax.swing.JComboBox();
+        amountLabel = new javax.swing.JLabel();
+        amountTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         office_expenseLabel.setBackground(new java.awt.Color(255, 255, 255));
-        office_expenseLabel.setFont(new java.awt.Font("Times New Roman", 1, 36));
+        office_expenseLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         office_expenseLabel.setForeground(new java.awt.Color(0, 102, 102));
         office_expenseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         office_expenseLabel.setText("Office Expense");
 
         jPanel1.setBackground(new java.awt.Color(129, 134, 138));
-
-        foodTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                foodTextFieldKeyReleased(evt);
-            }
-        });
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -86,43 +72,10 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
             }
         });
 
-        transportLabel.setBackground(new java.awt.Color(255, 255, 255));
-        transportLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        transportLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        transportLabel.setText("Transport");
-
-        internetTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                internetTextFieldKeyReleased(evt);
-            }
-        });
-
-        rentTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                rentTextFieldKeyReleased(evt);
-            }
-        });
-
-        rentLabel.setBackground(new java.awt.Color(255, 255, 255));
-        rentLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        rentLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rentLabel.setText("Rent");
-
-        salaryTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                salaryTextFieldKeyReleased(evt);
-            }
-        });
-
-        internetLabel.setBackground(new java.awt.Color(255, 255, 255));
-        internetLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        internetLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        internetLabel.setText("Internet");
-
-        salary_detailsLabel.setBackground(new java.awt.Color(255, 255, 255));
-        salary_detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        salary_detailsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        salary_detailsLabel.setText("Salary Details");
+        detailsLabel.setBackground(new java.awt.Color(255, 255, 255));
+        detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        detailsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        detailsLabel.setText(" Details");
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,46 +84,13 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
             }
         });
 
-        taxesLabel.setBackground(new java.awt.Color(255, 255, 255));
-        taxesLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        taxesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        taxesLabel.setText("Taxes");
-
-        electricTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                electricTextFieldKeyReleased(evt);
-            }
-        });
-
-        transportTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                transportTextFieldKeyReleased(evt);
-            }
-        });
-
-        salaryLabel.setBackground(new java.awt.Color(255, 255, 255));
-        salaryLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        salaryLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        salaryLabel.setText("Salary");
-
-        electricLabel.setBackground(new java.awt.Color(255, 255, 255));
-        electricLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        electricLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        electricLabel.setText("Electric");
-
-        taxesTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                taxesTextFieldKeyReleased(evt);
-            }
-        });
-
-        foodLabel.setBackground(new java.awt.Color(255, 255, 255));
-        foodLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        foodLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        foodLabel.setText("Food");
+        expenseLabel.setBackground(new java.awt.Color(255, 255, 255));
+        expenseLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        expenseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        expenseLabel.setText("Expense");
 
         extra_expenseLabel.setBackground(new java.awt.Color(255, 255, 255));
-        extra_expenseLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        extra_expenseLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         extra_expenseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         extra_expenseLabel.setText("Extra Expense");
 
@@ -181,7 +101,7 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
         });
 
         totalLabel.setBackground(new java.awt.Color(255, 255, 255));
-        totalLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        totalLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalLabel.setText("Total");
 
@@ -189,18 +109,31 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
         expense_detailsTextArea.setRows(5);
         jScrollPane1.setViewportView(expense_detailsTextArea);
 
-        salary_detailsTextArea.setColumns(20);
-        salary_detailsTextArea.setRows(5);
-        jScrollPane2.setViewportView(salary_detailsTextArea);
+        detailsTextArea.setColumns(20);
+        detailsTextArea.setRows(5);
+        jScrollPane2.setViewportView(detailsTextArea);
 
         expense_detailsLabel.setBackground(new java.awt.Color(255, 255, 255));
-        expense_detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        expense_detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         expense_detailsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         expense_detailsLabel.setText("Expense details");
 
-        cashLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        cashLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         cashLabel.setForeground(new java.awt.Color(255, 0, 0));
         cashLabel.setText("Cash");
+
+        expenseCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+
+        amountLabel.setBackground(new java.awt.Color(255, 255, 255));
+        amountLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        amountLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        amountLabel.setText("Amount");
+
+        amountTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountTextFieldKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -209,79 +142,50 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(electricLabel)
-                    .addComponent(salary_detailsLabel)
-                    .addComponent(salaryLabel)
-                    .addComponent(internetLabel)
-                    .addComponent(transportLabel)
-                    .addComponent(rentLabel)
-                    .addComponent(taxesLabel)
-                    .addComponent(foodLabel)
-                    .addComponent(extra_expenseLabel)
-                    .addComponent(expense_detailsLabel)
-                    .addComponent(totalLabel))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(taxesTextField)
-                        .addComponent(electricTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(salaryTextField)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                        .addComponent(internetTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(transportTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(rentTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(foodTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(extra_expenseTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(cashLabel))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 142, Short.MAX_VALUE)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(detailsLabel)
+                            .addComponent(expenseLabel)
+                            .addComponent(extra_expenseLabel)
+                            .addComponent(expense_detailsLabel)
+                            .addComponent(totalLabel)
+                            .addComponent(amountLabel))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(extra_expenseTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cashLabel)
+                            .addComponent(expenseCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(amountTextField))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salaryLabel)
-                    .addComponent(salaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expenseLabel)
+                    .addComponent(expenseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(amountLabel)
+                    .addComponent(amountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(salary_detailsLabel)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(electricLabel)
-                    .addComponent(electricTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(internetLabel)
-                    .addComponent(internetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(detailsLabel))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transportLabel)
-                    .addComponent(transportTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rentLabel)
-                    .addComponent(rentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(taxesLabel)
-                    .addComponent(taxesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(foodLabel)
-                    .addComponent(foodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(extra_expenseLabel)
-                    .addComponent(extra_expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(extra_expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(extra_expenseLabel))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(expense_detailsLabel))
@@ -293,7 +197,7 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -330,96 +234,52 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
-            
+          int flag=0;
+          String expense,details,extdetails ;
         
         
-        if(taxesTextField.getText().equals("")&& salaryTextField.getText().equals("")&&
-                internetTextField.getText().equals("")&& electricTextField.getText().equals("")&&
-                rentTextField.getText().equals("")&& foodTextField.getText().equals("")&&
-                transportTextField.getText().equals("") && extra_expenseTextField.getText().equals(""))
-        {
-        JOptionPane.showMessageDialog(null,"Enter appropriate fields");
-        }             
-         else
-        {     
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            } else sal = Integer.parseInt(salaryTextField.getText());
-            
-            saldet = salary_detailsTextArea.getText();
-            
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }else electric = Integer.parseInt(electricTextField.getText());
-            
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }else transport = Integer.parseInt(transportTextField.getText());
-            
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }else rent = Integer.parseInt(rentTextField.getText());
-            
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }else taxes = Integer.parseInt(taxesTextField.getText());
-            
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }else food = Integer.parseInt(foodTextField.getText());
-            
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }else internet = Integer.parseInt(internetTextField.getText());
-            
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }else ee = Integer.parseInt(extra_expenseTextField.getText());
-            
-            eedet         =expense_detailsTextArea.getText(); 
-            
-            total         =sal+electric+transport+rent+taxes+food+internet+ee; 
+           if(expenseCombo.getSelectedItem().equals("Select"))
+                {
+                    expenseLabel.setForeground(Color.red);
+                    flag++;
+                 }    
+           if(amountTextField.getText().equals(""))
+           {
+                    amountLabel.setForeground(Color.red);
+                    flag++;
+           }
+                
+           if(flag==0)
+          { 
+              expense = (String) expenseCombo.getSelectedItem();
+              amount =  Integer.parseInt(amountTextField.getText());
+              extra   = Integer.parseInt(extra_expenseTextField.getText());
+              details = detailsTextArea.getText();
+              extdetails = expense_detailsTextArea.getText();
+              total         =amount+extra; 
            
              try {
                   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Office(INVDATE,SAL,SALDET,ELECTRIC,INTERNET,TRANSPORT,RENT,TAXES,FOOD,EXTRAEXP,EXTDET,TOTAL) values(?,?,?,?,?,?,?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Office(odate,expense,amount,details,extra,extdetails,total) values(?,?,?,?,?,?,?)");    
                                                
                         prp.setDate(1,sqlDate);
-                        prp.setInt(2,sal);
-                        prp.setString(3,saldet);  
-                        prp.setInt(4,electric);
-                        prp.setInt(5,internet);
-                        prp.setInt (6, transport);
-                        prp.setInt (7, rent);
-                        prp.setInt (8, taxes);
-                        prp.setInt (9, food);
-                        prp.setInt(10,ee);
-                        prp.setString(11,eedet);
-                        prp.setInt(12,total);
+                        prp.setString(2,expense);
+                        prp.setInt(3,amount);  
+                        prp.setString(4,details);
+                        prp.setInt(5,extra);
+                        prp.setString (6, extdetails);
+                        prp.setInt (7, total);
                         prp.executeUpdate(); 
-                        JOptionPane.showMessageDialog(null,"Added succesfully");
-                       
+                      //  JOptionPane.showMessageDialog(null,"Added succesfully");
+                         Functions.DisposeFunc(this);
                          cashLabel.setText("Cash");
-                         salaryTextField.setText("");
-                         salary_detailsTextArea.setText("");
-                         electricTextField.setText("");
-                         internetTextField.setText("");
-                         transportTextField.setText(""); 
-                         rentTextField.setText("");
-                         taxesTextField.setText("");
-                         foodTextField.setText("");
+                         amountTextField.setText("");
+                         detailsTextArea.setText("");
                          extra_expenseTextField.setText("");
                          expense_detailsTextArea.setText("");
+                         expenseCombo.setSelectedItem("Select");
                          con.commit();
                          con.close();
              }                               
@@ -437,621 +297,57 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
              }
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void salaryTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salaryTextFieldKeyReleased
-    
-        if(Functions.NumericValidate(salaryTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_salaryTextFieldKeyReleased
-
-    private void electricTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_electricTextFieldKeyReleased
-    
-        if(Functions.NumericValidate(electricTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_electricTextFieldKeyReleased
-
-    private void internetTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_internetTextFieldKeyReleased
-    
-        if(Functions.NumericValidate(internetTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_internetTextFieldKeyReleased
-
-    private void transportTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_transportTextFieldKeyReleased
-    
-        if(Functions.NumericValidate(transportTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transportTextFieldKeyReleased
-
-    private void rentTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rentTextFieldKeyReleased
-
-        if(Functions.NumericValidate(rentTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rentTextFieldKeyReleased
-
-    private void taxesTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taxesTextFieldKeyReleased
-  
-        if(Functions.NumericValidate(taxesTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taxesTextFieldKeyReleased
-
-    private void foodTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_foodTextFieldKeyReleased
- 
-        if(Functions.NumericValidate(foodTextField))
-        {
-            if(salaryTextField.getText().equals(""))
-            {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
-            {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
-            }
-            if(extra_expenseTextField.getText().equals(""))
-            {
-                ee = 0;
-            }
-            
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
-            
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foodTextFieldKeyReleased
-
     private void extra_expenseTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_extra_expenseTextFieldKeyReleased
 
-        if(Functions.NumericValidate(extra_expenseTextField))
+        
+         if(Functions.NumericValidate(extra_expenseTextField))
         {
-            if(salaryTextField.getText().equals(""))
+            if(amountTextField.getText().equals(""))
             {
-                sal = 0;
-            }
-            if(electricTextField.getText().equals(""))
+                amount = 0;
+            } else 
             {
-                electric = 0;
-            }
-            if(internetTextField.getText().equals(""))
-            {
-                internet = 0;
-            }
-            if(transportTextField.getText().equals(""))
-            {
-                transport = 0;
-            }
-            if(rentTextField.getText().equals(""))
-            {
-                rent = 0;
-            }
-            if(taxesTextField.getText().equals(""))
-            {
-                taxes = 0;
-            }
-            if(foodTextField.getText().equals(""))
-            {
-                food = 0;
+                amount= Integer.parseInt(amountTextField.getText());
             }
             if(extra_expenseTextField.getText().equals(""))
             {
-                ee = 0;
+               extra= 0;
+            } else
+            {
+                extra= Integer.parseInt(extra_expenseTextField.getText());
             }
             
-            if(!salaryTextField.getText().equals(""))
-            {
-                sal = Integer.parseInt(salaryTextField.getText());
-            }
-            if(!electricTextField.getText().equals(""))
-            {
-                electric = Integer.parseInt(electricTextField.getText());
-            }
-            if(!internetTextField.getText().equals(""))
-            {
-                internet = Integer.parseInt(internetTextField.getText());
-            }
-            if(!transportTextField.getText().equals(""))
-            {
-                transport = Integer.parseInt(transportTextField.getText());
-            }
-            if(!rentTextField.getText().equals(""))
-            {
-                rent = Integer.parseInt(rentTextField.getText());
-            }
-            if(!taxesTextField.getText().equals(""))
-            {
-                taxes = Integer.parseInt(taxesTextField.getText());
-            }
-            if(!foodTextField.getText().equals(""))
-            {
-                food = Integer.parseInt(foodTextField.getText());
-            }
-            if(!extra_expenseTextField.getText().equals(""))
-            {
-                ee = Integer.parseInt(extra_expenseTextField.getText());
-            }
+            total = amount+extra;
             
-            total = sal + electric + internet + transport + rent + taxes + food + ee;
-            cashLabel.setText(Integer.toString(total));
         }
+            cashLabel.setText(Integer.toString(total));
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_extra_expenseTextFieldKeyReleased
+
+    private void amountTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTextFieldKeyReleased
+        if(Functions.NumericValidate(amountTextField))
+        {
+            if(amountTextField.getText().equals(""))
+            {
+                amount = 0;
+            } else 
+            {
+                amount= Integer.parseInt(amountTextField.getText());
+            }
+            if(extra_expenseTextField.getText().equals(""))
+            {
+               extra= 0;
+            } else
+            {
+                extra= Integer.parseInt(extra_expenseTextField.getText());
+            }
+            
+            total = amount+extra;
+            
+        }
+            cashLabel.setText(Integer.toString(total));
+        
+    }//GEN-LAST:event_amountTextFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1095,33 +391,23 @@ int sal,total,cost,rate ,totalcost,totalrate,electric,internet,taxes,food,transp
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel amountLabel;
+    private javax.swing.JTextField amountTextField;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel cashLabel;
-    private javax.swing.JLabel electricLabel;
-    private javax.swing.JTextField electricTextField;
+    private javax.swing.JLabel detailsLabel;
+    private javax.swing.JTextArea detailsTextArea;
+    private javax.swing.JComboBox expenseCombo;
+    private javax.swing.JLabel expenseLabel;
     private javax.swing.JLabel expense_detailsLabel;
     private javax.swing.JTextArea expense_detailsTextArea;
     private javax.swing.JLabel extra_expenseLabel;
     private javax.swing.JTextField extra_expenseTextField;
-    private javax.swing.JLabel foodLabel;
-    private javax.swing.JTextField foodTextField;
-    private javax.swing.JLabel internetLabel;
-    private javax.swing.JTextField internetTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel office_expenseLabel;
-    private javax.swing.JLabel rentLabel;
-    private javax.swing.JTextField rentTextField;
-    private javax.swing.JLabel salaryLabel;
-    private javax.swing.JTextField salaryTextField;
-    private javax.swing.JLabel salary_detailsLabel;
-    private javax.swing.JTextArea salary_detailsTextArea;
     private javax.swing.JButton saveButton;
-    private javax.swing.JLabel taxesLabel;
-    private javax.swing.JTextField taxesTextField;
     private javax.swing.JLabel totalLabel;
-    private javax.swing.JLabel transportLabel;
-    private javax.swing.JTextField transportTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -72,6 +72,7 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         inventoryButton = new javax.swing.JButton();
         reportButton = new javax.swing.JButton();
@@ -86,6 +87,17 @@ public class Home extends javax.swing.JFrame {
         planButton = new javax.swing.JButton();
         odcButton = new javax.swing.JButton();
         billingButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,14 +188,13 @@ public class Home extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(inventoryButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(reportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(carrierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(inventoryButton))
-                .addGap(0, 93, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inventoryButton)
+                    .addComponent(inventoryButton1)
+                    .addComponent(carrierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 115, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,47 +377,37 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(calcButton)
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(expenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(billingButton)
-                            .addComponent(planButton))
-                        .addGap(15, 15, 15)))
-                .addGap(29, 29, 29)
+                .addGap(61, 61, 61)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(billingButton)
+                    .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(planButton))
+                .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(wqButton)
                     .addComponent(odcButton)
                     .addComponent(dcButton))
                 .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(calcButton)
-                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(woodButton)
-                        .addGap(48, 48, 48))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(dcButton)
-                        .addGap(18, 18, 18)))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(expenseButton)
-                    .addComponent(wqButton))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dcButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(wqButton)
+                    .addComponent(expenseButton))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(odcButton)
                     .addComponent(planButton))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,10 +415,47 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(calcButton))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(34, 34, 34)
                         .addComponent(billingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
+        jMenu3.setText("jMenu3");
+        jMenu1.add(jMenu3);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu1.add(jMenuItem2);
+
+        jRadioButtonMenuItem2.setSelected(true);
+        jRadioButtonMenuItem2.setText("jRadioButtonMenuItem2");
+        jMenu1.add(jRadioButtonMenuItem2);
+
+        jMenu4.setText("jMenu4");
+        jMenu1.add(jMenu4);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu5.setText("jMenu5");
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+        jMenu5.add(jCheckBoxMenuItem1);
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+        jMenu5.add(jRadioButtonMenuItem1);
+
+        jMenuBar1.add(jMenu5);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -523,7 +561,7 @@ public class Home extends javax.swing.JFrame {
 
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
 
-        ReportBasic reports = new ReportBasic();
+        Reports reports = new Reports();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_reportButtonActionPerformed
@@ -695,39 +733,43 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_planButtonMouseExited
 
-    private void odcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odcButtonActionPerformed
-
-        OtherLabourDailyCharges odc = new OtherLabourDailyCharges();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_odcButtonActionPerformed
-
-    private void odcButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_odcButtonMouseEntered
-
-        odcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/odc1.png")));
-        odcButton.setToolTipText("Other Labour Daily Charges");
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_odcButtonMouseEntered
-
-    private void odcButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_odcButtonMouseExited
-
-        odcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/odc.png")));
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_odcButtonMouseExited
-
     private void inventoryButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryButton1MouseEntered
+
+        inventoryButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project1.png")));
+        inventoryButton1.setToolTipText("Project");
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_inventoryButton1MouseEntered
 
     private void inventoryButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryButton1MouseExited
-        // TODO add your handling code here:
+       inventoryButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project.png")));  // TODO add your handling code here:
     }//GEN-LAST:event_inventoryButton1MouseExited
 
     private void inventoryButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButton1ActionPerformed
              Project project = new Project ();
     }//GEN-LAST:event_inventoryButton1ActionPerformed
+
+    private void odcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odcButtonActionPerformed
+
+        OtherLabourDailyCharges odc = new OtherLabourDailyCharges();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_odcButtonActionPerformed
+
+    private void odcButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_odcButtonMouseExited
+
+        odcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/odc.png")));
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_odcButtonMouseExited
+
+    private void odcButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_odcButtonMouseEntered
+
+        odcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/odc1.png")));
+        odcButton.setToolTipText("Contractor work update");
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_odcButtonMouseEntered
 
     /**
      * @param args the command line arguments
@@ -772,8 +814,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton expenseButton;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryButton1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JButton odcButton;
     private javax.swing.JButton planButton;
     private javax.swing.JButton reportButton;

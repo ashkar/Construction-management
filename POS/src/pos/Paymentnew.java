@@ -42,6 +42,7 @@ public class Paymentnew extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(129,134,138));
        // Functions.FillCombo(nameCombo,"WORK","Names"); 
         Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
+        AutoCompleteDecorator.decorate(project_nameCombo);
          
     }
 
@@ -70,7 +71,7 @@ public class Paymentnew extends javax.swing.JFrame {
         checkLabel = new javax.swing.JLabel();
         checkTextField = new javax.swing.JTextField();
         labour_daily_chargesLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        printButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -82,7 +83,7 @@ public class Paymentnew extends javax.swing.JFrame {
         categoryLabel.setText("Payment of");
 
         project_nameCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        project_nameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        project_nameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
 
         dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         dateLabel.setText("Date");
@@ -151,10 +152,10 @@ public class Paymentnew extends javax.swing.JFrame {
         labour_daily_chargesLabel1.setForeground(new java.awt.Color(0, 102, 102));
         labour_daily_chargesLabel1.setText("Payment");
 
-        jButton2.setText("Print");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                printButtonActionPerformed(evt);
             }
         });
 
@@ -192,7 +193,7 @@ public class Paymentnew extends javax.swing.JFrame {
                                 .addGap(96, 96, 96)
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(181, Short.MAX_VALUE))
@@ -236,7 +237,7 @@ public class Paymentnew extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
@@ -306,8 +307,7 @@ public class Paymentnew extends javax.swing.JFrame {
             check    = checkTextField.getText(); 
             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
             String newdate =    formater.format(date.getDate()); 
-            int pt=0;
-            
+           
             try {
                   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
@@ -344,40 +344,7 @@ public class Paymentnew extends javax.swing.JFrame {
                
             }
           
-             try{   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select id from Payment ");
-                  Boolean rec = res.next();
-                  System.out.println("connected successfully");
-                  
-                  do
-                  {
-                     if(rec==true) {
-                   pt =res.getInt(1);
-                      }
-                  }while (res.next());
-                  
-                //JOptionPane.showMessageDialog(null, ""+pt);
-                  JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\receipt.jrxml");
-            String sql = "Select * from Payment where id="+pt+" ";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(sql);
-            jd.setQuery(newQuery);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp,false);
-             }
-               catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(null,"trial err"+e);
-                
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"trial err"+e);
-            }
-             
+            
              
         }
         
@@ -427,7 +394,7 @@ public class Paymentnew extends javax.swing.JFrame {
     else  if(categoryCombo.getSelectedItem().equals("Customer"))
    {     project_nameCombo.setEnabled(true);
          nameCombo.removeAllItems();
-         Functions.FillCombo(nameCombo, "CUSTNAME","Customer");
+         Functions.FillCombo(nameCombo, "CUSTNAME","Project");
    
          }
   
@@ -458,9 +425,49 @@ public class Paymentnew extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_amountTextFieldKeyReleased
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+       int pt=0;
+            
+        
+        try{ 
+                Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select id from Payment ");
+                  Boolean rec = res.next();
+                  System.out.println("connected successfully");
+                  
+                  do
+                  {
+                     if(rec==true) {
+                   pt =res.getInt(1);
+                      }
+                  }while (res.next());
+                  
+                //JOptionPane.showMessageDialog(null, ""+pt);
+                  JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\receipt.jrxml");
+            String sql = "Select * from Payment where id="+pt+" ";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+             }
+               catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"trial err"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"trial err"+e);
+            }
+             
+        
+        
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_printButtonActionPerformed
 
        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -505,11 +512,11 @@ public class Paymentnew extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker date;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel labour_daily_chargesLabel;
     private javax.swing.JLabel labour_daily_chargesLabel1;
     private javax.swing.JComboBox nameCombo;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JButton printButton;
     private javax.swing.JComboBox project_nameCombo;
     private javax.swing.JLabel project_nameLabel;
     // End of variables declaration//GEN-END:variables

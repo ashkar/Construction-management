@@ -6,7 +6,9 @@ package pos;
 
 import java.awt.Color;
 import java.sql.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -16,6 +18,8 @@ public class Labour extends javax.swing.JFrame {
 
     String Name,Work,Mobile;
     int Cid;
+    int temp = 0;
+    JComboBox comboname;
     /**
       Creates new form Labour
      **/
@@ -26,9 +30,22 @@ public class Labour extends javax.swing.JFrame {
         setLocation(238,0);
         setVisible(true);
         getContentPane().setBackground(new Color(129,134,138));
-        
+        Functions.FillCombo(workCombo, "WORK", "Names");
+        AutoCompleteDecorator.decorate(workCombo);
+    }
+    
+    public Labour(int i,JComboBox combo)
+    {
+        initComponents();
+        setTitle("Labour");
+        setSize(660,350);
+        setLocation(238,0);
+        setVisible(true);
+        getContentPane().setBackground(new Color(129,134,138));
         Functions.FillCombo(workCombo, "WORK", "Names");
         
+        comboname = combo;
+        temp = i;
     }
 
     /**
@@ -283,11 +300,7 @@ public class Labour extends javax.swing.JFrame {
             workLabel.setForeground(Color.red);
             flag++;
         }
-        if(mobileTextField.getText().equals(""))
-        {
-            mobileLabel.setForeground(Color.red);
-            flag++;
-        }
+        
         
         if(flag==0)
         {
@@ -307,7 +320,14 @@ public class Labour extends javax.swing.JFrame {
                         prp.setString(3,work);
                         prp.setDate(4,sqlDate);
                         prp.executeUpdate(); 
-                        // JOptionPane.showMessageDialog(null,"Labour Added");
+                        //JOptionPane.showMessageDialog(null,"Labour Added");
+                        
+                        if(temp == 1)
+                        {
+                            comboname.addItem(labour);
+                            comboname.setSelectedItem(labour);
+                        }
+                        
                          con.commit();
                          con.close();
                          dispose();
@@ -322,7 +342,7 @@ public class Labour extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"The Err is :"+e);
                 System.out.println(e.getMessage());
             }
-              Functions.DisposeFunc(this);
+             // Functions.DisposeFunc(this);
               
         
         }

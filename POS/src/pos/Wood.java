@@ -22,6 +22,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class Wood extends javax.swing.JFrame {
 
+    int temp = 0;
+    JComboBox comboname;
     
     
     /** Creates new form Wood */
@@ -36,6 +38,23 @@ public class Wood extends javax.swing.JFrame {
         Functions.FillCombo(wtypeCombo, "WOODTYPE", "Names");
         AutoCompleteDecorator.decorate(vendorCombo);
         AutoCompleteDecorator.decorate(wtypeCombo);
+    }
+    
+    public Wood(int i,JComboBox combo)
+    {
+        initComponents();
+        setTitle("Add Wood");
+        setSize(600,550);
+        setVisible(true);
+        setLocation(238,0);
+        getContentPane().setBackground(new Color(129,134,138));
+        Functions.FillCombo(vendorCombo, "VENNAME", "Vendor");
+        Functions.FillCombo(wtypeCombo, "WOODTYPE", "Names");
+        AutoCompleteDecorator.decorate(vendorCombo);
+        AutoCompleteDecorator.decorate(wtypeCombo);
+        
+        comboname = combo;
+        temp = i;
     }
 
     /** This method is called from within the constructor to
@@ -70,17 +89,17 @@ public class Wood extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        add_woodLable.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        add_woodLable.setFont(new java.awt.Font("Times New Roman", 1, 36));
         add_woodLable.setForeground(new java.awt.Color(0, 102, 102));
         add_woodLable.setText("Add Wood");
 
-        dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        dateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         dateLabel.setText("Bill Date");
 
-        woodLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        woodLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         woodLabel.setText("Wood Type");
 
-        costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         costLabel.setText("Cost");
 
         costTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -89,10 +108,10 @@ public class Wood extends javax.swing.JFrame {
             }
         });
 
-        vendorLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        vendorLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         vendorLabel.setText("Vendor");
 
-        quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         quantityLabel.setText("Quantity");
 
         quantityTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -115,13 +134,13 @@ public class Wood extends javax.swing.JFrame {
             }
         });
 
-        wtypeCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        wtypeCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12));
         wtypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
 
-        vendorCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        vendorCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12));
         vendorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
 
-        ExpLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        ExpLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         ExpLabel.setText("Expenses");
 
         ExpTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +162,7 @@ public class Wood extends javax.swing.JFrame {
             }
         });
 
-        DetLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        DetLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
         DetLabel.setText("Details");
 
         DetailsTextArea.setColumns(20);
@@ -241,10 +260,11 @@ public class Wood extends javax.swing.JFrame {
                     .addComponent(costLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(costTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vendorLabel)
-                    .addComponent(vendorCombo, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(vendorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vendorButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(vendorLabel)
+                        .addComponent(vendorCombo, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ExpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,8 +352,31 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     cost = Integer.parseInt(costTextField.getText());
     vendor = (String) vendorCombo.getSelectedItem();
     quantity = Integer.parseInt( quantityTextField.getText());
-        
         total = cost*quantity+expense;
+        int bno = 0 ;
+        try {
+                  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                  Statement  st = con.createStatement();
+                  ResultSet res = st.executeQuery("select INVNO from Wood ");
+                  Boolean rec = res.next();
+                  System.out.println("connected successfully");
+                  do
+                  {
+                     if(rec==true) {
+                      bno =res.getInt(1);
+                      }
+                  }while (res.next());
+                  
+                bno+=1 ;
+        
+        }
+        catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+                System.out.println(e.getMessage());
+            } 
+        
        try
        {
            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -351,7 +394,14 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
            prp.setInt(7,total);
            prp.setString(8,newdate);
            prp.executeUpdate();
-           JOptionPane.showMessageDialog(null,"Wood Details added Succesfully");
+           //JOptionPane.showMessageDialog(null,"Wood Details added Succesfully");
+           
+           if(temp == 1)
+           {
+              comboname.addItem(bno);
+              comboname.setSelectedItem(bno);
+           }
+           
            wtypeCombo.setSelectedItem("Select");
            costTextField.setText("");
            vendorCombo.setSelectedItem("Select");
@@ -360,6 +410,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
            DetailsTextArea.setText("");
            con.commit();
            con.close();
+           dispose();
            
            
             
@@ -416,7 +467,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }//GEN-LAST:event_ExpTextFieldKeyReleased
 
     private void vendorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendorButtonActionPerformed
-      Vendor vendor=new Vendor();            // TODO add your handling code here:
+      Vendor vendor=new Vendor(1,vendorCombo);            // TODO add your handling code here:
     }//GEN-LAST:event_vendorButtonActionPerformed
 
     private void woodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_woodButtonActionPerformed

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
 import javax.swing.*;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /*
  * To change this template, choose Tools | Templates
@@ -26,7 +27,7 @@ public class WorkQuote extends javax.swing.JFrame {
      */
     public WorkQuote() {
         initComponents();
-        setSize(660,770);
+        setSize(660,670);
         setVisible(true);
         setTitle("WorkQuote");
         getContentPane().setBackground(new Color(129,134,138));
@@ -37,6 +38,10 @@ public class WorkQuote extends javax.swing.JFrame {
         furniturePanel.setVisible(false);
         
         Functions.FillCombo(project_nameCombo, "PRONAME","Project");
+        Functions.FillCombo(workCombo, "WORK", "Names");
+        AutoCompleteDecorator.decorate(workCombo);
+        AutoCompleteDecorator.decorate(project_nameCombo);
+        
     }
 
     /**
@@ -55,21 +60,17 @@ public class WorkQuote extends javax.swing.JFrame {
         project_nameLabel = new javax.swing.JLabel();
         unit_wisePanel = new javax.swing.JPanel();
         u_detailsTextField = new javax.swing.JTextField();
-        u_workLabel = new javax.swing.JLabel();
         areaTextField = new javax.swing.JTextField();
         rpsTextField = new javax.swing.JTextField();
         areaLabel = new javax.swing.JLabel();
         u_detailsLabel = new javax.swing.JLabel();
         u_floorLabel = new javax.swing.JLabel();
         u_floorTextField = new javax.swing.JTextField();
-        u_workCombo = new javax.swing.JComboBox();
         rpsLabel = new javax.swing.JLabel();
         u_totalLabel = new javax.swing.JLabel();
         fixed_amountPanel = new javax.swing.JPanel();
         f_rateTextField = new javax.swing.JTextField();
         f_rateLabel = new javax.swing.JLabel();
-        f_workLabel = new javax.swing.JLabel();
-        f_workCombo = new javax.swing.JComboBox();
         labour_daily_chargesLabel = new javax.swing.JLabel();
         wage_wisePanel = new javax.swing.JPanel();
         mesonsLabel = new javax.swing.JLabel();
@@ -82,8 +83,6 @@ public class WorkQuote extends javax.swing.JFrame {
         mesons_noLabel = new javax.swing.JLabel();
         mesons_cashLabel = new javax.swing.JLabel();
         helpers_cashLabel = new javax.swing.JLabel();
-        w_workLabel = new javax.swing.JLabel();
-        w_workCombo = new javax.swing.JComboBox();
         w_totalLabel = new javax.swing.JLabel();
         w_floorLabel = new javax.swing.JLabel();
         w_floorTextField = new javax.swing.JTextField();
@@ -102,6 +101,9 @@ public class WorkQuote extends javax.swing.JFrame {
         item_rateTextField = new javax.swing.JTextField();
         item_totalLabel = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
+        addButton1 = new javax.swing.JButton();
+        w_workLabel1 = new javax.swing.JLabel();
+        workCombo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -133,9 +135,6 @@ public class WorkQuote extends javax.swing.JFrame {
                 u_detailsTextFieldFocusLost(evt);
             }
         });
-
-        u_workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        u_workLabel.setText("Work");
 
         areaTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -184,17 +183,6 @@ public class WorkQuote extends javax.swing.JFrame {
             }
         });
 
-        u_workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        u_workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Carpentary", "Centering", "Electrical", "Flooring", "Laterate", "Painting", "Plastering", "Plumbing" }));
-        u_workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                u_workComboFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                u_workComboFocusLost(evt);
-            }
-        });
-
         rpsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         rpsLabel.setText("Rate/Sqft");
 
@@ -207,17 +195,16 @@ public class WorkQuote extends javax.swing.JFrame {
         unit_wisePanelLayout.setHorizontalGroup(
             unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, unit_wisePanelLayout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(unit_wisePanelLayout.createSequentialGroup()
                         .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(u_detailsLabel)
-                            .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(u_workLabel)
+                            .addGroup(unit_wisePanelLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
                                 .addComponent(u_floorLabel)))
                         .addGap(39, 39, 39)
                         .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(u_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(u_detailsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(u_floorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(unit_wisePanelLayout.createSequentialGroup()
@@ -230,18 +217,14 @@ public class WorkQuote extends javax.swing.JFrame {
                             .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(u_totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(133, 133, 133))
+                .addGap(135, 135, 135))
         );
         unit_wisePanelLayout.setVerticalGroup(
             unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(unit_wisePanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(31, 31, 31)
                 .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(unit_wisePanelLayout.createSequentialGroup()
-                        .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(u_workLabel)
-                            .addComponent(u_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
                         .addGroup(unit_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(u_floorTextField)
                             .addComponent(u_floorLabel))
@@ -258,15 +241,14 @@ public class WorkQuote extends javax.swing.JFrame {
                             .addComponent(rpsLabel)
                             .addComponent(rpsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, unit_wisePanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
                         .addComponent(u_totalLabel)
                         .addGap(18, 18, 18)))
-                .addGap(34, 34, 34))
+                .addGap(57, 57, 57))
         );
 
         fixed_amountPanel.setBackground(new java.awt.Color(129, 134, 138));
 
-        f_rateTextField.setEnabled(false);
         f_rateTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 f_rateTextFieldFocusGained(evt);
@@ -284,48 +266,21 @@ public class WorkQuote extends javax.swing.JFrame {
         f_rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         f_rateLabel.setText("Fixed Quote for Work is");
 
-        f_workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        f_workLabel.setText("Select Work");
-
-        f_workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        f_workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Carpentary", "Centering", "Electrical", "Flooring", "Laterate", "Painting", "Plastering", "Plumbing" }));
-        f_workCombo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                f_workComboItemStateChanged(evt);
-            }
-        });
-        f_workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                f_workComboFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                f_workComboFocusLost(evt);
-            }
-        });
-
         javax.swing.GroupLayout fixed_amountPanelLayout = new javax.swing.GroupLayout(fixed_amountPanel);
         fixed_amountPanel.setLayout(fixed_amountPanelLayout);
         fixed_amountPanelLayout.setHorizontalGroup(
             fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fixed_amountPanelLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(f_workLabel)
-                    .addComponent(f_rateLabel))
+                .addComponent(f_rateLabel)
                 .addGap(18, 18, 18)
-                .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(f_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(f_rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addComponent(f_rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fixed_amountPanelLayout.setVerticalGroup(
             fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fixed_amountPanelLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(f_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(f_workLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(f_rateLabel))
@@ -416,20 +371,6 @@ public class WorkQuote extends javax.swing.JFrame {
         helpers_cashLabel.setForeground(new java.awt.Color(255, 0, 0));
         helpers_cashLabel.setText("Cash");
 
-        w_workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        w_workLabel.setText("Work");
-
-        w_workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        w_workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Carpentary", "Centering", "Electrical", "Flooring", "Laterate", "Painting", "Plastering", "Plumbing" }));
-        w_workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                w_workComboFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                w_workComboFocusLost(evt);
-            }
-        });
-
         w_totalLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         w_totalLabel.setForeground(new java.awt.Color(255, 0, 0));
         w_totalLabel.setText("Total here");
@@ -465,48 +406,34 @@ public class WorkQuote extends javax.swing.JFrame {
             .addGroup(wage_wisePanelLayout.createSequentialGroup()
                 .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                        .addGap(120, 120, 120)
-                                        .addComponent(w_workLabel))
-                                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                        .addGap(75, 75, 75)
-                                        .addComponent(w_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                        .addGap(87, 87, 87)
-                                        .addComponent(w_floorLabel))
-                                    .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(w_floorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wage_wisePanelLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(mesons_noLabel)
-                                .addGap(86, 86, 86)))
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(w_detailsLabel))
-                            .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mesons_wageLabel)
-                                    .addComponent(w_detailsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(275, 275, 275)
+                        .addComponent(mesons_noLabel)
+                        .addGap(113, 113, 113)
+                        .addComponent(mesons_wageLabel))
                     .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(mesonsLabel)
-                            .addComponent(helpersLabel))
-                        .addGap(28, 28, 28)
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(helpers_noTextField)
-                            .addComponent(mesons_noTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(helpers_wageTextField)
-                            .addComponent(mesons_wageTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, wage_wisePanelLayout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(mesonsLabel)
+                                    .addComponent(helpersLabel))
+                                .addGap(28, 28, 28)
+                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(helpers_noTextField)
+                                    .addComponent(mesons_noTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(helpers_wageTextField)
+                                    .addComponent(mesons_wageTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
+                            .addGroup(wage_wisePanelLayout.createSequentialGroup()
+                                .addGap(207, 207, 207)
+                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(w_floorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(w_floorLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(w_detailsLabel)
+                                    .addComponent(w_detailsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(31, 31, 31)
                         .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(mesons_cashLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -517,18 +444,16 @@ public class WorkQuote extends javax.swing.JFrame {
         wage_wisePanelLayout.setVerticalGroup(
             wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(w_workLabel)
-                    .addComponent(w_floorLabel)
-                    .addComponent(w_detailsLabel))
-                .addGap(11, 11, 11)
-                .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(w_workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(w_floorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(w_detailsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(wage_wisePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(w_floorLabel)
+                            .addComponent(w_detailsLabel))
+                        .addGap(12, 12, 12)
+                        .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(w_floorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(w_detailsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(wage_wisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(mesons_wageLabel)
@@ -544,7 +469,7 @@ public class WorkQuote extends javax.swing.JFrame {
                             .addComponent(helpers_wageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(helpers_cashLabel)))
                     .addGroup(wage_wisePanelLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(126, 126, 126)
                         .addComponent(mesonsLabel)
                         .addGap(18, 18, 18)
                         .addComponent(helpersLabel)))
@@ -661,7 +586,7 @@ public class WorkQuote extends javax.swing.JFrame {
                             .addComponent(item_noTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(95, 95, 95)
                         .addComponent(item_totalLabel)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         furniturePanelLayout.setVerticalGroup(
             furniturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -692,43 +617,75 @@ public class WorkQuote extends javax.swing.JFrame {
             }
         });
 
+        addButton1.setText("Cancel");
+        addButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton1ActionPerformed(evt);
+            }
+        });
+
+        w_workLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        w_workLabel1.setText("Work");
+
+        workCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        workCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        workCombo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                workComboFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                workComboFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(wage_wisePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(labour_daily_chargesLabel))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(furniturePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fixed_amountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(wage_wisePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(date_of_paymentLabel)
-                            .addComponent(project_nameLabel))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(date_of_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(unit_wiseButton)
-                            .addComponent(wage_wiseButton)
-                            .addComponent(fixed_amountButton)
-                            .addComponent(furnitureButton))))
-                .addContainerGap(11, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(unit_wisePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(furniturePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fixed_amountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(230, 230, 230)
+                                .addComponent(labour_daily_chargesLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(171, 171, 171)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(date_of_paymentLabel)
+                                            .addComponent(project_nameLabel))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(date_of_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(w_workLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(unit_wiseButton)
+                                            .addComponent(wage_wiseButton))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fixed_amountButton)
+                                            .addComponent(furnitureButton))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(288, 288, 288)
+                .addContainerGap()
+                .addComponent(unit_wisePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -743,15 +700,21 @@ public class WorkQuote extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(date_of_paymentLabel)
                     .addComponent(date_of_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(unit_wiseButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(wage_wiseButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fixed_amountButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(w_workLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(furnitureButton)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(unit_wiseButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(wage_wiseButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fixed_amountButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(furnitureButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(wage_wisePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(unit_wisePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -759,9 +722,11 @@ public class WorkQuote extends javax.swing.JFrame {
                 .addComponent(fixed_amountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(furniturePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
@@ -837,32 +802,14 @@ public class WorkQuote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_project_nameComboFocusLost
 
-    private void w_workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_workComboFocusGained
-
-        w_workLabel.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_w_workComboFocusGained
-
-    private void w_workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_workComboFocusLost
-
-        if(w_workCombo.getSelectedItem().equals("Select"))
-        {
-            w_workLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_w_workComboFocusLost
-
     private void w_floorTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_floorTextFieldFocusGained
 
         w_floorLabel.setForeground(Color.black);
-        if(w_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            w_workLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_w_floorTextFieldFocusGained
 
     private void w_floorTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_floorTextFieldFocusLost
@@ -878,46 +825,28 @@ public class WorkQuote extends javax.swing.JFrame {
     private void w_detailsTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_detailsTextFieldFocusGained
 
         w_detailsLabel.setForeground(Color.black);
-        if(w_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            w_workLabel.setForeground(Color.red);
-        }
-        if(w_floorTextField.getText().equals(""))
-        {
-            w_floorLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_w_detailsTextFieldFocusGained
 
     private void w_detailsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_detailsTextFieldFocusLost
 
-        if(w_detailsTextField.getText().equals(""))
-        {
-            w_detailsLabel.setForeground(Color.red);
-        }
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_w_detailsTextFieldFocusLost
 
     private void mesons_noTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mesons_noTextFieldFocusGained
 
         mesons_noTextField.setBackground(Color.white);
         
-        if(w_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            w_workLabel.setForeground(Color.red);
-        }
-        if(w_floorTextField.getText().equals(""))
-        {
-            w_floorLabel.setForeground(Color.red);
-        }
-        if(w_detailsTextField.getText().equals(""))
-        {
-            w_detailsLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mesons_noTextFieldFocusGained
 
     private void mesons_noTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mesons_noTextFieldKeyReleased
@@ -1020,20 +949,13 @@ public class WorkQuote extends javax.swing.JFrame {
 
         helpers_noTextField.setBackground(Color.white);
 
-        if(w_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            w_workLabel.setForeground(Color.red);
-        }
-        if(w_floorTextField.getText().equals(""))
-        {
-            w_floorLabel.setForeground(Color.red);
-        }
-        if(w_detailsTextField.getText().equals(""))
-        {
-            w_detailsLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
+      
+       
     }//GEN-LAST:event_helpers_noTextFieldFocusGained
 
     private void helpers_noTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_helpers_noTextFieldFocusLost
@@ -1132,30 +1054,13 @@ public class WorkQuote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_helpers_wageTextFieldKeyReleased
 
-    private void u_workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_u_workComboFocusGained
-
-        u_workLabel.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_u_workComboFocusGained
-
-    private void u_workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_u_workComboFocusLost
-
-        if(u_workCombo.getSelectedItem().equals("Select"))
-        {
-            u_workLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_u_workComboFocusLost
-
     private void u_floorTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_u_floorTextFieldFocusGained
         
         u_floorLabel.setForeground(Color.black);
         
-        if(u_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            u_workLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
         // TODO add your handling code here:
@@ -1163,58 +1068,37 @@ public class WorkQuote extends javax.swing.JFrame {
 
     private void u_floorTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_u_floorTextFieldFocusLost
 
-        if(u_floorTextField.getText().equals(""))
-        {
-            u_floorLabel.setForeground(Color.red);
-        }
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_u_floorTextFieldFocusLost
 
     private void u_detailsTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_u_detailsTextFieldFocusGained
 
         u_detailsLabel.setForeground(Color.black);
         
-        if(u_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            u_workLabel.setForeground(Color.red);
-        }
-        if(u_floorTextField.getText().equals(""))
-        {
-            u_floorLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
+        
+       
     }//GEN-LAST:event_u_detailsTextFieldFocusGained
 
     private void u_detailsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_u_detailsTextFieldFocusLost
 
-        if(u_detailsTextField.getText().equals(""))
-        {
-            u_detailsLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_u_detailsTextFieldFocusLost
 
     private void areaTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_areaTextFieldFocusGained
 
         areaLabel.setForeground(Color.black);
         
-        if(u_workCombo.getSelectedItem().equals("Select"))
+        if(workCombo.getSelectedItem().equals("Select"))
         {
-            u_workLabel.setForeground(Color.red);
-        }
-        if(u_floorTextField.getText().equals(""))
-        {
-            u_floorLabel.setForeground(Color.red);
-        }
-        if(u_detailsTextField.getText().equals(""))
-        {
-            u_detailsLabel.setForeground(Color.red);
+            w_workLabel1.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_areaTextFieldFocusGained
 
     private void areaTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_areaTextFieldFocusLost
@@ -1310,38 +1194,6 @@ public class WorkQuote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rpsTextFieldFocusLost
 
-    private void f_workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_workComboFocusGained
-
-        f_workLabel.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_workComboFocusGained
-
-    private void f_workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_workComboFocusLost
-
-        if(f_workCombo.getSelectedItem().equals("Select"))
-        {
-            f_workLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_workComboFocusLost
-
-    private void f_workComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_f_workComboItemStateChanged
-
-        if(!f_workCombo.getSelectedItem().equals("Select"))
-        {
-            f_rateTextField.setEnabled(true);
-        }
-        else
-        {
-            f_rateTextField.setText("");
-            f_rateTextField.setEnabled(false);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_workComboItemStateChanged
-
     private void f_rateTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_f_rateTextFieldKeyReleased
 
         Functions.NumericValidation(f_rateTextField);
@@ -1351,7 +1203,7 @@ public class WorkQuote extends javax.swing.JFrame {
 
     private void f_rateTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_rateTextFieldFocusLost
 
-        if(!f_workCombo.getSelectedItem().equals("Select") && f_rateTextField.getText().equals(""))
+        if(!workCombo.getSelectedItem().equals("Select") && f_rateTextField.getText().equals(""))
         {
             f_rateLabel.setForeground(Color.red);
         }
@@ -1523,21 +1375,13 @@ public class WorkQuote extends javax.swing.JFrame {
                 if(temp.getText().equals("Wage Wise"))
                 {
                      butvalue = temp.getText(); 
-                    if(w_workCombo.getSelectedItem().equals("Select"))
+                    if(workCombo.getSelectedItem().equals("Select"))
                     {
-                        w_workLabel.setForeground(Color.red);
+                        w_workLabel1.setForeground(Color.red);
                         flag++;
                     }
-                    if(w_floorTextField.getText().equals(""))
-                    {
-                        w_floorLabel.setForeground(Color.red);
-                        flag++;
-                    }
-                    if(w_detailsTextField.getText().equals(""))
-                    {
-                        w_detailsLabel.setForeground(Color.red);
-                        flag++;
-                    }
+                    
+                   
                     if((mesons_noTextField.getText().equals("") && mesons_wageTextField.getText().equals(""))
                             && (helpers_noTextField.getText().equals("") && helpers_wageTextField.getText().equals("")))
                     {
@@ -1568,21 +1412,13 @@ public class WorkQuote extends javax.swing.JFrame {
                 }
                 if(temp.getText().equals("Unit Wise"))
                 {      butvalue = temp.getText(); 
-                    if(u_workCombo.getSelectedItem().equals("Select"))
+                    if(workCombo.getSelectedItem().equals("Select"))
                     {
-                        u_workLabel.setForeground(Color.red);
+                        w_workLabel1.setForeground(Color.red);
                         flag++;
                     }
-                    if(u_floorTextField.getText().equals(""))
-                    {
-                        u_floorLabel.setForeground(Color.red);
-                        flag++;
-                    }
-                    if(u_detailsTextField.getText().equals(""))
-                    {
-                        u_detailsLabel.setForeground(Color.red);
-                        flag++;
-                    }
+                    
+                  
                     if(areaTextField.getText().equals("") && rpsTextField.getText().equals(""))
                     {
                         areaLabel.setForeground(Color.red);
@@ -1602,15 +1438,15 @@ public class WorkQuote extends javax.swing.JFrame {
                 }
                 if(temp.getText().equals("Fixed Amount"))
                 {    butvalue = temp.getText(); 
-                    if(f_workCombo.getSelectedItem().equals("Select") && f_rateTextField.getText().equals(""))
+                    if(workCombo.getSelectedItem().equals("Select") && f_rateTextField.getText().equals(""))
                     {
-                        f_workLabel.setForeground(Color.red);
+                        w_workLabel1.setForeground(Color.red);
                         f_rateLabel.setForeground(Color.red);
                         flag++;
                     }
-                    if(f_workCombo.getSelectedItem().equals("Select"))
+                    if(workCombo.getSelectedItem().equals("Select"))
                     {
-                        f_workLabel.setForeground(Color.red);
+                        w_workLabel1.setForeground(Color.red);
                         flag++;
                     }
                     if(f_rateTextField.getText().equals(""))
@@ -1661,7 +1497,7 @@ public class WorkQuote extends javax.swing.JFrame {
             // JOptionPane.showMessageDialog(null,"Done :)" +butvalue);
             if ("Unit Wise".equals(butvalue))
             {
-                work =(String)u_workCombo.getSelectedItem();
+                work =(String)workCombo.getSelectedItem();
                floor = u_floorTextField.getText();
                details =u_detailsTextField.getText();
                    area=Integer.parseInt(areaTextField.getText());
@@ -1671,7 +1507,7 @@ public class WorkQuote extends javax.swing.JFrame {
             }
              if ("Wage Wise".equals(butvalue))
             {
-                work =(String)w_workCombo.getSelectedItem();
+                work =(String)workCombo.getSelectedItem();
                 floor = w_floorTextField.getText();
                 details =w_detailsTextField.getText();
                  meson     = Integer.parseInt(mesons_noTextField.getText());
@@ -1686,7 +1522,7 @@ public class WorkQuote extends javax.swing.JFrame {
             }
               if ("Fixed Amount".equals(butvalue))
             {
-                work =(String)f_workCombo.getSelectedItem();
+                work =(String)workCombo.getSelectedItem();
                 tot = Integer.parseInt(f_rateTextField.getText());
                 
                 //JOptionPane.showMessageDialog(null,"Yeah thats right33!!");
@@ -1724,15 +1560,14 @@ public class WorkQuote extends javax.swing.JFrame {
                         prp.setInt(15,frate);
                         prp.setInt(16,tot);
                         prp.executeUpdate(); 
-                        JOptionPane.showMessageDialog(null,"Details added succesfully");
+                        //JOptionPane.showMessageDialog(null,"Details added succesfully");
                          con.commit();
                          con.close();
                                                 
                          project_nameCombo.setSelectedItem("Select");
-                         w_workCombo.setSelectedItem("Select");
                          w_floorTextField.setText("");
                          w_detailsTextField.setText("");
-                         u_workCombo.setSelectedItem("Select");
+                         workCombo.setSelectedItem("Select");
                          u_floorTextField.setText("");
                          u_detailsTextField.setText("");
                          areaTextField.setText("");
@@ -1741,11 +1576,11 @@ public class WorkQuote extends javax.swing.JFrame {
                          mesons_wageTextField.setText("");
                          helpers_noTextField.setText("");
                          helpers_wageTextField.setText("");
-                         f_workCombo.setSelectedItem("Select");
                          f_rateTextField.setText("");
                          item_rateTextField.setText("");
                          item_noTextField.setText("");
                          item_nameTextField.setText("");
+                         Functions.DisposeFunc(this);
                          
                   
                   }                               
@@ -1762,6 +1597,18 @@ public class WorkQuote extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_addButton1ActionPerformed
+
+    private void workComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboFocusGained
+
+    private void workComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workComboFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workComboFocusLost
 
     /**
      * @param args the command line arguments
@@ -1806,6 +1653,7 @@ public class WorkQuote extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addButton1;
     private javax.swing.JLabel areaLabel;
     private javax.swing.JTextField areaTextField;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1813,8 +1661,6 @@ public class WorkQuote extends javax.swing.JFrame {
     private javax.swing.JLabel date_of_paymentLabel;
     private javax.swing.JLabel f_rateLabel;
     private javax.swing.JTextField f_rateTextField;
-    private javax.swing.JComboBox f_workCombo;
-    private javax.swing.JLabel f_workLabel;
     private javax.swing.JRadioButton fixed_amountButton;
     private javax.swing.JPanel fixed_amountPanel;
     private javax.swing.JRadioButton furnitureButton;
@@ -1846,8 +1692,6 @@ public class WorkQuote extends javax.swing.JFrame {
     private javax.swing.JLabel u_floorLabel;
     private javax.swing.JTextField u_floorTextField;
     private javax.swing.JLabel u_totalLabel;
-    private javax.swing.JComboBox u_workCombo;
-    private javax.swing.JLabel u_workLabel;
     private javax.swing.JRadioButton unit_wiseButton;
     private javax.swing.JPanel unit_wisePanel;
     private javax.swing.JLabel w_detailsLabel;
@@ -1855,9 +1699,9 @@ public class WorkQuote extends javax.swing.JFrame {
     private javax.swing.JLabel w_floorLabel;
     private javax.swing.JTextField w_floorTextField;
     private javax.swing.JLabel w_totalLabel;
-    private javax.swing.JComboBox w_workCombo;
-    private javax.swing.JLabel w_workLabel;
+    private javax.swing.JLabel w_workLabel1;
     private javax.swing.JRadioButton wage_wiseButton;
     private javax.swing.JPanel wage_wisePanel;
+    private javax.swing.JComboBox workCombo;
     // End of variables declaration//GEN-END:variables
 }

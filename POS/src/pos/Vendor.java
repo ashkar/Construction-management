@@ -16,18 +16,32 @@ public class Vendor extends javax.swing.JFrame {
 
     int Cid;
     String Firm,Email,Mobile,Landline,Details;
+    int temp = 0;
+    JComboBox comboname;
     /**
      * Creates new form Vendor
      */
     public Vendor() {
         initComponents();
-        
         setTitle("Vendor");
         setSize(660,450);
         setLocation(238,0);
         setVisible(true);
         getContentPane().setBackground(new Color(129,134,138));
         
+    }
+    
+    public Vendor(int i,JComboBox combo)
+    {
+        initComponents();
+        setTitle("Vendor");
+        setSize(660,450);
+        setLocation(238,0);
+        setVisible(true);
+        getContentPane().setBackground(new Color(129,134,138));
+        
+        comboname = combo;
+        temp = i;
     }
 
     /**
@@ -217,29 +231,10 @@ public class Vendor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-// TODO add your handling code here:
-
-    int flag = 0;
-        
-        if(firmTextField.getText().equals(""))
+        int flag = 0;
+         if(firmTextField.getText().equals(""))
         {
             firmLabel.setForeground(Color.red);
-            flag++;
-        }
-        
-        if(firmTextField.getText().equals("") && mobileTextField.getText().equals("")&& landlineTextField.getText().equals(""))
-        {
-            firmLabel.setForeground(Color.red);
-            mobileLabel.setForeground(Color.red);
-            landlineLabel.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null," Enter Firm, Mobile or Landline Number");
-            flag++;
-        }
-        else if(mobileTextField.getText().equals("")&& landlineTextField.getText().equals(""))
-        {
-            mobileLabel.setForeground(Color.red);
-            landlineLabel.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null," Enter Mobile or Landline Number");
             flag++;
         }
         
@@ -279,7 +274,13 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                         prp.setString(6,Details);
                                             
                         prp.executeUpdate(); 
-                         JOptionPane.showMessageDialog(null,"Firm added succesfully");
+                        // JOptionPane.showMessageDialog(null,"Firm added succesfully");
+                         
+                         if(temp == 1)
+                         {
+                             comboname.addItem(Firm);
+                             comboname.setSelectedItem(Firm);
+                         }
                          
                          landlineTextField.setText("");
                          mobileTextField.setText("");
@@ -288,6 +289,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                          detailsTextArea.setText("");
                          con.commit();
                          con.close();
+                         dispose();
              }                               
              
              catch(SQLException e)

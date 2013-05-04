@@ -123,11 +123,11 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
         }
         catch(SQLException e)
         {
-            JOptionPane.showMessageDialog(null,"INVALID datatype");
+            JOptionPane.showMessageDialog(null,"Fillcombo err");
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"The error is1:"+e);
+            JOptionPane.showMessageDialog(null,"Fillcombo err1"+e);
             System.out.println(e.getMessage());
         }
 }
@@ -224,11 +224,11 @@ public static  String comboption(JFrame sname,String titlevalue,String columnnam
          }
         catch(SQLException e1)
         {
-            JOptionPane.showMessageDialog(null,"INVALID datatype");
+            JOptionPane.showMessageDialog(null,"FUNC.comboption err");
         }
         catch(Exception e2)
         {
-            JOptionPane.showMessageDialog(null,"The error is1:"+e2);
+            JOptionPane.showMessageDialog(null,"FUNC.comboption err2"+e2);
             System.out.println(e2.getMessage());
         }
 

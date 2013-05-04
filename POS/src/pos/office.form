@@ -78,44 +78,32 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="electricLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="salary_detailsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="salaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="internetLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="transportLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="rentLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="taxesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="foodLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="extra_expenseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="expense_detailsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="totalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="taxesTextField" max="32767" attributes="1"/>
-                                  <Component id="electricTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="salaryTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane2" alignment="0" pref="222" max="32767" attributes="0"/>
-                                  <Component id="internetTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="transportTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="rentTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="foodTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="extra_expenseTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="cashLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="44" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="105" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="142" max="32767" attributes="0"/>
                           <Component id="saveButton" min="-2" pref="80" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Component id="cancelButton" min="-2" pref="80" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="detailsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="expenseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="extra_expenseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="expense_detailsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="totalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="amountLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" pref="222" max="32767" attributes="0"/>
+                              <Component id="extra_expenseTextField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="cashLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="expenseCombo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="amountTextField" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -126,50 +114,25 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="salaryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="salaryTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="expenseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="expenseCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="amountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="amountTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="salary_detailsLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                      <Component id="detailsLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="electricLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="electricTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="internetLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="internetTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="transportLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="transportTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="rentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rentTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="taxesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="taxesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="foodLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="foodTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="extra_expenseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="extra_expenseTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="extra_expenseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       <Component id="expense_detailsLabel" min="-2" max="-2" attributes="0"/>
@@ -184,17 +147,12 @@
                       <Component id="saveButton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="cancelButton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="foodTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="foodTextFieldKeyReleased"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="cancelButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
@@ -203,7 +161,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="transportLabel">
+        <Component class="javax.swing.JLabel" name="detailsLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -212,58 +170,7 @@
               <Font name="Comic Sans MS" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Transport"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="internetTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="internetTextFieldKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="rentTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rentTextFieldKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="rentLabel">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Rent"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="salaryTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="salaryTextFieldKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="internetLabel">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Internet"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="salary_detailsLabel">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Salary Details"/>
+            <Property name="text" type="java.lang.String" value=" Details"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="saveButton">
@@ -274,7 +181,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="taxesLabel">
+        <Component class="javax.swing.JLabel" name="expenseLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -283,58 +190,7 @@
               <Font name="Comic Sans MS" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Taxes"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="electricTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="electricTextFieldKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="transportTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="transportTextFieldKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="salaryLabel">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Salary"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="electricLabel">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Electric"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="taxesTextField">
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taxesTextFieldKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="foodLabel">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Food"/>
+            <Property name="text" type="java.lang.String" value="Expense"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="extra_expenseLabel">
@@ -388,7 +244,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="salary_detailsTextArea">
+            <Component class="javax.swing.JTextArea" name="detailsTextArea">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -418,6 +274,32 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cash"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="expenseCombo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="Select"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="amountLabel">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Comic Sans MS" size="18" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Amount"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="amountTextField">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amountTextFieldKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -33,7 +33,7 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,7 +44,7 @@
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="170" max="32767" attributes="0"/>
+              <EmptySpace pref="164" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,123 +75,122 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="materialLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="costLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="bill_noLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="project_nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="rateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="brandLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="vendorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="noLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="workCombo" alignment="0" max="32767" attributes="1"/>
-                              <Component id="date" alignment="0" pref="152" max="32767" attributes="1"/>
-                              <Component id="bill_noTextField" alignment="0" max="32767" attributes="1"/>
-                              <Component id="rateTextField" alignment="0" max="32767" attributes="1"/>
-                              <Component id="brandTextField" alignment="0" max="32767" attributes="1"/>
-                              <Component id="quantityTextField" alignment="0" max="32767" attributes="1"/>
-                              <Component id="materialTextField" alignment="0" max="32767" attributes="1"/>
-                              <Component id="project_nameCombo" alignment="1" max="32767" attributes="1"/>
-                              <Component id="vendorCombo" alignment="0" max="32767" attributes="1"/>
-                              <Component id="costTextField" alignment="0" max="32767" attributes="1"/>
-                              <Component id="noLabel1" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="bill_dateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="workLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Component id="add_projectButton" pref="166" max="32767" attributes="1"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="add_vendorButton" min="0" pref="0" max="32767" attributes="1"/>
+                              <Component id="quantityLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="materialLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="project_nameLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="vendorLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="bill_noLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="bill_dateLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="workLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="typeLabel" alignment="0" max="-2" attributes="0"/>
+                              <Component id="brandLabel" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="rateLabel" max="-2" attributes="0"/>
+                                  <Component id="costLabel" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="brandTextField" max="32767" attributes="1"/>
+                                  <Component id="materialCombo" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="workCombo" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="vendorCombo" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="typeCombo" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="costTextField" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="rateTextField" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="bill_noTextField" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="date" alignment="0" pref="143" max="32767" attributes="1"/>
+                                  <Component id="project_nameCombo" alignment="0" max="32767" attributes="1"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="quantityTextField" min="-2" pref="78" max="-2" attributes="1"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="measuretypeTextField" min="-2" pref="59" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="addwork" min="0" pref="0" max="32767" attributes="1"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="addButton" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="cancelButton" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
-                  <Component id="addButton" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="cancelButton" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace pref="234" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="add_projectButton" min="-2" pref="52" max="-2" attributes="1"/>
+                      </Group>
+                      <Component id="materialButton" alignment="1" min="-2" pref="52" max="-2" attributes="1"/>
+                      <Component id="add_vendorButton" alignment="1" min="-2" pref="52" max="-2" attributes="1"/>
+                      <Component id="addwork" alignment="1" min="-2" pref="52" max="-2" attributes="1"/>
+                  </Group>
+                  <EmptySpace min="32" pref="119" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="noLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="noLabel1" min="-2" pref="20" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="project_nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="project_nameCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="project_nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="project_nameCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="add_projectButton" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="materialLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="materialTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="materialLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="materialButton" min="-2" max="-2" attributes="1"/>
+                          <Component id="materialCombo" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="quantityTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="measuretypeTextField" alignment="3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="brandTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="brandLabel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="brandLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="brandTextField" min="-2" max="-2" attributes="0"/>
+                      <Component id="vendorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="add_vendorButton" min="-2" max="-2" attributes="1"/>
+                          <Component id="vendorCombo" min="-2" max="-2" attributes="1"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="vendorLabel" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="costLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="add_vendorButton" alignment="1" min="-2" max="-2" attributes="1"/>
-                              <Component id="vendorCombo" alignment="0" min="-2" max="-2" attributes="1"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="costTextField" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="typeCombo" alignment="0" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="rateLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="rateTextField" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="costLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="costTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="rateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -199,9 +198,9 @@
                               <Component id="bill_noTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="bill_dateLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="date" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="bill_dateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="date" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -211,12 +210,12 @@
                       </Group>
                       <Component id="addwork" min="-2" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="addButton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="cancelButton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -312,15 +311,6 @@
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="quantityTextFieldKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="noLabel">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Inventory No."/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="costTextField">
           <Properties>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
@@ -356,12 +346,6 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Quantity"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="materialTextField">
-          <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="materialTextFieldFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="materialTextFieldFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="bill_noTextField">
           <Events>
@@ -433,7 +417,7 @@
               </StringArray>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="materialTextField"/>
+              <ComponentRef name="materialCombo"/>
             </Property>
           </Properties>
           <Events>
@@ -483,7 +467,7 @@
               </StringArray>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="costTextField"/>
+              <ComponentRef name="typeCombo"/>
             </Property>
           </Properties>
           <Events>
@@ -507,13 +491,6 @@
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="workComboFocusLost"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="noLabel1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="addwork">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -534,6 +511,81 @@
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addworkMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addworkActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="materialCombo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Comic Sans MS" size="11" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="Select"/>
+              </StringArray>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="quantityTextField"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="materialComboFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="materialComboFocusLost"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="materialButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/add.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="focusPainted" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="materialButtonMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="materialButtonMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materialButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="typeCombo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Comic Sans MS" size="11" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Select"/>
+                <StringItem index="1" value="Per Unit"/>
+                <StringItem index="2" value="Total Price"/>
+              </StringArray>
+            </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="costTextField"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="typeComboFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="typeComboFocusLost"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typeLabel">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Comic Sans MS" size="18" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Price type"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="measuretypeTextField">
         </Component>
       </SubComponents>
     </Container>

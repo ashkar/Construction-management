@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -34,12 +35,26 @@ public class Reports extends javax.swing.JFrame {
         initComponents();
         setLocation(238,0);
 //        setLocationRelativeTo(null);
-        setSize(760,560);
+        setSize(600,660);
         setTitle("Reports");
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
         
         Functions.FillCombo(projectCombo,"PRONAME","Project");
+        Functions.FillCombo(vendorCombo,"VENNAME","Vendor");
+        Functions.FillCombo(materialCombo,"Material","Names");
+        Functions.FillCombo(labourCombo,"LABNAME","Labour");
+        Functions.FillCombo(receiptCombo,"id","Payment");
+        Functions.FillCombo(paymentCombo,"cname","Payment");
+        
+        AutoCompleteDecorator.decorate(labourCombo);
+        AutoCompleteDecorator.decorate(vendorCombo);
+        AutoCompleteDecorator.decorate(receiptCombo);
+        AutoCompleteDecorator.decorate(materialCombo);
+        AutoCompleteDecorator.decorate(projectCombo);
+        AutoCompleteDecorator.decorate(paymentCombo);
+        
+        
         
     }
 
@@ -63,7 +78,7 @@ public class Reports extends javax.swing.JFrame {
         vrButton = new javax.swing.JButton();
         irButton = new javax.swing.JButton();
         crButton = new javax.swing.JButton();
-        wrButton = new javax.swing.JButton();
+        receipt = new javax.swing.JButton();
         lrButton1 = new javax.swing.JButton();
         lrButton2 = new javax.swing.JButton();
         irButton1 = new javax.swing.JButton();
@@ -74,6 +89,13 @@ public class Reports extends javax.swing.JFrame {
         lrButton4 = new javax.swing.JButton();
         lrButton5 = new javax.swing.JButton();
         lrButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        vendorCombo = new javax.swing.JComboBox();
+        labourCombo = new javax.swing.JComboBox();
+        materialCombo = new javax.swing.JComboBox();
+        jSeparator2 = new javax.swing.JSeparator();
+        receiptCombo = new javax.swing.JComboBox();
+        paymentCombo = new javax.swing.JComboBox();
         fromDate = new org.jdesktop.swingx.JXDatePicker();
         fromLabel = new javax.swing.JLabel();
         toLabel = new javax.swing.JLabel();
@@ -196,24 +218,24 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        wrButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        wrButton.setText("Receipt");
-        wrButton.setBorder(null);
-        wrButton.setBorderPainted(false);
-        wrButton.setContentAreaFilled(false);
-        wrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        wrButton.setFocusPainted(false);
-        wrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        receipt.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        receipt.setText("Receipt");
+        receipt.setBorder(null);
+        receipt.setBorderPainted(false);
+        receipt.setContentAreaFilled(false);
+        receipt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        receipt.setFocusPainted(false);
+        receipt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                wrButtonMouseEntered(evt);
+                receiptMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                wrButtonMouseExited(evt);
+                receiptMouseExited(evt);
             }
         });
-        wrButton.addActionListener(new java.awt.event.ActionListener() {
+        receipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wrButtonActionPerformed(evt);
+                receiptActionPerformed(evt);
             }
         });
 
@@ -323,7 +345,7 @@ public class Reports extends javax.swing.JFrame {
         });
 
         irButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        irButton4.setText("Inventory");
+        irButton4.setText("Item ");
         irButton4.setBorder(null);
         irButton4.setBorderPainted(false);
         irButton4.setContentAreaFilled(false);
@@ -419,79 +441,124 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
+        vendorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
+
+        labourCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
+
+        materialCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
+
+        receiptCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
+
+        paymentCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
+
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
         reportPanelLayout.setHorizontalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSeparator2)
             .addGroup(reportPanelLayout.createSequentialGroup()
-                .addGap(129, 129, 129)
+                .addGap(65, 65, 65)
+                .addComponent(lrButton2)
+                .addGap(62, 62, 62)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(report_typeLabel))
-                    .addGroup(reportPanelLayout.createSequentialGroup()
+                    .addComponent(lrButton1)
+                    .addComponent(lrButton))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(irButton1))
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(prButton)
-                                    .addComponent(vrButton)
-                                    .addComponent(crButton))
-                                .addGap(67, 67, 67)
+                                    .addComponent(mrButton)
+                                    .addComponent(lrButton5))))
+                        .addGap(18, 18, 18)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(receiptCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(receipt))
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(materialCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(irButton4)))
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(prButton)
+                            .addComponent(irButton3))
+                        .addGap(41, 41, 41)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(irButton)
-                                    .addComponent(irButton1)
-                                    .addComponent(irButton4)))
-                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                    .addComponent(crButton)
+                                    .addComponent(vrButton))
+                                .addGap(36, 36, 36)
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(wrButton)
-                                    .addComponent(mrButton))
-                                .addGap(117, 117, 117)
-                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(irButton3)
-                                    .addComponent(irButton2))))
-                        .addGap(51, 51, 51)
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lrButton)
-                            .addComponent(lrButton2)
-                            .addComponent(lrButton1)
-                            .addComponent(lrButton3)
-                            .addComponent(lrButton4)
-                            .addComponent(lrButton5))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                                    .addComponent(lrButton3)
+                                    .addComponent(irButton2)
+                                    .addComponent(lrButton4)))
+                            .addComponent(report_typeLabel))
+                        .addGap(44, 44, 44))))
         );
         reportPanelLayout.setVerticalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(report_typeLabel)
                 .addGap(18, 18, 18)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prButton)
-                    .addComponent(irButton4)
-                    .addComponent(lrButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vrButton)
-                    .addComponent(irButton1)
-                    .addComponent(lrButton5))
+                    .addComponent(lrButton3)
+                    .addComponent(vrButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crButton)
+                    .addComponent(irButton2)
+                    .addComponent(irButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(irButton)
                     .addComponent(lrButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wrButton)
-                    .addComponent(irButton2)
+                    .addComponent(lrButton2)
                     .addComponent(lrButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(irButton3)
-                    .addComponent(mrButton)
-                    .addComponent(lrButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(lrButton)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(irButton1)
+                    .addComponent(irButton4)
+                    .addComponent(materialCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lrButton5)
+                    .addComponent(receipt)
+                    .addComponent(receiptCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mrButton)
+                    .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         fromDate.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -510,51 +577,48 @@ public class Reports extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
+                        .addGap(86, 86, 86)
+                        .addComponent(fromLabel)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fromLabel)
-                                .addGap(31, 31, 31)
+                                .addComponent(project_nameLabel)
+                                .addGap(37, 37, 37)
+                                .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
+                                .addGap(29, 29, 29)
                                 .addComponent(toLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(project_nameLabel)
-                                .addGap(41, 41, 41)
-                                .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
+                        .addGap(211, 211, 211)
                         .addComponent(reportsLabel)))
                 .addContainerGap())
+            .addComponent(reportPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(reportsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(project_nameLabel)
                     .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fromLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(fromLabel))
                     .addComponent(toLabel)
+                    .addComponent(fromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(toDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(67, 67, 67))
         );
 
         pack();
@@ -588,19 +652,19 @@ public class Reports extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_irButtonMouseExited
 
-    private void wrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrButtonMouseEntered
+    private void receiptMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receiptMouseEntered
         
-        wrButton.setForeground(Color.white);
+        receipt.setForeground(Color.white);
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_wrButtonMouseEntered
+    }//GEN-LAST:event_receiptMouseEntered
 
-    private void wrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrButtonMouseExited
+    private void receiptMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_receiptMouseExited
         
-        wrButton.setForeground(Color.black);
+        receipt.setForeground(Color.black);
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_wrButtonMouseExited
+    }//GEN-LAST:event_receiptMouseExited
 
     private void lrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButtonMouseEntered
         
@@ -791,20 +855,60 @@ public class Reports extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vrButtonActionPerformed
 
-    private void wrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wrButtonActionPerformed
-
-        if(projectCombo.getSelectedItem().equals("Select"))
-        {
-            project_nameLabel.setForeground(Color.red);
-        }
+    private void receiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receiptActionPerformed
+        int flag=0;
+        String fromdate,todate,sql;
+        String pname = (String) projectCombo.getSelectedItem();
+        String receipt= (String) receiptCombo.getSelectedItem();
         
+       if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
+       {
+           fromLabel.setForeground(Color.red);
+           toLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((!fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+       {
+           toLabel.setForeground(Color.red);
+           fromLabel.setForeground(Color.black);
+           flag++;
+       
+       }
+        if((fromDate.getEditor().getText().equals(""))&&(toDate.getEditor().getText().equals("")))
+        {
+           fromdate = "01/01/2000";
+           todate   = "01/01/2050";
+        }
         else
         {
-            // DATABASE CODE HERE
+             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
+                              fromdate = formater.format(fromDate.getDate());
+                                todate = formater.format(toDate.getDate());
+        }     
+         
+        
+        if(flag==0)
+        {
+        
+          try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\receipt.jrxml");
+             sql = "Select * from Payment where  id = "+receipt+" and  pdate between #"+fromdate+"# and #"+todate+"#";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }   
         }
         
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wrButtonActionPerformed
+        
+    }//GEN-LAST:event_receiptActionPerformed
 
     private void crButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crButtonActionPerformed
 
@@ -888,8 +992,10 @@ public class Reports extends javax.swing.JFrame {
     private void mrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrButtonActionPerformed
         
          int flag=0;
+        String sql;
         String fromdate,todate;
         String pname = (String) projectCombo.getSelectedItem();
+        String payment= (String) paymentCombo.getSelectedItem();
         
        if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
        {
@@ -917,6 +1023,15 @@ public class Reports extends javax.swing.JFrame {
                                 todate = formater.format(toDate.getDate());
         }     
         
+        if(paymentCombo.getSelectedItem().equals("All"))
+        {
+           sql = "select * from payment where  pdate between #"+fromdate+"# and #"+todate+"#; ";  
+        }
+        else
+        {
+            sql = "select * from payment where cname= '"+payment+"' and pdate between #"+fromdate+"# and #"+todate+"#; ";
+        }
+        
         
         if(flag==0)
         {
@@ -924,7 +1039,7 @@ public class Reports extends javax.swing.JFrame {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\payment.jrxml");
-            String sql = "select * from payment where  pdate between #"+fromdate+"# and #"+todate+"#; ";
+            //String sql = "select * from payment where  pdate between #"+fromdate+"# and #"+todate+"#; ";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -1069,8 +1184,9 @@ public class Reports extends javax.swing.JFrame {
 
     private void irButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton1ActionPerformed
          int flag=0;
-        String fromdate,todate;
+        String fromdate,todate,sql;
         String pname = (String) projectCombo.getSelectedItem();
+        String vendor = (String) vendorCombo.getSelectedItem();
         
        if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
        {
@@ -1098,15 +1214,25 @@ public class Reports extends javax.swing.JFrame {
                                 todate = formater.format(toDate.getDate());
         }     
         
+        if (vendorCombo.getSelectedItem().equals("All"))
+        {
+            sql ="select VENDOR,WOODTYPE,BILLDATE,TOTAL from Wood where BILLDATE between #"+fromdate+"# and #"+todate+"# union all select VENNAME,MATERIAL,BILLDATE,INVTOTALCOST from Inventory where BILLDATE between #"+fromdate+"# and #"+todate+"#";
+            
+        }
+        else
+        {
+            sql= "select VENDOR,WOODTYPE,BILLDATE,TOTAL from Wood where VENDOR='"+vendor+"' and BILLDATE between #"+fromdate+"# and #"+todate+"# union all select VENNAME,MATERIAL,BILLDATE,INVTOTALCOST from Inventory where VENNAME='"+vendor+"' and BILLDATE between #"+fromdate+"# and #"+todate+"#";
+            
+        }   
         
         if(flag==0)
-        {
+        { 
         
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\vendor.jrxml");
-            String sql = "select VENDOR,WOODTYPE,BILLDATE,TOTAL from Wood where BILLDATE between #"+fromdate+"# and #"+todate+"# union all select VENNAME,MATERIAL,BILLDATE,INVTOTALCOST from Inventory where BILLDATE between #"+fromdate+"# and #"+todate+"#";
+           // String sql = "select VENDOR,WOODTYPE,BILLDATE,TOTAL from Wood where BILLDATE between #"+fromdate+"# and #"+todate+"# union all select VENNAME,MATERIAL,BILLDATE,INVTOTALCOST from Inventory where BILLDATE between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -1291,9 +1417,10 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton3ActionPerformed
 
     private void irButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton4ActionPerformed
- int flag=0;
-        String fromdate,todate;
+         int flag=0;
+        String fromdate,todate,sql;
         String pname = (String) projectCombo.getSelectedItem();
+        String material= (String) materialCombo.getSelectedItem();
         
        if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
        {
@@ -1320,17 +1447,43 @@ public class Reports extends javax.swing.JFrame {
                               fromdate = formater.format(fromDate.getDate());
                                 todate = formater.format(toDate.getDate());
         }     
+         
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+        if (materialCombo.getSelectedItem().equals("All"))
+        {
+            sql ="Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where   INVDATE between #"+fromdate+"# and #"+todate+"#";
+           
+        }
+        else
+        {
+            sql= "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where MATERIAL='"+material+"' and  INVDATE between #"+fromdate+"# and #"+todate+"#";
+           
+        } 
+        }
+        else
+        {
+         if (materialCombo.getSelectedItem().equals("All"))
+        {
+            sql ="Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where  PRONAME ='"+pname+"' and  INVDATE between #"+fromdate+"# and #"+todate+"#";
+           
+        }
+        else
+        {
+            sql= "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where PRONAME ='"+pname+"' and MATERIAL='"+material+"' and  INVDATE between #"+fromdate+"# and #"+todate+"#";
+           
+        }
         
+        }
         
         if(flag==0)
         {
-        if(projectCombo.getSelectedItem().equals("All"))
-        {
+        
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\inventory.jrxml");
-            String sql = "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where   INVDATE between #"+fromdate+"# and #"+todate+"#";
+            //String sql = "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where   INVDATE between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -1339,31 +1492,9 @@ public class Reports extends javax.swing.JFrame {
             JasperViewer.viewReport(jp,false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+        }   
         }
-        
-        }
-        
-        else
-        {
-            try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\inventory.jrxml");
-            String sql = "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where  PRONAME ='"+pname+"' and  INVDATE between #"+fromdate+"# and #"+todate+"#";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(sql);
-            jd.setQuery(newQuery);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp,false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-      //  JOptionPane.showMessageDialog(null, "NOT AT ALL");
-        }
-            
-        }
-                    // TODO add your handling code here:
+              
     }//GEN-LAST:event_irButton4ActionPerformed
 
     private void lrButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton3MouseEntered
@@ -1543,9 +1674,10 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton5MouseExited
 
     private void lrButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton5ActionPerformed
- int flag=0;
-        String fromdate,todate;
+        int flag=0;
+        String fromdate,todate,sql;
         String pname = (String) projectCombo.getSelectedItem();
+        String labour = (String) labourCombo.getSelectedItem();
         
        if((fromDate.getEditor().getText().equals(""))&&(!toDate.getEditor().getText().equals("")))
        {
@@ -1572,36 +1704,40 @@ public class Reports extends javax.swing.JFrame {
                               fromdate = formater.format(fromDate.getDate());
                                 todate = formater.format(toDate.getDate());
         }     
+        if(projectCombo.getSelectedItem().equals("All"))
+        {
+         if (labourCombo.getSelectedItem().equals("All"))
+        {
+            sql ="select * from Labourdailysub  where    LDATE between #"+fromdate+"# and #"+todate+"#";
+        }
+        else
+        {
+            sql= "select * from Labourdailysub  where  LNAME='"+labour+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
+        }
+        }
+        else
+        {
+         if (labourCombo.getSelectedItem().equals("All"))
+        {
+            sql ="select * from Labourdailysub  where  PNAME ='"+pname+"' and   LDATE between #"+fromdate+"# and #"+todate+"#";
+        }
+        else
+        {
+            sql= "select * from Labourdailysub  where PNAME ='"+pname+"' and  LNAME='"+labour+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
+        }
+        
+        
+        }
         
         
         if(flag==0)
         {
-        if(projectCombo.getSelectedItem().equals("All"))
-        {
-          try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Labour.jrxml");
-            String sql = "select * from Labourdailysub  where    LDATE between #"+fromdate+"# and #"+todate+"#";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(sql);
-            jd.setQuery(newQuery);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp,false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        }
-        
-        else
-        {
+       
             try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Labour.jrxml");
-            String sql = "select * from Labourdailysub  where  PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
+            //String sql = "select * from Labourdailysub  where  PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -1612,12 +1748,6 @@ public class Reports extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
         }
-            
-        }
-            
-        
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_lrButton5ActionPerformed
 
     private void prButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prButtonMouseEntered
@@ -1679,22 +1809,29 @@ public class Reports extends javax.swing.JFrame {
     private javax.swing.JButton irButton2;
     private javax.swing.JButton irButton3;
     private javax.swing.JButton irButton4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JComboBox labourCombo;
     private javax.swing.JButton lrButton;
     private javax.swing.JButton lrButton1;
     private javax.swing.JButton lrButton2;
     private javax.swing.JButton lrButton3;
     private javax.swing.JButton lrButton4;
     private javax.swing.JButton lrButton5;
+    private javax.swing.JComboBox materialCombo;
     private javax.swing.JButton mrButton;
+    private javax.swing.JComboBox paymentCombo;
     private javax.swing.JButton prButton;
     private javax.swing.JComboBox projectCombo;
     private javax.swing.JLabel project_nameLabel;
+    private javax.swing.JButton receipt;
+    private javax.swing.JComboBox receiptCombo;
     private javax.swing.JPanel reportPanel;
     private javax.swing.JLabel report_typeLabel;
     private javax.swing.JLabel reportsLabel;
     private org.jdesktop.swingx.JXDatePicker toDate;
     private javax.swing.JLabel toLabel;
+    private javax.swing.JComboBox vendorCombo;
     private javax.swing.JButton vrButton;
-    private javax.swing.JButton wrButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -248,6 +248,7 @@ public class Plan extends javax.swing.JFrame {
                                             
                         prp.executeUpdate(); 
                         
+                        Functions.DisposeFunc(this);
                          
                          nameTextField.setText("");
                          chargeTextField.setText("");
@@ -261,33 +262,23 @@ public class Plan extends javax.swing.JFrame {
              catch(SQLException e)
             {
                 JOptionPane.showMessageDialog(null,""+e);
-                
             }
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null,"The error is1:"+e);
-                System.out.println(e.getMessage());
             }
-             
-          
-             Functions.DisposeFunc(this);
-             
-          }  
-       
+         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 
         dispose();
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void nameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldFocusGained
 
         nameLabel.setForeground(Color.black);
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_nameTextFieldFocusGained
 
     private void nameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldFocusLost
@@ -296,8 +287,6 @@ public class Plan extends javax.swing.JFrame {
         {
             nameLabel.setForeground(Color.red);
         }
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_nameTextFieldFocusLost
 
     private void chargeTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_chargeTextFieldFocusGained
@@ -308,8 +297,6 @@ public class Plan extends javax.swing.JFrame {
         {
             nameLabel.setForeground(Color.red);
         }
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_chargeTextFieldFocusGained
 
     private void chargeTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_chargeTextFieldFocusLost
@@ -318,8 +305,6 @@ public class Plan extends javax.swing.JFrame {
         {
             chargeLabel.setForeground(Color.red);
         }
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_chargeTextFieldFocusLost
 
     private void chargeTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chargeTextFieldKeyReleased

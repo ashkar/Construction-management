@@ -70,38 +70,37 @@
               </Group>
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="daily_wage_updateLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="head_of_contractLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="project_nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="dateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="amount_paidLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="project_nameCombo" alignment="0" pref="134" max="32767" attributes="1"/>
-                          <Component id="head_of_contractCombo" pref="134" max="32767" attributes="1"/>
-                          <Component id="date" max="32767" attributes="1"/>
-                          <Component id="amountpaidLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                      <Component id="labour_daily_chargesLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                       <Component id="addButton" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="addButton1" min="-2" pref="71" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="head_of_contractLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="project_nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="amount_paidLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="project_nameCombo" alignment="0" pref="134" max="32767" attributes="1"/>
+                              <Component id="head_of_contractCombo" pref="134" max="32767" attributes="1"/>
+                              <Component id="date" max="32767" attributes="1"/>
+                              <Component id="amountpaidLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="45" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="labour_daily_chargesLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -112,17 +111,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="labour_daily_chargesLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="daily_wage_updateLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="project_nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="project_nameCombo" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="head_of_contractLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="head_of_contractCombo" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jButton1" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="head_of_contractLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="head_of_contractCombo" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -172,18 +172,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Other Labour Daily Charges"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="daily_wage_updateLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="24" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Daily Wage Update"/>
+        <Property name="text" type="java.lang.String" value="Contractor work update"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="head_of_contractLabel">
@@ -242,16 +231,8 @@
           <Font name="Comic Sans MS" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="1">
             <StringItem index="0" value="Select"/>
-            <StringItem index="1" value="Carpentary"/>
-            <StringItem index="2" value="Centering"/>
-            <StringItem index="3" value="Electrical"/>
-            <StringItem index="4" value="Flooring"/>
-            <StringItem index="5" value="Laterate"/>
-            <StringItem index="6" value="Painting"/>
-            <StringItem index="7" value="Plastering"/>
-            <StringItem index="8" value="Plumbing"/>
           </StringArray>
         </Property>
       </Properties>
@@ -659,6 +640,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/add.png"/>
+        </Property>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
