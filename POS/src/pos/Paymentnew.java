@@ -129,7 +129,7 @@ public class Paymentnew extends javax.swing.JFrame {
         nameLabel.setText("Name");
 
         categoryCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        categoryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Contractor", "Customer", "Labour", "Partner", "Vendor", " " }));
+        categoryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Contractor", "Customer", "Labour", "Partner", "Plan", "Vendor", " " }));
         categoryCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 categoryComboItemStateChanged(evt);
@@ -404,6 +404,13 @@ public class Paymentnew extends javax.swing.JFrame {
         nameCombo.removeAllItems();
        nameCombo.addItem("Hyder");
        nameCombo.addItem("Fasal");
+       
+   }
+         else if(categoryCombo.getSelectedItem().equals("Plan"))
+   {
+        project_nameCombo.setEnabled(false);
+        nameCombo.removeAllItems();
+        Functions.FillCombo(nameCombo, "CNAME","Plan");
        
    }
    

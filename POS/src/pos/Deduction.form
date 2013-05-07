@@ -271,6 +271,7 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="l_nameTextFieldFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="l_nameTextFieldFocusLost"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="l_nameTextFieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="m_costLabel">

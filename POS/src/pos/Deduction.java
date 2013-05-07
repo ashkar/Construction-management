@@ -152,6 +152,11 @@ public class Deduction extends javax.swing.JFrame {
                 l_nameTextFieldFocusLost(evt);
             }
         });
+        l_nameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                l_nameTextFieldKeyReleased(evt);
+            }
+        });
 
         m_costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         m_costLabel.setText("Cost");
@@ -662,6 +667,7 @@ public class Deduction extends javax.swing.JFrame {
             name = m_nameTextField.getText();
             quantity= Integer.parseInt(quantityTextField.getText());
             cost    = Integer.parseInt(m_costTextField.getText());
+            cost=  -cost;
             details = m_detailsTextArea.getText();
             
         }
@@ -682,6 +688,7 @@ public class Deduction extends javax.swing.JFrame {
             name = workTextField.getText();
             quantity= Integer.parseInt(l_nameTextField.getText());
             cost    = Integer.parseInt(w_costTextField.getText());
+            cost = -cost;
             details = w_detailsTextArea.getText();
             
         }
@@ -732,6 +739,10 @@ public class Deduction extends javax.swing.JFrame {
     private void workTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_workTextFieldActionPerformed
+
+    private void l_nameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l_nameTextFieldKeyReleased
+        Functions.NumericValidation(l_nameTextField);
+    }//GEN-LAST:event_l_nameTextFieldKeyReleased
 
     /**
      * @param args the command line arguments

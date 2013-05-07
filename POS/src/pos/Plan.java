@@ -7,14 +7,14 @@ package pos;
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
  * @author lenovo
  */
 public class Plan extends javax.swing.JFrame {
- int Charge , Expense,Total;
- String Details,Cname;
+ int Charge , Expense=0,Total;
     /**
      * Creates new form Plan
      */
@@ -25,6 +25,8 @@ public class Plan extends javax.swing.JFrame {
         setSize(660,500);
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
+        Functions.FillCombo(detailsCombo, "plan", "Names");
+        AutoCompleteDecorator.decorate(detailsCombo);
     }
 
     /**
@@ -38,8 +40,6 @@ public class Plan extends javax.swing.JFrame {
 
         totalLabel = new javax.swing.JLabel();
         chargeLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        detailsTextArea = new javax.swing.JTextArea();
         detailsLabel = new javax.swing.JLabel();
         expenseLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
@@ -50,30 +50,21 @@ public class Plan extends javax.swing.JFrame {
         expenseTextField = new javax.swing.JTextField();
         cancelButton = new javax.swing.JButton();
         cashLabel = new javax.swing.JLabel();
+        detailsCombo = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        totalLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        totalLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         totalLabel.setText("Total");
 
-        chargeLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
-        chargeLabel.setText("Plan charge");
+        chargeLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        chargeLabel.setText("Charge");
 
-        detailsTextArea.setColumns(20);
-        detailsTextArea.setFont(new java.awt.Font("Comic Sans MS", 0, 13));
-        detailsTextArea.setRows(5);
-        detailsTextArea.setAutoscrolls(false);
-        detailsTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                detailsTextAreaFocusGained(evt);
-            }
-        });
-        jScrollPane1.setViewportView(detailsTextArea);
-
-        detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         detailsLabel.setText("Work Details");
 
-        expenseLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18));
+        expenseLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         expenseLabel.setText("Extra Expenses");
 
         nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -109,7 +100,7 @@ public class Plan extends javax.swing.JFrame {
             }
         });
 
-        planLabel.setFont(new java.awt.Font("Times New Roman", 1, 36));
+        planLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         planLabel.setForeground(new java.awt.Color(0, 102, 102));
         planLabel.setText("Plan / Design ");
 
@@ -135,6 +126,16 @@ public class Plan extends javax.swing.JFrame {
         cashLabel.setForeground(new java.awt.Color(255, 0, 0));
         cashLabel.setText("Cash");
 
+        detailsCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,35 +143,40 @@ public class Plan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(planLabel)
-                                .addGap(40, 40, 40))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(totalLabel)
-                                    .addComponent(expenseLabel)
-                                    .addComponent(detailsLabel)
-                                    .addComponent(chargeLabel)
-                                    .addComponent(nameLabel))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(expenseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                            .addComponent(chargeTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(183, 183, 183))
-                                    .addComponent(cashLabel)))))
+                        .addGap(210, 210, 210)
+                        .addComponent(planLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
+                        .addGap(175, 175, 175)
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(detailsLabel)
+                                    .addComponent(nameLabel)
+                                    .addComponent(chargeLabel))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chargeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(detailsCombo, 0, 173, Short.MAX_VALUE)
+                                            .addComponent(nameTextField))
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(expenseLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(totalLabel)
+                        .addGap(36, 36, 36)
+                        .addComponent(cashLabel)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,26 +188,27 @@ public class Plan extends javax.swing.JFrame {
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLabel))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(detailsLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(detailsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chargeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chargeLabel))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(expenseLabel)
-                    .addComponent(expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                    .addComponent(expenseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expenseLabel))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLabel)
                     .addComponent(cashLabel))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89))
+                .addGap(156, 156, 156))
         );
 
         pack();
@@ -210,6 +217,8 @@ public class Plan extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
        
         int flag = 0;
+        
+        String Details,Cname;
         
         if(nameTextField.getText().equals(""))
         {
@@ -222,13 +231,26 @@ public class Plan extends javax.swing.JFrame {
             chargeLabel.setForeground(Color.red);
             flag++;
         }
+        if(detailsCombo.getSelectedItem().equals("Select"))
+        {
+            detailsLabel.setForeground(Color.red);
+            flag++;
+        }
+        if(!expenseTextField.getText().equals(""))
+        {
+        Expense =Integer.parseInt( expenseTextField.getText());
+        }
+        else
+        {
+        Expense=0;
+        }
         
         if(flag == 0)
          {  
              Cname= nameTextField.getText();
-             Details = detailsTextArea.getText();
+             Details = (String) detailsCombo.getSelectedItem();
              Charge=Integer.parseInt(chargeTextField.getText());
-             Expense =Integer.parseInt( expenseTextField.getText());
+             
              Total=Charge+Expense;
              
              
@@ -253,8 +275,9 @@ public class Plan extends javax.swing.JFrame {
                          nameTextField.setText("");
                          chargeTextField.setText("");
                          expenseTextField.setText("");
-                         detailsTextArea.setText("");
+                         detailsCombo.setSelectedItem("Select");
                          cashLabel.setText("Cash");
+                         cashLabel.setForeground(Color.black);
                          con.commit();
                          con.close();
              }                               
@@ -367,15 +390,36 @@ public class Plan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_expenseTextFieldKeyReleased
 
-    private void detailsTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_detailsTextAreaFocusGained
-
-        if(nameTextField.getText().equals(""))
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+           String worknew =  JOptionPane.showInputDialog(null, "Enter New Work");
+        while (worknew.equals(""))
         {
-            nameLabel.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, "Please enter new work");
+            worknew = JOptionPane.showInputDialog(null, "Enter New Work");
         }
+        try{
+            
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                 PreparedStatement prp=con.prepareStatement("insert into Names(plan) values(?)");
+                 prp.setString(1, worknew);
+                 prp.executeUpdate(); 
+                 detailsCombo.setSelectedItem(worknew);
+                  con.commit();
+                  con.close();
+        }
+         
+             catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"Err is"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+             }     
         
-        // TODO add your handling code here:
-    }//GEN-LAST:event_detailsTextAreaFocusGained
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,11 +467,11 @@ public class Plan extends javax.swing.JFrame {
     private javax.swing.JLabel cashLabel;
     private javax.swing.JLabel chargeLabel;
     private javax.swing.JTextField chargeTextField;
+    private javax.swing.JComboBox detailsCombo;
     private javax.swing.JLabel detailsLabel;
-    private javax.swing.JTextArea detailsTextArea;
     private javax.swing.JLabel expenseLabel;
     private javax.swing.JTextField expenseTextField;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JLabel planLabel;
