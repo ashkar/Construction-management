@@ -174,7 +174,7 @@
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Extra Expense"/>
+        <Property name="text" type="java.lang.String" value="Deduction"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="materialCheckBox">

@@ -234,4 +234,39 @@ public static  String comboption(JFrame sname,String titlevalue,String columnnam
 
     return input;
 }
+
+
+public static void NewItem (JComboBox combo_box, String column_name )
+{
+ String worknew =  JOptionPane.showInputDialog(null, "Enter New Work");
+        while (worknew.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter new work");
+            worknew = JOptionPane.showInputDialog(null, "Enter New Work");
+        }
+        try{
+            
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                 PreparedStatement prp=con.prepareStatement("insert into Names("+column_name+") values(?)");
+                 prp.setString(1, worknew);
+                 prp.executeUpdate(); 
+                 combo_box.setSelectedItem(worknew);
+                  con.commit();
+                  con.close();
+        }
+         
+             catch(SQLException e)
+            {
+                JOptionPane.showMessageDialog(null,"Err is"+e);
+                
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,"The error is1:"+e);
+             }     
+        
+
 }
+}
+

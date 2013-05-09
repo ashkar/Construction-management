@@ -249,12 +249,19 @@ public class office extends javax.swing.JFrame {
                     flag++;
            }
                 
+           if(extra_expenseTextField.getText().equals(""))
+           {
+               extra=0;
+           }
+           else
+           {
+                extra   = Integer.parseInt(extra_expenseTextField.getText());
+           }    
            if(flag==0)
           { 
               expense = (String) expenseCombo.getSelectedItem();
               amount =  Integer.parseInt(amountTextField.getText());
-              extra   = Integer.parseInt(extra_expenseTextField.getText());
-              details = detailsTextArea.getText();
+             details = detailsTextArea.getText();
               extdetails = expense_detailsTextArea.getText();
               total         =amount+extra; 
            

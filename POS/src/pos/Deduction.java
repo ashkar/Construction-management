@@ -69,7 +69,7 @@ public class Deduction extends javax.swing.JFrame {
         extra_expenseLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         extra_expenseLabel.setForeground(new java.awt.Color(0, 102, 102));
         extra_expenseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        extra_expenseLabel.setText("Extra Expense");
+        extra_expenseLabel.setText("Deduction");
 
         materialCheckBox.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         materialCheckBox.setText("Material");

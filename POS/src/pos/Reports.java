@@ -758,7 +758,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectcost.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\Projectcost.jrxml");
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -849,7 +849,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Projectprice.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\Projectprice.jrxml");
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -906,7 +906,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\receipt.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\receipt.jrxml");
              sql = "Select * from Payment where  id = "+receipt+" and  pdate between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -964,7 +964,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\transport.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\transport.jrxml");
             String sql = "select * from Transport where   TRAN_DATE between #"+fromdate+"# and #"+todate+"# order by TRAN_DATE;";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -983,7 +983,7 @@ public class Reports extends javax.swing.JFrame {
             try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\transport.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\transport.jrxml");
             String sql = "select * from Transport where  TRAN_PRO ='"+pname+"' and  TRAN_DATE between #"+fromdate+"# and #"+todate+"# order by TRAN_DATE;";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1050,7 +1050,7 @@ public class Reports extends javax.swing.JFrame {
          try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\payment.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\payment.jrxml");
             //String sql = "select * from payment where  pdate between #"+fromdate+"# and #"+todate+"#; ";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1104,7 +1104,7 @@ public class Reports extends javax.swing.JFrame {
          try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\woodinventory.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\woodinventory.jrxml");
             String sql = "select * from Wood where  BILLDATE between #"+fromdate+"# and #"+todate+"# order by BILLDATE; ";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1123,7 +1123,7 @@ public class Reports extends javax.swing.JFrame {
         try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\vendor-list.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\vendor-list.jrxml");
             String sql = "select * from vendor;";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1148,7 +1148,7 @@ public class Reports extends javax.swing.JFrame {
          try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\customer-list.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\customer-list.jrxml");
             String sql = "select * from Customer;";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1173,7 +1173,7 @@ public class Reports extends javax.swing.JFrame {
      try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\contractor-list.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\contractor-list.jrxml");
             String sql = "select * from contractor;";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1243,7 +1243,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\vendor.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\vendor.jrxml");
            // String sql = "select VENDOR,WOODTYPE,BILLDATE,TOTAL from Wood where BILLDATE between #"+fromdate+"# and #"+todate+"# union all select VENNAME,MATERIAL,BILLDATE,INVTOTALCOST from Inventory where BILLDATE between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1306,7 +1306,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Woodusage.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\Woodusage.jrxml");
             String sql = "Select PNAME, WOODTYPE,WOOD_QUAN,WOOD_BATCH,WOOD_COST from Labourdailymain where WORK='Carpentary' and WOODTYPE is  NOT NULL and  LDATE between #"+fromdate+"# and #"+todate+"# order by LDATE";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1325,7 +1325,7 @@ public class Reports extends javax.swing.JFrame {
             try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Woodusage.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\Woodusage.jrxml");
             String sql = "Select PNAME, WOODTYPE,WOOD_QUAN,WOOD_BATCH,WOOD_COST from Labourdailymain where WORK='Carpentary' and WOODTYPE is  NOT NULL and PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"# order by LDATE";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1390,7 +1390,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\furniture.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\furniture.jrxml");
             String sql = "select pname,wdate,fname,fno,frate,total from workquote where category ='Furniture'  and  wdate between #"+fromdate+"# and #"+todate+"# order by wdate";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1409,7 +1409,7 @@ public class Reports extends javax.swing.JFrame {
             try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\furniture.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\furniture.jrxml");
             String sql = "select pname,wdate,fname,fno,frate,total from workquote where category ='Furniture' and  pname ='"+pname+"' and  wdate between #"+fromdate+"# and #"+todate+"# order by wdate";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1494,7 +1494,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\inventory.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\inventory.jrxml");
             //String sql = "Select INVID,BILLDATE,MATERIAL,QUANTITY,VENNAME,INVTOTALCOST,INVTOTALPRICE ,INVBILLNO from inventory where   INVDATE between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1580,7 +1580,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\ourlabour.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\ourlabour.jrxml");
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
@@ -1670,7 +1670,7 @@ public class Reports extends javax.swing.JFrame {
           try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\contract-work.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\contract-work.jrxml");
             
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -1759,7 +1759,7 @@ public class Reports extends javax.swing.JFrame {
             try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("G:\\hyderproject\\reports\\Labour.jrxml");
+            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\Labour.jrxml");
             //String sql = "select * from Labourdailysub  where  PNAME ='"+pname+"' and  LDATE between #"+fromdate+"# and #"+todate+"#";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
