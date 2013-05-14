@@ -14,6 +14,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author Home
  */
 public class Deduction extends javax.swing.JFrame {
+    
+    int temp=0;
 
     /** Creates new form ExtraExpense */
     public Deduction() {
@@ -27,6 +29,21 @@ public class Deduction extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(projectCombo);
     }
 
+     public Deduction(int i) {
+        initComponents();
+        setVisible(true);
+        setSize(660,670);
+        setTitle("Extra Expense");
+        setLocation(238,0);
+        getContentPane().setBackground(new Color(129,134,138));
+        Functions.FillCombo(projectCombo, "PRONAME", "Project");
+        AutoCompleteDecorator.decorate(projectCombo);
+        temp=i;
+        if (temp==1)
+        {
+            titleLabel.setText("Extra Expenses");
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -36,7 +53,7 @@ public class Deduction extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        extra_expenseLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         materialCheckBox = new javax.swing.JCheckBox();
         workCheckBox = new javax.swing.JCheckBox();
         m_nameLabel = new javax.swing.JLabel();
@@ -65,11 +82,11 @@ public class Deduction extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        extra_expenseLabel.setBackground(new java.awt.Color(255, 255, 255));
-        extra_expenseLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        extra_expenseLabel.setForeground(new java.awt.Color(0, 102, 102));
-        extra_expenseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        extra_expenseLabel.setText("Deduction");
+        titleLabel.setBackground(new java.awt.Color(255, 255, 255));
+        titleLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 102, 102));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Deduction");
 
         materialCheckBox.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         materialCheckBox.setText("Material");
@@ -159,7 +176,7 @@ public class Deduction extends javax.swing.JFrame {
         });
 
         m_costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        m_costLabel.setText("Cost");
+        m_costLabel.setText("Total Cost");
         m_costLabel.setEnabled(false);
 
         m_costTextField.setEnabled(false);
@@ -178,7 +195,7 @@ public class Deduction extends javax.swing.JFrame {
         });
 
         w_costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        w_costLabel.setText("Cost");
+        w_costLabel.setText("Total Cost");
         w_costLabel.setEnabled(false);
 
         w_costTextField.setEnabled(false);
@@ -251,6 +268,18 @@ public class Deduction extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(quantityLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(l_nameLabel)
+                        .addGap(162, 162, 162))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(m_detailsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(w_detailsLabel)
+                        .addGap(183, 183, 183))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
@@ -275,29 +304,16 @@ public class Deduction extends javax.swing.JFrame {
                                         .addComponent(l_nameTextField)
                                         .addComponent(workTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(workCheckBox))))
-                        .addContainerGap(92, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(quantityLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(l_nameLabel)
-                        .addGap(162, 162, 162))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(m_costLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(w_costLabel)
-                        .addGap(201, 201, 201))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(m_detailsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(w_detailsLabel)
-                        .addGap(183, 183, 183))))
+                                    .addComponent(workCheckBox)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(m_costLabel)
+                                .addGap(171, 171, 171)
+                                .addComponent(w_costLabel)))
+                        .addContainerGap(92, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(213, 213, 213)
-                .addComponent(extra_expenseLabel)
+                .addComponent(titleLabel)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -308,7 +324,7 @@ public class Deduction extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(extra_expenseLabel)
+                .addComponent(titleLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(materialCheckBox)
@@ -632,7 +648,7 @@ public class Deduction extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
  
         int flag = 0,quantity=0,cost=0;
-        String type="",name="",details="";
+        String type="",name="",details="",category="";
         String pname = (String) projectCombo.getSelectedItem();
         if(projectCombo.getSelectedItem().equals("Select"))
         {
@@ -667,7 +683,6 @@ public class Deduction extends javax.swing.JFrame {
             name = m_nameTextField.getText();
             quantity= Integer.parseInt(quantityTextField.getText());
             cost    = Integer.parseInt(m_costTextField.getText());
-            cost=  -cost;
             details = m_detailsTextArea.getText();
             
         }
@@ -688,18 +703,28 @@ public class Deduction extends javax.swing.JFrame {
             name = workTextField.getText();
             quantity= Integer.parseInt(l_nameTextField.getText());
             cost    = Integer.parseInt(w_costTextField.getText());
-            cost = -cost;
             details = w_detailsTextArea.getText();
-            
+           }
+        
+        if(temp==1)
+        {
+            category= "Extra Expenses";
+                   
         }
         
+        if (temp==2)
+        {
+        category="Deduction";    
+        cost= -cost;
+        }
+            
         if(flag==0)
         {   
             try {
                     Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                     Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                     java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                    PreparedStatement prp=con.prepareStatement("insert into Deduction(type,pname,wname,quantity,cost,details,odate) values(?,?,?,?,?,?,?)");    
+                    PreparedStatement prp=con.prepareStatement("insert into Deduction(type,pname,wname,quantity,cost,details,odate,category) values(?,?,?,?,?,?,?,?)");    
                                                
                         prp.setString(1,type);
                         prp.setString(2,pname);
@@ -708,6 +733,7 @@ public class Deduction extends javax.swing.JFrame {
                         prp.setInt(5,cost);
                         prp.setString(6,details);
                         prp.setDate(7,sqlDate);
+                        prp.setString(8,category);
                         prp.executeUpdate(); 
                         Functions.DisposeFunc(this);
                          m_nameTextField.setText("");
@@ -782,7 +808,6 @@ public class Deduction extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel extra_expenseLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel l_nameLabel;
@@ -798,6 +823,7 @@ public class Deduction extends javax.swing.JFrame {
     private javax.swing.JLabel projectLabel;
     private javax.swing.JLabel quantityLabel;
     private javax.swing.JTextField quantityTextField;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel w_costLabel;
     private javax.swing.JTextField w_costTextField;
     private javax.swing.JLabel w_detailsLabel;

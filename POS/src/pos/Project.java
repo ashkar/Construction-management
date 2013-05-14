@@ -74,6 +74,8 @@ public class Project extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         projectTextField = new javax.swing.JTextField();
         cnametf = new javax.swing.JTextField();
+        phoneLabel = new javax.swing.JLabel();
+        phoneTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -113,27 +115,34 @@ public class Project extends javax.swing.JFrame {
 
         cancelButton.setText("Cancel");
 
+        phoneLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        phoneLabel.setText("Phone");
+
+        phoneTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                phoneTextFieldKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel3)
-                .addContainerGap(220, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(p_nameLabel)
                     .addComponent(s_addressLabel)
                     .addComponent(detailsLabel)
-                    .addComponent(c_nameLabel))
+                    .addComponent(c_nameLabel)
+                    .addComponent(p_nameLabel)
+                    .addComponent(phoneLabel))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(projectTextField)
-                    .addComponent(cnametf))
+                    .addComponent(cnametf, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(phoneTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
                 .addGap(128, 128, 128))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -141,6 +150,10 @@ public class Project extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(154, 154, 154))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,13 +162,17 @@ public class Project extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p_nameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(c_nameLabel)
                     .addComponent(cnametf, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(p_nameLabel)
-                    .addComponent(projectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phoneLabel)
+                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(s_addressLabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,7 +184,7 @@ public class Project extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,19 +192,22 @@ public class Project extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
   
-        String cname,pname,address,details ;
+        String cname,pname,address,details,mobile ;
         int flag=0;
-       if(cnametf.getText().equals("") )
-    {
-        JOptionPane.showMessageDialog(null,"Write Customer Name");
-        flag++;
-    }
-     if(projectTextField.getText().equals(""))
-    {
-        JOptionPane.showMessageDialog(null,"Enter Project Name");
-        flag++;
-    }
-    
+        
+          c_nameLabel.setForeground(Color.black);
+          p_nameLabel.setForeground(Color.black);
+        if(cnametf.getText().equals("") )
+            {
+            c_nameLabel.setForeground(Color.red);
+            flag++;
+            }   
+        if(projectTextField.getText().equals(""))
+            {
+            p_nameLabel.setForeground(Color.red);
+            flag++;
+            }
+
          
     if(flag==0)
          {  
@@ -195,6 +215,7 @@ public class Project extends javax.swing.JFrame {
              pname = projectTextField.getText();
              address=s_addressTextArea.getText();
              details=detailsTextArea.getText();
+             mobile = phoneTextField.getText();
              
               
              try {
@@ -202,13 +223,14 @@ public class Project extends javax.swing.JFrame {
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                   Statement  st = con.createStatement();
                   java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Project (PRONAME,CUSTNAME,ADDRESS,DETAILS,PRODATE) values(?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Project (PRONAME,CUSTNAME,ADDRESS,DETAILS,PRODATE,Mobile) values(?,?,?,?,?,?)");    
                                                
                         prp.setString(1,pname);
                         prp.setString(2,cname);
                         prp.setString(3,address);
                         prp.setString(4,details);
                         prp.setDate(5,sqlDate);
+                        prp.setString(6,mobile);
                         prp.executeUpdate(); 
                        //  JOptionPane.showMessageDialog(null,"New Project Added");
                          
@@ -217,6 +239,7 @@ public class Project extends javax.swing.JFrame {
                              comboname.addItem(pname);
                              comboname.setSelectedItem(pname);
                          }
+                        Functions.DisposeFunc(this);
                          cnametf.setText("");
                          projectTextField.setText("");
                          s_addressTextArea.setText("");
@@ -238,6 +261,10 @@ public class Project extends javax.swing.JFrame {
             } 
     }//GEN-LAST:event_addButtonActionPerformed
     }
+        private void phoneTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneTextFieldKeyReleased
+       Functions.NumericValidation(phoneTextField);
+    }//GEN-LAST:event_phoneTextFieldKeyReleased
+    
     /**
      * @param args the command line arguments
      */
@@ -290,6 +317,8 @@ public class Project extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel p_nameLabel;
+    private javax.swing.JLabel phoneLabel;
+    private javax.swing.JTextField phoneTextField;
     private javax.swing.JTextField projectTextField;
     private javax.swing.JLabel s_addressLabel;
     private javax.swing.JTextArea s_addressTextArea;

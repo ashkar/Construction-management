@@ -299,14 +299,6 @@ double quantity,cost,rate ,totalcost,totalrate ;
         materialCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         materialCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         materialCombo.setNextFocusableComponent(quantityTextField);
-        materialCombo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                materialComboFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                materialComboFocusLost(evt);
-            }
-        });
 
         materialButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         materialButton.setBorder(null);
@@ -390,14 +382,13 @@ double quantity,cost,rate ,totalcost,totalrate ;
                         .addGap(31, 31, 31)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(add_projectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(materialButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_vendorButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addwork, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 119, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(materialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_projectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_vendorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addwork, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 119, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,16 +464,16 @@ double quantity,cost,rate ,totalcost,totalrate ;
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                        .addGap(167, 167, 167)
                         .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(164, Short.MAX_VALUE))
         );
@@ -979,49 +970,13 @@ Functions.NumericValidate(rateTextField);        // TODO add your handling code 
     }//GEN-LAST:event_addworkMouseEntered
 
     private void addworkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addworkMouseExited
-  addwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png")));        // TODO add your handling code here:
+    addwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png")));        // TODO add your handling code here:
     }//GEN-LAST:event_addworkMouseExited
 
     private void addworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addworkActionPerformed
 
-        String worknew =  JOptionPane.showInputDialog(null, "Enter New Work");
-        while (worknew.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Please enter new work");
-            worknew = JOptionPane.showInputDialog(null, "Enter New Work");
-        }
-        try{
-            
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                 PreparedStatement prp=con.prepareStatement("insert into Names(WORK) values(?)");
-                 prp.setString(1, worknew);
-                 prp.executeUpdate(); 
-                 workCombo.setSelectedItem(worknew);
-                  con.commit();
-                  con.close();
-        }
-         
-             catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(null,"Err is"+e);
-                
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"The error is1:"+e);
-             }     
-        
-        // TODO add your handling code here:
+       Functions.NewItem(workCombo, "WORK");
     }//GEN-LAST:event_addworkActionPerformed
-
-    private void materialComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_materialComboFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_materialComboFocusGained
-
-    private void materialComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_materialComboFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_materialComboFocusLost
 
     private void materialButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialButtonMouseEntered
         // TODO add your handling code here:
@@ -1032,34 +987,7 @@ Functions.NumericValidate(rateTextField);        // TODO add your handling code 
     }//GEN-LAST:event_materialButtonMouseExited
 
     private void materialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButtonActionPerformed
-        String matnew =  JOptionPane.showInputDialog(null, "Enter New  Material");
-        while (matnew.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Please enter new Material");
-            matnew = JOptionPane.showInputDialog(null, "Enter New Material");
-        }
-        try{
-            
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-                Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                 PreparedStatement prp=con.prepareStatement("insert into Names(Material) values(?)");
-                 prp.setString(1, matnew);
-                 prp.executeUpdate(); 
-                 materialCombo.setSelectedItem(matnew);
-                  con.commit();
-                  con.close();
-        }
-         
-             catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(null,"Err is"+e);
-                
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"The error is1:"+e);
-             }     
-                // TODO add your handling code here:
+        Functions.NewItem(materialCombo, "Material");
     }//GEN-LAST:event_materialButtonActionPerformed
 
     private void typeComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_typeComboFocusGained

@@ -31,7 +31,7 @@ public class Wood extends javax.swing.JFrame {
     public Wood() {
         initComponents();
         setTitle("Add Wood");
-        setSize(600,550);
+        setSize(600,650);
         setVisible(true);
         setLocation(238,0);
         getContentPane().setBackground(new Color(129,134,138));
@@ -89,8 +89,10 @@ public class Wood extends javax.swing.JFrame {
         vendorButton = new javax.swing.JButton();
         cashLabel = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
-        ExpLabel1 = new javax.swing.JLabel();
+        batchLabel = new javax.swing.JLabel();
         BatchTextField = new javax.swing.JTextField();
+        pricetypeCombo = new javax.swing.JComboBox();
+        pricetypeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -170,8 +172,10 @@ public class Wood extends javax.swing.JFrame {
         DetLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         DetLabel.setText("Details");
 
-        DetailsTextArea.setColumns(20);
+        DetailsTextArea.setColumns(15);
         DetailsTextArea.setRows(5);
+        DetailsTextArea.setAutoscrolls(false);
+        DetailsTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(DetailsTextArea);
 
         woodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
@@ -197,8 +201,8 @@ public class Wood extends javax.swing.JFrame {
         totalLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         totalLabel.setText("Total");
 
-        ExpLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        ExpLabel1.setText("Batch");
+        batchLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        batchLabel.setText("Batch");
 
         BatchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,169 +223,203 @@ public class Wood extends javax.swing.JFrame {
             }
         });
 
+        pricetypeCombo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        pricetypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Per Unit", "Total" }));
+        pricetypeCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pricetypeComboItemStateChanged(evt);
+            }
+        });
+
+        pricetypeLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        pricetypeLabel.setText("Price Type");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(BatchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(woodLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(wtypeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(dateLabel)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(billdate, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                                    .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(ExpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(quantityLabel)
-                            .addComponent(ExpLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(costLabel)
-                                    .addComponent(vendorLabel)
-                                    .addComponent(totalLabel))
-                                .addGap(51, 51, 51)
-                                .addComponent(cashLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ExpLabel)
-                            .addComponent(DetLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vendorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(47, 47, 47)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(169, 169, 169))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(add_woodLable)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(batchLabel)
+                            .addComponent(woodLabel)
+                            .addComponent(pricetypeLabel)
+                            .addComponent(quantityLabel)
+                            .addComponent(costLabel)
+                            .addComponent(vendorLabel)
+                            .addComponent(ExpLabel)
+                            .addComponent(DetLabel)
+                            .addComponent(dateLabel)
+                            .addComponent(totalLabel))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cashLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(billdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(wtypeCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BatchTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pricetypeCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(quantityTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(costTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(vendorCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ExpTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vendorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 163, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(184, 184, 184)
+                .addComponent(add_woodLable)
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(add_woodLable)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateLabel)
-                    .addComponent(billdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(woodLabel)
-                    .addComponent(wtypeCombo)
-                    .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(billdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ExpLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BatchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quantityLabel)
-                    .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(costLabel)
-                    .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vendorLabel)
-                    .addComponent(vendorCombo)
-                    .addComponent(vendorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ExpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ExpTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DetLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalLabel)
-                    .addComponent(cashLabel))
-                .addGap(20, 20, 20)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(wtypeCombo)
+                            .addComponent(woodLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BatchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(batchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pricetypeLabel)
+                            .addComponent(pricetypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(quantityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(quantityTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(woodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(vendorButton)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(vendorLabel)
+                            .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ExpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                            .addComponent(ExpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DetLabel)
+                                .addGap(75, 75, 75)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(totalLabel)
+                                    .addComponent(cashLabel)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(134, 134, 134))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-    
-    
-    String woodtype,vendor,details;
-    
-    
-    int flag = 0;
-    
+     String woodtype,vendor,details,batch;
+     int flag = 0;
+     ExpLabel.setForeground(Color.black);
+      woodLabel.setForeground(Color.black);
+       pricetypeLabel.setForeground(Color.black);
+        costLabel.setForeground(Color.black);
+         batchLabel.setForeground(Color.black);
+          quantityLabel.setForeground(Color.black);
+           dateLabel.setForeground(Color.black);
+            DetLabel.setForeground(Color.black);
+             vendorLabel.setForeground(Color.black);
+      
     
     if(wtypeCombo.getSelectedItem().equals("Select"))
     {
         woodLabel.setForeground(Color.red);
         flag++;
     }
-    else
-    { woodLabel.setForeground(Color.black);
-    }
+    
     if(costTextField.getText().equals(""))
     {
         costLabel.setForeground(Color.red);
         flag++;
     }
-    else
-    {
-         costLabel.setForeground(Color.black);
-    }
+   
     if(billdate.getEditor().getText().equals(""))
     {
         dateLabel.setForeground(Color.red);
         flag++;
     }
-    else
-    {
-    dateLabel.setForeground(Color.black);
-    }
+    
     if(vendorCombo.getSelectedItem().equals("Select"))
     {
         vendorLabel.setForeground(Color.red);
         flag++;
     }
-    else
-    {
-      vendorLabel.setForeground(Color.black);   
-    }
+    
     if(quantityTextField.getText().equals(""))
     {
         quantityLabel.setForeground(Color.red);
         flag++;
     }
-    else
-    {
-        quantityLabel.setForeground(Color.black);
-    }
+    
     if(!ExpTextField.getText().equals(""))
     {
         exp = Integer.parseInt(ExpTextField.getText());
             }
+    if(pricetypeCombo.getSelectedItem().equals("Select"))
+    {
+        pricetypeLabel.setForeground(Color.red);
+        flag++;
+    }
     
+    if(BatchTextField.getText().equals(""))
+    {
+        batchLabel.setForeground(Color.red);
+        flag++;
+    }
+    
+//    if(BatchTextField.getText().equals(""))
+//    {
+//    batch = "";
+//    }
+//    else
+//    {
+//       
+//    }
         
-        
+    
     if(flag==0)
     {
        
@@ -390,31 +428,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     cost = Integer.parseInt(costTextField.getText());
     vendor = (String) vendorCombo.getSelectedItem();
     quantity = Integer.parseInt( quantityTextField.getText());
-        total = cost*quantity+exp;
-        int bno = 0 ;
-        try {
-                  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                  Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select INVNO from Wood ");
-                  Boolean rec = res.next();
-                  System.out.println("connected successfully");
-                  do
-                  {
-                     if(rec==true) {
-                      bno =res.getInt(1);
-                      }
-                  }while (res.next());
-                  
-                bno+=1 ;
-        
-        }
-        catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,"The error is1:"+e);
-                System.out.println(e.getMessage());
-            } 
-        
+    batch=BatchTextField.getText();
        try
        {
            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -422,7 +436,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
            SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
            String newdate=    formater.format(billdate.getDate()); 
                      
-           PreparedStatement prp=con.prepareStatement("INSERT INTO Wood (WOODTYPE,VENDOR,QUANTITY,COST,EXT_EXP,EXT_EXP_DET,TOTAL,BILLDATE) VALUES(?,?,?,?,?,?,?,?)");
+           PreparedStatement prp=con.prepareStatement("INSERT INTO Wood (WOODTYPE,VENDOR,QUANTITY,COST,EXT_EXP,EXT_EXP_DET,TOTAL,BILLDATE,BATCH,WOOD_REM) VALUES(?,?,?,?,?,?,?,?,?,?)");
            prp.setString(1,woodtype);
            prp.setString(2,vendor);
            prp.setInt(3,quantity);
@@ -431,13 +445,15 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
            prp.setString(6,details);
            prp.setInt(7,total);
            prp.setString(8,newdate);
+           prp.setString(9, batch);
+           prp.setInt(10,quantity);
            prp.executeUpdate();
            //JOptionPane.showMessageDialog(null,"Wood Details added Succesfully");
            
            if(temp == 1)
            {
-              comboname.addItem(bno);
-              comboname.setSelectedItem(bno);
+              comboname.addItem(batch);
+              comboname.setSelectedItem(batch);
            }
            
            wtypeCombo.setSelectedItem("Select");
@@ -446,13 +462,15 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
            quantityTextField.setText("");
            ExpTextField.setText("");
            DetailsTextArea.setText("");
+           BatchTextField.setText("");
+           cashLabel.setText("");
            con.commit();
            con.close();
            Functions.DisposeFunc(this);
        }
        catch(SQLException e)
        {
-           JOptionPane.showMessageDialog(null,"INVALID DATATYPE");
+           JOptionPane.showMessageDialog(null,""+e);
        }
        catch(Exception e)
        {
@@ -490,17 +508,61 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 quantity=Integer.parseInt(quantityTextField.getText()) ;
              }
         }
-        total = cost*quantity+exp;
+         if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
+         {
+         total =  cost*quantity+exp;
+        }
+        if(pricetypeCombo.getSelectedItem().equals("Total"))
+         {
+         total =  cost+exp;
+         }
+    
         
           cashLabel.setText(Integer.toString(total));
        
     }//GEN-LAST:event_costTextFieldKeyReleased
 
     private void quantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextFieldKeyReleased
-
-        Functions.NumericValidation(quantityTextField);
+       
+            if(Functions.NumericValidate(quantityTextField))
+            {
+             if(costTextField.getText().equals(""))
+            { cost = 0;}
+            else
+            {
+                cost =Integer.parseInt( costTextField.getText());
+            }
+             if(ExpTextField.getText().equals(""))
+            {
+                exp = 0;
+            }
+            else
+            {
+                exp = Integer.parseInt(ExpTextField.getText());
+            }
+             if (quantityTextField.getText().equals(""))
+             {
+                 quantity=0;
+             }
+             else
+                 
+             {
+                quantity=Integer.parseInt(quantityTextField.getText()) ;
+             }
+        }
+         if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
+         {
+         total =  cost*quantity+exp;
+        }
+        if(pricetypeCombo.getSelectedItem().equals("Total"))
+         {
+         total =  cost+exp;
+         }
+    
         
-        // TODO add your handling code here:
+          cashLabel.setText(Integer.toString(total));
+       
+        
     }//GEN-LAST:event_quantityTextFieldKeyReleased
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -549,7 +611,14 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 quantity=Integer.parseInt(quantityTextField.getText()) ;
              }
         }
-        total = cost*quantity+exp;
+        if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
+         {
+         total =  cost*quantity+exp;
+        }
+        if(pricetypeCombo.getSelectedItem().equals("Total"))
+         {
+         total =  cost+exp;
+         }
         
         cashLabel.setText(Integer.toString(total));
     }//GEN-LAST:event_ExpTextFieldKeyReleased
@@ -559,7 +628,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }//GEN-LAST:event_vendorButtonActionPerformed
 
     private void woodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_woodButtonActionPerformed
-  String woodnew =  JOptionPane.showInputDialog(null, "Enter New Wood Type");
+    String woodnew =  JOptionPane.showInputDialog(null, "Enter New Wood Type");
         while (woodnew.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please Enter New Wood Type");
@@ -604,6 +673,20 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         // TODO add your handling code here:
     }//GEN-LAST:event_BatchTextFieldKeyReleased
 
+    private void pricetypeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pricetypeComboItemStateChanged
+         if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
+         {
+         total =  cost*quantity+exp;
+        }
+        if(pricetypeCombo.getSelectedItem().equals("Total"))
+         {
+         total =  cost+exp;
+         }
+        
+        cashLabel.setText(Integer.toString(total));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pricetypeComboItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -644,9 +727,9 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel DetLabel;
     private javax.swing.JTextArea DetailsTextArea;
     private javax.swing.JLabel ExpLabel;
-    private javax.swing.JLabel ExpLabel1;
     private javax.swing.JTextField ExpTextField;
     private javax.swing.JLabel add_woodLable;
+    private javax.swing.JLabel batchLabel;
     private org.jdesktop.swingx.JXDatePicker billdate;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel cashLabel;
@@ -654,6 +737,8 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JTextField costTextField;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox pricetypeCombo;
+    private javax.swing.JLabel pricetypeLabel;
     private javax.swing.JLabel quantityLabel;
     private javax.swing.JTextField quantityTextField;
     private javax.swing.JButton saveButton;

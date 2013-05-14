@@ -35,7 +35,7 @@ public class Reports extends javax.swing.JFrame {
         initComponents();
         setLocation(238,0);
 //        setLocationRelativeTo(null);
-        setSize(600,660);
+        setSize(600,700);
         setTitle("Reports");
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
@@ -77,14 +77,12 @@ public class Reports extends javax.swing.JFrame {
         project_nameLabel = new javax.swing.JLabel();
         projectCombo = new javax.swing.JComboBox();
         reportPanel = new javax.swing.JPanel();
-        report_typeLabel = new javax.swing.JLabel();
         prButton = new javax.swing.JButton();
         mrButton = new javax.swing.JButton();
         vrButton = new javax.swing.JButton();
         irButton = new javax.swing.JButton();
         crButton = new javax.swing.JButton();
         receipt = new javax.swing.JButton();
-        lrButton1 = new javax.swing.JButton();
         lrButton2 = new javax.swing.JButton();
         irButton1 = new javax.swing.JButton();
         irButton2 = new javax.swing.JButton();
@@ -94,7 +92,6 @@ public class Reports extends javax.swing.JFrame {
         lrButton4 = new javax.swing.JButton();
         lrButton5 = new javax.swing.JButton();
         lrButton = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         vendorCombo = new javax.swing.JComboBox();
         labourCombo = new javax.swing.JComboBox();
         materialCombo = new javax.swing.JComboBox();
@@ -103,6 +100,23 @@ public class Reports extends javax.swing.JFrame {
         paymentCombo = new javax.swing.JComboBox();
         workCombo2 = new javax.swing.JComboBox();
         workCombo1 = new javax.swing.JComboBox();
+        lrButton1 = new javax.swing.JButton();
+        lrButton6 = new javax.swing.JButton();
+        lrButton7 = new javax.swing.JButton();
+        lrButton8 = new javax.swing.JButton();
+        lrButton9 = new javax.swing.JButton();
+        lrButton10 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        report_typeLabel1 = new javax.swing.JLabel();
+        lrButton11 = new javax.swing.JButton();
+        lrButton12 = new javax.swing.JButton();
+        lrButton13 = new javax.swing.JButton();
+        lrButton14 = new javax.swing.JButton();
+        lrButton15 = new javax.swing.JButton();
+        lrButton16 = new javax.swing.JButton();
+        lrButton17 = new javax.swing.JButton();
+        lrButton18 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         fromDate = new org.jdesktop.swingx.JXDatePicker();
         fromLabel = new javax.swing.JLabel();
         toLabel = new javax.swing.JLabel();
@@ -131,10 +145,6 @@ public class Reports extends javax.swing.JFrame {
 
         reportPanel.setBackground(new java.awt.Color(129, 134, 138));
         reportPanel.setEnabled(false);
-
-        report_typeLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        report_typeLabel.setForeground(new java.awt.Color(0, 102, 102));
-        report_typeLabel.setText("Report Type");
 
         prButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         prButton.setText("Project Cost");
@@ -243,27 +253,6 @@ public class Reports extends javax.swing.JFrame {
         receipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 receiptActionPerformed(evt);
-            }
-        });
-
-        lrButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        lrButton1.setText("Customer-name list");
-        lrButton1.setBorder(null);
-        lrButton1.setBorderPainted(false);
-        lrButton1.setContentAreaFilled(false);
-        lrButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lrButton1.setFocusPainted(false);
-        lrButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lrButton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lrButton1MouseExited(evt);
-            }
-        });
-        lrButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lrButton1ActionPerformed(evt);
             }
         });
 
@@ -462,14 +451,285 @@ public class Reports extends javax.swing.JFrame {
 
         workCombo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
 
+        lrButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton1.setText("Plan Details");
+        lrButton1.setBorder(null);
+        lrButton1.setBorderPainted(false);
+        lrButton1.setContentAreaFilled(false);
+        lrButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton1.setFocusPainted(false);
+        lrButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton1MouseExited(evt);
+            }
+        });
+        lrButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton1ActionPerformed(evt);
+            }
+        });
+
+        lrButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton6.setText("Office Expense");
+        lrButton6.setBorder(null);
+        lrButton6.setBorderPainted(false);
+        lrButton6.setContentAreaFilled(false);
+        lrButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton6.setFocusPainted(false);
+        lrButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton6MouseExited(evt);
+            }
+        });
+        lrButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton6ActionPerformed(evt);
+            }
+        });
+
+        lrButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton7.setText("Payment");
+        lrButton7.setBorder(null);
+        lrButton7.setBorderPainted(false);
+        lrButton7.setContentAreaFilled(false);
+        lrButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton7.setFocusPainted(false);
+        lrButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton7MouseExited(evt);
+            }
+        });
+        lrButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton7ActionPerformed(evt);
+            }
+        });
+
+        lrButton8.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton8.setText("Deduction");
+        lrButton8.setBorder(null);
+        lrButton8.setBorderPainted(false);
+        lrButton8.setContentAreaFilled(false);
+        lrButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton8.setFocusPainted(false);
+        lrButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton8MouseExited(evt);
+            }
+        });
+        lrButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton8ActionPerformed(evt);
+            }
+        });
+
+        lrButton9.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton9.setText("Inventory");
+        lrButton9.setBorder(null);
+        lrButton9.setBorderPainted(false);
+        lrButton9.setContentAreaFilled(false);
+        lrButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton9.setFocusPainted(false);
+        lrButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton9MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton9MouseExited(evt);
+            }
+        });
+        lrButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton9ActionPerformed(evt);
+            }
+        });
+
+        lrButton10.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton10.setText("Extra expense");
+        lrButton10.setBorder(null);
+        lrButton10.setBorderPainted(false);
+        lrButton10.setContentAreaFilled(false);
+        lrButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton10.setFocusPainted(false);
+        lrButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton10MouseExited(evt);
+            }
+        });
+        lrButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton10ActionPerformed(evt);
+            }
+        });
+
+        report_typeLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        report_typeLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        report_typeLabel1.setText("DB - Copy");
+
+        lrButton11.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton11.setText("Project Details");
+        lrButton11.setBorder(null);
+        lrButton11.setBorderPainted(false);
+        lrButton11.setContentAreaFilled(false);
+        lrButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton11.setFocusPainted(false);
+        lrButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton11ActionPerformed(evt);
+            }
+        });
+
+        lrButton12.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton12.setText(" Daily work update");
+        lrButton12.setBorder(null);
+        lrButton12.setBorderPainted(false);
+        lrButton12.setContentAreaFilled(false);
+        lrButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton12.setFocusPainted(false);
+        lrButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton12ActionPerformed(evt);
+            }
+        });
+
+        lrButton13.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton13.setText("Labour daily update");
+        lrButton13.setBorder(null);
+        lrButton13.setBorderPainted(false);
+        lrButton13.setContentAreaFilled(false);
+        lrButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton13.setFocusPainted(false);
+        lrButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton13ActionPerformed(evt);
+            }
+        });
+
+        lrButton14.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton14.setText("Transport");
+        lrButton14.setBorder(null);
+        lrButton14.setBorderPainted(false);
+        lrButton14.setContentAreaFilled(false);
+        lrButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton14.setFocusPainted(false);
+        lrButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton14ActionPerformed(evt);
+            }
+        });
+
+        lrButton15.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton15.setText("Work Quote");
+        lrButton15.setBorder(null);
+        lrButton15.setBorderPainted(false);
+        lrButton15.setContentAreaFilled(false);
+        lrButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton15.setFocusPainted(false);
+        lrButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton15ActionPerformed(evt);
+            }
+        });
+
+        lrButton16.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton16.setText("Contract -work update");
+        lrButton16.setBorder(null);
+        lrButton16.setBorderPainted(false);
+        lrButton16.setContentAreaFilled(false);
+        lrButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton16.setFocusPainted(false);
+        lrButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton16ActionPerformed(evt);
+            }
+        });
+
+        lrButton17.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton17.setText("Wood inventory");
+        lrButton17.setBorder(null);
+        lrButton17.setBorderPainted(false);
+        lrButton17.setContentAreaFilled(false);
+        lrButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton17.setFocusPainted(false);
+        lrButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton17ActionPerformed(evt);
+            }
+        });
+
+        lrButton18.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lrButton18.setText("Labour namelist");
+        lrButton18.setBorder(null);
+        lrButton18.setBorderPainted(false);
+        lrButton18.setContentAreaFilled(false);
+        lrButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lrButton18.setFocusPainted(false);
+        lrButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lrButton18ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
         reportPanelLayout.setHorizontalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator2)
+            .addComponent(jSeparator3)
+            .addGroup(reportPanelLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lrButton)
+                    .addComponent(lrButton6)
+                    .addComponent(lrButton1)
+                    .addComponent(lrButton2)
+                    .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lrButton17)
+                        .addComponent(lrButton11)))
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(report_typeLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lrButton7)
+                                    .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lrButton8)
+                                        .addComponent(lrButton9))
+                                    .addComponent(lrButton10))
+                                .addGap(42, 42, 42))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                                .addComponent(lrButton12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))))
+                .addGap(10, 10, 10)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lrButton14)
+                    .addComponent(lrButton13)
+                    .addComponent(lrButton18)
+                    .addComponent(lrButton16)
+                    .addComponent(lrButton15))
+                .addGap(28, 28, 28))
+            .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,65 +737,58 @@ public class Reports extends javax.swing.JFrame {
                             .addComponent(irButton3))
                         .addGap(41, 41, 41)
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(crButton)
-                                    .addComponent(vrButton))
-                                .addGap(36, 36, 36)
-                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(irButton2)
-                                    .addComponent(irButton)))
-                            .addComponent(report_typeLabel))
-                        .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                        .addComponent(lrButton2)
-                        .addGap(62, 62, 62)
+                            .addComponent(crButton)
+                            .addComponent(vrButton))
+                        .addGap(36, 36, 36)
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lrButton1)
-                            .addComponent(lrButton))
-                        .addGap(91, 91, 91))
+                            .addComponent(irButton2)
+                            .addComponent(irButton))
+                        .addGap(107, 107, 107))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(irButton1))
-                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(labourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(workCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mrButton)
-                                    .addComponent(lrButton5)
-                                    .addComponent(lrButton4))))
-                        .addGap(18, 18, 18)
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addComponent(materialCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(irButton4))
-                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(reportPanelLayout.createSequentialGroup()
-                                        .addComponent(receiptCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(receipt))
+                                        .addComponent(irButton1))
                                     .addGroup(reportPanelLayout.createSequentialGroup()
-                                        .addComponent(workCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lrButton3)))))
-                        .addGap(37, 37, 37))))
+                                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labourCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mrButton)
+                                            .addComponent(lrButton5))))
+                                .addGap(18, 18, 18)
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(reportPanelLayout.createSequentialGroup()
+                                        .addComponent(materialCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(irButton4))
+                                    .addGroup(reportPanelLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                                .addComponent(receiptCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(receipt))
+                                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                                .addComponent(workCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lrButton3))))))
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(workCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lrButton4)))
+                        .addGap(35, 35, 35))))
         );
         reportPanelLayout.setVerticalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportPanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(report_typeLabel)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prButton)
                     .addComponent(vrButton)
@@ -547,14 +800,6 @@ public class Reports extends javax.swing.JFrame {
                     .addComponent(irButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lrButton2)
-                    .addComponent(lrButton1))
-                .addGap(9, 9, 9)
-                .addComponent(lrButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -569,18 +814,59 @@ public class Reports extends javax.swing.JFrame {
                     .addComponent(receiptCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mrButton)
-                            .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lrButton4)
-                            .addComponent(workCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(mrButton)
+                    .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(workCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lrButton3)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lrButton4)
+                    .addComponent(workCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(report_typeLabel1)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(lrButton2))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lrButton7)
+                            .addComponent(lrButton15))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(lrButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lrButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lrButton1))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(lrButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lrButton9))
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(lrButton16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lrButton18)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lrButton10)
+                            .addComponent(lrButton14))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lrButton11)
+                    .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lrButton12)
+                        .addComponent(lrButton13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lrButton17)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         fromDate.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1135,31 +1421,6 @@ public class Reports extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_lrButtonActionPerformed
-
-    private void lrButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lrButton1MouseEntered
-
-    private void lrButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lrButton1MouseExited
-
-    private void lrButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton1ActionPerformed
-         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-            JasperDesign jd = JRXmlLoader.load("C:\\Program Files\\Software\\hyderproject\\reports\\customer-list.jrxml");
-            String sql = "select * from Customer;";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(sql);
-            jd.setQuery(newQuery);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp,false);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }   
-    }//GEN-LAST:event_lrButton1ActionPerformed
 
     private void lrButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton2MouseEntered
         lrButton2.setForeground(Color.white);        // TODO add your handling code here:
@@ -1781,6 +2042,110 @@ public class Reports extends javax.swing.JFrame {
          prButton.setForeground(Color.black);   // TODO add your handling code here:
     }//GEN-LAST:event_prButtonMouseExited
 
+    private void lrButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton1MouseEntered
+
+    private void lrButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton1MouseExited
+
+    private void lrButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton1ActionPerformed
+        Functions.Report("Dbcopy-plan","Plan");        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton1ActionPerformed
+
+    private void lrButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton6MouseEntered
+
+    private void lrButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton6MouseExited
+
+    private void lrButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton6ActionPerformed
+        Functions.Report("DBcopy-office","Office" );        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton6ActionPerformed
+
+    private void lrButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton7MouseEntered
+
+    private void lrButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton7MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton7MouseExited
+
+    private void lrButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton7ActionPerformed
+        Functions.Report("DBcopy-payment", "Payment");        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton7ActionPerformed
+
+    private void lrButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton8MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton8MouseEntered
+
+    private void lrButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton8MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton8MouseExited
+
+    private void lrButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton8ActionPerformed
+            Functions.Report("DBcopy-deduction","deduction where category ='Deduction'");        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton8ActionPerformed
+
+    private void lrButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton9MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton9MouseEntered
+
+    private void lrButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton9MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton9MouseExited
+
+    private void lrButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton9ActionPerformed
+        Functions.Report("DBcopy-inventory", "Inventory");        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton9ActionPerformed
+
+    private void lrButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton10MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton10MouseEntered
+
+    private void lrButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton10MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton10MouseExited
+
+    private void lrButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton10ActionPerformed
+    Functions.Report("DBcopy-extraexpense", "deduction where category ='Extra Expenses'");        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton10ActionPerformed
+
+    private void lrButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton12ActionPerformed
+      Functions.Report("DBcopy-labourdailymain","Labourdailymain" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton12ActionPerformed
+
+    private void lrButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton14ActionPerformed
+      Functions.Report("DBcopy-transport","Transport" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton14ActionPerformed
+
+    private void lrButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton15ActionPerformed
+          Functions.Report("DBcopy-workquote","workquote" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton15ActionPerformed
+
+    private void lrButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton16ActionPerformed
+      Functions.Report("DBcopy-labourdailyother","Labourdailyother" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton16ActionPerformed
+
+    private void lrButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton17ActionPerformed
+
+    private void lrButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton18ActionPerformed
+      Functions.Report("DBcopy-labour","labour" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton18ActionPerformed
+
+    private void lrButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton11ActionPerformed
+      Functions.Report("DBcopy-project","Project" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton11ActionPerformed
+
+    private void lrButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton13ActionPerformed
+  Functions.Report("DBcopy-labourdailysub","Labourdailysub" );             // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1834,13 +2199,27 @@ public class Reports extends javax.swing.JFrame {
     private javax.swing.JButton irButton4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JComboBox labourCombo;
     private javax.swing.JButton lrButton;
     private javax.swing.JButton lrButton1;
+    private javax.swing.JButton lrButton10;
+    private javax.swing.JButton lrButton11;
+    private javax.swing.JButton lrButton12;
+    private javax.swing.JButton lrButton13;
+    private javax.swing.JButton lrButton14;
+    private javax.swing.JButton lrButton15;
+    private javax.swing.JButton lrButton16;
+    private javax.swing.JButton lrButton17;
+    private javax.swing.JButton lrButton18;
     private javax.swing.JButton lrButton2;
     private javax.swing.JButton lrButton3;
     private javax.swing.JButton lrButton4;
     private javax.swing.JButton lrButton5;
+    private javax.swing.JButton lrButton6;
+    private javax.swing.JButton lrButton7;
+    private javax.swing.JButton lrButton8;
+    private javax.swing.JButton lrButton9;
     private javax.swing.JComboBox materialCombo;
     private javax.swing.JButton mrButton;
     private javax.swing.JComboBox paymentCombo;
@@ -1850,7 +2229,7 @@ public class Reports extends javax.swing.JFrame {
     private javax.swing.JButton receipt;
     private javax.swing.JComboBox receiptCombo;
     private javax.swing.JPanel reportPanel;
-    private javax.swing.JLabel report_typeLabel;
+    private javax.swing.JLabel report_typeLabel1;
     private javax.swing.JLabel reportsLabel;
     private org.jdesktop.swingx.JXDatePicker toDate;
     private javax.swing.JLabel toLabel;

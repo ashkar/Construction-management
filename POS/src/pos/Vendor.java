@@ -272,7 +272,6 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                         prp.setString(4,Mobile);
                         prp.setString(5,Landline);
                         prp.setString(6,Details);
-                                            
                         prp.executeUpdate(); 
                         // JOptionPane.showMessageDialog(null,"Firm added succesfully");
                          

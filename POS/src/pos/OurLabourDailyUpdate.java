@@ -1021,50 +1021,34 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     String labour2 =(String) nameCombo2.getSelectedItem();
     String labour3 =(String) nameCombo3.getSelectedItem();
     
-    int flag = 0,ext_exp,newwoodrem=0,grp_ext_exp,grp_man_no,grp_wom_no,wquan,grp_man_wage,grp_wom_wage,wcost = 0,woodrem = 0;
+    int flag=0,ext_exp=0,newwoodrem=0,grp_ext_exp=0,grp_man_no=0;
+     int grp_wom_no=0,wquan=0,grp_man_wage=0,grp_wom_wage=0,wcost = 0,woodrem = 0;
     int fee=0,fee1=0,fee2=0,fee3=0;
     String wtype,wbatch;
-    if(extra_expenseTextField.getText().equals(""))
+    if(!extra_expenseTextField.getText().equals(""))
     {
-        ext_exp=0;
+        ext_exp = Integer.parseInt(extra_expenseTextField.getText());    
     }
-    else 
-    {
-        ext_exp = Integer.parseInt(extra_expenseTextField.getText());
+    if(!extra_expenseTextField1.getText().equals(""))
+    { 
+        grp_ext_exp = Integer.parseInt(extra_expenseTextField1.getText());    
     }
-    if(extra_expenseTextField1.getText().equals(""))
-    {
-       grp_ext_exp=0;
-    }
-    else 
-    {
-       grp_ext_exp = Integer.parseInt(extra_expenseTextField1.getText());
-    }
-      
-    if(quantity_usedTextField.getText().equals(""))
-    {
-       wquan=0;
-    }
-    else 
+         
+    if(!quantity_usedTextField.getText().equals(""))
     {
        wquan = Integer.parseInt(quantity_usedTextField.getText());
     }
-     if(mnoTextField.getText().equals(""))
+    
+     if(!mnoTextField.getText().equals(""))
     {
-       grp_man_no=0;
+         grp_man_no = Integer.parseInt(mnoTextField.getText());
     }
-    else 
-    {
-       grp_man_no = Integer.parseInt(mnoTextField.getText());
-    }
-     if(fnoTextField.getText().equals(""))
-    {
-       grp_wom_no=0;
-    }
-    else 
-    {
+   
+     if(!fnoTextField.getText().equals(""))
+     {
        grp_wom_no = Integer.parseInt(fnoTextField.getText());
-    }
+      }
+      
      if(type_of_woodCombo.getSelectedItem().equals("Select"))
     {
        wtype ="";
@@ -1073,23 +1057,15 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     else 
     {
        wtype = (String)type_of_woodCombo.getSelectedItem();
-       wbatch= (String)batchCombo.getSelectedItem();
+       wbatch= (String) batchCombo.getSelectedItem();
     }
-      if(mwageTextField.getText().equals(""))
-    {
-       
-       grp_man_wage = 0;
-    }
-    else 
+      if(!mwageTextField.getText().equals(""))
     {
        grp_man_wage = Integer.parseInt(mwageTextField.getText());
     }
-      if(fwageTextField.getText().equals(""))
-    {
-       
-       grp_wom_wage = 0;
-    }
-    else 
+    
+    
+      if(!fwageTextField.getText().equals(""))
     {
        grp_wom_wage = Integer.parseInt(fwageTextField.getText());
     }
@@ -1102,20 +1078,35 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     if (date.getEditor().getText().equals("") )
         {
         dateLabel.setForeground(Color.red); 
-        
+        flag++;     
         }
       if(workCombo.getSelectedItem().equals("Select"))
     {   workLabel.setForeground(Color.red);
         flag++;
     }
-     if(workCombo.getSelectedItem().equals("Carpentary") && type_of_woodCombo.getSelectedItem().equals("Select"))
-    {   type_of_woodLabel.setForeground(Color.red);
-        flag++;
-    }
-     if(workCombo.getSelectedItem().equals("Carpentary") && quantity_usedTextField.getText().equals(""))
-    {   quantity_usedLabel.setForeground(Color.red);
-        flag++;
-    }
+      if  ((labour.equals("Select"))&&(mnoTextField.getText().equals(""))&&(fnoTextField.getText().equals("")))
+      {
+          nameLabel.setForeground(Color.red);
+          wageLabel.setForeground(Color.red);
+          maleLabel.setForeground(Color.red);
+          femaleLabel.setForeground(Color.red);
+          flag++;
+      }
+      else
+      {
+           nameLabel.setForeground(Color.black);
+          wageLabel.setForeground(Color.black);
+          maleLabel.setForeground(Color.black);
+          femaleLabel.setForeground(Color.black); 
+      }
+//        if(workCombo.getSelectedItem().equals("Carpentary") && type_of_woodCombo.getSelectedItem().equals("Select"))
+//        {   type_of_woodLabel.setForeground(Color.red);
+//            flag++;
+//        }
+//        if(workCombo.getSelectedItem().equals("Carpentary") && quantity_usedTextField.getText().equals(""))
+//        {   quantity_usedLabel.setForeground(Color.red);
+//            flag++;
+//        }
      if((!labour.equals("Select") && wage==0))
     {   wageTextField.setBackground(Color.PINK);
         flag++;
@@ -1160,7 +1151,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                   Statement  st = con.createStatement();
-                  ResultSet res = st.executeQuery("select * from Wood where WOODTYPE='"+wtype+"'and INVNO ="+wbatch+" ");
+                  ResultSet res = st.executeQuery("select * from Wood where WOODTYPE='"+wtype+"'and BATCH='"+wbatch+"' ");
                   Boolean rec = res.next();
                   if (rec==true){
                  Double  totaltemp = res.getDouble("TOTAL");
@@ -1172,7 +1163,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                   }
                   else
                   {
-                      JOptionPane.showMessageDialog(null, "Sorry would not available,add Wood Inventory");
+                      JOptionPane.showMessageDialog(null, "Sorry wood not available,add Wood Inventory");
                       flag++;
                   }
              }       
@@ -1298,12 +1289,12 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 System.out.println(e.getMessage());
             }
            } 
-       if (workCombo.getSelectedItem().equals("Carpentary"))
+       if (workCombo.getSelectedItem().equals("Carpentary")&&!type_of_woodCombo.getSelectedItem().equals("Select"))
             {
-                int wb = Integer.parseInt(wbatch);
+                //int wb = Integer.parseInt(wbatch);
                 try { Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
-                   PreparedStatement prp1 = con.prepareStatement("update Wood set WOOD_REM= ? where WOODTYPE= '"+wtype+"' and INVNO ="+wb+"");
+                   PreparedStatement prp1 = con.prepareStatement("update Wood set WOOD_REM= ? where WOODTYPE= '"+wtype+"' and BATCH ='"+wbatch+"'");
                    prp1.setInt(1,newwoodrem);
                    prp1.executeUpdate();
                          con.commit();
@@ -1995,12 +1986,11 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
     private void quantity_usedTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantity_usedTextFieldFocusGained
         
         quantity_usedLabel.setForeground(Color.black);
-        if(type_of_woodCombo.getSelectedItem().equals(""))
+        if(type_of_woodCombo.getSelectedItem().equals("Select"))
         {
             type_of_woodLabel.setForeground(Color.red);
         }
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_quantity_usedTextFieldFocusGained
 
     private void quantity_usedTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantity_usedTextFieldFocusLost
@@ -2210,7 +2200,7 @@ private void extra_expenseTextField1KeyReleased(java.awt.event.KeyEvent evt) {//
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
             Statement  st = con.createStatement();
-            ResultSet res = st.executeQuery("select INVNO from Wood where WOODTYPE='"+wtype+"' order by INVNO asc ");
+            ResultSet res = st.executeQuery("select BATCH from Wood where WOODTYPE='"+wtype+"' order by INVNO asc ");
             while(res.next())
             {
                batchCombo.addItem(res.getString(1));
