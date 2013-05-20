@@ -24,7 +24,7 @@ public class Wood extends javax.swing.JFrame {
 
     int temp = 0;
     JComboBox comboname;
-    int exp=0,cost=0,quantity=0,total=0;
+    Double exp=0.0,cost=0.0,quantity=0.0,total=0.0;
     
     
     /** Creates new form Wood */
@@ -33,7 +33,7 @@ public class Wood extends javax.swing.JFrame {
         setTitle("Add Wood");
         setSize(600,650);
         setVisible(true);
-        setLocation(238,0);
+        setLocation(284,45);
         getContentPane().setBackground(new Color(129,134,138));
         Functions.FillCombo(vendorCombo, "VENNAME", "Vendor");
         Functions.FillCombo(wtypeCombo, "WOODTYPE", "Names");
@@ -396,7 +396,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     
     if(!ExpTextField.getText().equals(""))
     {
-        exp = Integer.parseInt(ExpTextField.getText());
+        exp = Double.parseDouble( ExpTextField.getText());
             }
     if(pricetypeCombo.getSelectedItem().equals("Select"))
     {
@@ -410,24 +410,16 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         flag++;
     }
     
-//    if(BatchTextField.getText().equals(""))
-//    {
-//    batch = "";
-//    }
-//    else
-//    {
-//       
-//    }
-        
+      
     
     if(flag==0)
     {
        
     details = DetailsTextArea.getText();
     woodtype = (String) wtypeCombo.getSelectedItem();
-    cost = Integer.parseInt(costTextField.getText());
+    cost =  Double.parseDouble( costTextField.getText());
     vendor = (String) vendorCombo.getSelectedItem();
-    quantity = Integer.parseInt( quantityTextField.getText());
+    quantity = Double.parseDouble( quantityTextField.getText());
     batch=BatchTextField.getText();
        try
        {
@@ -439,14 +431,14 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
            PreparedStatement prp=con.prepareStatement("INSERT INTO Wood (WOODTYPE,VENDOR,QUANTITY,COST,EXT_EXP,EXT_EXP_DET,TOTAL,BILLDATE,BATCH,WOOD_REM) VALUES(?,?,?,?,?,?,?,?,?,?)");
            prp.setString(1,woodtype);
            prp.setString(2,vendor);
-           prp.setInt(3,quantity);
-           prp.setInt(4,cost);
-           prp.setInt(5,exp);
+           prp.setDouble(3,quantity);
+           prp.setDouble(4,cost);
+           prp.setDouble(5,exp);
            prp.setString(6,details);
-           prp.setInt(7,total);
+           prp.setDouble(7,total);
            prp.setString(8,newdate);
            prp.setString(9, batch);
-           prp.setInt(10,quantity);
+           prp.setDouble(10,quantity);
            prp.executeUpdate();
            //JOptionPane.showMessageDialog(null,"Wood Details added Succesfully");
            
@@ -485,27 +477,27 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         if(Functions.NumericValidate(costTextField))
         {
             if(costTextField.getText().equals(""))
-            { cost = 0;}
+            { cost = 0.0;}
             else
             {
-                cost =Integer.parseInt( costTextField.getText());
+                cost =Double.parseDouble( costTextField.getText());
             }
              if(ExpTextField.getText().equals(""))
             {
-                exp = 0;
+                exp = 0.0;
             }
             else
             {
-                exp = Integer.parseInt(ExpTextField.getText());
+                exp = Double.parseDouble( ExpTextField.getText());
             }
              if (quantityTextField.getText().equals(""))
              {
-                 quantity=0;
+                 quantity=0.0;
              }
              else
                  
              {
-                quantity=Integer.parseInt(quantityTextField.getText()) ;
+                quantity=Double.parseDouble( quantityTextField.getText()) ;
              }
         }
          if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
@@ -518,7 +510,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          }
     
         
-          cashLabel.setText(Integer.toString(total));
+          cashLabel.setText(Double.toString(total));
        
     }//GEN-LAST:event_costTextFieldKeyReleased
 
@@ -527,27 +519,27 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             if(Functions.NumericValidate(quantityTextField))
             {
              if(costTextField.getText().equals(""))
-            { cost = 0;}
+            { cost = 0.0;}
             else
             {
-                cost =Integer.parseInt( costTextField.getText());
+                cost =Double.parseDouble(  costTextField.getText());
             }
              if(ExpTextField.getText().equals(""))
             {
-                exp = 0;
+                exp = 0.0;
             }
             else
             {
-                exp = Integer.parseInt(ExpTextField.getText());
+                exp = Double.parseDouble( ExpTextField.getText());
             }
              if (quantityTextField.getText().equals(""))
              {
-                 quantity=0;
+                 quantity=0.0;
              }
              else
                  
              {
-                quantity=Integer.parseInt(quantityTextField.getText()) ;
+                quantity=Double.parseDouble( quantityTextField.getText()) ;
              }
         }
          if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
@@ -560,7 +552,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          }
     
         
-          cashLabel.setText(Integer.toString(total));
+          cashLabel.setText(Double.toString(total));
        
         
     }//GEN-LAST:event_quantityTextFieldKeyReleased
@@ -588,27 +580,27 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          if(Functions.NumericValidate(ExpTextField))
         {
             if(costTextField.getText().equals(""))
-            { cost = 0;}
+            { cost = 0.0;}
             else
             {
-                cost =Integer.parseInt( costTextField.getText());
+                cost =Double.parseDouble(  costTextField.getText());
             }
              if(ExpTextField.getText().equals(""))
             {
-                exp = 0;
+                exp = 0.0;
             }
             else
             {
-                exp = Integer.parseInt(ExpTextField.getText());
+                exp = Double.parseDouble( ExpTextField.getText());
             }
              if (quantityTextField.getText().equals(""))
              {
-                 quantity=0;
+                 quantity=0.0;
              }
              else
                  
              {
-                quantity=Integer.parseInt(quantityTextField.getText()) ;
+                quantity=Double.parseDouble( quantityTextField.getText()) ;
              }
         }
         if(pricetypeCombo.getSelectedItem().equals("Per Unit"))
@@ -620,7 +612,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          total =  cost+exp;
          }
         
-        cashLabel.setText(Integer.toString(total));
+        cashLabel.setText(Double.toString(total));
     }//GEN-LAST:event_ExpTextFieldKeyReleased
 
     private void vendorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendorButtonActionPerformed
@@ -683,7 +675,7 @@ private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          total =  cost+exp;
          }
         
-        cashLabel.setText(Integer.toString(total));
+        cashLabel.setText(Double.toString(total));
         // TODO add your handling code here:
     }//GEN-LAST:event_pricetypeComboItemStateChanged
 

@@ -32,6 +32,7 @@ public class OtherLabourDailyCharges extends javax.swing.JFrame {
         setTitle("Other Labour Daily Charges");
         setSize(660,770);
         setVisible(true);
+        setLocation(284,45);
         getContentPane().setBackground(new Color(129,134,138)); 
         
         wage_wisePanel.setVisible(false);

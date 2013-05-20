@@ -27,7 +27,7 @@ public class Labour extends javax.swing.JFrame {
         initComponents();
         setTitle("Labour");
         setSize(660,350);
-        setLocation(238,0);
+        setLocation(284,45);
         setVisible(true);
         getContentPane().setBackground(new Color(129,134,138));
         Functions.FillCombo(workCombo, "WORK", "Names");

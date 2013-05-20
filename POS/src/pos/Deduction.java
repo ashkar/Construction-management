@@ -23,7 +23,7 @@ public class Deduction extends javax.swing.JFrame {
         setVisible(true);
         setSize(660,670);
         setTitle("Extra Expense");
-        setLocation(238,0);
+        setLocation(284,45);
         getContentPane().setBackground(new Color(129,134,138));
         Functions.FillCombo(projectCombo, "PRONAME", "Project");
         AutoCompleteDecorator.decorate(projectCombo);
@@ -54,30 +54,23 @@ public class Deduction extends javax.swing.JFrame {
     private void initComponents() {
 
         titleLabel = new javax.swing.JLabel();
-        materialCheckBox = new javax.swing.JCheckBox();
-        workCheckBox = new javax.swing.JCheckBox();
-        m_nameLabel = new javax.swing.JLabel();
-        workLabel = new javax.swing.JLabel();
-        m_nameTextField = new javax.swing.JTextField();
-        workTextField = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
         quantityLabel = new javax.swing.JLabel();
         quantityTextField = new javax.swing.JTextField();
-        l_nameLabel = new javax.swing.JLabel();
-        l_nameTextField = new javax.swing.JTextField();
-        m_costLabel = new javax.swing.JLabel();
-        m_costTextField = new javax.swing.JTextField();
-        w_costLabel = new javax.swing.JLabel();
-        w_costTextField = new javax.swing.JTextField();
+        costLabel = new javax.swing.JLabel();
+        costTextField = new javax.swing.JTextField();
         m_detailsLabel = new javax.swing.JLabel();
-        w_detailsLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        m_detailsTextArea = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        w_detailsTextArea = new javax.swing.JTextArea();
+        detailsTextArea = new javax.swing.JTextArea();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         projectCombo = new javax.swing.JComboBox();
         projectLabel = new javax.swing.JLabel();
+        rateTextField = new javax.swing.JTextField();
+        rateLabel = new javax.swing.JLabel();
+        typeCombo = new javax.swing.JComboBox();
+        typeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -88,60 +81,21 @@ public class Deduction extends javax.swing.JFrame {
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Deduction");
 
-        materialCheckBox.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        materialCheckBox.setText("Material");
-        materialCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                materialCheckBoxActionPerformed(evt);
-            }
-        });
+        nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        nameLabel.setText("Name (item/work)");
 
-        workCheckBox.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        workCheckBox.setText("Work");
-        workCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workCheckBoxActionPerformed(evt);
-            }
-        });
-
-        m_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        m_nameLabel.setText("Material Name");
-        m_nameLabel.setEnabled(false);
-
-        workLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        workLabel.setText("Type of Work");
-        workLabel.setEnabled(false);
-
-        m_nameTextField.setEnabled(false);
-        m_nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+        nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                m_nameTextFieldFocusGained(evt);
+                nameTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                m_nameTextFieldFocusLost(evt);
-            }
-        });
-
-        workTextField.setEnabled(false);
-        workTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workTextFieldActionPerformed(evt);
-            }
-        });
-        workTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                workTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                workTextFieldFocusLost(evt);
+                nameTextFieldFocusLost(evt);
             }
         });
 
         quantityLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        quantityLabel.setText("Quantity");
-        quantityLabel.setEnabled(false);
+        quantityLabel.setText("Quantity (item/labour)");
 
-        quantityTextField.setEnabled(false);
         quantityTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 quantityTextFieldFocusGained(evt);
@@ -156,90 +110,34 @@ public class Deduction extends javax.swing.JFrame {
             }
         });
 
-        l_nameLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        l_nameLabel.setText("Labour No.s");
-        l_nameLabel.setEnabled(false);
+        costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        costLabel.setText("Total Cost");
 
-        l_nameTextField.setEnabled(false);
-        l_nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+        costTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                l_nameTextFieldFocusGained(evt);
+                costTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                l_nameTextFieldFocusLost(evt);
+                costTextFieldFocusLost(evt);
             }
         });
-        l_nameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        costTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                l_nameTextFieldKeyReleased(evt);
-            }
-        });
-
-        m_costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        m_costLabel.setText("Total Cost");
-        m_costLabel.setEnabled(false);
-
-        m_costTextField.setEnabled(false);
-        m_costTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                m_costTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                m_costTextFieldFocusLost(evt);
-            }
-        });
-        m_costTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                m_costTextFieldKeyReleased(evt);
-            }
-        });
-
-        w_costLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        w_costLabel.setText("Total Cost");
-        w_costLabel.setEnabled(false);
-
-        w_costTextField.setEnabled(false);
-        w_costTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                w_costTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                w_costTextFieldFocusLost(evt);
-            }
-        });
-        w_costTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                w_costTextFieldKeyReleased(evt);
+                costTextFieldKeyReleased(evt);
             }
         });
 
         m_detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         m_detailsLabel.setText("Details");
-        m_detailsLabel.setEnabled(false);
 
-        w_detailsLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        w_detailsLabel.setText("Details");
-        w_detailsLabel.setEnabled(false);
-
-        m_detailsTextArea.setColumns(20);
-        m_detailsTextArea.setRows(5);
-        m_detailsTextArea.setEnabled(false);
-        m_detailsTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
+        detailsTextArea.setColumns(12);
+        detailsTextArea.setRows(5);
+        detailsTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                m_detailsTextAreaFocusGained(evt);
+                detailsTextAreaFocusGained(evt);
             }
         });
-        jScrollPane1.setViewportView(m_detailsTextArea);
-
-        w_detailsTextArea.setColumns(20);
-        w_detailsTextArea.setRows(5);
-        w_detailsTextArea.setEnabled(false);
-        w_detailsTextArea.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                w_detailsTextAreaFocusGained(evt);
-            }
-        });
-        jScrollPane2.setViewportView(w_detailsTextArea);
+        jScrollPane1.setViewportView(detailsTextArea);
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -260,383 +158,196 @@ public class Deduction extends javax.swing.JFrame {
         projectLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         projectLabel.setText("Project");
 
+        rateTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rateTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                rateTextFieldFocusLost(evt);
+            }
+        });
+        rateTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rateTextFieldKeyReleased(evt);
+            }
+        });
+
+        rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        rateLabel.setText("Total Rate");
+
+        typeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Material", "Work" }));
+
+        typeLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        typeLabel.setText("Type");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 80, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeLabel)
+                    .addComponent(quantityLabel)
+                    .addComponent(costLabel)
+                    .addComponent(nameLabel)
+                    .addComponent(m_detailsLabel)
+                    .addComponent(rateLabel)
+                    .addComponent(projectLabel))
+                .addGap(95, 95, 95)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(rateTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(costTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(quantityTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(projectCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addGap(188, 188, 188))
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(quantityLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(l_nameLabel)
-                        .addGap(162, 162, 162))
+                        .addGap(255, 255, 255)
+                        .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(m_detailsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(w_detailsLabel)
-                        .addGap(183, 183, 183))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(m_nameLabel)
-                                .addGap(141, 141, 141)
-                                .addComponent(workLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane1)
-                                        .addComponent(m_costTextField)
-                                        .addComponent(m_nameTextField)
-                                        .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(materialCheckBox))
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane2)
-                                        .addComponent(w_costTextField)
-                                        .addComponent(l_nameTextField)
-                                        .addComponent(workTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(workCheckBox)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(m_costLabel)
-                                .addGap(171, 171, 171)
-                                .addComponent(w_costLabel)))
-                        .addContainerGap(92, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(titleLabel)
+                        .addGap(214, 214, 214)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(projectLabel)
-                .addGap(376, 376, 376))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titleLabel)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(projectLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(typeLabel)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameLabel)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(quantityLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(quantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(materialCheckBox)
-                    .addComponent(workCheckBox))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projectCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(workLabel)
-                    .addComponent(m_nameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(workTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(m_nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                    .addComponent(costLabel)
+                    .addComponent(costTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quantityLabel)
-                    .addComponent(l_nameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quantityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(l_nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                    .addComponent(rateLabel)
+                    .addComponent(rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(m_costLabel)
-                    .addComponent(w_costLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(m_costTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(w_costTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(m_detailsLabel)
-                    .addComponent(w_detailsLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(178, 178, 178))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void materialCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialCheckBoxActionPerformed
+    private void nameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldFocusGained
 
-        if(materialCheckBox.isSelected())
+        nameLabel.setForeground(Color.black);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextFieldFocusGained
+
+    private void nameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldFocusLost
+
+        if(nameTextField.getText().equals(""))
         {
-            m_nameLabel.setEnabled(true);
-            m_nameTextField.setEnabled(true);
-            quantityLabel.setEnabled(true);
-            quantityTextField.setEnabled(true);
-            m_costLabel.setEnabled(true);
-            m_costTextField.setEnabled(true);
-            m_detailsLabel.setEnabled(true);
-            m_detailsTextArea.setEnabled(true);
-        }
-        else
-        {
-            m_nameLabel.setEnabled(false);
-            m_nameTextField.setEnabled(false);
-            quantityLabel.setEnabled(false);
-            quantityTextField.setEnabled(false);
-            m_costLabel.setEnabled(false);
-            m_costTextField.setEnabled(false);
-            m_detailsLabel.setEnabled(false);
-            m_detailsTextArea.setEnabled(false);
-            
-            m_nameLabel.setForeground(Color.black);
-            quantityLabel.setForeground(Color.black);
-            m_costLabel.setForeground(Color.black);
-            m_detailsLabel.setForeground(Color.black);
-            
-            m_nameTextField.setText("");
-            quantityTextField.setText("");
-            m_costTextField.setText("");
-            m_detailsTextArea.setText("");
+            nameLabel.setForeground(Color.red);
         }
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_materialCheckBoxActionPerformed
+    }//GEN-LAST:event_nameTextFieldFocusLost
 
-    private void workCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workCheckBoxActionPerformed
+    private void costTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_costTextFieldFocusGained
 
-        if(workCheckBox.isSelected())
+        costLabel.setForeground(Color.black);
+        
+        if(nameTextField.getText().equals(""))
         {
-            workLabel.setEnabled(true);
-            workTextField.setEnabled(true);
-            l_nameLabel.setEnabled(true);
-            l_nameTextField.setEnabled(true);
-            w_costLabel.setEnabled(true);
-            w_costTextField.setEnabled(true);
-            w_detailsLabel.setEnabled(true);
-            w_detailsTextArea.setEnabled(true);
+            nameLabel.setForeground(Color.red);
         }
-        else
+        if(quantityTextField.getText().equals(""))
         {
-            workLabel.setEnabled(false);
-            workTextField.setEnabled(false);
-            l_nameLabel.setEnabled(false);
-            l_nameTextField.setEnabled(false);
-            w_costLabel.setEnabled(false);
-            w_costTextField.setEnabled(false);
-            w_detailsLabel.setEnabled(false);
-            w_detailsTextArea.setEnabled(false);
-            
-            workLabel.setForeground(Color.black);
-            l_nameLabel.setForeground(Color.black);
-            w_costLabel.setForeground(Color.black);
-            w_detailsLabel.setForeground(Color.black);
-            
-            workTextField.setText("");
-            l_nameTextField.setText("");
-            w_costTextField.setText("");
-            w_detailsTextArea.setText("");
+            quantityLabel.setForeground(Color.red);
         }
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_workCheckBoxActionPerformed
+    }//GEN-LAST:event_costTextFieldFocusGained
 
-    private void m_nameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_m_nameTextFieldFocusGained
+    private void costTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_costTextFieldFocusLost
 
-        m_nameLabel.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_m_nameTextFieldFocusGained
-
-    private void m_nameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_m_nameTextFieldFocusLost
-
-        if(m_nameTextField.getText().equals(""))
+        if(costTextField.getText().equals(""))
         {
-            m_nameLabel.setForeground(Color.red);
+            costLabel.setForeground(Color.red);
         }
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_m_nameTextFieldFocusLost
+    }//GEN-LAST:event_costTextFieldFocusLost
+
+    private void costTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costTextFieldKeyReleased
+
+        Functions.NumericValidation(costTextField);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_costTextFieldKeyReleased
+
+    private void detailsTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_detailsTextAreaFocusGained
+
+        if(nameTextField.getText().equals(""))
+        {
+            nameLabel.setForeground(Color.red);
+        }
+        if(quantityTextField.getText().equals(""))
+        {
+            quantityLabel.setForeground(Color.red);
+        }
+        if(costTextField.getText().equals(""))
+        {
+            costLabel.setForeground(Color.red);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_detailsTextAreaFocusGained
 
     private void quantityTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantityTextFieldFocusGained
 
-        quantityLabel.setForeground(Color.black);
+        nameLabel.setForeground(Color.black);
         
-        if(m_nameTextField.getText().equals(""))
-        {
-            m_nameLabel.setForeground(Color.red);
-        }
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_quantityTextFieldFocusGained
 
     private void quantityTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantityTextFieldFocusLost
 
         if(quantityTextField.getText().equals(""))
         {
-            quantityLabel.setForeground(Color.red);
+            nameLabel.setForeground(Color.red);
         }
         
         // TODO add your handling code here:
     }//GEN-LAST:event_quantityTextFieldFocusLost
-
-    private void quantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextFieldKeyReleased
-
-        Functions.NumericValidation(quantityTextField);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextFieldKeyReleased
-
-    private void m_costTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_m_costTextFieldFocusGained
-
-        m_costLabel.setForeground(Color.black);
-        
-        if(m_nameTextField.getText().equals(""))
-        {
-            m_nameLabel.setForeground(Color.red);
-        }
-        if(quantityTextField.getText().equals(""))
-        {
-            quantityLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_m_costTextFieldFocusGained
-
-    private void m_costTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_m_costTextFieldFocusLost
-
-        if(m_costTextField.getText().equals(""))
-        {
-            m_costLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_m_costTextFieldFocusLost
-
-    private void m_costTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_m_costTextFieldKeyReleased
-
-        Functions.NumericValidation(m_costTextField);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_m_costTextFieldKeyReleased
-
-    private void m_detailsTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_m_detailsTextAreaFocusGained
-
-        if(m_nameTextField.getText().equals(""))
-        {
-            m_nameLabel.setForeground(Color.red);
-        }
-        if(quantityTextField.getText().equals(""))
-        {
-            quantityLabel.setForeground(Color.red);
-        }
-        if(m_costTextField.getText().equals(""))
-        {
-            m_costLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_m_detailsTextAreaFocusGained
-
-    private void workTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workTextFieldFocusGained
-
-        workLabel.setForeground(Color.black);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_workTextFieldFocusGained
-
-    private void workTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_workTextFieldFocusLost
-
-        if(workTextField.getText().equals(""))
-        {
-            workLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_workTextFieldFocusLost
-
-    private void l_nameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_l_nameTextFieldFocusGained
-
-        l_nameLabel.setForeground(Color.black);
-        
-        if(workTextField.getText().equals(""))
-        {
-            workLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_l_nameTextFieldFocusGained
-
-    private void l_nameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_l_nameTextFieldFocusLost
-
-        if(l_nameTextField.getText().equals(""))
-        {
-            l_nameLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_l_nameTextFieldFocusLost
-
-    private void w_costTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_costTextFieldFocusGained
-
-        w_costLabel.setForeground(Color.black);
-        
-        if(workTextField.getText().equals(""))
-        {
-            workLabel.setForeground(Color.red);
-        }
-        if(l_nameTextField.getText().equals(""))
-        {
-            l_nameLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_w_costTextFieldFocusGained
-
-    private void w_costTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_costTextFieldFocusLost
-
-        if(w_costTextField.getText().equals(""))
-        {
-            w_costLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_w_costTextFieldFocusLost
-
-    private void w_detailsTextAreaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_w_detailsTextAreaFocusGained
-
-        if(workTextField.getText().equals(""))
-        {
-            workLabel.setForeground(Color.red);
-        }
-        if(l_nameTextField.getText().equals(""))
-        {
-            l_nameLabel.setForeground(Color.red);
-        }
-        if(w_costTextField.getText().equals(""))
-        {
-            w_costLabel.setForeground(Color.red);
-        }
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_w_detailsTextAreaFocusGained
-
-    private void w_costTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_w_costTextFieldKeyReleased
-
-        Functions.NumericValidation(w_costTextField);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_w_costTextFieldKeyReleased
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
 
@@ -655,56 +366,39 @@ public class Deduction extends javax.swing.JFrame {
             projectLabel.setForeground(Color.red);
             flag++;
         }
-        if(!materialCheckBox.isSelected() && !workCheckBox.isSelected())
+        if(typeCombo.getSelectedItem().equals("Select"))
         {
-            JOptionPane.showMessageDialog(null,"Select one of the Check Box");
+            typeLabel.setForeground(Color.red);
             flag++;
         }
         
-        if(materialCheckBox.isSelected() && workCheckBox.isSelected())
-        {
-            JOptionPane.showMessageDialog(null,"Select only One Checkbox!!!");
-            flag++;
-        }
-        if(materialCheckBox.isSelected())
-        {
-            if(m_nameTextField.getText().equals(""))
-            {
-                m_nameLabel.setForeground(Color.red);
-                flag++;
-            }
-           
-            if(m_costTextField.getText().equals(""))
-            {
-                m_costLabel.setForeground(Color.red);
-                flag++;
-            }
-            type="material";
-            name = m_nameTextField.getText();
+      
+       
+       if(nameTextField.getText().equals(""))
+       {
+           nameLabel.setForeground(Color.red);
+           flag++;
+       }
+       
+       
+       if(costTextField.getText().equals(""))
+       {
+           costLabel.setForeground(Color.red);
+           flag++;
+       }
+       
+       if(rateTextField.getText().equals(""))
+       {
+           rateLabel.setForeground(Color.red);
+           flag++;
+       }
+             
+           type= (String) typeCombo.getSelectedItem();
+            name = nameTextField.getText();
             quantity= Integer.parseInt(quantityTextField.getText());
-            cost    = Integer.parseInt(m_costTextField.getText());
-            details = m_detailsTextArea.getText();
-            
-        }
-        
-        if(workCheckBox.isSelected())
-        {
-            if(workTextField.getText().equals(""))
-            {
-                workLabel.setForeground(Color.red);
-                flag++;
-            }
-            if(w_costTextField.getText().equals(""))
-            {
-                w_costLabel.setForeground(Color.red);
-                flag++;
-            }
-            type="work";
-            name = workTextField.getText();
-            quantity= Integer.parseInt(l_nameTextField.getText());
-            cost    = Integer.parseInt(w_costTextField.getText());
-            details = w_detailsTextArea.getText();
-           }
+            cost    = Integer.parseInt(costTextField.getText());
+            details = detailsTextArea.getText();
+        int rate = Integer.parseInt(rateTextField.getText());
         
         if(temp==1)
         {
@@ -712,11 +406,18 @@ public class Deduction extends javax.swing.JFrame {
                    
         }
         
-        if (temp==2)
+       else
         {
         category="Deduction";    
         cost= -cost;
+        rate= -rate;
         }
+        
+        if (rate<cost)
+        {
+        JOptionPane.showMessageDialog(null,"Cost cnt be higher than rate" );
+        }
+            
             
         if(flag==0)
         {   
@@ -724,7 +425,7 @@ public class Deduction extends javax.swing.JFrame {
                     Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                     Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                     java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                    PreparedStatement prp=con.prepareStatement("insert into Deduction(type,pname,wname,quantity,cost,details,odate,category) values(?,?,?,?,?,?,?,?)");    
+                    PreparedStatement prp=con.prepareStatement("insert into Deduction(type,pname,wname,quantity,cost,details,odate,category,rate) values(?,?,?,?,?,?,?,?,?)");    
                                                
                         prp.setString(1,type);
                         prp.setString(2,pname);
@@ -734,17 +435,10 @@ public class Deduction extends javax.swing.JFrame {
                         prp.setString(6,details);
                         prp.setDate(7,sqlDate);
                         prp.setString(8,category);
+                        prp.setInt(9,rate);
                         prp.executeUpdate(); 
                         Functions.DisposeFunc(this);
-                         m_nameTextField.setText("");
-                         workTextField.setText("");
-                         quantityTextField.setText("");
-                         l_nameTextField.setText("");
-                         m_detailsTextArea.setText("");
-                         w_detailsTextArea.setText("");
-                         w_costTextField.setText("");
-                         m_costTextField.setText("");
-                         projectCombo.setSelectedItem("Select");
+                        
                          con.commit();
                          con.close();
                    }
@@ -758,17 +452,32 @@ public class Deduction extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null,"Deduction err is" +e);
              }
+             nameTextField.setText("");
+                         quantityTextField.setText("");
+                         detailsTextArea.setText("");
+                         costTextField.setText("");
+                         rateTextField.setText("");
+                         projectCombo.setSelectedItem("Select");
+                         typeCombo.setSelectedItem("Select");
        
         
     }//GEN-LAST:event_addButtonActionPerformed
     }
-    private void workTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_workTextFieldActionPerformed
+    private void quantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextFieldKeyReleased
+        Functions.NumericValidation(quantityTextField);
+    }//GEN-LAST:event_quantityTextFieldKeyReleased
 
-    private void l_nameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_l_nameTextFieldKeyReleased
-        Functions.NumericValidation(l_nameTextField);
-    }//GEN-LAST:event_l_nameTextFieldKeyReleased
+    private void rateTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rateTextFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rateTextFieldFocusGained
+
+    private void rateTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rateTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rateTextFieldFocusLost
+
+    private void rateTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rateTextFieldKeyReleased
+    Functions.NumericValidation(costTextField);        // TODO add your handling code here:
+    }//GEN-LAST:event_rateTextFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -808,28 +517,21 @@ public class Deduction extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel costLabel;
+    private javax.swing.JTextField costTextField;
+    private javax.swing.JTextArea detailsTextArea;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel l_nameLabel;
-    private javax.swing.JTextField l_nameTextField;
-    private javax.swing.JLabel m_costLabel;
-    private javax.swing.JTextField m_costTextField;
     private javax.swing.JLabel m_detailsLabel;
-    private javax.swing.JTextArea m_detailsTextArea;
-    private javax.swing.JLabel m_nameLabel;
-    private javax.swing.JTextField m_nameTextField;
-    private javax.swing.JCheckBox materialCheckBox;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
     private javax.swing.JComboBox projectCombo;
     private javax.swing.JLabel projectLabel;
     private javax.swing.JLabel quantityLabel;
     private javax.swing.JTextField quantityTextField;
+    private javax.swing.JLabel rateLabel;
+    private javax.swing.JTextField rateTextField;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel w_costLabel;
-    private javax.swing.JTextField w_costTextField;
-    private javax.swing.JLabel w_detailsLabel;
-    private javax.swing.JTextArea w_detailsTextArea;
-    private javax.swing.JCheckBox workCheckBox;
-    private javax.swing.JLabel workLabel;
-    private javax.swing.JTextField workTextField;
+    private javax.swing.JComboBox typeCombo;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }

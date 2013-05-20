@@ -21,7 +21,7 @@ public class Plan extends javax.swing.JFrame {
     public Plan() {
         initComponents();
         setTitle("Plan");
-        setLocation(238,0);
+        setLocation(284,45);
         setSize(660,500);
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);
@@ -102,7 +102,7 @@ public class Plan extends javax.swing.JFrame {
 
         planLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         planLabel.setForeground(new java.awt.Color(0, 102, 102));
-        planLabel.setText("Plan / Design ");
+        planLabel.setText("Office Income");
 
         expenseTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

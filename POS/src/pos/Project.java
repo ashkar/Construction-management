@@ -33,7 +33,7 @@ public class Project extends javax.swing.JFrame {
         initComponents();
         setTitle("Projec Details");
         setSize(660,500);
-        setLocation(238,0);
+           setLocation(284,45);
         setVisible(true);
         getContentPane().setBackground(new Color(129,134,138));
        //Functions.FillCombo( cnameCombo, "CUSTNAME" , "Customer");
@@ -114,6 +114,11 @@ public class Project extends javax.swing.JFrame {
         });
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         phoneLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         phoneLabel.setText("Phone");
@@ -264,6 +269,10 @@ public class Project extends javax.swing.JFrame {
         private void phoneTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneTextFieldKeyReleased
        Functions.NumericValidation(phoneTextField);
     }//GEN-LAST:event_phoneTextFieldKeyReleased
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
     
     /**
      * @param args the command line arguments

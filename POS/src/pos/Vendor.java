@@ -25,7 +25,7 @@ public class Vendor extends javax.swing.JFrame {
         initComponents();
         setTitle("Vendor");
         setSize(660,450);
-        setLocation(238,0);
+        setLocation(284,45);
         setVisible(true);
         getContentPane().setBackground(new Color(129,134,138));
         

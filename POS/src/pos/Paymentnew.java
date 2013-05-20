@@ -39,6 +39,7 @@ public class Paymentnew extends javax.swing.JFrame {
         setTitle("Paymentnew Details");
         //setSize(660,770);
         setVisible(true);
+           setLocation(284,45);
         getContentPane().setBackground(new Color(129,134,138));
        // Functions.FillCombo(nameCombo,"WORK","Names"); 
         Functions.FillCombo(project_nameCombo, "PRONAME", "Project");
@@ -72,6 +73,8 @@ public class Paymentnew extends javax.swing.JFrame {
         checkTextField = new javax.swing.JTextField();
         labour_daily_chargesLabel1 = new javax.swing.JLabel();
         printButton = new javax.swing.JButton();
+        date1 = new org.jdesktop.swingx.JXDatePicker();
+        dateLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -159,6 +162,9 @@ public class Paymentnew extends javax.swing.JFrame {
             }
         });
 
+        dateLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        dateLabel1.setText("Check Date");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,28 +180,33 @@ public class Paymentnew extends javax.swing.JFrame {
                         .addGap(163, 163, 163)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameLabel)
-                                    .addComponent(project_nameLabel)
-                                    .addComponent(dateLabel)
-                                    .addComponent(amountLabel)
-                                    .addComponent(categoryLabel)
-                                    .addComponent(checkLabel))
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(amountTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(date, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(project_nameCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(categoryCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(dateLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nameLabel)
+                                        .addComponent(project_nameLabel)
+                                        .addComponent(dateLabel)
+                                        .addComponent(amountLabel)
+                                        .addComponent(categoryLabel)
+                                        .addComponent(checkLabel))
+                                    .addGap(23, 23, 23)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(checkTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(amountTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(date, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(project_nameCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nameCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(categoryCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -234,12 +245,19 @@ public class Paymentnew extends javax.swing.JFrame {
                         .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(checkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(dateLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
@@ -253,7 +271,7 @@ public class Paymentnew extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
 
         int amount=0,flag = 0;
-        String check;
+        String check,chkdate="",Inwords;
         pname    =(String)project_nameCombo.getSelectedItem();
         cname    =(String)nameCombo.getSelectedItem();
         category =(String)categoryCombo.getSelectedItem();
@@ -307,12 +325,16 @@ public class Paymentnew extends javax.swing.JFrame {
             check    = checkTextField.getText(); 
             SimpleDateFormat formater = new SimpleDateFormat("MM/dd/yyyy");
             String newdate =    formater.format(date.getDate()); 
-           
+             chkdate =    formater.format(date1.getDate()); 
+             
+            Words w = Words.getInstance(amount);
+            Inwords =  w.getNumberInWords();      
+            
             try {
                   Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
                   Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
                  // java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                  PreparedStatement prp=con.prepareStatement("insert into Payment(category,cname,pname,pdate,amount,checkno) values(?,?,?,?,?,?)");    
+                  PreparedStatement prp=con.prepareStatement("insert into Payment(category,cname,pname,pdate,amount,checkno,inwords,chkdate) values(?,?,?,?,?,?,?,?)");    
                                                
                         prp.setString(1,category);
                         prp.setString(2,cname);
@@ -320,7 +342,10 @@ public class Paymentnew extends javax.swing.JFrame {
                         prp.setString(4,newdate);
                         prp.setInt(5,amount);
                         prp.setString (6, check);
+                        prp.setString(7,Inwords);
+                        prp.setString(8,chkdate);
                         prp.executeUpdate(); 
+                        
                        // JOptionPane.showMessageDialog(null,"payment added succesfully");
                        
                          project_nameCombo.setSelectedItem("Select");
@@ -517,7 +542,9 @@ public class Paymentnew extends javax.swing.JFrame {
     private javax.swing.JLabel checkLabel;
     private javax.swing.JTextField checkTextField;
     private org.jdesktop.swingx.JXDatePicker date;
+    private org.jdesktop.swingx.JXDatePicker date1;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JLabel dateLabel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel labour_daily_chargesLabel;
     private javax.swing.JLabel labour_daily_chargesLabel1;

@@ -23,75 +23,43 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="l_nameLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                      <Component id="m_detailsLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="w_detailsLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="m_nameLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-                              <Component id="workLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jScrollPane1" max="32767" attributes="1"/>
-                                      <Component id="m_costTextField" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="m_nameTextField" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="quantityTextField" alignment="0" min="-2" pref="225" max="-2" attributes="1"/>
-                                  </Group>
-                                  <Component id="addButton" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <Component id="materialCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cancelButton" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jScrollPane2" max="32767" attributes="1"/>
-                                      <Component id="w_costTextField" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="l_nameTextField" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="workTextField" alignment="0" min="-2" pref="225" max="-2" attributes="1"/>
-                                  </Group>
-                                  <Component id="projectCombo" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                                  <Component id="workCheckBox" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="m_costLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="w_costLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="typeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="costLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="m_detailsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="rateLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="projectLabel" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="rateTextField" alignment="0" max="32767" attributes="1"/>
+                  <Component id="costTextField" alignment="0" max="32767" attributes="1"/>
+                  <Component id="quantityTextField" alignment="0" max="32767" attributes="1"/>
+                  <Component id="nameTextField" alignment="0" max="32767" attributes="1"/>
+                  <Component id="typeCombo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="projectCombo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="170" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
-              <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                      <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+                      <Component id="addButton" min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" pref="72" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="139" max="32767" attributes="0"/>
-              <Component id="projectLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,62 +68,55 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="materialCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="workCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="projectCombo" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="projectLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="workLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-                  <Component id="m_nameLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="workTextField" alignment="3" pref="26" max="32767" attributes="1"/>
-                  <Component id="m_nameTextField" alignment="3" pref="26" max="32767" attributes="1"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="projectCombo" min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="typeCombo" min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="projectLabel" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="typeLabel" min="-2" max="-2" attributes="1"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-                  <Component id="l_nameLabel" alignment="3" min="-2" max="-2" attributes="1"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="nameLabel" min="-2" max="-2" attributes="1"/>
+                  <Component id="nameTextField" min="-2" pref="24" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="quantityTextField" alignment="3" pref="26" max="32767" attributes="1"/>
-                  <Component id="l_nameTextField" alignment="3" pref="26" max="32767" attributes="1"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="m_costLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-                  <Component id="w_costLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="m_costTextField" alignment="3" pref="26" max="32767" attributes="1"/>
-                  <Component id="w_costTextField" alignment="3" pref="26" max="32767" attributes="1"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="quantityLabel" min="-2" max="-2" attributes="1"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="quantityTextField" min="-2" pref="28" max="-2" attributes="1"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="m_detailsLabel" alignment="3" min="-2" max="-2" attributes="1"/>
-                  <Component id="w_detailsLabel" alignment="3" min="-2" max="-2" attributes="1"/>
+                  <Component id="costLabel" alignment="3" min="-2" max="-2" attributes="1"/>
+                  <Component id="costTextField" alignment="3" min="-2" pref="26" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="rateLabel" alignment="3" min="-2" max="-2" attributes="1"/>
+                  <Component id="rateTextField" alignment="3" min="-2" pref="26" max="-2" attributes="1"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="m_detailsLabel" min="-2" max="-2" attributes="1"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="addButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
+              <EmptySpace pref="233" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -176,63 +137,18 @@
         <Property name="text" type="java.lang.String" value="Deduction"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="materialCheckBox">
+    <Component class="javax.swing.JLabel" name="nameLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Material"/>
+        <Property name="text" type="java.lang.String" value="Name (item/work)"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nameTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materialCheckBoxActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="workCheckBox">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Work"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="workCheckBoxActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="m_nameLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Material Name"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="workLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Type of Work"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="m_nameTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="m_nameTextFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="m_nameTextFieldFocusLost"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="workTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="workTextFieldActionPerformed"/>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="workTextFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="workTextFieldFocusLost"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameTextFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameTextFieldFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="quantityLabel">
@@ -240,75 +156,29 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Quantity"/>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="Quantity (item/labour)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="quantityTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="quantityTextFieldFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="quantityTextFieldFocusLost"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="quantityTextFieldKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="l_nameLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Labour No.s"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="l_nameTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="l_nameTextFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="l_nameTextFieldFocusLost"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="l_nameTextFieldKeyReleased"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="m_costLabel">
+    <Component class="javax.swing.JLabel" name="costLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Total Cost"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="m_costTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="costTextField">
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="m_costTextFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="m_costTextFieldFocusLost"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="m_costTextFieldKeyReleased"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="w_costLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Total Cost"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="w_costTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="w_costTextFieldFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="w_costTextFieldFocusLost"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="w_costTextFieldKeyReleased"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="costTextFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="costTextFieldFocusLost"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="costTextFieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="m_detailsLabel">
@@ -317,16 +187,6 @@
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Details"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="w_detailsLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Details"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -336,33 +196,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="m_detailsTextArea">
+        <Component class="javax.swing.JTextArea" name="detailsTextArea">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
+            <Property name="columns" type="int" value="12"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="m_detailsTextAreaFocusGained"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="w_detailsTextArea">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="w_detailsTextAreaFocusGained"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="detailsTextAreaFocusGained"/>
           </Events>
         </Component>
       </SubComponents>
@@ -398,6 +238,40 @@
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Project"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="rateTextField">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="rateTextFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="rateTextFieldFocusLost"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rateTextFieldKeyReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="rateLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Comic Sans MS" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Total Rate"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="typeCombo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Select"/>
+            <StringItem index="1" value="Material"/>
+            <StringItem index="2" value="Work"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="typeLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Comic Sans MS" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Type"/>
       </Properties>
     </Component>
   </SubComponents>

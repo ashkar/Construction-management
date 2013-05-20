@@ -34,6 +34,7 @@ public class OurLabourDailyUpdate extends javax.swing.JFrame {
         setTitle("Labour Daily Charges");
         setSize(780,700);
         setVisible(true);
+        setLocation(284,45);
         //getContentPane().setBackground(new Color(202,225,255));
         //getContentPane().setBackground(new Color(252,206,40));
         getContentPane().setBackground(new Color(129,134,138));

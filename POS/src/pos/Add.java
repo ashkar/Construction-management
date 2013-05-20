@@ -31,8 +31,8 @@ double quantity,cost,rate ,totalcost,totalrate ;
         AutoCompleteDecorator.decorate(materialCombo);
         setTitle("Add");
         setVisible(true);
-        setSize(660,770);
-        setLocation(238,0);
+        setSize(660,670);
+        setLocation(284,45);
         getContentPane().setBackground(new Color(129,134,138));
     }
     

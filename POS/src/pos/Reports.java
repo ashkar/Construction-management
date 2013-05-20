@@ -33,7 +33,7 @@ public class Reports extends javax.swing.JFrame {
      */
     public Reports() {
         initComponents();
-        setLocation(238,0);
+           setLocation(284,45);
 //        setLocationRelativeTo(null);
         setSize(600,700);
         setTitle("Reports");
@@ -195,6 +195,14 @@ public class Reports extends javax.swing.JFrame {
         vrButton.setContentAreaFilled(false);
         vrButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         vrButton.setFocusPainted(false);
+        vrButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                vrButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                vrButtonMouseExited(evt);
+            }
+        });
         vrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vrButtonActionPerformed(evt);
@@ -229,6 +237,14 @@ public class Reports extends javax.swing.JFrame {
         crButton.setContentAreaFilled(false);
         crButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         crButton.setFocusPainted(false);
+        crButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                crButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                crButtonMouseExited(evt);
+            }
+        });
         crButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crButtonActionPerformed(evt);
@@ -347,6 +363,14 @@ public class Reports extends javax.swing.JFrame {
         irButton4.setContentAreaFilled(false);
         irButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         irButton4.setFocusPainted(false);
+        irButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                irButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                irButton4MouseExited(evt);
+            }
+        });
         irButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 irButton4ActionPerformed(evt);
@@ -452,7 +476,7 @@ public class Reports extends javax.swing.JFrame {
         workCombo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All" }));
 
         lrButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        lrButton1.setText("Plan Details");
+        lrButton1.setText("Office Income");
         lrButton1.setBorder(null);
         lrButton1.setBorderPainted(false);
         lrButton1.setContentAreaFilled(false);
@@ -588,6 +612,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton11.setContentAreaFilled(false);
         lrButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton11.setFocusPainted(false);
+        lrButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton11MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton11MouseExited(evt);
+            }
+        });
         lrButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton11ActionPerformed(evt);
@@ -601,6 +633,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton12.setContentAreaFilled(false);
         lrButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton12.setFocusPainted(false);
+        lrButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton12MouseExited(evt);
+            }
+        });
         lrButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton12ActionPerformed(evt);
@@ -614,6 +654,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton13.setContentAreaFilled(false);
         lrButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton13.setFocusPainted(false);
+        lrButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton13MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton13MouseExited(evt);
+            }
+        });
         lrButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton13ActionPerformed(evt);
@@ -627,6 +675,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton14.setContentAreaFilled(false);
         lrButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton14.setFocusPainted(false);
+        lrButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton14MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton14MouseExited(evt);
+            }
+        });
         lrButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton14ActionPerformed(evt);
@@ -640,6 +696,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton15.setContentAreaFilled(false);
         lrButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton15.setFocusPainted(false);
+        lrButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton15MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton15MouseExited(evt);
+            }
+        });
         lrButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton15ActionPerformed(evt);
@@ -653,6 +717,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton16.setContentAreaFilled(false);
         lrButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton16.setFocusPainted(false);
+        lrButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton16MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton16MouseExited(evt);
+            }
+        });
         lrButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton16ActionPerformed(evt);
@@ -666,6 +738,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton17.setContentAreaFilled(false);
         lrButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton17.setFocusPainted(false);
+        lrButton17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton17MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton17MouseExited(evt);
+            }
+        });
         lrButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton17ActionPerformed(evt);
@@ -679,6 +759,14 @@ public class Reports extends javax.swing.JFrame {
         lrButton18.setContentAreaFilled(false);
         lrButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lrButton18.setFocusPainted(false);
+        lrButton18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lrButton18MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lrButton18MouseExited(evt);
+            }
+        });
         lrButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lrButton18ActionPerformed(evt);
@@ -704,9 +792,9 @@ public class Reports extends javax.swing.JFrame {
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addComponent(report_typeLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 115, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -715,11 +803,10 @@ public class Reports extends javax.swing.JFrame {
                                         .addComponent(lrButton8)
                                         .addComponent(lrButton9))
                                     .addComponent(lrButton10))
-                                .addGap(42, 42, 42))
+                                .addGap(52, 52, 52))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                                 .addComponent(lrButton12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))))
-                .addGap(10, 10, 10)
+                                .addGap(18, 18, 18)))))
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lrButton14)
                     .addComponent(lrButton13)
@@ -855,9 +942,9 @@ public class Reports extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lrButton18)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lrButton10)
-                            .addComponent(lrButton14))))
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lrButton14)
+                            .addComponent(lrButton10))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lrButton11)
@@ -1121,12 +1208,12 @@ public class Reports extends javax.swing.JFrame {
         
         if(projectCombo.getSelectedItem().equals("All"))
         {
-        sql = "Select wdate,category,work,total from workquote  where  wdate between #"+fromdate+"# and #"+todate+"# union all select INVDATE,MATERIAL,'Inventory' ,INVTOTALPRICE from Inventory  where INVDATE between #"+fromdate+"# and #"+todate+"# order by wdate;";     
+        sql = "Select wdate,category,work,total from workquote  where  wdate between #"+fromdate+"# and #"+todate+"# union all select  odate ,  category   ,wname,rate from Deduction union all  select INVDATE,MATERIAL,'Inventory' ,INVTOTALPRICE from Inventory  where INVDATE between #"+fromdate+"# and #"+todate+"# order by wdate;";     
             
         }
         else
         {
-          sql = "Select wdate,category,work,total from workquote where pname ='"+pname+"' and wdate between #"+fromdate+"# and #"+todate+"# union all select INVDATE,MATERIAL,'Inventory' as work ,INVTOTALPRICE from Inventory  where PRONAME ='"+pname+"' and INVDATE between #"+fromdate+"# and #"+todate+"# order by wdate;";
+          sql = "Select wdate,category,work,total from workquote where pname ='"+pname+"' and wdate between #"+fromdate+"# and #"+todate+"# union all select  odate ,  category   ,wname,rate from Deduction union all select INVDATE,MATERIAL,'Inventory' as work ,INVTOTALPRICE from Inventory  where PRONAME ='"+pname+"' and INVDATE between #"+fromdate+"# and #"+todate+"# order by wdate;";
              
         }
         if(flag==0)
@@ -1448,11 +1535,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton2ActionPerformed
 
     private void irButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton1MouseEntered
-        // TODO add your handling code here:
+      irButton1.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_irButton1MouseEntered
 
     private void irButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton1MouseExited
-        // TODO add your handling code here:
+      irButton1.setForeground(Color.black);   // TODO add your handling code here:
     }//GEN-LAST:event_irButton1MouseExited
 
     private void irButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton1ActionPerformed
@@ -1521,15 +1608,15 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton1ActionPerformed
 
     private void irButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton2MouseEntered
-        // TODO add your handling code here:
+      irButton2.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_irButton2MouseEntered
 
     private void irButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton2MouseExited
-        // TODO add your handling code here:
+     irButton2.setForeground(Color.black);   // TODO add your handling code here:
     }//GEN-LAST:event_irButton2MouseExited
 
     private void irButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton2ActionPerformed
-         int flag=0;
+        int flag=0;
         String fromdate,todate;
         String pname = (String) projectCombo.getSelectedItem();
         
@@ -1605,15 +1692,15 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton2ActionPerformed
 
     private void irButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton3MouseEntered
-        // TODO add your handling code here:
+        irButton3.setForeground(Color.white);        // TODO add your handling code here:
     }//GEN-LAST:event_irButton3MouseEntered
 
     private void irButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton3MouseExited
-        // TODO add your handling code here:
+       irButton3.setForeground(Color.black); // TODO add your handling code here:
     }//GEN-LAST:event_irButton3MouseExited
 
     private void irButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irButton3ActionPerformed
- int flag=0;
+      int flag=0;
         String fromdate,todate;
         String pname = (String) projectCombo.getSelectedItem();
         
@@ -1771,15 +1858,15 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_irButton4ActionPerformed
 
     private void lrButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton3MouseEntered
-        // TODO add your handling code here:
+      lrButton3.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton3MouseEntered
 
     private void lrButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton3MouseExited
-        // TODO add your handling code here:
+        lrButton3.setForeground(Color.black); // TODO add your handling code here:
     }//GEN-LAST:event_lrButton3MouseExited
 
     private void lrButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton3ActionPerformed
-        int flag=0;
+       int flag=0;
         String fromdate,todate,sql;
         String pname = (String) projectCombo.getSelectedItem();
         String work  = (String) workCombo1.getSelectedItem();
@@ -1859,15 +1946,14 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton3ActionPerformed
 
     private void lrButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton4MouseEntered
-        // TODO add your handling code here:
+    lrButton4.setForeground(Color.white);      // TODO add your handling code here:
     }//GEN-LAST:event_lrButton4MouseEntered
 
     private void lrButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton4MouseExited
-        // TODO add your handling code here:
+    lrButton4.setForeground(Color.black);     // TODO add your handling code here:
     }//GEN-LAST:event_lrButton4MouseExited
 
     private void lrButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton4ActionPerformed
-
         
          int flag=0;
         String fromdate,todate,sql;
@@ -1950,15 +2036,15 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton4ActionPerformed
 
     private void lrButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton5MouseEntered
-        // TODO add your handling code here:
+       lrButton5.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton5MouseEntered
 
     private void lrButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton5MouseExited
-        // TODO add your handling code here:
+        lrButton5.setForeground(Color.black); // TODO add your handling code here:
     }//GEN-LAST:event_lrButton5MouseExited
 
     private void lrButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton5ActionPerformed
-        int flag=0;
+      int flag=0;
         String fromdate,todate,sql;
         String pname = (String) projectCombo.getSelectedItem();
         String labour = (String) labourCombo.getSelectedItem();
@@ -2043,11 +2129,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_prButtonMouseExited
 
     private void lrButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseEntered
-        // TODO add your handling code here:
+       lrButton1.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton1MouseEntered
 
     private void lrButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton1MouseExited
-        // TODO add your handling code here:
+     lrButton1.setForeground(Color.black);    // TODO add your handling code here:
     }//GEN-LAST:event_lrButton1MouseExited
 
     private void lrButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton1ActionPerformed
@@ -2055,11 +2141,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton1ActionPerformed
 
     private void lrButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton6MouseEntered
-        // TODO add your handling code here:
+       lrButton6.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton6MouseEntered
 
     private void lrButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton6MouseExited
-        // TODO add your handling code here:
+       lrButton6.setForeground(Color.black);  // TODO add your handling code here:
     }//GEN-LAST:event_lrButton6MouseExited
 
     private void lrButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton6ActionPerformed
@@ -2067,11 +2153,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton6ActionPerformed
 
     private void lrButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton7MouseEntered
-        // TODO add your handling code here:
+      lrButton7.setForeground(Color.white);    // TODO add your handling code here:
     }//GEN-LAST:event_lrButton7MouseEntered
 
     private void lrButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton7MouseExited
-        // TODO add your handling code here:
+        lrButton7.setForeground(Color.black); // TODO add your handling code here:
     }//GEN-LAST:event_lrButton7MouseExited
 
     private void lrButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton7ActionPerformed
@@ -2079,11 +2165,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton7ActionPerformed
 
     private void lrButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton8MouseEntered
-        // TODO add your handling code here:
+     lrButton8.setForeground(Color.white);     // TODO add your handling code here:
     }//GEN-LAST:event_lrButton8MouseEntered
 
     private void lrButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton8MouseExited
-        // TODO add your handling code here:
+        lrButton8.setForeground(Color.black); // TODO add your handling code here:
     }//GEN-LAST:event_lrButton8MouseExited
 
     private void lrButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton8ActionPerformed
@@ -2091,11 +2177,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton8ActionPerformed
 
     private void lrButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton9MouseEntered
-        // TODO add your handling code here:
+       lrButton9.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton9MouseEntered
 
     private void lrButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton9MouseExited
-        // TODO add your handling code here:
+     lrButton9.setForeground(Color.black);      // TODO add your handling code here:
     }//GEN-LAST:event_lrButton9MouseExited
 
     private void lrButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton9ActionPerformed
@@ -2103,11 +2189,11 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton9ActionPerformed
 
     private void lrButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton10MouseEntered
-        // TODO add your handling code here:
+       lrButton10.setForeground(Color.white);   // TODO add your handling code here:
     }//GEN-LAST:event_lrButton10MouseEntered
 
     private void lrButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton10MouseExited
-        // TODO add your handling code here:
+         lrButton10.setForeground(Color.black);// TODO add your handling code here:
     }//GEN-LAST:event_lrButton10MouseExited
 
     private void lrButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton10ActionPerformed
@@ -2115,7 +2201,7 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton10ActionPerformed
 
     private void lrButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton12ActionPerformed
-      Functions.Report("DBcopy-labourdailymain","Labourdailymain" );             // TODO add your handling code here:
+      Functions.Report("DBcopy-labourdailymain3","Labourdailymain" );             // TODO add your handling code here:
     }//GEN-LAST:event_lrButton12ActionPerformed
 
     private void lrButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton14ActionPerformed
@@ -2131,7 +2217,7 @@ public class Reports extends javax.swing.JFrame {
     }//GEN-LAST:event_lrButton16ActionPerformed
 
     private void lrButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton17ActionPerformed
-        // TODO add your handling code here:
+        Functions.Report("DBcopy-wood","Wood" );
     }//GEN-LAST:event_lrButton17ActionPerformed
 
     private void lrButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton18ActionPerformed
@@ -2145,6 +2231,94 @@ public class Reports extends javax.swing.JFrame {
     private void lrButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lrButton13ActionPerformed
   Functions.Report("DBcopy-labourdailysub","Labourdailysub" );             // TODO add your handling code here:
     }//GEN-LAST:event_lrButton13ActionPerformed
+
+    private void lrButton17MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton17MouseEntered
+    lrButton17.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton17MouseEntered
+
+    private void lrButton17MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton17MouseExited
+    lrButton17.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton17MouseExited
+
+    private void vrButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vrButtonMouseEntered
+        vrButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_vrButtonMouseEntered
+
+    private void vrButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vrButtonMouseExited
+       vrButton.setForeground(Color.black);          // TODO add your handling code here:
+    }//GEN-LAST:event_vrButtonMouseExited
+
+    private void crButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crButtonMouseEntered
+     crButton.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_crButtonMouseEntered
+
+    private void crButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crButtonMouseExited
+        crButton.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_crButtonMouseExited
+
+    private void irButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton4MouseEntered
+    irButton4.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_irButton4MouseEntered
+
+    private void irButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_irButton4MouseExited
+    irButton4.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_irButton4MouseExited
+
+    private void lrButton15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton15MouseEntered
+        lrButton15.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton15MouseEntered
+
+    private void lrButton15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton15MouseExited
+    lrButton15.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton15MouseExited
+
+    private void lrButton13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton13MouseEntered
+    lrButton13.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton13MouseEntered
+
+    private void lrButton13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton13MouseExited
+    lrButton13.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton13MouseExited
+
+    private void lrButton12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton12MouseEntered
+        lrButton12.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton12MouseEntered
+
+    private void lrButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton12MouseExited
+    lrButton12.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton12MouseExited
+
+    private void lrButton11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton11MouseEntered
+        lrButton11.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton11MouseEntered
+
+    private void lrButton11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton11MouseExited
+    lrButton11.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton11MouseExited
+
+    private void lrButton14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton14MouseEntered
+    lrButton14.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton14MouseEntered
+
+    private void lrButton14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton14MouseExited
+    lrButton14.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton14MouseExited
+
+    private void lrButton18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton18MouseEntered
+        lrButton18.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton18MouseEntered
+
+    private void lrButton18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton18MouseExited
+        lrButton18.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton18MouseExited
+
+    private void lrButton16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton16MouseEntered
+        lrButton16.setForeground(Color.white);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton16MouseEntered
+
+    private void lrButton16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lrButton16MouseExited
+        lrButton16.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_lrButton16MouseExited
 
     /**
      * @param args the command line arguments

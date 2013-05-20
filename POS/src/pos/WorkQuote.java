@@ -29,6 +29,7 @@ public class WorkQuote extends javax.swing.JFrame {
         initComponents();
         setSize(660,670);
         setVisible(true);
+           setLocation(284,45);
         setTitle("WorkQuote");
         getContentPane().setBackground(new Color(129,134,138));
         
@@ -71,6 +72,8 @@ public class WorkQuote extends javax.swing.JFrame {
         fixed_amountPanel = new javax.swing.JPanel();
         f_rateTextField = new javax.swing.JTextField();
         f_rateLabel = new javax.swing.JLabel();
+        f_detailTextField = new javax.swing.JTextField();
+        f_detailLabel = new javax.swing.JLabel();
         labour_daily_chargesLabel = new javax.swing.JLabel();
         wage_wisePanel = new javax.swing.JPanel();
         mesonsLabel = new javax.swing.JLabel();
@@ -266,21 +269,48 @@ public class WorkQuote extends javax.swing.JFrame {
         f_rateLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         f_rateLabel.setText("Fixed Quote for Work is");
 
+        f_detailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                f_detailTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                f_detailTextFieldFocusLost(evt);
+            }
+        });
+        f_detailTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                f_detailTextFieldKeyReleased(evt);
+            }
+        });
+
+        f_detailLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        f_detailLabel.setText("Details");
+
         javax.swing.GroupLayout fixed_amountPanelLayout = new javax.swing.GroupLayout(fixed_amountPanel);
         fixed_amountPanel.setLayout(fixed_amountPanelLayout);
         fixed_amountPanelLayout.setHorizontalGroup(
             fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fixed_amountPanelLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addComponent(f_rateLabel)
-                .addGap(18, 18, 18)
-                .addComponent(f_rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(fixed_amountPanelLayout.createSequentialGroup()
+                        .addComponent(f_detailLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(f_detailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fixed_amountPanelLayout.createSequentialGroup()
+                        .addComponent(f_rateLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(f_rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fixed_amountPanelLayout.setVerticalGroup(
             fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fixed_amountPanelLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(f_detailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(f_detailLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fixed_amountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(f_rateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(f_rateLabel))
@@ -660,11 +690,10 @@ public class WorkQuote extends javax.swing.JFrame {
                                             .addComponent(date_of_paymentLabel)
                                             .addComponent(project_nameLabel))
                                         .addGap(41, 41, 41)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(workCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(date_of_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(project_nameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(date_of_payment, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                            .addComponent(workCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addComponent(w_workLabel1)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1524,7 +1553,7 @@ public class WorkQuote extends javax.swing.JFrame {
             {
                 work =(String)workCombo.getSelectedItem();
                 tot = Integer.parseInt(f_rateTextField.getText());
-                
+                details =f_detailTextField.getText();
                 //JOptionPane.showMessageDialog(null,"Yeah thats right33!!");
             }
                if ("Furniture".equals(butvalue))
@@ -1610,6 +1639,18 @@ public class WorkQuote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_workComboFocusLost
 
+    private void f_detailTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_detailTextFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_detailTextFieldFocusGained
+
+    private void f_detailTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_f_detailTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_detailTextFieldFocusLost
+
+    private void f_detailTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_f_detailTextFieldKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_detailTextFieldKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1659,6 +1700,8 @@ public class WorkQuote extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private org.jdesktop.swingx.JXDatePicker date_of_payment;
     private javax.swing.JLabel date_of_paymentLabel;
+    private javax.swing.JLabel f_detailLabel;
+    private javax.swing.JTextField f_detailTextField;
     private javax.swing.JLabel f_rateLabel;
     private javax.swing.JTextField f_rateTextField;
     private javax.swing.JRadioButton fixed_amountButton;

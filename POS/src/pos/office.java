@@ -20,7 +20,7 @@ public class office extends javax.swing.JFrame {
     public office() {
         initComponents();
         setTitle("Office");
-        setLocation(238,0);
+           setLocation(284,45);
         setSize(660,570);
         getContentPane().setBackground(new Color(129,134,138));
         setVisible(true);

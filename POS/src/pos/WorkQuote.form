@@ -47,12 +47,10 @@
                                           <Component id="project_nameLabel" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="workCombo" min="-2" pref="132" max="-2" attributes="1"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="project_nameCombo" max="32767" attributes="1"/>
-                                              <Component id="date_of_payment" alignment="0" min="-2" pref="132" max="-2" attributes="1"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="project_nameCombo" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="date_of_payment" alignment="0" pref="156" max="32767" attributes="1"/>
+                                          <Component id="workCombo" alignment="0" max="32767" attributes="1"/>
                                       </Group>
                                   </Group>
                                   <Component id="w_workLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -342,11 +340,20 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                  <Component id="f_rateLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="f_rateTextField" min="-2" pref="132" max="-2" attributes="1"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="f_detailLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="f_detailTextField" min="-2" pref="132" max="-2" attributes="1"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="f_rateLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="f_rateTextField" min="-2" pref="132" max="-2" attributes="1"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -354,7 +361,12 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="f_detailTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="f_detailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="f_rateTextField" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="f_rateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -378,6 +390,21 @@
               <Font name="Comic Sans MS" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fixed Quote for Work is"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="f_detailTextField">
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="f_detailTextFieldFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="f_detailTextFieldFocusLost"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="f_detailTextFieldKeyReleased"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="f_detailLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Comic Sans MS" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Details"/>
           </Properties>
         </Component>
       </SubComponents>
