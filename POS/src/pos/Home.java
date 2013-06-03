@@ -14,6 +14,10 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -33,7 +37,9 @@ public class Home extends javax.swing.JFrame {
         
         setTitle("POS");
         setVisible(true);
+         //setLocation(284,45);
         setExtendedState(Frame.MAXIMIZED_BOTH);
+        loginPanel.setVisible(false);
         getContentPane().setBackground(new Color(129,134,100));
         
 //        inventoryButton.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"inventory");
@@ -90,6 +96,14 @@ public class Home extends javax.swing.JFrame {
         planButton = new javax.swing.JButton();
         odcButton = new javax.swing.JButton();
         billingButton = new javax.swing.JButton();
+        loginPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -97,6 +111,8 @@ public class Home extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu6.setText("File");
         jMenuBar2.add(jMenu6);
@@ -210,9 +226,9 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(inventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(carrierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(reportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addGap(35, 35, 35)
+                .addComponent(reportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(87, 91, 87));
@@ -425,6 +441,55 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        loginPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        loginPanel.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("User Name:");
+        loginPanel.add(jLabel2);
+        jLabel2.setBounds(80, 100, 100, 30);
+
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        loginPanel.add(jTextField1);
+        jTextField1.setBounds(210, 100, 110, 30);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Password:");
+        loginPanel.add(jLabel3);
+        jLabel3.setBounds(80, 150, 110, 30);
+
+        jLabel1.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Login Here");
+        loginPanel.add(jLabel1);
+        jLabel1.setBounds(150, 30, 130, 40);
+
+        jPasswordField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        loginPanel.add(jPasswordField1);
+        jPasswordField1.setBounds(210, 150, 110, 30);
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        loginPanel.add(jButton1);
+        jButton1.setBounds(120, 230, 90, 40);
+
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        loginPanel.add(jButton2);
+        jButton2.setBounds(230, 230, 90, 40);
+
         jMenu8.setText("File");
 
         jMenuItem1.setText("Plan");
@@ -469,6 +534,18 @@ public class Home extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
+        jMenu1.setText("Backup");
+
+        jMenuItem6.setText("BackUp");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -477,13 +554,19 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addGap(152, 152, 152)
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205))
         );
 
         pack();
@@ -574,9 +657,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
-
-        Reports reports = new Reports();
-        
+         //loginPanel.setBounds(254, 45, 100, 200);
+        loginPanel.setVisible(true);
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_reportButtonActionPerformed
 
@@ -805,6 +888,62 @@ public class Home extends javax.swing.JFrame {
         Delete d =new Delete();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+            BackUp.backup();        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String s1,s2,s3,s4;
+        int a=0;
+            s1 = jTextField1.getText();
+            s2 = jPasswordField1.getText();
+
+        try {
+             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+                  Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
+                  Statement  st = con.createStatement();
+             ResultSet res = st.executeQuery("select * from login");
+            Boolean rec = res.next();
+            if (!rec) {
+                JOptionPane.showMessageDialog(null, "There is no records in the table");
+            } else {
+                do {
+                   s3 = res.getString(1);
+                    s4 = res.getString(2);
+
+                    if (s1.equals(s3) && s2.equals(s4)) {
+                        //dispose();
+                        loginPanel.setVisible(false);
+                         jTextField1.setText("");
+                         jPasswordField1.setText("");
+                        new Reports();
+                        a = 1;
+                        break;
+                    }
+                } while (res.next());
+                if (a == 0) {
+                    JOptionPane.showMessageDialog(null, "Invalid user or password");
+                    jTextField1.setText("");
+                    jPasswordField1.setText("");
+                }
+            }
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "The error is:" + e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //System.exit(0);
+        jTextField1.setText("");
+        jPasswordField1.setText("");
+        loginPanel.setVisible(false);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -848,6 +987,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton expenseButton;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryButton1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -858,9 +1003,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel loginPanel;
     private javax.swing.JButton odcButton;
     private javax.swing.JButton planButton;
     private javax.swing.JButton reportButton;

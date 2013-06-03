@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -25,21 +28,137 @@ public class joptiontest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("problem-4");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("problem-5");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        
+         String original,value="", reverse;
+         int valueint=0;
+    for(int k=100;k<=999;k++){
+     for (int j=100;j<=999;j++)
+         {
+             int s =k*j;
+             reverse = "";
+             original = Integer.toString(s);
+ 
+      int length = original.length();
+ 
+      for ( int i = length - 1 ; i >= 0 ; i-- )
+      {   reverse = reverse + original.charAt(i);}
+ 
+      if ((original.equals(reverse))&&(s>valueint))
+      {
+             value = reverse;
+              valueint = Integer.parseInt(value);
+      }
+        
+        
+    
+    }
+        
+    }
+        JOptionPane.showMessageDialog(null,""+value);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //  String original,value="",reverse="";
+//        for (int i=12220;i<12222;i++)
+//        {
+//         original= Integer.toString(i);
+//         int length = original.length();
+//         for (int j=length-1;j>=0;i--)
+//         {
+//         reverse = reverse+original.charAt(j);
+//         }
+//         
+//         if (original==reverse)
+//         {
+//             value=  original;
+//         
+//         }
+//             
+//        
+//        }  
+//        
+//        JOptionPane.showMessageDialog(null,""+value );
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       int k =0,i=2520,j;
+        boolean divisible = false;
+         boolean div = false;
+        while(!divisible)
+       {
+        i+=2520;
+        div=true;
+        
+         for(j=11;j<=20;j++)
+         {
+          if (i%j!=0)
+         {  div=false;
+             break;
+         }
+         }
+         if (div)
+         {
+         divisible=true;
+         }
+       }
+       
+        JOptionPane.showMessageDialog(null, ""+i);
+       
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +202,7 @@ public class joptiontest extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }

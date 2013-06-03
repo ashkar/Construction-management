@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pos;
 import java.sql.*;
 import javax.swing.*; 
@@ -14,11 +10,6 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-
-/**
- *
- * @author lenovo
- */
 public class Functions {
  
     public static void main(String args[]) 
@@ -27,8 +18,7 @@ public class Functions {
     }
 
     
-    public static boolean isEmail(JTextField textfieldname)
-    {
+public static boolean isEmail(JTextField textfieldname) {
         int i = 0;
         String str = textfieldname.getText();
         
@@ -55,10 +45,8 @@ public class Functions {
         }
         }
         return false;
-    }
-    
-    public static boolean isNumeric(char st)  
-    {  
+    } 
+public static boolean isNumeric(char st)  {  
         String str = Character.toString(st);
       try  
       {  
@@ -70,7 +58,6 @@ public class Functions {
       }  
       return true;  
     }
-
 public  static  void    NumericValidation( JTextField textfieldname ){                                    
 if(!textfieldname.getText().equals(""))
 {
@@ -115,9 +102,7 @@ else
     textfieldname.setText("");
 }       
 }
-
-
- public static void Report(String name1,String name2) {                                          
+public static void Report(String name1,String name2) {                                          
      try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection con = DriverManager.getConnection("jdbc:odbc:indlands","","");
@@ -133,9 +118,7 @@ else
             JOptionPane.showMessageDialog(null, e);
         }        // TODO add your handling code here:
     } 
-
-public static void FillCombo(JComboBox combo_box, String column_name, String table_name)
-{
+public static void FillCombo(JComboBox combo_box, String column_name, String table_name){
     try
         {            
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -157,9 +140,7 @@ public static void FillCombo(JComboBox combo_box, String column_name, String tab
             System.out.println(e.getMessage());
         }
 }
-
-public static void DisposeFunc(JFrame abc)
-{
+public static void DisposeFunc(JFrame abc){
              int dialog = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to add more data?", "Success",dialog);
             if(dialogResult==JOptionPane.NO_OPTION)
@@ -168,8 +149,6 @@ public static void DisposeFunc(JFrame abc)
             }
     
 }
-
-
 public static boolean NumericValidate( JTextField textfieldname){                                    
 
     if(!textfieldname.getText().equals(""))
@@ -215,9 +194,7 @@ public static boolean NumericValidate( JTextField textfieldname){
         textfieldname.setText("");
         return true;
 }
-
-public static  String comboption(JFrame sname,String titlevalue,String columnname,String tablename,String input)
-{
+public static  String comboption(JFrame sname,String titlevalue,String columnname,String tablename,String input){
     
      String Select = titlevalue;
      input="";
@@ -260,15 +237,12 @@ public static  String comboption(JFrame sname,String titlevalue,String columnnam
 
     return input;
 }
-
-
-public static void NewItem (JComboBox combo_box, String column_name )
-{
- String worknew =  JOptionPane.showInputDialog(null, "Enter New Work");
+public static void NewItem (JComboBox combo_box, String column_name ){
+ String worknew =  JOptionPane.showInputDialog(null, "Add new entry");
         while (worknew.equals(""))
         {
-            JOptionPane.showMessageDialog(null, "Please enter new work");
-            worknew = JOptionPane.showInputDialog(null, "Enter New Work");
+            JOptionPane.showMessageDialog(null, "Please add new entry");
+            worknew = JOptionPane.showInputDialog(null, "Add new entry");
         }
         try{
             

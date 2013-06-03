@@ -1,4 +1,4 @@
-package pos;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -190,8 +190,8 @@ public class combotest extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Words w = Words.getInstance(123456);
-        JOptionPane.showMessageDialog(null, ""+w.getNumberInWords());
+//        Words w = Words.getInstance(123456);
+      //  JOptionPane.showMessageDialog(null, ""+w.getNumberInWords());
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
